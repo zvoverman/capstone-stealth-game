@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b86y68uslbktw"]
+[gd_scene load_steps=5 format=3 uid="uid://b86y68uslbktw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_sr3hs"]
+[ext_resource type="Script" path="res://player/camera_controller.gd" id="2_0s6eh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1had7"]
 radius = 0.25
@@ -19,10 +20,19 @@ mesh = SubResource("CapsuleMesh_1had7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_beein")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="CameraRootNode" type="Node3D" parent="."]
+script = ExtResource("2_0s6eh")
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.180471, 0)
+[node name="CamYaw" type="Node3D" parent="CameraRootNode"]
 
-[node name="ForwardMarker" type="Marker3D" parent="Head"]
+[node name="ForwardMarker" type="Marker3D" parent="CameraRootNode/CamYaw"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="CamPitch" type="Node3D" parent="CameraRootNode/CamYaw"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraRootNode/CamYaw/CamPitch"]
+transform = Transform3D(1, 0, 0, 0, 0.935117, 0.35434, 0, -0.35434, 0.935117, 0, 0, 0)
+spring_length = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.981517, -0.191374, 0, 0.191374, 0.981517, 0, 0.00443554, 1.95677)
