@@ -13,9 +13,12 @@ var current_gravity = Vector3.ZERO
 
 var current_normal = Vector3.DOWN
 
+var is_in_air : bool = true
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if is_in_air:
+		print('no grav?')
 		current_gravity += gravity_direction * GRAVITY_STRENGTH * delta
 	else:
 		current_gravity = Vector3.ZERO
@@ -41,15 +44,17 @@ func _physics_process(delta: float) -> void:
 	for i in collision_count:
 		var collision_ = get_slide_collision(i)
 		var collider = collision.get_collider().name
-		if collider != 'Floor':
-			print(collider)
+		#if collider != 'Floor':
+			#print(collider)
 		
 	if collision:
 		#print("I collided with ", collision.get_collider().name, " with normal ", collision.get_normal())
 		self.gravity_direction = -collision.get_normal()
 		self.velocity = velocity.slide(collision.get_normal())
 		current_normal = collision.get_normal()
+		is_in_air = false;
 	else:
+		is_in_air = true;
 		self.gravity_direction = Vector3.DOWN
 		current_normal = Vector3.UP
 	

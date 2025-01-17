@@ -3,22 +3,21 @@
 [ext_resource type="Script" path="res://player/movement_controller.gd" id="1_sr3hs"]
 [ext_resource type="Script" path="res://player/camera_controller.gd" id="2_0s6eh"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1had7"]
+[sub_resource type="SphereMesh" id="SphereMesh_3ys3h"]
 radius = 0.25
-height = 1.0
+height = 0.5
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_beein"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_pj8py"]
 radius = 0.25
-height = 1.0
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_sr3hs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_1had7")
+mesh = SubResource("SphereMesh_3ys3h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_beein")
+shape = SubResource("SphereShape3D_pj8py")
 
 [node name="CameraRootNode" type="Node3D" parent="."]
 script = ExtResource("2_0s6eh")

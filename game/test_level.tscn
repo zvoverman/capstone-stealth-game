@@ -63,3 +63,13 @@ mesh = SubResource("BoxMesh_johim")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
 shape = SubResource("BoxShape3D_lh5k4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.765652, 0.643255, 0, -0.643255, 0.765652, 0, 1.53885, 6.73021)
+use_collision = true
+size = Vector3(3, 0.1, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.616871, 0.787064, 0, -0.787064, -0.616871, 0, 4.69741, 7.08942)
+use_collision = true
+size = Vector3(3, 0.1, 5)
