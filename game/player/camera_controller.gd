@@ -6,17 +6,17 @@ class_name CameraController
 @onready var pitch_node = $CamYaw/CamPitch
 @onready var camera = $CamYaw/CamPitch/SpringArm3D/Camera3D
 
-var yaw : float = 0
-var pitch : float = 0
+@export var yaw_acceleration : float = 20
+@export var pitch_acceleration : float = 20
+
+@export var pitch_max : float = 180
+@export var pitch_min : float = -180
 
 var yaw_sensitivity : float = 0.07
 var pitch_sensitivity : float = 0.07
 
-var yaw_acceleration : float = 20
-var pitch_acceleration : float = 20
-
-var pitch_max : float = 180
-var pitch_min : float = -180
+var yaw : float = 0
+var pitch : float = 0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

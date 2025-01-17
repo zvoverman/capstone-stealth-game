@@ -12,6 +12,8 @@ radius = 0.25
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_sr3hs")
+MAX_SPEED = 6.0
+MAX_JUMP_VELOCITY = 7.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_3ys3h")
