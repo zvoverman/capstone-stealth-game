@@ -14,48 +14,42 @@ var current_gravity = Vector3.ZERO
 var current_normal = Vector3.DOWN
 
 var is_in_air : bool = true
+var is_jumping : bool = false
+
+var jump_direction : Vector3 = Vector3.UP
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if is_in_air:
-		print('no grav?')
 		current_gravity += gravity_direction * GRAVITY_STRENGTH * delta
 	else:
 		current_gravity = Vector3.ZERO
-		gravity_direction = Vector3.DOWN
-
-	if Input.is_action_just_pressed("jump"):
-		var jump_direction := (transform.basis * Vector3.FORWARD).normalized()
-		current_normal = Vector3.UP
-		velocity.y += MAX_JUMP_VELOCITY
-		velocity.z += jump_direction.z * MAX_SPEED * 2
-		velocity.x += jump_direction.x * MAX_SPEED * 2
 		
 	velocity = MAX_SPEED * get_dir()
 	velocity += current_gravity
-		
 	
+	if Input.is_action_just_pressed("jump"):
+		is_jumping = true
+		jump_direction = current_normal
+		print('jump')
+
+	if is_jumping:
+		velocity += jump_direction * MAX_JUMP_VELOCITY
+		
 	move_and_slide()
 	
 	var collision = get_last_slide_collision()
-	
-	var collision_count = get_slide_collision_count()
-	
-	for i in collision_count:
-		var collision_ = get_slide_collision(i)
-		var collider = collision.get_collider().name
-		#if collider != 'Floor':
-			#print(collider)
 		
 	if collision:
+		is_jumping = false
 		#print("I collided with ", collision.get_collider().name, " with normal ", collision.get_normal())
-		self.gravity_direction = -collision.get_normal()
-		self.velocity = velocity.slide(collision.get_normal())
+		gravity_direction = -collision.get_normal()
+		velocity = velocity.slide(collision.get_normal())
 		current_normal = collision.get_normal()
 		is_in_air = false;
 	else:
 		is_in_air = true;
-		self.gravity_direction = Vector3.DOWN
+		gravity_direction = Vector3.DOWN
 		current_normal = Vector3.UP
 	
 func get_dir() -> Vector3:
