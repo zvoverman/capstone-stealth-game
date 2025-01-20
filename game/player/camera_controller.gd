@@ -2,12 +2,13 @@ extends Node3D
 
 class_name CameraController
 
-@onready var yaw_node = $CamYaw
+@export var player : Node3D
+@export var yaw_node : Node3D
 @onready var pitch_node = $CamYaw/CamPitch
 @onready var camera = $CamYaw/CamPitch/SpringArm3D/Camera3D
 
-@export var yaw_acceleration : float = 20
-@export var pitch_acceleration : float = 20
+@export var yaw_acceleration : float = 10
+@export var pitch_acceleration : float = 10
 
 @export var pitch_max : float = 180
 @export var pitch_min : float = -180
@@ -27,7 +28,9 @@ func _input(event: InputEvent) -> void:
 		pitch += -event.relative.y * pitch_sensitivity
 
 func _physics_process(delta: float) -> void:
-	pitch = clamp(pitch, pitch_min, pitch_max)
+	global_position = player.global_position
+	
+	#pitch = clamp(pitch, pitch_min, pitch_max)
 	
 	yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
 	pitch_node.rotation_degrees.x = lerp(yaw_node.rotation_degrees.x, pitch, pitch_acceleration * delta)

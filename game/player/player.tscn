@@ -36,4 +36,4 @@ spring_length = 2.0
 transform = Transform3D(1, 0, 0, 0, 0.981517, -0.191374, 0, 0.191374, 0.981517, 0, 0.00443554, 1.95677)
 
 [node name="ForwardMarker" type="Marker3D" parent="CameraRootNode/CamYaw/CamPitch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.540338, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547799, -2.04414)

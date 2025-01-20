@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c22f4cib04jtk"]
 
-[ext_resource type="PackedScene" uid="uid://b86y68uslbktw" path="res://player/player.tscn" id="1_scv5k"]
+[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_dehll"]
 
 [sub_resource type="Environment" id="Environment_b4gl8"]
 background_mode = 1
@@ -20,15 +20,17 @@ size = Vector3(2, 2, 2)
 size = Vector3(2, 2, 2)
 
 [node name="TestLevel" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.976239, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.972776, -0.170655, 0.156793, 0, 0.676568, 0.736381, -0.231748, -0.716333, 0.658149, 0, 5.66778, 0)
+transform = Transform3D(0.972776, -0.170655, 0.156793, 0, 0.676568, 0.73638, -0.231748, -0.716333, 0.658149, 0, 4.64071, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b4gl8")
 
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02707, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_johim")
@@ -37,7 +39,7 @@ mesh = SubResource("BoxMesh_johim")
 shape = SubResource("BoxShape3D_lh5k4")
 
 [node name="Box" type="StaticBody3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.23582, 0.441979, 3.02728)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.23582, -0.585088, 3.02728)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
 mesh = SubResource("BoxMesh_plcd6")
@@ -45,11 +47,8 @@ mesh = SubResource("BoxMesh_plcd6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
 shape = SubResource("BoxShape3D_nes40")
 
-[node name="Player" parent="." instance=ExtResource("1_scv5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40094, 0)
-
 [node name="Wall" type="StaticBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 5, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 3.97293, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
 mesh = SubResource("BoxMesh_johim")
@@ -58,7 +57,7 @@ mesh = SubResource("BoxMesh_johim")
 shape = SubResource("BoxShape3D_lh5k4")
 
 [node name="Wall2" type="StaticBody3D" parent="."]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 5, -5)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 3.97293, -5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
 mesh = SubResource("BoxMesh_johim")
@@ -67,18 +66,22 @@ mesh = SubResource("BoxMesh_johim")
 shape = SubResource("BoxShape3D_lh5k4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.765652, 0.643255, 0, -0.643255, 0.765652, 0, 1.53885, 6.73021)
+transform = Transform3D(1, 0, 0, 0, 0.765652, 0.643255, 0, -0.643255, 0.765652, 0, 0.511783, 6.73021)
 use_collision = true
 size = Vector3(3, 0.1, 5)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.616871, 0.787064, 0, -0.787064, -0.616871, 0, 4.69741, 7.08942)
+transform = Transform3D(1, 0, 0, 0, -0.616871, 0.787064, 0, -0.787064, -0.616871, 0, 3.67034, 7.08942)
 use_collision = true
 size = Vector3(3, 0.1, 5)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35173, 3.73669, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35173, 2.70962, 0)
 use_collision = true
 radius = 2.0
 height = 8.0
 sides = 16
+
+[node name="PlayerDrone" parent="." instance=ExtResource("1_dehll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290264, 0)
+MAX_SPEED = 2.0

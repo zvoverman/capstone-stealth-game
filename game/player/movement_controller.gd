@@ -2,7 +2,8 @@ extends CharacterBody3D
 
 class_name MovementController
 
-@onready var forward_direction = $CameraRootNode/CamYaw/CamPitch/ForwardMarker
+@export var forward_direction : Marker3D
+@export var camera : Node3D
 
 @export var MAX_SPEED = 5.0
 @export var MAX_JUMP_VELOCITY = 4.5
@@ -18,6 +19,8 @@ var is_jumping : bool = false
 
 var jump_direction : Vector3 = Vector3.UP
 
+var target_basis : Basis = Basis.IDENTITY
+
 func _physics_process(delta: float) -> void:
 	# apply gravity if in the air
 	if is_in_air:
@@ -30,12 +33,15 @@ func _physics_process(delta: float) -> void:
 	velocity = MAX_SPEED * get_dir()
 	velocity += current_gravity
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and not is_jumping:
 		is_jumping = true
 		jump_direction = current_normal
 
 	# apply jump velocity if have previously jumped
 	if is_jumping:
+		current_normal = Vector3.UP
+		gravity_direction = Vector3.DOWN
+		target_basis = calculate_orientation()
 		velocity += jump_direction * MAX_JUMP_VELOCITY
 		
 	move_and_slide()
@@ -44,22 +50,24 @@ func _physics_process(delta: float) -> void:
 	var collision = get_last_slide_collision()
 		
 	if collision:
-		is_in_air = false;
+		is_in_air = false
 		is_jumping = false
-		#print("I collided with ", collision.get_collider().name, " with normal ", collision.get_normal())
 		current_normal = collision.get_normal()
 		gravity_direction = -current_normal
 		velocity = velocity.slide(current_normal)
+		target_basis = calculate_orientation()
 	else:
-		is_in_air = true;
-		current_normal = Vector3.UP
-		gravity_direction = Vector3.DOWN
+		is_in_air = true
+		
+	# Smoothly interpolate current orientation to target orientation
+	var next_basis : Basis = global_transform.basis.slerp(target_basis.get_rotation_quaternion(), delta * 10.0)
+	global_transform.basis = next_basis
 
 # get axis of movement from cross product between current normal and forward direction
 func get_dir() -> Vector3:
 	var dir : Vector3 = Vector3.ZERO
-	var fowardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin  ).normalized()
-	var dirBase : Vector3 = current_normal.cross( fowardDir ).normalized()
+	var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin  ).normalized()
+	var dirBase : Vector3 = current_normal.cross( forwardDir ).normalized()
 	if Input.is_action_pressed("forward"):
 		dir = dirBase.rotated( current_normal.normalized(), -PI/2 )
 	if Input.is_action_pressed("backward"):
@@ -69,3 +77,12 @@ func get_dir() -> Vector3:
 	if Input.is_action_pressed("right"):
 		dir = dirBase.rotated(current_normal.normalized(), PI)
 	return dir.normalized()
+	
+func calculate_orientation() -> Basis:
+	var up = current_normal
+	var forward = forward_direction.global_transform.basis.z
+	forward = forward.slide(up).normalized()
+	var right = up.cross(forward).normalized()
+	forward = right.cross(up).normalized()
+	var basis = Basis(right, up, forward)
+	return basis
