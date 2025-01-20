@@ -1,87 +1,73 @@
-[gd_scene load_steps=7 format=3 uid="uid://c22f4cib04jtk"]
+[gd_scene load_steps=3 format=3 uid="uid://c22f4cib04jtk"]
 
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_dehll"]
 
 [sub_resource type="Environment" id="Environment_b4gl8"]
 background_mode = 1
-background_color = Color(0.854359, 0.862422, 0.989029, 1)
+background_color = Color(0.603802, 0.784177, 0.98624, 1)
+ssr_enabled = true
 ssao_enabled = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_johim"]
-size = Vector3(10, 0.1, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lh5k4"]
-size = Vector3(10, 0.1, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_plcd6"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_nes40"]
-size = Vector3(2, 2, 2)
-
 [node name="TestLevel" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.976239, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.972776, -0.170655, 0.156793, 0, 0.676568, 0.73638, -0.231748, -0.716333, 0.658149, 0, 4.64071, 0)
+transform = Transform3D(0.766044, -0.55667, 0.321394, 0, 0.5, 0.866025, -0.642788, -0.663414, 0.383022, 0, 5, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b4gl8")
 
-[node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02707, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("BoxMesh_johim")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("BoxShape3D_lh5k4")
-
-[node name="Box" type="StaticBody3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.23582, -0.585088, 3.02728)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
-mesh = SubResource("BoxMesh_plcd6")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
-shape = SubResource("BoxShape3D_nes40")
-
-[node name="Wall" type="StaticBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 3.97293, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
-mesh = SubResource("BoxMesh_johim")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
-shape = SubResource("BoxShape3D_lh5k4")
-
-[node name="Wall2" type="StaticBody3D" parent="."]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 3.97293, -5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
-mesh = SubResource("BoxMesh_johim")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
-shape = SubResource("BoxShape3D_lh5k4")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.765652, 0.643255, 0, -0.643255, 0.765652, 0, 0.511783, 6.73021)
-use_collision = true
-size = Vector3(3, 0.1, 5)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.616871, 0.787064, 0, -0.787064, -0.616871, 0, 3.67034, 7.08942)
-use_collision = true
-size = Vector3(3, 0.1, 5)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35173, 2.70962, 0)
-use_collision = true
-radius = 2.0
-height = 8.0
-sides = 16
-
 [node name="PlayerDrone" parent="." instance=ExtResource("1_dehll")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.290264, 0)
-MAX_SPEED = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.704182, 0)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+use_collision = true
+size = Vector3(5, 0.1, 15)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+use_collision = true
+size = Vector3(5, 10, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -15)
+use_collision = true
+size = Vector3(5, 0.1, 15)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -5, -35)
+use_collision = true
+size = Vector3(15, 0.1, 5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2.5, -2.5, -27.5)
+use_collision = true
+size = Vector3(5, 0.1, 10)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10, -2.5, -37.5)
+use_collision = true
+size = Vector3(5, 0.1, 5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -27.5)
+use_collision = true
+size = Vector3(5, 0.1, 20)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -2.5, -15)
+use_collision = true
+size = Vector3(5, 0.1, 15)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 12.5, -1.25, -20)
+use_collision = true
+size = Vector3(2.5, 0.1, 5)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -2.5, -10)
+use_collision = true
+size = Vector3(5, 0.1, 5)

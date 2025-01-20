@@ -3,7 +3,6 @@ extends CharacterBody3D
 class_name MovementController
 
 @export var forward_direction : Marker3D
-@export var camera : Node3D
 
 @export var MAX_SPEED = 5.0
 @export var MAX_JUMP_VELOCITY = 4.5
@@ -24,6 +23,8 @@ var target_basis : Basis = Basis.IDENTITY
 func _physics_process(delta: float) -> void:
 	# apply gravity if in the air
 	if is_in_air:
+		current_normal = Vector3.UP
+		gravity_direction = Vector3.DOWN
 		current_gravity += gravity_direction * GRAVITY_STRENGTH * delta
 	else:
 		current_gravity = Vector3.ZERO
@@ -84,5 +85,5 @@ func calculate_orientation() -> Basis:
 	forward = forward.slide(up).normalized()
 	var right = up.cross(forward).normalized()
 	forward = right.cross(up).normalized()
-	var basis = Basis(right, up, forward)
-	return basis
+	var new_basis = Basis(right, up, forward)
+	return new_basis
