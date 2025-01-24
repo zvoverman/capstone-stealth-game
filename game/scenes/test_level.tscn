@@ -4,10 +4,13 @@
 
 [sub_resource type="Environment" id="Environment_b4gl8"]
 background_mode = 1
-background_color = Color(0.603802, 0.784177, 0.98624, 1)
+background_color = Color(0.286102, 0.381981, 0.488281, 1)
+tonemap_mode = 2
 ssr_enabled = true
 ssao_enabled = true
+ssil_enabled = true
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
 volumetric_fog_albedo = Color(0.550781, 0.763813, 1, 1)
 volumetric_fog_emission = Color(0.181046, 0.289696, 0.410156, 1)
 
