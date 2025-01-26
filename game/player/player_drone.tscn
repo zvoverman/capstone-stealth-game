@@ -96,6 +96,7 @@ script = ExtResource("1_qujey")
 forward_direction = NodePath("Armature/ForwardMarker")
 MAX_SPEED = 4.0
 MAX_JUMP_VELOCITY = 8.0
+detection_level_step = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.352638, 0)

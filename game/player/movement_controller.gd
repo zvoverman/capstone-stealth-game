@@ -4,6 +4,8 @@ class_name MovementController
 
 @export var forward_direction : Marker3D
 
+@export var detection_bar_ui : ProgressBar
+
 @export var MAX_SPEED: float = 3
 @export var MAX_JUMP_VELOCITY: float = 10
 @export var GRAVITY_STRENGTH: float = 12
@@ -20,6 +22,22 @@ var jump_direction : Vector3 = Vector3.UP
 
 var target_basis : Basis = Basis.IDENTITY
 @export var rotation_smoothness : float = 10.0
+
+var is_detected : bool = false
+var detection_level : float = 0.0
+@export var detection_level_step : float = 0.1
+@export var max_detection_level : float = 1.0
+var time_since_detected : float = 0.0
+
+func _ready() -> void:
+	detection_bar_ui.max_value = max_detection_level
+
+func _process(delta: float) -> void:
+	if is_detected:
+		increment_detection(delta)
+	else:
+		detection_level = lerp(detection_level, 0.0, 0.1 * delta)
+		detection_bar_ui.value = detection_level
 
 func _physics_process(delta: float) -> void:
 	# Reset gravity when in the air
@@ -93,3 +111,16 @@ func calculate_orientation() -> Basis:
 	var new_basis = Basis(right, up, forward)
 	
 	return new_basis
+
+
+
+### NON MOVEMENT RELATED
+
+func increment_detection(delta : float):
+	detection_level += detection_level_step * delta;
+	
+	# Set UI
+	detection_bar_ui.value = detection_level
+	
+	if detection_level >= max_detection_level:
+		get_tree().reload_current_scene()

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgx71v3n0qufj"]
+[gd_scene load_steps=6 format=3 uid="uid://dgx71v3n0qufj"]
 
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_vpr45"]
 [ext_resource type="PackedScene" uid="uid://d3nuk5n1cvyjr" path="res://camera_scanner/camera.tscn" id="2_qg52e"]
+[ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://detection_bar.tscn" id="3_v8uer"]
+[ext_resource type="Script" path="res://scenes/game_manager.gd" id="4_4v10i"]
 
 [sub_resource type="Environment" id="Environment_wgbtv"]
 background_mode = 1
@@ -10,10 +12,14 @@ tonemap_mode = 2
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.286275, 0.380392, 0.490196, 1)
+fog_density = 0.1
+fog_depth_begin = 1.0
+fog_depth_end = 10.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.1
-volumetric_fog_albedo = Color(0.550781, 0.763813, 1, 1)
-volumetric_fog_emission = Color(0.181046, 0.289696, 0.410156, 1)
+volumetric_fog_emission = Color(0.286275, 0.380392, 0.490196, 1)
 
 [node name="BuildingLevel" type="Node3D"]
 
@@ -24,61 +30,68 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wgbtv")
 
-[node name="PlayerDrone" parent="." instance=ExtResource("1_vpr45")]
+[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("1_vpr45")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09365, 0)
+detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
 
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.6177)
 use_collision = true
-size = Vector3(10, 0.1, 10)
+size = Vector3(10, 0.1, 50)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, -20)
 use_collision = true
-size = Vector3(0.1, 10, 10)
+size = Vector3(0.1, 10, 25)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, 0)
-use_collision = true
-size = Vector3(0.1, 10, 10)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 5)
-use_collision = true
-size = Vector3(10, 10, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -5)
-use_collision = true
-size = Vector3(10, 8, 0.1)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.95851, -20)
 use_collision = true
 size = Vector3(10, 0.1, 10)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -10)
-use_collision = true
-size = Vector3(10, 0.1, 10)
-
-[node name="Camera" parent="." node_paths=PackedStringArray("markers") instance=ExtResource("2_qg52e")]
-transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, 0, 9.0663, 2.62038)
-radius = 3.0
+[node name="Camera" parent="." node_paths=PackedStringArray("markers", "player", "game_manager") instance=ExtResource("2_qg52e")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -0.999999, -4.37114e-08, 0, 9.0663, -17.962)
+radius = 5.0
 markers = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
+player = NodePath("../PlayerDrone")
+game_manager = NodePath("../GameManager")
 
 [node name="Marker3D" type="Marker3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, 3, 9.0663, -5.37962)
+transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, 3, 0.257907, -10.7119)
 top_level = true
 
 [node name="Marker3D2" type="Marker3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, -2.92959, 9.0663, -5.37962)
+transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, -2.92959, 0.217979, -19.4542)
 top_level = true
 
 [node name="Marker3D3" type="Marker3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, -1.22174, 6.81833, -5.37962)
+transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, -1.22174, 0.397861, -25.4667)
 top_level = true
 
-[node name="Camera2" parent="." instance=ExtResource("2_qg52e")]
-transform = Transform3D(1, 0, 0, 0, -0.250481, 0.968121, 0, -0.968121, -0.250481, 0, 16.8222, -11.5276)
+[node name="Camera2" parent="." node_paths=PackedStringArray("markers", "player", "game_manager") instance=ExtResource("2_qg52e")]
+transform = Transform3D(1, 0, 0, 0, 0.086356, 0.996264, 0, -0.996264, 0.086356, 3.62313, 9.25521, -23.2651)
+markers = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
+player = NodePath("../PlayerDrone")
+game_manager = NodePath("../GameManager")
+
+[node name="Marker3D" type="Marker3D" parent="Camera2"]
+transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, 3.5783, 0.257907, -24.3062)
+top_level = true
+
+[node name="Marker3D2" type="Marker3D" parent="Camera2"]
+transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, -4.92959, 4.21798, -18.5843)
+top_level = true
+
+[node name="Marker3D3" type="Marker3D" parent="Camera2"]
+transform = Transform3D(1, 0, 0, 0, 0.664513, 0.747276, 0, -0.747276, 0.664513, -4.22174, 0.397861, -28.5968)
+top_level = true
+
+[node name="CanvasLayer" parent="." instance=ExtResource("3_v8uer")]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_4v10i")
+player = NodePath("../PlayerDrone")
+
+[editable path="CanvasLayer"]
