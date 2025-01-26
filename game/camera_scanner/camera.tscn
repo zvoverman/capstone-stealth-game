@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3nuk5n1cvyjr"]
 
-[ext_resource type="Script" path="res://camera.gd" id="1_b1bnr"]
+[ext_resource type="Script" path="res://camera_scanner/camera.gd" id="1_b1bnr"]
 [ext_resource type="Material" uid="uid://c2ocmobwrb8vq" path="res://materials/test_environment_mat.tres" id="2_mgdri"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ed11g"]
@@ -45,5 +45,9 @@ spot_angle = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("ConvexPolygonShape3D_ptlcl")
+
+[node name="ForwardDirection" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.191)
+top_level = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
