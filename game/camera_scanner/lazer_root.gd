@@ -9,6 +9,8 @@ var initial_height : float
 var initial_position_z : float
 
 func _ready() -> void:
+	if !camera:
+		initial_height = 10.0
 	initial_height = -camera.height
 	initial_position_z = mesh.position.z
 	

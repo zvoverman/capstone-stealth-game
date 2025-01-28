@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bapg7j4qlh4ec"]
+
+[ext_resource type="Script" path="res://enemy/enemy_navigation.gd" id="3_nord4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2mtkv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h3gcj"]
+size = Vector3(0.6, 0.2, 0.4)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx4qn"]
+
+[node name="Enemy" type="RigidBody3D"]
+lock_rotation = true
+script = ExtResource("3_nord4")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_2mtkv")
+
+[node name="EyeMesh" type="MeshInstance3D" parent="BodyMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400283, -0.403583)
+mesh = SubResource("BoxMesh_h3gcj")
+skeleton = NodePath("../..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_tx4qn")
