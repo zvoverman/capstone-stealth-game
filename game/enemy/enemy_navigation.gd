@@ -43,11 +43,6 @@ func _physics_process(delta):
 					if patrol_timer >= patrol_wait_time:
 						patrol_timer = 0.0
 						current_patrol_index = (current_patrol_index + 1) % patrol_points.size()
-			
-			# Optionally, you can add logic to switch to the CHASE state if the player is detected
-			# For example, if the enemy sees the player within a certain range, you can switch to CHASE
-			if global_position.distance_to(player.global_position) < 3.0:  # Example chase range
-				current_state = EnemyState.CHASE
 				
 	if NavigationServer3D.map_get_iteration_id(navigation_agent.get_navigation_map()) == 0:
 		return
@@ -60,9 +55,14 @@ func _physics_process(delta):
 		navigation_agent.set_velocity(new_velocity)
 	else:
 		_on_velocity_computed(new_velocity)
-		
-	# Rotate the enemy to face the direction they are moving
-	rotate_towards_direction(new_velocity, delta)
+	
+	if current_state == EnemyState.PATROL:
+		# Rotate the enemy to face the direction they are moving
+		rotate_towards_direction(new_velocity, delta)
+	else:
+		look_at_point(player.global_position)
+		global_rotation.x = 0.0
+		global_rotation.z = 0.0
 
 func rotate_towards_direction(velocity: Vector3, delta: float):
 	if velocity.length() > 0.1:  # Only rotate if there's a noticeable velocity
@@ -75,13 +75,20 @@ func rotate_towards_direction(velocity: Vector3, delta: float):
 
 		# Apply the new rotation to the enemy (rotation around Y-axis)
 		global_transform.basis = Basis(Vector3.UP, new_rotation)
+		
+func look_at_point(target_pos : Vector3) -> void:
+	# I don't even know, look_at() looks backwards for some reason
+	var opposite_dir = target_pos - global_transform.origin
+	look_at(global_transform.origin - opposite_dir, Vector3.UP)
 
 func _on_velocity_computed(safe_velocity: Vector3):
 	linear_velocity = safe_velocity
 
 func _on_detection_fov_player_detected() -> void:
+	current_state = EnemyState.CHASE
 	game_manager.add_detection(get_instance_id())
 
 
 func _on_detection_fov_player_undetected() -> void:
+	current_state = EnemyState.PATROL
 	game_manager.remove_detection(get_instance_id())
