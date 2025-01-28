@@ -1,27 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bapg7j4qlh4ec"]
+[gd_scene load_steps=6 format=3 uid="uid://bapg7j4qlh4ec"]
 
+[ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://enemy/detection_fov.tscn" id="2_uxcq4"]
 [ext_resource type="Script" path="res://enemy/enemy_navigation.gd" id="3_nord4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx4qn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2mtkv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_h3gcj"]
 size = Vector3(0.6, 0.2, 0.4)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx4qn"]
-
 [node name="Enemy" type="RigidBody3D"]
 lock_rotation = true
 script = ExtResource("3_nord4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_tx4qn")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2mtkv")
 
 [node name="EyeMesh" type="MeshInstance3D" parent="BodyMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400283, -0.403583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400283, 0.388274)
 mesh = SubResource("BoxMesh_h3gcj")
 skeleton = NodePath("../..")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_tx4qn")
+[node name="DetectionFOV" parent="." instance=ExtResource("2_uxcq4")]
+transform = Transform3D(1, 0, 0, 0, 0.942169, -0.335139, 0, 0.335139, 0.942169, 0, 1.439, 0)
+length = 10.0
+radius = 5.0
+
+[connection signal="player_detected" from="DetectionFOV" to="." method="_on_detection_fov_player_detected"]
+[connection signal="player_undetected" from="DetectionFOV" to="." method="_on_detection_fov_player_undetected"]

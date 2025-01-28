@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck5dl85ds4yc3"]
+
+[ext_resource type="Script" path="res://enemy/detection_fov.gd" id="1_82axy"]
+[ext_resource type="Shader" path="res://materials/fov_shader.gdshader" id="2_frev8"]
+[ext_resource type="Script" path="res://enemy/lazer.gd" id="2_mjoly"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pfhl"]
+render_priority = 0
+shader = ExtResource("2_frev8")
+shader_parameter/color1 = Color(1, 1, 1, 0.1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/threshold = 0.2
+shader_parameter/fresnel_sharpness = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dh66w"]
+points = PackedVector3Array(0, 0, 0, 3, 0, 15, -3, 0, 15, 0, 3, 15, 0, -3, 15)
+
+[node name="DetectionFOV" type="Node3D"]
+script = ExtResource("1_82axy")
+
+[node name="Lazers" type="Node3D" parent="."]
+
+[node name="L1_Offset" type="Node3D" parent="Lazers"]
+
+[node name="L1" type="Node3D" parent="Lazers/L1_Offset" node_paths=PackedStringArray("detection_fov")]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0)
+script = ExtResource("2_mjoly")
+detection_fov = NodePath("../../..")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Lazers/L1_Offset/L1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 7.5)
+radius = 0.04
+height = 15.0
+material = SubResource("ShaderMaterial_8pfhl")
+
+[node name="RayCast3D" type="RayCast3D" parent="Lazers/L1_Offset/L1"]
+target_position = Vector3(0, 0, 15)
+debug_shape_custom_color = Color(1, 0, 1, 1)
+
+[node name="L2_Offset" type="Node3D" parent="Lazers"]
+transform = Transform3D(-0.5, -0.866025, 0, 0.866025, -0.5, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="L2" type="Node3D" parent="Lazers/L2_Offset" node_paths=PackedStringArray("detection_fov")]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0)
+script = ExtResource("2_mjoly")
+detection_fov = NodePath("../../..")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Lazers/L2_Offset/L2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 7.5)
+radius = 0.04
+height = 15.0
+material = SubResource("ShaderMaterial_8pfhl")
+
+[node name="RayCast3D" type="RayCast3D" parent="Lazers/L2_Offset/L2"]
+target_position = Vector3(0, 0, 15)
+debug_shape_custom_color = Color(1, 0, 1, 1)
+
+[node name="L3_Offset" type="Node3D" parent="Lazers"]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="L3" type="Node3D" parent="Lazers/L3_Offset" node_paths=PackedStringArray("detection_fov")]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0)
+script = ExtResource("2_mjoly")
+detection_fov = NodePath("../../..")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Lazers/L3_Offset/L3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 7.5)
+radius = 0.04
+height = 15.0
+material = SubResource("ShaderMaterial_8pfhl")
+
+[node name="RayCast3D" type="RayCast3D" parent="Lazers/L3_Offset/L3"]
+target_position = Vector3(0, 0, 15)
+debug_shape_custom_color = Color(1, 0, 1, 1)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+light_energy = 5.0
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+spot_range = 15.0
+spot_attenuation = 0.0
+spot_angle = 10.0
+
+[node name="DetectionArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
+shape = SubResource("ConvexPolygonShape3D_dh66w")
+
+[connection signal="body_entered" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_entered"]
+[connection signal="body_exited" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_exited"]

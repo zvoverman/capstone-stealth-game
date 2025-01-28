@@ -41,7 +41,7 @@ spot_angle = 10.0
 shape = SubResource("ConvexPolygonShape3D_ptlcl")
 
 [node name="ForwardDirection" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.191)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.191)
 top_level = true
 
 [node name="Lazers" type="Node3D" parent="."]

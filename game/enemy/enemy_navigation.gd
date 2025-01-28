@@ -1,6 +1,7 @@
 extends RigidBody3D
 
 @export var player: CharacterBody3D
+@export var game_manager : GameManager
 @export var movement_speed: float = 4.0
 @export var patrol_points: Array[Marker3D] = [] # Mker3D nodes for patrol points
 @onready var navigation_agent: NavigationAgent3D = get_node("NavigationAgent3D")
@@ -65,7 +66,7 @@ func _physics_process(delta):
 
 func rotate_towards_direction(velocity: Vector3, delta: float):
 	if velocity.length() > 0.1:  # Only rotate if there's a noticeable velocity
-		var target_rotation = velocity.angle_to(Vector3.FORWARD)  # Find the angle of movement
+		var target_rotation = velocity.angle_to(Vector3.BACK)  # Find the angle of movement
 		var current_rotation = global_transform.basis.get_euler().y  # Get the current rotation around Y-axis
 		var rotation_step = 10.0 * delta  # Speed of rotation
 
@@ -77,3 +78,10 @@ func rotate_towards_direction(velocity: Vector3, delta: float):
 
 func _on_velocity_computed(safe_velocity: Vector3):
 	linear_velocity = safe_velocity
+
+func _on_detection_fov_player_detected() -> void:
+	game_manager.add_detection(get_instance_id())
+
+
+func _on_detection_fov_player_undetected() -> void:
+	game_manager.remove_detection(get_instance_id())
