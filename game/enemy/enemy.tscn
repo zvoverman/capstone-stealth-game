@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bapg7j4qlh4ec"]
 
-[ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://enemy/detection_fov.tscn" id="2_uxcq4"]
+[ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://detection_fov/detection_fov.tscn" id="2_uxcq4"]
 [ext_resource type="Script" path="res://enemy/enemy_navigation.gd" id="3_nord4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx4qn"]

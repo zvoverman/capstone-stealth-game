@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://x2t5j7bc3fbu"]
 
-[ext_resource type="Script" path="res://enemy/stationary_camera.gd" id="1_3dts6"]
-[ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://enemy/detection_fov.tscn" id="2_o3l5m"]
+[ext_resource type="Script" path="res://stationary_camera/stationary_camera.gd" id="1_3dts6"]
+[ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://detection_fov/detection_fov.tscn" id="2_o3l5m"]
 
 [node name="StationaryCamera" type="Node3D"]
 script = ExtResource("1_3dts6")

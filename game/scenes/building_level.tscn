@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_vpr45"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://detection_bar.tscn" id="3_v8uer"]
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="4_4v10i"]
-[ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://enemy/stationary_camera.tscn" id="5_6v1cv"]
+[ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="5_6v1cv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1hnkd"]
 vertices = PackedVector3Array(-4.55, 0.45, -47.1177, -4.55, 0.45, 1.8823, 4.45, 0.45, 1.8823, 4.45, 0.45, -47.1177, -4.55, 10.45, -24.6177, -4.55, 10.45, -15.3677, 4.45, 10.45, -15.3677, 4.45, 10.45, -24.6177)
