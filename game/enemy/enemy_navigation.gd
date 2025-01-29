@@ -77,7 +77,7 @@ func _physics_process(delta):
 func look_at_point(target_pos : Vector3) -> void:
 	# I don't even know, look_at() looks backwards for some reason
 	var opposite_dir = target_pos - global_transform.origin
-	look_at(global_transform.origin - opposite_dir, Vector3.UP)
+	look_at(global_transform.origin - opposite_dir)
 
 func _on_velocity_computed(safe_velocity: Vector3):
 	linear_velocity = safe_velocity

@@ -60,15 +60,17 @@ func _process(delta):
 
 func _on_detection_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "PlayerDrone":
+		print('here')
 		is_player_in_area = true
 		ray_body = body
 		
 
-
 func _on_detection_area_3d_body_exited(body: Node3D) -> void:
 	if body.name == "PlayerDrone":
 		is_player_in_area = false
+		is_player_detected = false
 		ray_body = null
+		player_undetected.emit()
 		
 func look_at_point(target_pos : Vector3) -> Vector3:
 	# I don't even know, look_at() looks backwards for some reason

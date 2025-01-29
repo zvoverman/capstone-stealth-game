@@ -1,36 +1,40 @@
-[gd_scene load_steps=16 format=4 uid="uid://b58k0rqradkua"]
+[gd_scene load_steps=18 format=4 uid="uid://b58k0rqradkua"]
 
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_0o6nn"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://detection_bar.tscn" id="2_0c1l2"]
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="3_5b3ua"]
 [ext_resource type="PackedScene" uid="uid://bapg7j4qlh4ec" path="res://enemy/enemy.tscn" id="4_8sfuf"]
+[ext_resource type="Material" uid="uid://bjkdq32mfrp33" path="res://materials/test_mat.tres" id="4_lhyrf"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="5_wbk64"]
+[ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://lights/hanging_light.tscn" id="6_t625n"]
+[ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://lights/big_hanging_light.tscn" id="7_7ks5v"]
 
-[sub_resource type="Environment" id="Environment_eq662"]
+[sub_resource type="Environment" id="Environment_bnnmu"]
 background_mode = 1
-background_color = Color(0.195129, 0.273019, 0.359375, 1)
-tonemap_mode = 1
-ssr_enabled = true
+background_color = Color(0.705882, 0.835294, 0.862745, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.298615, 0.384191, 0.402344, 1)
 ssao_enabled = true
-ssao_radius = 0.5
-ssao_intensity = 1.0
+ssao_radius = 3.0
+ssao_power = 0.53033
 ssil_enabled = true
+sdfgi_use_occlusion = true
 sdfgi_read_sky_light = false
-sdfgi_bounce_feedback = 0.1
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 0.15
+sdfgi_cascade0_distance = 9.6
+sdfgi_max_distance = 2457.6
+sdfgi_y_scale = 0
+glow_enabled = true
 fog_enabled = true
-fog_light_color = Color(0.286275, 0.380392, 0.490196, 1)
-fog_depth_begin = 1.0
-fog_depth_end = 10.0
+fog_light_color = Color(0.705882, 0.835294, 0.862745, 1)
 volumetric_fog_enabled = true
-volumetric_fog_emission = Color(0.286275, 0.380392, 0.490196, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b8rqp"]
 vertices = PackedVector3Array(14.25, 24.75, -61.5006, 14, 24.75, -70.7506, -14, 24.75, -70.7506, -14, 24.75, -38.0006, 14, 24.75, -38.0006, 13.25, 0.25, -63.5006, 14, 0.25, -63.5006, 14, 0.25, -64.7506, 13.25, 0.25, -64.7506, 1.5, 0.5, -39.7506, 12.5, 0.5, -39.7506, 12.5, 0.5, -62.7506, -0.75, 0.5, -37.7506, 0.75, 0.5, -37.7506, 0.75, 0.5, -39.0006, -0.75, 0.5, -39.0006, 12.5, 0.5, -65.5006, 12.5, 0.5, -69.2506, -12.5, 0.5, -69.2506, -1.5, 0.5, -39.7506, -12.5, 0.5, -39.7506, 16.25, 16, -66.0006, 16.25, 16, -62.2506, 17.75, 16, -62.2506, 17.75, 16, -66.0006, -0.75, 0.5, -36.5006, 0.75, 0.5, -36.5006, -1.5, 0.5, -35.7506, -3.75, 0.5, -35.7506, -3.75, 0.5, -7.00056, 1.5, 0.5, -35.7506, 4, 0.5, -7.00056, 4, 0.5, -35.7506, -5, 19.5, -36.0006, -5, 19.5, -5.75056, 5, 19.5, -5.75056, 5, 19.5, -36.0006, -1.5, 11.75, -8.50056, -1.5, 11.75, -7.00056, 1.5, 11.75, -7.00056, 1.5, 11.75, -8.50056, 5, 15.5, -3.75056, -5, 15.5, -3.75056, -5, 15.5, 4.24944, -4.25, 15.5, 4.99944, 4.25, 15.5, 4.99944, 5, 15.5, 4.24944, -3.75, 0.5, -3.75056, -3.75, 0.5, 3.99944, 4, 0.5, 3.99944, 4, 0.5, -3.75056)
 polygons = [PackedInt32Array(0, 4, 1), PackedInt32Array(1, 4, 3), PackedInt32Array(1, 3, 2), PackedInt32Array(8, 7, 5), PackedInt32Array(5, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(18, 17, 16), PackedInt32Array(8, 5, 11), PackedInt32Array(15, 19, 14), PackedInt32Array(14, 19, 9), PackedInt32Array(9, 19, 11), PackedInt32Array(8, 11, 16), PackedInt32Array(16, 11, 18), PackedInt32Array(18, 11, 19), PackedInt32Array(18, 19, 20), PackedInt32Array(24, 23, 21), PackedInt32Array(21, 23, 22), PackedInt32Array(26, 25, 13), PackedInt32Array(13, 25, 12), PackedInt32Array(29, 28, 27), PackedInt32Array(26, 30, 25), PackedInt32Array(25, 30, 27), PackedInt32Array(27, 30, 29), PackedInt32Array(29, 30, 31), PackedInt32Array(30, 32, 31), PackedInt32Array(36, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(46, 45, 41), PackedInt32Array(41, 45, 44), PackedInt32Array(41, 44, 43), PackedInt32Array(41, 43, 42), PackedInt32Array(50, 49, 47), PackedInt32Array(47, 49, 48)]
 agent_height = 4.0
 agent_radius = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gme57"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lcxij"]
 _surfaces = [{
@@ -53,7 +57,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 1428,
 "index_data": PackedByteArray("BwASAAoABwAPABIADAAiABAADAAeACIAIQAcACQAIQAYABwAEwAIABoAEwAAAAgADQAXAB8ADQADABcAIwAJABEAIwAbAAkAJwAzAC0AJwAwADMALgBAADEALgA9AEAAPwA8AEIAPwA2ADwANAAoADcANAAlACgAkQE+AC8AkQGLAT4AiwE1AD4AJgCRAS8AJgCOAZEBiAE1AIsBJgCIAY4BNQCIASYAlwErADIAOgCdAUEAOgCaAZ0BlAErAJcBOgCUAZoBKwCUAToAnQEyAEEAnQGXATIASgBXAE0ASgBUAFcASwBdAEcASwBaAF0AUAAOACAAUABGAA4ApQFPAFMARACfAUkARACoAZ8BogFPAKUBRACiAagBTwCiAUQASQClAVMASQCfAaUBqwFMAK4BHQCxAVYAHQC0AbEBqwELAEwAHQCrAbQBCwCrAR0AsQFMAFYAsQGuAUwACwB5AEwACwB2AHkAVgBtAB0AVgBkAG0AUgBgAFUAUgBjAGAAaQBvAGYAaQBsAG8AXwBlAFcAXwBoAGUAIABrAGIAIABuAGsAYQBnAF4AYQBqAGcAdQB7AHgAdQByAHsAWABzAFsAWABwAHMATQBxAFkATQB6AHEAXAB3AA4AXAB0AHcABwCBAH4ABwAsAIEAKgCGAIAAKgA5AIYAOwCEAIcAOwAYAIQAFwB9AIMAFwAEAH0AKQAVADgAKQACABUAhQB8AH8AhQCCAHwAiACOAAEAiACLAI4AjACbAI8AjACYAJsAlwCUAJoAlwCRAJQAkgAFAJUAkgCJAAUAjQCTAJkAjQCKAJMAnAAGAJAAnACWAAYAFACjAJ0AFACgAKMAoQCwAKQAoQCtALAArACpAK8ArACmAKkApwCeAKoApwAWAJ4AogCoAK4AogAZAKgAsQCfAKUAsQCrAJ8AtAC9ALcAtAC6AL0AuADHALsAuADEAMcAxgDDAMkAxgDAAMMAvgC1AMEAvgCyALUAuQC/AMUAuQCzAL8AyAC2ALwAyADCALYASADVAMwASADSANUA2wDYAOEA2wBRANgATgDKANYATgBDAMoA0QBQANoA0QBFAFAA4ADLANQA4ADXAMsA5ADtAOcA5ADqAO0A6AD3AOsA6AD0APcA9gDzAPkA9gDwAPMA7gDlAPEA7gDiAOUAuwHKAccBuwG+AcoB7wDEAeMA7wDNAcQBxwHjAMQB9QDNAe8AuwHBAb4B9QC7Ac0BxwHpAOMAuAHHAcoB9QDBAbsBuAHpAMcB9QC4AcEB6QC4AfUA4gH4APIA7ADcAeYA0AHWAdMB7ADQAdwB3wH4AOIB2QHfAeUB7ADWAdAB2QH4AN8B7ADZAdYB+ADZAewA3wHTAeUB3wHQAdMB3AHyAOYA3AHiAfIA/AAFAf8A/AACAQUBAQEQAQQBAQENARABDgELAREBDgEIAQsBBwH+AAoBBwH7AP4A6gEAAfoADAHwAQYBDAHnAfAB7QEAAeoBDAHtAecBAAHtAQwBBgHqAfoABgHwAeoB9gEJAf0A9gH5AQkB/AEJAfkBAwH2Af0AAwHzAfYB/AEPAQkBAwH8AfMBDwH8AQMBAwIqAQYCKgEUASEBFAEJAh4BFAEAAgkCAwIUASoBFAEDAgAC0AAsAdMA0AAWASwB3wAZAdkA3wAwARkBIwE1ATMBIwEmATUBGAE0AS8BGAElATQBDAIbATIBGwE2ASgBNgESAhQCDwIbAQwCGwESAjYBGwEPAhICGgEkARcBGgEnASQBNQE7ATMBNQE9ATsBKAI2ARQCNgErAj4BNgElAisCKAIlAjYBGgI9AhwCKAIaAiUCMgEfAgwCHwIaAigCGgIiAj0CFwI0AjoCHwIiAhoCFwI3AjQCHwIXAiICMQIyAToBLgIyATECMgEXAh8CNwIyAS4CFwIyATcCQAI+ASsCPgExAjoBPgE0AjECPQJAAhwCQAI0Aj4BOgJAAj0CNAJAAjoCTAITAR0BTAJCAhMBRQISAUECEgFCAT8BQgFLAhwBQgFIAksCRQJCARIBQgFFAkgCdQIrAUoBKwFyAgcCeAIfAQoCHwFRAkQBHwFUAlECeAJUAh8BeAJXAlQCcgJXAngCcgJaAlcCbwIrAXUCYAJpAmYCaQIrAW8CcgJgAloCaQJyAisBcgJpAmACXQJEAVECRAF1AkoBbAJmAmkCRAFsAnUCWgJdAlcCXQJsAkQBbAJjAmYCYwJdAloCXQJjAmwCNwFmATkBNwFjAWYBOgFuAT4BOgFoAW4BQgFvAT8BQgFzAW8BQAGDAhUBQAGGAoMCjwKJApICjwJ9AokCiQIVAYMCRgGGAkABRgGSAoYCiQIiARUBewKJAn0CewIiAYkCRgGPApICRgGMAo8CgAIiAXsCRgGAAowCIgGAAkYBIAFHASkBIAFFAUcBmAIxAS4BmAKcAjEBngIwAZoCMAE3ATkBNwGWAi0BNwGTApYCngI3ATABNwGeApMCsgI4AakCNAGjAi8BNAGmAqMCsgI8ATgBuAI8AbICNAGsAqYCNAGvAqwCtQI8AbgCNAG1Aq8CPAG1AjQBowI4AS8BowKpAjgBsgKsArgCsgKmAqwCTQFWAVABTQFTAVYBUQFgAVQBUQFdAWABXwFcAWIBXwFZAVwBVwFOAVoBVwFLAU4BUgFYAV4BUgFMAVgBYQFPAVUBYQFbAU8BdAFkAXABdAFnAWQBdgFtAXoBdgFqAW0BegFnAXQBegFtAWcBcAFqAXYBcAFkAWoBQAF3AUYBQAFxAXcBRQF4AUcBRQF1AXgBPAFlATgBPAFrAWUBPQFpATsBPQFsAWkBQQGEAXIBQQF7AYQBgAGGAX0BgAGDAYYBSQF8AUMBSQF/AXwBdAGCAXoBdAGFAYIBeQF+AUgBeQGBAX4B9QGZAvgB9QGVApkCRwLsAe8BRwJEAuwBmQLvAewBmQKVAu8B+wGgAv4B+wGdAqACTgLpAfIBTgJKAukB8gGgAp0C8gHpAaAClwL6AfcBlwKbAvoBQwLxAesBQwJNAvEBmwLrAfEBmwKXAusB/QGUAvQB/QGfApQC6AFGAu4B6AFJAkYC7gGfAugB7gGUAp8CrQGhAaoBrQGwAaEBswGkAacBswG2AaQBtQGpAaMBtQGsAakBoAGyAaYBoAGvAbIBlQGSAY8BlQGYAZIBlgGKAZABlgGcAYoBjAGbAYkBjAGeAZsBhwGTAY0BhwGZAZMB3QHIAcUB3QHRAcgBzwG6AcYBzwHeAboBvAHjAc4BvAHgAeMBzAHbAcMBzAHhAdsB1AG5AcsB1AHXAbkB1QHAAbcB1QHYAcABwgHmAb8BwgHaAeYBvQHSAckBvQHkAdIBVQIyAjUCVQJbAjICTwIsAi8CTwJSAiwCLQJWAjYCLQJTAlYCXAIwAjMCXAJQAjACXgI7AiACXgJkAjsCYQIVAjgCYQJYAhUCFgJfAiECFgJZAl8CZQI5AjwCZQJiAjkCpAKQAocCpAKwApACpwKBAoQCpwKhAoECggKlAogCggKiAqUCkQKoAoUCkQKxAqgCrQKKAn4CrQKzAooCqgKNArYCfAKqAnkCjQKqAnwCegKuAn8CegKrAq4CtAKOAosCtAK3Ao4CCAIdAnYCCwLNAA0CCAILAh0CzQAIAv8BCALNAAsCAQLeAM8AAQIEAt4ABQLcAAIC3AATAhACEwJwAiYCBQITAtwAEwIFAnACEQLOAN0AEQIOAs4AcQIeAicCcQJ3Ah4CbQIpAiMCbQJzAikCZwI+AmoCGwJnAhgCPgJnAhsCGQJuAiQCGQJoAm4CPwJ0AmsCPwIqAnQC"),
-"material": SubResource("StandardMaterial3D_gme57"),
+"material": ExtResource("4_lhyrf"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 697,
@@ -106,11 +110,12 @@ data = PackedVector3Array(-5, -5, 5, -5, 5, -5, -5, 5, 5, -5, -5, 5, -5, -5, -5,
 [node name="TutorialLevel" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.999798, -0.0182486, 0.00847997, -0.00730655, 0.0634342, 0.997959, -0.0187493, -0.997819, 0.063288, 0, 21.9173, 0)
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+light_color = Color(0.705882, 0.839216, 0.862745, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_eq662")
+environment = SubResource("Environment_bnnmu")
 
 [node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("1_0o6nn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7745, 0)
@@ -153,6 +158,7 @@ shape = SubResource("ConcavePolygonShape3D_ffyqq")
 transform = Transform3D(0.960099, 0, 0.279661, 0, 1, 0, -0.279661, 0, 0.960099, -1.56981, 1.37239, -45.1612)
 use_collision = true
 size = Vector3(3, 3, 2)
+material = ExtResource("4_lhyrf")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.77, -58.3924)
@@ -160,34 +166,54 @@ use_collision = true
 radius = 2.5
 height = 10.0
 sides = 16
+material = ExtResource("4_lhyrf")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.908129, 0, -0.418691, 0, 1, 0, 0.418691, 0, 0.908129, 0.869689, 1.84434, -45.1226)
 use_collision = true
 size = Vector3(2, 4.00635, 1)
+material = ExtResource("4_lhyrf")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.960099, 0, 0.279661, 0, 1, 0, -0.279661, 0, 0.960099, 2.56274, 0.906089, -44.3784)
 use_collision = true
 size = Vector3(2, 2, 2)
+material = ExtResource("4_lhyrf")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.672426, 0, -0.531496, 0, 1.08729, 0, 0.629267, 0, 0.567949, -7.44721, 1.37223, -57.9638)
 use_collision = true
 size = Vector3(3, 3, 2)
+material = ExtResource("4_lhyrf")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.0798, 0, -1.07991, 0, 1.08729, 0, 0.771287, 0, 0.111731, -6.10199, 1.88537, -56.3049)
 use_collision = true
 size = Vector3(2, 4.00635, 1)
+material = ExtResource("4_lhyrf")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.672426, 0, -0.531496, 0, 1.08729, 0, 0.629267, 0, 0.567949, -5.85411, 0.865222, -54.8669)
 use_collision = true
 size = Vector3(2, 2, 2)
+material = ExtResource("4_lhyrf")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4777, 21.1385, -67.8831)
+use_collision = true
+size = Vector3(20, 5, 5)
+material = ExtResource("4_lhyrf")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4299, 11.9016, -68.4725)
+use_collision = true
+radius = 4.0
+height = 30.0
+sides = 20
+material = ExtResource("4_lhyrf")
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("player", "game_manager", "patrol_points") instance=ExtResource("4_8sfuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.16933, -34.9906)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.16933, -10.9598)
 player = NodePath("../PlayerDrone")
 game_manager = NodePath("../GameManager")
 patrol_points = [NodePath("Marker3D2"), NodePath("Marker3D")]
@@ -211,11 +237,11 @@ transform = Transform3D(0.0264387, 0, -0.99965, 0, 1, 0, 0.99965, 0, 0.0264387, 
 top_level = true
 
 [node name="Marker3D2" type="Marker3D" parent="Enemy2"]
-transform = Transform3D(0.0264387, 0, -0.999651, 0, 1, 0, 0.999651, 0, 0.0264387, 4.42458, 2.24227, -64.3311)
+transform = Transform3D(0.0264387, 0, -0.999651, 0, 1, 0, 0.999651, 0, 0.0264387, -3.03193, 2.24227, -49.7464)
 top_level = true
 
 [node name="Marker3D3" type="Marker3D" parent="Enemy2"]
-transform = Transform3D(0.0264387, 0, -0.999651, 0, 1, 0, 0.999651, 0, 0.0264387, 7.49607, 2.24227, -53.4353)
+transform = Transform3D(0.0264387, 0, -0.999651, 0, 1, 0, 0.999651, 0, 0.0264387, 8.26664, 2.24227, -45.1588)
 top_level = true
 
 [node name="StationaryCamera" parent="." node_paths=PackedStringArray("game_manager", "player") instance=ExtResource("5_wbk64")]
@@ -234,15 +260,53 @@ length = 30.0
 radius = 8.0
 
 [node name="Marker3D" type="Marker3D" parent="StationaryCamera2"]
-transform = Transform3D(0.277968, -0.563535, -0.777921, 8.74184e-09, 0.809837, -0.586655, 0.96059, 0.163072, 0.225109, 9.00375, 0.520931, -64.0181)
+transform = Transform3D(0.277968, -0.563535, -0.777921, 8.74184e-09, 0.809837, -0.586655, 0.96059, 0.163072, 0.225109, 9.5731, 0.520931, -64.0181)
 top_level = true
 
 [node name="Marker3D2" type="Marker3D" parent="StationaryCamera2"]
-transform = Transform3D(0.277968, -0.563535, -0.777921, 8.74184e-09, 0.809837, -0.586655, 0.96059, 0.163072, 0.225109, -2.58178, 0.52093, -64.0181)
+transform = Transform3D(0.277968, -0.563535, -0.777921, 8.74184e-09, 0.809837, -0.586655, 0.96059, 0.163072, 0.225109, -2.41646, 0.52093, -61.3412)
 top_level = true
 
 [node name="Marker3D3" type="Marker3D" parent="StationaryCamera2"]
-transform = Transform3D(0.277969, -0.563535, -0.777921, 2.04295e-08, 0.809837, -0.586655, 0.96059, 0.163071, 0.225109, 5.04193, 6.38772, -69.284)
+transform = Transform3D(0.277969, -0.563535, -0.777921, 2.04295e-08, 0.809837, -0.586655, 0.96059, 0.163071, 0.225109, 5.35274, 6.38772, -69.284)
 top_level = true
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="HangingLight" parent="Lights" instance=ExtResource("6_t625n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.18523, 12.5914, -4.7142)
+
+[node name="HangingLight2" parent="Lights" instance=ExtResource("6_t625n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29928, 12.5914, -4.7142)
+
+[node name="HangingLight3" parent="Lights" instance=ExtResource("6_t625n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76422, 12.0088, -15.8383)
+
+[node name="HangingLight4" parent="Lights" instance=ExtResource("6_t625n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.80561, 12.0088, -15.8383)
+
+[node name="HangingLight5" parent="Lights" instance=ExtResource("6_t625n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76422, 12.0088, -26.7672)
+
+[node name="HangingLight6" parent="Lights" instance=ExtResource("6_t625n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.80561, 12.0088, -26.7672)
+
+[node name="BigHangingLight" parent="Lights" instance=ExtResource("7_7ks5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92948, 21.8911, -46.0183)
+
+[node name="BigHangingLight2" parent="Lights" instance=ExtResource("7_7ks5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92948, 21.8911, -62.9233)
+
+[node name="BigHangingLight3" parent="Lights" instance=ExtResource("7_7ks5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21849, 21.8911, -46.0183)
+
+[node name="HangingLight7" parent="Lights" instance=ExtResource("6_t625n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.402, 8.20393, -67.8271)
+
+[node name="BigHangingLight4" parent="Lights" instance=ExtResource("7_7ks5v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.21849, 21.8911, -62.9233)
+
+[node name="HangingLight8" parent="Lights" instance=ExtResource("6_t625n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.402, 8.20393, -60.701)
 
 [editable path="CanvasLayer"]

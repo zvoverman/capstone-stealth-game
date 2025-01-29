@@ -7,8 +7,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8pfhl"]
 render_priority = 0
 shader = ExtResource("2_frev8")
-shader_parameter/color1 = Color(1, 1, 1, 0.1)
-shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/color1 = Color(1, 0, 0, 0.0705882)
+shader_parameter/color2 = Color(1, 0, 0, 1)
 shader_parameter/threshold = 0.2
 shader_parameter/fresnel_sharpness = 1.0
 
@@ -75,12 +75,14 @@ debug_shape_custom_color = Color(1, 0, 1, 1)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+light_color = Color(1, 0, 0, 1)
 light_energy = 5.0
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
-spot_range = 15.0
+spot_range = 20.0
 spot_attenuation = 0.0
 spot_angle = 10.0
+spot_angle_attenuation = 0.143587
 
 [node name="DetectionArea3D" type="Area3D" parent="."]
 
