@@ -11,6 +11,8 @@ size = Vector3(0.3, 0.3, 0.5)
 
 [node name="DetectionFOV" parent="." instance=ExtResource("2_o3l5m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.209189)
+length = 25.0
+radius = 6.0
 
 [node name="ForwardDirection" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)

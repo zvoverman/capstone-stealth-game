@@ -30,11 +30,13 @@ mesh = SubResource("BoxMesh_h3gcj")
 skeleton = NodePath("../..")
 
 [node name="DetectionFOV" parent="." instance=ExtResource("2_uxcq4")]
-transform = Transform3D(1, 0, 0, 0, 0.942169, -0.335139, 0, 0.335139, 0.942169, 0, 2.41563, 0)
-length = 10.0
-radius = 5.0
+transform = Transform3D(1, 0, 0, 0, 0.97457, -0.224083, 0, 0.224083, 0.97457, 0, 0.851508, 1.10895)
+radius = 6.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_max_distance = 15.01
 
 [connection signal="player_detected" from="DetectionFOV" to="." method="_on_detection_fov_player_detected"]
 [connection signal="player_undetected" from="DetectionFOV" to="." method="_on_detection_fov_player_undetected"]

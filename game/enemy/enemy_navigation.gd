@@ -11,7 +11,7 @@ enum EnemyState {
 	CHASE
 }
 
-var current_state : EnemyState = EnemyState.CHASE
+var current_state : EnemyState = EnemyState.PATROL
 var current_patrol_index: int = 0  # Track the current patrol point
 var patrol_wait_time: float = 2.0  # Time to wait at each patrol point
 var patrol_timer: float = 0.0  # Timer for waiting at patrol points
@@ -34,9 +34,10 @@ func _physics_process(delta):
 				# Move towards the current patrol point
 				var target_position: Vector3 = patrol_points[current_patrol_index].global_position
 				set_movement_target(target_position)
+				look_at_point(target_position)
 				
 				# Check if we have reached the patrol point
-				if global_position.distance_to(target_position) <= 2.0:
+				if global_position.distance_to(target_position) <= 4.0:
 					patrol_timer += delta
 					
 					# Wait at the patrol point before moving to the next one
@@ -56,25 +57,22 @@ func _physics_process(delta):
 	else:
 		_on_velocity_computed(new_velocity)
 	
-	if current_state == EnemyState.PATROL:
-		# Rotate the enemy to face the direction they are moving
-		rotate_towards_direction(new_velocity, delta)
-	else:
+	if current_state != EnemyState.PATROL:
 		look_at_point(player.global_position)
 		global_rotation.x = 0.0
 		global_rotation.z = 0.0
 
-func rotate_towards_direction(velocity: Vector3, delta: float):
-	if velocity.length() > 0.1:  # Only rotate if there's a noticeable velocity
-		var target_rotation = velocity.angle_to(Vector3.BACK)  # Find the angle of movement
-		var current_rotation = global_transform.basis.get_euler().y  # Get the current rotation around Y-axis
-		var rotation_step = 10.0 * delta  # Speed of rotation
-
-		# Rotate smoothly towards the target rotation (interpolation between current and target rotation)
-		var new_rotation = lerp_angle(current_rotation, target_rotation, rotation_step)
-
-		# Apply the new rotation to the enemy (rotation around Y-axis)
-		global_transform.basis = Basis(Vector3.UP, new_rotation)
+#func rotate_towards_direction(velocity: Vector3, delta: float):
+	#if velocity.length() > 0.1:  # Only rotate if there's a noticeable velocity
+		#var target_rotation = velocity.angle_to(Vector3.BACK)  # Find the angle of movement
+		#var current_rotation = global_transform.basis.get_euler().y  # Get the current rotation around Y-axis
+		#var rotation_step = 10.0 * delta  # Speed of rotation
+#
+		## Rotate smoothly towards the target rotation (interpolation between current and target rotation)
+		#var new_rotation = lerp_angle(current_rotation, target_rotation, rotation_step)
+#
+		## Apply the new rotation to the enemy (rotation around Y-axis)
+		#global_transform.basis = Basis(Vector3.UP, new_rotation)
 		
 func look_at_point(target_pos : Vector3) -> void:
 	# I don't even know, look_at() looks backwards for some reason
@@ -89,6 +87,6 @@ func _on_detection_fov_player_detected() -> void:
 	game_manager.add_detection(get_instance_id())
 
 
-#func _on_detection_fov_player_undetected() -> void:
-	#current_state = EnemyState.PATROL
-	#game_manager.remove_detection(get_instance_id())
+func _on_detection_fov_player_undetected() -> void:
+	current_state = EnemyState.PATROL
+	game_manager.remove_detection(get_instance_id())

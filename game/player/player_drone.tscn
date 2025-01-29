@@ -92,11 +92,13 @@ albedo_color = Color(1, 0, 1, 1)
 radius = 0.1
 
 [node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction")]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_qujey")
 forward_direction = NodePath("Armature/ForwardMarker")
 MAX_SPEED = 4.0
 MAX_JUMP_VELOCITY = 8.0
-detection_level_step = 0.5
+detection_level_step = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.352638, 0)

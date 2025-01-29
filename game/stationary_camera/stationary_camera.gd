@@ -3,6 +3,7 @@ extends Node3D
 class_name StationaryCamera
 
 @onready var forward_direction : Marker3D = $ForwardDirection
+@onready var detection_fov : DetectionFOV = $DetectionFOV
 
 # Array of Marker3D nodes to look at
 @export var markers : Array[Marker3D] = []
@@ -11,6 +12,9 @@ var look_at_threshold : float = 0.1
 
 @export var game_manager : GameManager
 @export var player : CharacterBody3D
+
+@export var length : float = 15.0
+@export var radius : float = 2.0
 
 enum CameraState {
 	SCANNING,
@@ -21,7 +25,8 @@ enum CameraState {
 var current_state : CameraState = CameraState.SCANNING
 
 func _ready() -> void:
-	pass
+	detection_fov.length = length
+	detection_fov.radius = radius
 	
 # Called every frame
 func _process(delta):

@@ -87,5 +87,12 @@ spot_angle = 10.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
 shape = SubResource("ConvexPolygonShape3D_dh66w")
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.31589)
+target_position = Vector3(0, 0, 30)
+collision_mask = 255
+debug_shape_custom_color = Color(0, 1, 0.90625, 1)
+debug_shape_thickness = 5
+
 [connection signal="body_entered" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_entered"]
 [connection signal="body_exited" from="DetectionArea3D" to="." method="_on_detection_area_3d_body_exited"]
