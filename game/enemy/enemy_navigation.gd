@@ -11,7 +11,7 @@ enum EnemyState {
 	CHASE
 }
 
-var current_state : EnemyState = EnemyState.PATROL
+var current_state : EnemyState = EnemyState.CHASE
 var current_patrol_index: int = 0  # Track the current patrol point
 var patrol_wait_time: float = 2.0  # Time to wait at each patrol point
 var patrol_timer: float = 0.0  # Timer for waiting at patrol points
@@ -36,7 +36,7 @@ func _physics_process(delta):
 				set_movement_target(target_position)
 				
 				# Check if we have reached the patrol point
-				if global_position.distance_to(target_position) < 1.0:
+				if global_position.distance_to(target_position) <= 2.0:
 					patrol_timer += delta
 					
 					# Wait at the patrol point before moving to the next one
@@ -89,6 +89,6 @@ func _on_detection_fov_player_detected() -> void:
 	game_manager.add_detection(get_instance_id())
 
 
-func _on_detection_fov_player_undetected() -> void:
-	current_state = EnemyState.PATROL
-	game_manager.remove_detection(get_instance_id())
+#func _on_detection_fov_player_undetected() -> void:
+	#current_state = EnemyState.PATROL
+	#game_manager.remove_detection(get_instance_id())

@@ -4,11 +4,15 @@
 [ext_resource type="Script" path="res://enemy/enemy_navigation.gd" id="3_nord4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx4qn"]
+radius = 1.0
+height = 4.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2mtkv"]
+radius = 1.0
+height = 4.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_h3gcj"]
-size = Vector3(0.6, 0.2, 0.4)
+size = Vector3(1.2, 0.4, 0.8)
 
 [node name="Enemy" type="RigidBody3D"]
 lock_rotation = true
@@ -21,16 +25,16 @@ shape = SubResource("CapsuleShape3D_tx4qn")
 mesh = SubResource("CapsuleMesh_2mtkv")
 
 [node name="EyeMesh" type="MeshInstance3D" parent="BodyMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400283, 0.388274)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.847224, 0.869165)
 mesh = SubResource("BoxMesh_h3gcj")
 skeleton = NodePath("../..")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
 [node name="DetectionFOV" parent="." instance=ExtResource("2_uxcq4")]
-transform = Transform3D(1, 0, 0, 0, 0.942169, -0.335139, 0, 0.335139, 0.942169, 0, 1.439, 0)
+transform = Transform3D(1, 0, 0, 0, 0.942169, -0.335139, 0, 0.335139, 0.942169, 0, 2.41563, 0)
 length = 10.0
 radius = 5.0
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [connection signal="player_detected" from="DetectionFOV" to="." method="_on_detection_fov_player_detected"]
 [connection signal="player_undetected" from="DetectionFOV" to="." method="_on_detection_fov_player_undetected"]
