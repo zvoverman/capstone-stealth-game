@@ -1,0 +1,248 @@
+[gd_scene load_steps=8 format=3 uid="uid://qmpkmewvbxpb"]
+
+[ext_resource type="Script" path="res://game_manager.gd" id="1_75tli"]
+[ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="1_f4i0i"]
+[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_36b5i"]
+[ext_resource type="Material" uid="uid://c70kocqjyuppd" path="res://materials/windows_mat.tres" id="3_67pdi"]
+[ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="4_f8ndy"]
+[ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="5_a62ky"]
+
+[sub_resource type="Environment" id="Environment_xnbkw"]
+background_mode = 1
+background_color = Color(0.705882, 0.835294, 0.862745, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.298615, 0.384191, 0.402344, 1)
+ssao_enabled = true
+ssao_radius = 3.0
+ssao_power = 0.53033
+ssil_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 0.15
+sdfgi_cascade0_distance = 9.6
+sdfgi_max_distance = 2457.6
+sdfgi_y_scale = 0
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.705882, 0.835294, 0.862745, 1)
+volumetric_fog_enabled = true
+volumetric_fog_anisotropy = 0.0
+
+[node name="Level_1_2" type="Node3D"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_75tli")
+player = NodePath("../PlayerDrone")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+light_color = Color(0.705882, 0.839216, 0.862745, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xnbkw")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_f4i0i")]
+
+[node name="ProgressBar" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("2_36b5i")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.8051, -0.506116)
+detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Room_1" type="CSGCombiner3D" parent="Environment"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Room_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.70503)
+size = Vector3(8, 6, 15)
+
+[node name="Walls" type="CSGCombiner3D" parent="Environment/Room_1"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Room_1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.70503)
+size = Vector3(7, 5, 14)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Room_1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.403, -1.6, 8.672)
+size = Vector3(2, 1.8, 3)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Room_1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52459, 0)
+size = Vector3(3, 1, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Room_1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.52459, 0)
+size = Vector3(3, 1, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Room_1/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.525, 7.5)
+size = Vector3(3, 1, 3)
+
+[node name="Windows" type="CSGCombiner3D" parent="Environment/Room_1"]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Room_1/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81681, 0)
+size = Vector3(3, 0.1, 3)
+material = ExtResource("3_67pdi")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Room_1/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81717, 7.5)
+size = Vector3(3, 0.1, 3)
+material = ExtResource("3_67pdi")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Room_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77177, -1, 6.163)
+size = Vector3(1.5, 3, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Room_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34658, -1.93065, 3.89457)
+size = Vector3(2.5, 1.5, 1.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Room_1"]
+transform = Transform3D(0.989826, 0, 0.142283, 0, 1, 0, -0.142283, 0, 0.989826, 2.78825, -0.7, 4)
+
+[node name="HangingLight" parent="Environment/Room_1" instance=ExtResource("4_f8ndy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37105, 1.60235, 10.4848)
+
+[node name="HangingLight2" parent="Environment/Room_1" instance=ExtResource("4_f8ndy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42867, 1.60235, 10.4848)
+
+[node name="Room_2" type="CSGCombiner3D" parent="Environment"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Room_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4.5, 10)
+size = Vector3(7, 15, 7)
+
+[node name="Holes" type="CSGCombiner3D" parent="Environment/Room_2"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Room_2/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4.5, 10)
+size = Vector3(6, 14, 6)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Room_2/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35312, -1.6, 8.672)
+size = Vector3(2, 1.8, 3)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Room_2/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 9.24804, 13.551)
+size = Vector3(3, 1.8, 2)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Room_2/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 11.705, 10)
+size = Vector3(3, 1, 3)
+
+[node name="Windows" type="CSGCombiner3D" parent="Environment/Room_2"]
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Room_2/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 11.865, 10)
+size = Vector3(3, 0.1, 3)
+material = ExtResource("3_67pdi")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Room_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 8.1, 15)
+size = Vector3(3, 0.5, 3)
+
+[node name="HangingLight" parent="Environment/Room_2" instance=ExtResource("4_f8ndy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4921, 10.5796, 12.8726)
+
+[node name="HangingLight2" parent="Environment/Room_2" instance=ExtResource("4_f8ndy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.29181, 10.5796, 12.8726)
+
+[node name="Room_3" type="CSGCombiner3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 13.5)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Room_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 12.5)
+size = Vector3(8, 18, 25)
+
+[node name="Holes" type="CSGCombiner3D" parent="Environment/Room_3"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Room_3/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 12.5)
+size = Vector3(7, 17, 24)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Room_3/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.24804, 0.215067)
+size = Vector3(3, 1.8, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Room_3/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5227, 4.79504)
+size = Vector3(3, 2, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Room_3/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5227, 12.2932)
+size = Vector3(3, 2, 3)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Room_3/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5227, 20.6221)
+size = Vector3(3, 2, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Room_3/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 24.5)
+size = Vector3(2.5, 3.5, 2)
+
+[node name="Windows" type="CSGCombiner3D" parent="Environment/Room_3"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Room_3/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.168, 4.79504)
+size = Vector3(3, 0.3, 3)
+material = ExtResource("3_67pdi")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Room_3/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.168, 12.2932)
+size = Vector3(3, 0.3, 3)
+material = ExtResource("3_67pdi")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Room_3/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.168, 20.6221)
+size = Vector3(3, 0.3, 3)
+material = ExtResource("3_67pdi")
+
+[node name="HangingLight" parent="Environment/Room_3" instance=ExtResource("4_f8ndy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2633, 5.51633, 8.6072)
+
+[node name="HangingLight2" parent="Environment/Room_3" instance=ExtResource("4_f8ndy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2633, 5.51633, 17.0435)
+
+[node name="HangingLight3" parent="Environment/Room_3" instance=ExtResource("4_f8ndy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28636, 5.51633, 8.6072)
+
+[node name="HangingLight4" parent="Environment/Room_3" instance=ExtResource("4_f8ndy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28636, 5.51633, 17.0435)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="StationaryCamera" parent="Enemies" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("5_a62ky")]
+transform = Transform3D(1, 1.72466e-07, -2.026e-08, 2.026e-08, -0.231748, -0.972776, -1.72466e-07, 0.972776, -0.231748, -7.097, 8.06499, 37.5334)
+markers = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D4"), NodePath("Marker3D3")]
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
+radius = 5.0
+
+[node name="Marker3D" type="Marker3D" parent="Enemies/StationaryCamera"]
+transform = Transform3D(1, 0, 0, 0, -0.231103, -0.972929, 0, 0.972929, -0.231103, -7.12602, -2.3352, 35.5375)
+top_level = true
+
+[node name="Marker3D2" type="Marker3D" parent="Enemies/StationaryCamera"]
+transform = Transform3D(1, 0, 0, 0, -0.231103, -0.972929, 0, 0.972929, -0.231103, -7.12602, -2.3352, 21.4111)
+top_level = true
+
+[node name="Marker3D4" type="Marker3D" parent="Enemies/StationaryCamera"]
+transform = Transform3D(1, 0, 0, 0, -0.231103, -0.972929, 0, 0.972929, -0.231103, 0.0167751, 6.94198, 26.052)
+top_level = true
+
+[node name="Marker3D3" type="Marker3D" parent="Enemies/StationaryCamera"]
+transform = Transform3D(1, 0, 0, 0, -0.231103, -0.972929, 0, 0.972929, -0.231103, -10.3181, 3.27437, 26.6493)
+top_level = true
+
+[editable path="CanvasLayer"]

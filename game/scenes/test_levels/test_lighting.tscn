@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://wyf6b8rd42er"]
+
+[ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://detection_fov/detection_fov.tscn" id="1_1ur5s"]
+
+[sub_resource type="Environment" id="Environment_vmybe"]
+background_mode = 1
+background_color = Color(0.705882, 0.835294, 0.862745, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.298615, 0.384191, 0.402344, 1)
+ssao_enabled = true
+ssao_radius = 3.0
+ssao_power = 0.53033
+ssil_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 0.15
+sdfgi_cascade0_distance = 9.6
+sdfgi_max_distance = 2457.6
+sdfgi_y_scale = 0
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.705882, 0.835294, 0.862745, 1)
+volumetric_fog_enabled = true
+volumetric_fog_anisotropy = 0.0
+
+[node name="TestLighting" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+light_color = Color(0.705882, 0.839216, 0.862745, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vmybe")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.941578, -0.20912, 0.264008, 0.0727484, 0.891658, 0.446827, -0.328845, -0.401516, 0.854778, -1.69222, 3.07388, 5.48852)
+
+[node name="Environment" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment"]
+size = Vector3(5, 0.1, 5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01626, -0.761652)
+size = Vector3(0.1, 2, 5)
+
+[node name="DetectionFOV" parent="." instance=ExtResource("1_1ur5s")]
+transform = Transform3D(0.300856, 0.09138, 0.949281, -0.0276077, 0.995816, -0.0871098, -0.95327, 0, 0.30212, -9.67814, 1.37925, -3.3121)

@@ -13,8 +13,8 @@ var look_at_threshold : float = 0.1
 @export var game_manager : GameManager
 @export var player : CharacterBody3D
 
-@export var length : float = 15.0
-@export var radius : float = 2.0
+@export var length : float = 20.0
+@export var radius : float = 3.0
 
 enum CameraState {
 	SCANNING,
@@ -25,16 +25,16 @@ enum CameraState {
 var current_state : CameraState = CameraState.SCANNING
 
 func _ready() -> void:
-	detection_fov.length = length
-	detection_fov.radius = radius
+	detection_fov.initialize(length, radius)
 	
 # Called every frame
 func _process(delta):
-	if markers.size() == 0:
-		return
-	
 	match current_state:
 		CameraState.SCANNING:
+			if markers.size() == 0:
+				forward_direction.global_position = global_position
+				return
+			
 			# Get the target marker position
 			var target_marker = markers[current_marker_index]
 			var target_position = target_marker.global_position

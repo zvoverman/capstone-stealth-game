@@ -38,7 +38,7 @@ target_position = Vector3(0, 0, 15)
 debug_shape_custom_color = Color(1, 0, 1, 1)
 
 [node name="L2_Offset" type="Node3D" parent="Lazers"]
-transform = Transform3D(-0.5, -0.866025, 0, 0.866025, -0.5, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="L2" type="Node3D" parent="Lazers/L2_Offset" node_paths=PackedStringArray("detection_fov")]
 transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0)
@@ -56,7 +56,7 @@ target_position = Vector3(0, 0, 15)
 debug_shape_custom_color = Color(1, 0, 1, 1)
 
 [node name="L3_Offset" type="Node3D" parent="Lazers"]
-transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1, 8.74227e-08, 0, -8.74227e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="L3" type="Node3D" parent="Lazers/L3_Offset" node_paths=PackedStringArray("detection_fov")]
 transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0)
@@ -73,16 +73,35 @@ material = SubResource("ShaderMaterial_8pfhl")
 target_position = Vector3(0, 0, 15)
 debug_shape_custom_color = Color(1, 0, 1, 1)
 
+[node name="L4_Offset" type="Node3D" parent="Lazers"]
+transform = Transform3D(1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="L4" type="Node3D" parent="Lazers/L4_Offset" node_paths=PackedStringArray("detection_fov")]
+transform = Transform3D(1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0)
+script = ExtResource("2_mjoly")
+detection_fov = NodePath("../../..")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Lazers/L4_Offset/L4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 7.5)
+radius = 0.04
+height = 15.0
+material = SubResource("ShaderMaterial_8pfhl")
+
+[node name="RayCast3D" type="RayCast3D" parent="Lazers/L4_Offset/L4"]
+target_position = Vector3(0, 0, 15)
+debug_shape_custom_color = Color(1, 0, 1, 1)
+
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 light_color = Color(1, 0, 0, 1)
-light_energy = 5.0
-light_volumetric_fog_energy = 0.0
+light_energy = 10.0
 shadow_enabled = true
-spot_range = 20.0
-spot_attenuation = 0.0
+shadow_bias = 0.01
+shadow_normal_bias = 0.5
+spot_range = 30.0
+spot_attenuation = 0.5
 spot_angle = 10.0
-spot_angle_attenuation = 0.143587
+spot_angle_attenuation = 0.001
 
 [node name="DetectionArea3D" type="Area3D" parent="."]
 
@@ -91,6 +110,7 @@ shape = SubResource("ConvexPolygonShape3D_dh66w")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.31589)
+top_level = true
 target_position = Vector3(0, 0, 30)
 collision_mask = 255
 debug_shape_custom_color = Color(0, 1, 0.90625, 1)

@@ -12,6 +12,8 @@ class_name DetectionFOV
 @export var radius : float = 3.0
 @export var lazer_rotation_speed : float = 2.0
 
+@export var player : CharacterBody3D
+
 var is_player_in_area : bool = false
 var is_player_detected : bool = false
 
@@ -20,10 +22,22 @@ signal player_undetected
 
 var ray_body : Node3D
 
-func _ready() -> void:
+func initialize(_length: float, _radius: float) -> void:
+	length = _length
+	radius = _radius
+	
 	# Dynamically adjust spotlight dimensions
 	var angle_rad = atan2(radius, length)  # atan2(y, x) = atan(y/x) but handles all quadrants
-	spotlight.spot_angle = rad_to_deg(angle_rad)
+	var angle_deg = rad_to_deg(angle_rad)
+	spotlight.spot_angle = angle_deg
+	spotlight.spot_range = length
+	
+	print($Lazers/L1_Offset/L1.rotation.x)
+	
+	$Lazers/L1_Offset/L1.rotation.x = angle_rad
+	$Lazers/L2_Offset/L2.rotation.x = angle_rad
+	$Lazers/L3_Offset/L3.rotation.x = angle_rad
+	$Lazers/L4_Offset/L4.rotation.x = angle_rad
 	
 	# Dynamically build collision shape to match volume body
 	var radius_correction = radius / 4.0
@@ -40,17 +54,27 @@ func _ready() -> void:
 	new_convex_shape.set_points(points)
 	detection_area.shape = new_convex_shape
 	
+	
+func _ready() -> void:
+	#initialize(length, radius)
+	pass
+	
 # Called every frame
 func _process(delta):
 	lazers_container.global_rotation.z += lazer_rotation_speed * delta
 	
 	if ray_body:
+		var adjusted_point = ray_body.global_position - Vector3(0, 0.1, 0)
+		
+		raycast.global_position = global_position
 		raycast.look_at(look_at_point(ray_body.global_position), Vector3.UP)
+		
 	if is_player_in_area:
 		if not raycast.is_colliding():
 			return
 		
 		var collider = raycast.get_collider()
+		print(collider.name)
 		if not is_player_detected and collider.name == "PlayerDrone":
 			is_player_detected = true
 			player_detected.emit()
@@ -60,7 +84,6 @@ func _process(delta):
 
 func _on_detection_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "PlayerDrone":
-		print('here')
 		is_player_in_area = true
 		ray_body = body
 		
@@ -72,6 +95,7 @@ func _on_detection_area_3d_body_exited(body: Node3D) -> void:
 		ray_body = null
 		player_undetected.emit()
 		
+
 func look_at_point(target_pos : Vector3) -> Vector3:
 	# I don't even know, look_at() looks backwards for some reason
 	var opposite_dir = target_pos - global_transform.origin

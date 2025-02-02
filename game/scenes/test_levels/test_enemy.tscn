@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dgx71v3n0qufj"]
 
-[ext_resource type="PackedScene" uid="uid://bapg7j4qlh4ec" path="res://enemy/enemy.tscn" id="1_6yj2v"]
-[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_vpr45"]
-[ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://detection_bar.tscn" id="3_v8uer"]
-[ext_resource type="Script" path="res://scenes/game_manager.gd" id="4_4v10i"]
+[ext_resource type="PackedScene" uid="uid://bapg7j4qlh4ec" path="res://enemy/enemy.tscn" id="1_txyuc"]
+[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_d4d1g"]
+[ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="3_c5vut"]
+[ext_resource type="Script" path="res://game_manager.gd" id="4_ewmxw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1hnkd"]
 vertices = PackedVector3Array(-4.55, 0.45, -47.1177, -4.55, 0.45, 1.8823, 4.45, 0.45, 1.8823, 4.45, 0.45, -47.1177, -4.55, 10.45, -24.6177, -4.55, 10.45, -15.3677, 4.45, 10.45, -15.3677, 4.45, 10.45, -24.6177)
@@ -50,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.95851, -20)
 use_collision = true
 size = Vector3(10, 0.1, 10)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("player", "game_manager", "patrol_points") instance=ExtResource("1_6yj2v")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("player", "game_manager", "patrol_points") instance=ExtResource("1_txyuc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.51813, -34.9071)
 player = NodePath("../PlayerDrone")
 game_manager = NodePath("../GameManager")
@@ -71,17 +71,18 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wgbtv")
 
-[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("1_vpr45")]
+[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("2_d4d1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.09365, 0)
 detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
+MAX_SPEED = 8.0
 
-[node name="CanvasLayer" parent="." instance=ExtResource("3_v8uer")]
+[node name="CanvasLayer" parent="." instance=ExtResource("3_c5vut")]
 
 [node name="ProgressBar" parent="CanvasLayer" index="0"]
 metadata/_edit_use_anchors_ = true
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("4_4v10i")
+script = ExtResource("4_ewmxw")
 player = NodePath("../PlayerDrone")
 
 [editable path="CanvasLayer"]

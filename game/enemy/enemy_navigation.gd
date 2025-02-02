@@ -4,7 +4,12 @@ extends RigidBody3D
 @export var game_manager : GameManager
 @export var movement_speed: float = 4.0
 @export var patrol_points: Array[Marker3D] = [] # Mker3D nodes for patrol points
+
+@export var length : float = 20.0
+@export var radius : float = 3.0
+
 @onready var navigation_agent: NavigationAgent3D = get_node("NavigationAgent3D")
+@onready var detection_fov : DetectionFOV = $DetectionFOV
 
 enum EnemyState {
 	PATROL,
@@ -17,6 +22,7 @@ var patrol_wait_time: float = 2.0  # Time to wait at each patrol point
 var patrol_timer: float = 0.0  # Timer for waiting at patrol points
 
 func _ready() -> void:
+	detection_fov.initialize(length, radius)
 	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
 	if patrol_points.size() > 0:
 		set_movement_target(patrol_points[current_patrol_index].global_position)
