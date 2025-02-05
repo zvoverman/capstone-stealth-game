@@ -1,15 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxy2sxej2smge"]
+[gd_scene load_steps=3 format=3 uid="uid://bxy2sxej2smge"]
 
 [ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="1_vhfxv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvlld"]
+albedo_color = Color(0.5625, 0.5625, 0.5625, 1)
+metallic_specular = 1.0
+roughness = 0.8
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
 
 [node name="BigHangingLight" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-size = Vector3(2, 0.3, 2)
+size = Vector3(2, 0.3, 4)
 material = ExtResource("1_vhfxv")
 
+[node name="LightMesh" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.144166, 0)
+size = Vector3(1.8, 0.1, 3.6)
+material = SubResource("StandardMaterial3D_fvlld")
+
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.569062, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.173264, 0)
 light_color = Color(0.705882, 0.839216, 0.862745, 1)
 light_energy = 2.0
 shadow_enabled = true

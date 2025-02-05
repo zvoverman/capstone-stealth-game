@@ -21,7 +21,7 @@ var is_jumping : bool = false
 var jump_direction : Vector3 = Vector3.UP
 
 var target_basis : Basis = Basis.IDENTITY
-@export var rotation_smoothness : float = 10.0
+@export var rotation_smoothness : float = 4.0
 
 var is_detected : bool = false
 var detection_level : float = 0.0
@@ -30,14 +30,16 @@ var detection_level : float = 0.0
 var time_since_detected : float = 0.0
 
 func _ready() -> void:
-	detection_bar_ui.max_value = max_detection_level
+	if detection_bar_ui:
+		detection_bar_ui.max_value = max_detection_level
 
 func _process(delta: float) -> void:
 	if is_detected:
 		increment_detection(delta)
 	else:
 		detection_level = lerp(detection_level, 0.0, 0.1 * delta)
-		detection_bar_ui.value = detection_level
+		if detection_bar_ui:
+			detection_bar_ui.value = detection_level
 
 func _physics_process(delta: float) -> void:
 	# Reset gravity when in the air
@@ -71,12 +73,21 @@ func _physics_process(delta: float) -> void:
 	# Base player orientation on latest collision normal
 	var collision = get_last_slide_collision()
 	if collision:
-		is_in_air = false
-		is_jumping = false
-		current_normal = collision.get_normal()
-		gravity_direction = -current_normal
-		velocity = velocity.slide(current_normal)
-		target_basis = calculate_orientation()
+		if collision.get_collider().is_in_group("no_climb"):
+			if collision.get_normal() == current_normal:
+				is_in_air = false
+				is_jumping = false
+			else:
+				is_in_air = true
+			velocity = velocity.slide(current_normal)
+			target_basis = calculate_orientation()
+		else:
+			is_in_air = false
+			is_jumping = false
+			current_normal = collision.get_normal()
+			gravity_direction = -current_normal
+			velocity = velocity.slide(current_normal)
+			target_basis = calculate_orientation()
 	else:
 		is_in_air = true
 		

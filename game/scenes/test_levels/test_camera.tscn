@@ -1,9 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceu64d4waoynv"]
+[gd_scene load_steps=6 format=3 uid="uid://ceu64d4waoynv"]
 
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_272wa"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="2_y47g4"]
 [ext_resource type="Script" path="res://game_manager.gd" id="3_jxv7w"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="4_t7yyo"]
+
+[sub_resource type="Environment" id="Environment_68rjk"]
+background_mode = 1
+background_color = Color(0.705882, 0.835294, 0.862745, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.298615, 0.384191, 0.402344, 1)
+ssao_enabled = true
+ssao_radius = 3.0
+ssao_power = 0.53033
+ssil_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 0.15
+sdfgi_cascade0_distance = 9.6
+sdfgi_max_distance = 2457.6
+sdfgi_y_scale = 0
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.705882, 0.835294, 0.862745, 1)
+volumetric_fog_enabled = true
+volumetric_fog_anisotropy = 0.0
 
 [node name="TestCamera" type="Node3D"]
 
@@ -26,7 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
 detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
 
 [node name="StationaryCamera" parent="." node_paths=PackedStringArray("game_manager", "player") instance=ExtResource("2_y47g4")]
-transform = Transform3D(0.965926, 0.183013, -0.183013, -0.258819, 0.683013, -0.683013, 0, 0.707107, 0.707107, 2.21319, 4.61433, -3.98592)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.21319, 4.24297, -3.98592)
 game_manager = NodePath("../GameManager")
 player = NodePath("../PlayerDrone")
 
@@ -46,5 +68,16 @@ player = NodePath("../PlayerDrone")
 
 [node name="ProgressBar" parent="CanvasLayer" index="0"]
 metadata/_edit_use_anchors_ = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+light_color = Color(0.705882, 0.839216, 0.862745, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_68rjk")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0621, -2.18521)
 
 [editable path="CanvasLayer"]

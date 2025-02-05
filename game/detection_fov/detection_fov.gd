@@ -32,8 +32,6 @@ func initialize(_length: float, _radius: float) -> void:
 	spotlight.spot_angle = angle_deg
 	spotlight.spot_range = length
 	
-	print($Lazers/L1_Offset/L1.rotation.x)
-	
 	$Lazers/L1_Offset/L1.rotation.x = angle_rad
 	$Lazers/L2_Offset/L2.rotation.x = angle_rad
 	$Lazers/L3_Offset/L3.rotation.x = angle_rad
@@ -74,7 +72,6 @@ func _process(delta):
 			return
 		
 		var collider = raycast.get_collider()
-		print(collider.name)
 		if not is_player_detected and collider.name == "PlayerDrone":
 			is_player_detected = true
 			player_detected.emit()

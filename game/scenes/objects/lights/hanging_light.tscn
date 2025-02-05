@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5853ewrhxus3"]
+[gd_scene load_steps=3 format=3 uid="uid://c5853ewrhxus3"]
 
 [ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="1_il1b0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mllsb"]
+albedo_color = Color(0.5625, 0.5625, 0.5625, 1)
+metallic_specular = 1.0
+roughness = 0.8
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 5.0
 
 [node name="HangingLight" type="Node3D"]
 
@@ -10,8 +18,9 @@ size = Vector3(0.5, 0.5, 0.5)
 material = ExtResource("1_il1b0")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-size = Vector3(0.3, 0.7, 0.3)
-material = ExtResource("1_il1b0")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.120215, 0)
+size = Vector3(0.3, 0.222852, 0.3)
+material = SubResource("StandardMaterial3D_mllsb")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.121914, 0)

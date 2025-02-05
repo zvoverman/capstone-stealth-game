@@ -95,6 +95,7 @@ debug_shape_custom_color = Color(1, 0, 1, 1)
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 light_color = Color(1, 0, 0, 1)
 light_energy = 10.0
+light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 shadow_bias = 0.01
 shadow_normal_bias = 0.5

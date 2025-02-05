@@ -340,7 +340,7 @@ step_target = NodePath("FrontRightStepTarget")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 
 [node name="ForwardMarker" type="Marker3D" parent="Armature"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1, -6)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Armature/ForwardMarker"]
 visible = false
