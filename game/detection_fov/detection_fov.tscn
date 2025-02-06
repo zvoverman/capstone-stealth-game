@@ -105,6 +105,7 @@ spot_angle = 10.0
 spot_angle_attenuation = 0.001
 
 [node name="DetectionArea3D" type="Area3D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea3D"]
 shape = SubResource("ConvexPolygonShape3D_dh66w")

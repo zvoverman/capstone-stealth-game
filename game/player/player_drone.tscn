@@ -92,7 +92,7 @@ albedo_color = Color(1, 0, 1, 1)
 radius = 0.1
 
 [node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction")]
-collision_layer = 3
+collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_qujey")
 forward_direction = NodePath("Armature/ForwardMarker")
@@ -100,7 +100,7 @@ MAX_JUMP_VELOCITY = 8.0
 detection_level_step = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.352638, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.371501, 0)
 shape = SubResource("SphereShape3D_bumat")
 
 [node name="Armature" type="Node3D" parent="."]
@@ -301,46 +301,46 @@ opposite_target = NodePath("../BackLeftIKTarget")
 
 [node name="StepTargetContainer" type="Node3D" parent="Armature"]
 script = ExtResource("4_ijx8o")
-offset = 15.0
+offset = 5.0
 
 [node name="FrontLeftRay" type="RayCast3D" parent="Armature/StepTargetContainer" node_paths=PackedStringArray("step_target")]
-transform = Transform3D(0.999391, -0.0348995, 0, 0.0348782, 0.998782, 0.0348995, -0.00121797, -0.0348782, 0.999391, -1.5, 2, -1.5)
+transform = Transform3D(0.939693, -0.34202, 0, 0.321394, 0.883022, 0.34202, -0.116978, -0.321394, 0.939693, -2.5, 2, -2.5)
 target_position = Vector3(0, -10, 0)
 script = ExtResource("5_0wsnl")
 step_target = NodePath("FrontLeftStepTarget")
 
 [node name="FrontLeftStepTarget" type="Marker3D" parent="Armature/StepTargetContainer/FrontLeftRay"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+transform = Transform3D(1, 6.49015e-09, 4.65661e-10, -7.85803e-10, 1, 0, 4.65661e-10, 0, 1, -1.19209e-07, -4, 0)
 
 [node name="BackLeftRay" type="RayCast3D" parent="Armature/StepTargetContainer" node_paths=PackedStringArray("step_target")]
-transform = Transform3D(0.999391, -0.0348995, 0, 0.0348782, 0.998782, -0.0348995, 0.00121797, 0.0348782, 0.999391, -1.5, 2, 1.5)
+transform = Transform3D(0.939693, -0.34202, 0, 0.321394, 0.883022, -0.34202, 0.116978, 0.321394, 0.939693, -2.5, 2, 2.5)
 target_position = Vector3(0, -10, 0)
 script = ExtResource("5_0wsnl")
 step_target = NodePath("BackLeftStepTarget")
 
 [node name="BackLeftStepTarget" type="Marker3D" parent="Armature/StepTargetContainer/BackLeftRay"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+transform = Transform3D(1, 6.49015e-09, -4.65661e-10, -7.85803e-10, 1, 0, -4.65661e-10, 0, 1, -1.19209e-07, -4, 0)
 
 [node name="BackRightRay" type="RayCast3D" parent="Armature/StepTargetContainer" node_paths=PackedStringArray("step_target")]
-transform = Transform3D(0.999391, 0.0348995, 0, -0.0348782, 0.998782, -0.0348995, -0.00121797, 0.0348782, 0.999391, 1.5, 2, 1.5)
+transform = Transform3D(0.939693, 0.34202, 0, -0.321394, 0.883022, -0.34202, -0.116978, 0.321394, 0.939693, 2.5, 2, 2.5)
 target_position = Vector3(0, -10, 0)
 script = ExtResource("5_0wsnl")
 step_target = NodePath("BackRightStepTarget")
 
 [node name="BackRightStepTarget" type="Marker3D" parent="Armature/StepTargetContainer/BackRightRay"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+transform = Transform3D(1, -6.49015e-09, 4.65661e-10, 7.85803e-10, 1, 0, 4.65661e-10, 0, 1, 1.19209e-07, -4, 0)
 
 [node name="FrontRightRay" type="RayCast3D" parent="Armature/StepTargetContainer" node_paths=PackedStringArray("step_target")]
-transform = Transform3D(0.999391, 0.0348995, 0, -0.0348782, 0.998782, 0.0348995, 0.00121797, -0.0348782, 0.999391, 1.5, 2, -1.5)
+transform = Transform3D(0.939693, 0.34202, 0, -0.321394, 0.883022, 0.34202, 0.116978, -0.321394, 0.939693, 2.5, 2, -2.5)
 target_position = Vector3(0, -10, 0)
 script = ExtResource("5_0wsnl")
 step_target = NodePath("FrontRightStepTarget")
 
 [node name="FrontRightStepTarget" type="Marker3D" parent="Armature/StepTargetContainer/FrontRightRay"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+transform = Transform3D(1, -6.49015e-09, -4.65661e-10, 7.85803e-10, 1, 0, -4.65661e-10, 0, 1, 1.19209e-07, -4, 0)
 
 [node name="ForwardMarker" type="Marker3D" parent="Armature"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1, -6)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.989132, -6)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Armature/ForwardMarker"]
 visible = false
@@ -375,3 +375,22 @@ target_position = Vector3(0, 0, -5)
 hit_back_faces = false
 collide_with_bodies = false
 debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="Raycasts" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05, 0)
+target_position = Vector3(0, 0, 0.5)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.05, 0)
+target_position = Vector3(0, 0, 0.5)
+
+[node name="RayCast3D3" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -1.05, 0)
+target_position = Vector3(0, 0, 0.5)
+
+[node name="RayCast3D4" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -1.05, 0)
+target_position = Vector3(0, 0, 0.5)

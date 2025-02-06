@@ -29,6 +29,10 @@ var detection_level : float = 0.0
 @export var max_detection_level : float = 1.0
 var time_since_detected : float = 0.0
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_down"):
+		print(average_rays())
+
 func _ready() -> void:
 	if detection_bar_ui:
 		detection_bar_ui.max_value = max_detection_level
@@ -44,8 +48,8 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# Reset gravity when in the air
 	if is_in_air:
-		current_normal = Vector3.UP
-		gravity_direction = Vector3.DOWN
+		#current_normal = Vector3.UP
+		#gravity_direction = Vector3.DOWN
 		target_basis = calculate_orientation()
 		current_gravity += gravity_direction * GRAVITY_STRENGTH * delta
 	else:
@@ -54,6 +58,10 @@ func _physics_process(delta: float) -> void:
 	# Apply speed based on current forward direction
 	velocity = MAX_SPEED * get_dir()
 	velocity += current_gravity
+	
+	#var average_normal = average_rays().normalized()
+	#if average_normal != Vector3.ZERO:
+		#current_normal = average_normal
 
 	# Toggle jump
 	if Input.is_action_just_pressed("jump") and not is_jumping:
@@ -84,12 +92,19 @@ func _physics_process(delta: float) -> void:
 		else:
 			is_in_air = false
 			is_jumping = false
+			
 			current_normal = collision.get_normal()
 			gravity_direction = -current_normal
 			velocity = velocity.slide(current_normal)
 			target_basis = calculate_orientation()
 	else:
-		is_in_air = true
+		var normal = average_rays()
+		if normal != Vector3.ZERO:
+			current_normal = normal
+		else:
+			current_normal = Vector3.UP
+			is_in_air = true
+		gravity_direction = -current_normal
 		
 	var next_basis : Basis = global_transform.basis.slerp(target_basis.get_rotation_quaternion(), delta * rotation_smoothness)
 	global_transform.basis = next_basis
@@ -122,6 +137,27 @@ func calculate_orientation() -> Basis:
 	var new_basis = Basis(right, up, forward)
 	
 	return new_basis
+	
+func average_rays() -> Vector3:
+	#var ray = $RayCast3D
+	#if ray.get_collision_point():
+		#return ray.get_collision_normal().normalized()
+	#return Vector3.ZERO
+	var ray_container = $Raycasts
+	var ray_total : Vector3 = Vector3.ZERO
+	var ray_count : int = 0
+	
+	# Iterate over all child nodes of ray_container
+	for ray in ray_container.get_children():
+		# Ensure the child has the 'step_target' property or method
+		if ray.is_colliding():
+			ray_total += ray.get_collision_normal()
+			ray_count += 1
+			#return ray.get_collision_normal().normalized()
+	if ray_count > 0:
+		return (ray_total / ray_count).normalized()
+	else:
+		return Vector3.ZERO
 
 
 

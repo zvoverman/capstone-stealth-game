@@ -93,6 +93,11 @@ size = Vector3(7.465, 3.33985, 5.736)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.08247, 6.00398, -21.1363)
 size = Vector3(2, 4, 3)
 
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/Environment/Room1/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.82901, -2.55551)
+size = Vector3(7.465, 0.191651, 5.736)
+material = ExtResource("2_oqp0l")
+
 [node name="NoClimb" type="CSGCombiner3D" parent="NavigationRegion3D/Environment/Room1" groups=["no_climb"]]
 use_collision = true
 
@@ -110,11 +115,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.6975, -16.2063)
 use_collision = true
 size = Vector3(6, 3.12125, 2)
 material = ExtResource("1_677f3")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/Environment/Room1/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.82901, -2.55551)
-size = Vector3(7.465, 0.191651, 5.736)
-material = ExtResource("2_oqp0l")
 
 [node name="Lights" type="Node3D" parent="NavigationRegion3D/Environment/Room1"]
 
