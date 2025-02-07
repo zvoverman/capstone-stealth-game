@@ -46,22 +46,29 @@ func _process(delta: float) -> void:
 			detection_bar_ui.value = detection_level
 
 func _physics_process(delta: float) -> void:
-	# Reset gravity when in the air
+	
+	# Calculate player orientation based on average normal of rays
+	var normal = average_rays()
+	if normal != Vector3.ZERO:
+		current_normal = normal
+	else:
+		current_normal = Vector3.UP
+	gravity_direction = -current_normal
+	target_basis = calculate_orientation()
+
+	# No gravity if on the ground
 	if is_in_air:
-		#current_normal = Vector3.UP
-		#gravity_direction = Vector3.DOWN
-		target_basis = calculate_orientation()
 		current_gravity += gravity_direction * GRAVITY_STRENGTH * delta
 	else:
 		current_gravity = Vector3.ZERO
+		
+	# Knowing the new orientation, adjust the player
+	var next_basis : Basis = global_transform.basis.slerp(target_basis.get_rotation_quaternion(), delta * rotation_smoothness)
+	global_transform.basis = next_basis
 
 	# Apply speed based on current forward direction
 	velocity = MAX_SPEED * get_dir()
 	velocity += current_gravity
-	
-	#var average_normal = average_rays().normalized()
-	#if average_normal != Vector3.ZERO:
-		#current_normal = average_normal
 
 	# Toggle jump
 	if Input.is_action_just_pressed("jump") and not is_jumping:
@@ -74,40 +81,17 @@ func _physics_process(delta: float) -> void:
 		gravity_direction = Vector3.DOWN
 		target_basis = calculate_orientation()
 		velocity += jump_direction * MAX_JUMP_VELOCITY
-	
-	# Slide, and then check for collisions
+		
+	# Need to check for collisions, SLIDE!
 	move_and_slide()
 	
 	# Base player orientation on latest collision normal
 	var collision = get_last_slide_collision()
 	if collision:
-		if collision.get_collider().is_in_group("no_climb"):
-			if collision.get_normal() == current_normal:
-				is_in_air = false
-				is_jumping = false
-			else:
-				is_in_air = true
-			velocity = velocity.slide(current_normal)
-			target_basis = calculate_orientation()
-		else:
-			is_in_air = false
-			is_jumping = false
-			
-			current_normal = collision.get_normal()
-			gravity_direction = -current_normal
-			velocity = velocity.slide(current_normal)
-			target_basis = calculate_orientation()
+		is_in_air = false;
+		is_jumping = false;
 	else:
-		var normal = average_rays()
-		if normal != Vector3.ZERO:
-			current_normal = normal
-		else:
-			current_normal = Vector3.UP
-			is_in_air = true
-		gravity_direction = -current_normal
-		
-	var next_basis : Basis = global_transform.basis.slerp(target_basis.get_rotation_quaternion(), delta * rotation_smoothness)
-	global_transform.basis = next_basis
+		is_in_air = true;
 
 # Movement direction calculation based on forward direction,
 # player "forward" will always be "away" from camera
@@ -138,22 +122,16 @@ func calculate_orientation() -> Basis:
 	
 	return new_basis
 	
+# Average the collision normals of all rays in the Raycasts node
 func average_rays() -> Vector3:
-	#var ray = $RayCast3D
-	#if ray.get_collision_point():
-		#return ray.get_collision_normal().normalized()
-	#return Vector3.ZERO
-	var ray_container = $Raycasts
+	var ray_container = $CollisionShape3D/Raycasts
 	var ray_total : Vector3 = Vector3.ZERO
 	var ray_count : int = 0
 	
-	# Iterate over all child nodes of ray_container
 	for ray in ray_container.get_children():
-		# Ensure the child has the 'step_target' property or method
-		if ray.is_colliding():
+		if ray.is_colliding() and not ray.get_collider().is_in_group("no_climb"):
 			ray_total += ray.get_collision_normal()
 			ray_count += 1
-			#return ray.get_collision_normal().normalized()
 	if ray_count > 0:
 		return (ray_total / ray_count).normalized()
 	else:
