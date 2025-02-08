@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwpd4m1oebcj0"]
+[gd_scene load_steps=5 format=3 uid="uid://dwpd4m1oebcj0"]
 
 [ext_resource type="PackedScene" uid="uid://mm6hgpy86fbq" path="res://scenes/levels/main_hub.tscn" id="1_1sk1m"]
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_g3hnr"]
+[ext_resource type="PackedScene" uid="uid://e3r1348mlsy" path="res://scenes/levels/tutorial_room.tscn" id="3_els22"]
 
 [sub_resource type="Environment" id="Environment_daeso"]
 background_mode = 1
@@ -22,9 +23,10 @@ sdfgi_y_scale = 0
 glow_enabled = true
 glow_normalized = true
 fog_enabled = true
-fog_light_color = Color(0.705882, 0.835294, 0.862745, 1)
+fog_light_color = Color(0.298039, 0.384314, 0.403922, 1)
 volumetric_fog_enabled = true
 volumetric_fog_anisotropy = 0.0
+volumetric_fog_length = 32.0
 
 [node name="Game" type="Node3D"]
 
@@ -40,3 +42,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_daeso")
+
+[node name="TutorialRoom" parent="." instance=ExtResource("3_els22")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.5, -20)

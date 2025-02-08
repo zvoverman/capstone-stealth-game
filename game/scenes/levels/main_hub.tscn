@@ -88,6 +88,10 @@ radius = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -10)
 size = Vector3(2, 3, 2)
 
+[node name="CSGBox3D5" type="CSGBox3D" parent="Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 10)
+size = Vector3(2, 3, 2)
+
 [node name="CSGBox3D4" type="CSGBox3D" parent="Geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.5)
 visible = false
