@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwpd4m1oebcj0"]
+
+[ext_resource type="PackedScene" uid="uid://mm6hgpy86fbq" path="res://scenes/levels/game/main_hub.tscn" id="1_1sk1m"]
+[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_g3hnr"]
+[ext_resource type="PackedScene" uid="uid://cf3y8sh4gk3oy" path="res://scenes/levels/game/tutorial_room.tscn" id="3_els22"]
+[ext_resource type="Script" path="res://game_manager.gd" id="3_nsbbq"]
+[ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="4_k007b"]
+[ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="4_n6obs"]
+[ext_resource type="PackedScene" uid="uid://cnw701ssfa447" path="res://scenes/levels/game/first_level.tscn" id="7_j1yv4"]
+
+[sub_resource type="Environment" id="Environment_daeso"]
+background_mode = 1
+background_color = Color(0.705882, 0.835294, 0.862745, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.298615, 0.384191, 0.402344, 1)
+ssao_enabled = true
+ssao_radius = 3.0
+ssao_power = 0.53033
+ssil_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 0.15
+sdfgi_cascade0_distance = 9.6
+sdfgi_max_distance = 2457.6
+sdfgi_y_scale = 0
+glow_enabled = true
+glow_normalized = true
+fog_enabled = true
+fog_light_color = Color(0.298039, 0.384314, 0.403922, 1)
+volumetric_fog_enabled = true
+volumetric_fog_anisotropy = 0.0
+volumetric_fog_length = 32.0
+
+[node name="Game" type="Node3D"]
+
+[node name="MainHub" parent="." instance=ExtResource("1_1sk1m")]
+
+[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("2_g3hnr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.44462, 15.9493)
+detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_nsbbq")
+player = NodePath("../PlayerDrone")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_k007b")]
+
+[node name="ProgressBar" parent="CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+light_color = Color(0.705882, 0.839216, 0.862745, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_daeso")
+
+[node name="TutorialRoom" parent="." instance=ExtResource("3_els22")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.5, -26.5)
+
+[node name="StationaryCamera" parent="TutorialRoom" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("4_n6obs")]
+transform = Transform3D(-0.237279, -0.332253, -0.912857, -8.88178e-16, 0.939693, -0.34202, 0.971442, -0.0811542, -0.222969, -13.0163, 1.53076, 9.06769)
+markers = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
+length = 25.0
+radius = 7.0
+
+[node name="Marker3D" type="Marker3D" parent="TutorialRoom/StationaryCamera"]
+transform = Transform3D(0.237279, 0.332253, 0.912857, -3.80952e-09, 0.939693, -0.34202, -0.971442, 0.0811542, 0.222969, 14.8708, -2.28543, -27.9874)
+top_level = true
+
+[node name="Marker3D2" type="Marker3D" parent="TutorialRoom/StationaryCamera"]
+transform = Transform3D(0.237279, 0.332253, 0.912857, -3.80952e-09, 0.939693, -0.34202, -0.971442, 0.0811542, 0.222969, 23.107, -2.28543, -37.1296)
+top_level = true
+
+[node name="Marker3D3" type="Marker3D" parent="TutorialRoom/StationaryCamera"]
+transform = Transform3D(0.237279, 0.332253, 0.912857, -3.80952e-09, 0.939693, -0.34202, -0.971442, 0.0811542, 0.222969, 32.6672, -2.28543, -31.227)
+top_level = true
+
+[node name="FirstLevel" parent="." instance=ExtResource("7_j1yv4")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, -0.5, -27.5)
+
+[node name="StationaryCamera" parent="FirstLevel" instance=ExtResource("4_n6obs")]
+transform = Transform3D(0.766044, 0.537745, 0.352145, 0, 0.547841, -0.836583, -0.642788, 0.640859, 0.41967, -11.8561, -18.3771, -15.5894)
+
+[node name="StationaryCamera2" parent="FirstLevel" instance=ExtResource("4_n6obs")]
+transform = Transform3D(-0.488088, -0.730164, -0.478152, 4.19865e-08, 0.547841, -0.836583, 0.872794, -0.408326, -0.267394, -15.914, -18.3771, -19.602)
+
+[editable path="CanvasLayer"]

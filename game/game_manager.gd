@@ -5,6 +5,9 @@ class_name GameManager
 @export var player : CharacterBody3D
 
 var detected_cams : Array[float] = []
+
+var has_key : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -22,4 +25,5 @@ func add_detection(cam_id : float):
 	
 func remove_detection(cam_id : float):
 	detected_cams.erase(cam_id)
+	
 	

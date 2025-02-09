@@ -16,6 +16,9 @@ var look_at_threshold : float = 0.1
 @export var length : float = 20.0
 @export var radius : float = 3.0
 
+var patrol_wait_time: float = 2.0
+var patrol_timer: float = 0.0
+
 enum CameraState {
 	SCANNING,
 	DETECTED,
@@ -48,7 +51,12 @@ func _process(delta):
 			var forward_dir = (forward_direction.global_transform.origin - global_transform.origin).normalized()
 			var dist = forward_dir.distance_to(direction)
 			if  dist > -look_at_threshold and dist < look_at_threshold:
-				current_marker_index = (current_marker_index + 1) % markers.size()
+				patrol_timer += delta
+					
+				# Wait at the patrol point before moving to the next one
+				if patrol_timer >= patrol_wait_time:
+					patrol_timer = 0.0
+					current_marker_index = (current_marker_index + 1) % markers.size()
 		CameraState.DETECTED:
 			var target_position = player.global_position
 			forward_direction.global_position = lerp(forward_direction.global_position, target_position, 2.0 * delta)

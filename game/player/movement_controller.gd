@@ -31,7 +31,7 @@ var time_since_detected : float = 0.0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down"):
-		print(average_rays())
+		get_tree().reload_current_scene()
 
 func _ready() -> void:
 	if detection_bar_ui:
@@ -90,6 +90,9 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		is_in_air = false;
 		is_jumping = false;
+		var collider = collision.get_collider()
+		if collider.is_in_group("hazard"):
+			respawn()
 	else:
 		is_in_air = true;
 
@@ -129,9 +132,13 @@ func average_rays() -> Vector3:
 	var ray_count : int = 0
 	
 	for ray in ray_container.get_children():
-		if ray.is_colliding() and not ray.get_collider().is_in_group("no_climb"):
-			ray_total += ray.get_collision_normal()
-			ray_count += 1
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			if collider.is_in_group("no_climb"):
+				continue
+			else:
+				ray_total += ray.get_collision_normal()
+				ray_count += 1
 	if ray_count > 0:
 		return (ray_total / ray_count).normalized()
 	else:
@@ -148,4 +155,7 @@ func increment_detection(delta : float):
 	detection_bar_ui.value = detection_level
 	
 	if detection_level >= max_detection_level:
-		get_tree().reload_current_scene()
+		respawn()
+		
+func respawn():
+	get_tree().reload_current_scene()
