@@ -30,8 +30,8 @@ var detection_level : float = 0.0
 var time_since_detected : float = 0.0
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_down"):
-		get_tree().reload_current_scene()
+	if event.is_action_pressed("reset"):
+		respawn()
 
 func _ready() -> void:
 	if detection_bar_ui:
@@ -73,7 +73,8 @@ func _physics_process(delta: float) -> void:
 	# Toggle jump
 	if Input.is_action_just_pressed("jump") and not is_jumping:
 		is_jumping = true
-		jump_direction = current_normal
+		var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
+		jump_direction = (current_normal + (2 * forwardDir)).normalized()
 
 	# Reset orientation if currently jumping
 	if is_jumping:
@@ -157,5 +158,13 @@ func increment_detection(delta : float):
 	if detection_level >= max_detection_level:
 		respawn()
 		
+func set_detection_level(new_value: float):
+	detection_level = new_value
+	detection_bar_ui.value = detection_level
+		
 func respawn():
-	get_tree().reload_current_scene()
+	var game_manager = get_tree().get_root().get_node("Game/GameManager")
+	game_manager.respawn()
+	is_detected = false
+	set_detection_level(0.0)
+	

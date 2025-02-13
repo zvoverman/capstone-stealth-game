@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://mm6hgpy86fbq"]
+[gd_scene load_steps=6 format=3 uid="uid://mm6hgpy86fbq"]
 
 [ext_resource type="Material" uid="uid://c70kocqjyuppd" path="res://materials/windows_mat.tres" id="1_8njqk"]
 [ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="2_f87qw"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_jyvlb"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="4_wru4p"]
+[ext_resource type="Material" uid="uid://fqg7c7dfy2r4" path="res://materials/green_key.tres" id="5_8we0w"]
 
 [node name="MainHub" type="Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -117,11 +118,11 @@ size = Vector3(49, 71.04, 49)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Geometry/Holes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -38, -18, 27.5)
-size = Vector3(11, 29, 29)
+size = Vector3(11, 30, 30)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Geometry/Holes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -38, -1.50659, 27.5)
-size = Vector3(8.03625, 6.01318, 29)
+size = Vector3(8.036, 6.013, 30)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
@@ -216,3 +217,5 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1,
 [node name="Door3" parent="." instance=ExtResource("4_wru4p")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -20, -1, 24.75)
 is_locked = true
+key_color = "green"
+material = ExtResource("5_8we0w")

@@ -61,32 +61,36 @@ environment = SubResource("Environment_daeso")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.5, -26.5)
 
 [node name="StationaryCamera" parent="TutorialRoom" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("4_n6obs")]
-transform = Transform3D(-0.237279, -0.332253, -0.912857, -8.88178e-16, 0.939693, -0.34202, 0.971442, -0.0811542, -0.222969, -13.0163, 1.53076, 9.06769)
+transform = Transform3D(-0.237279, -0.332253, -0.912857, -8.88178e-16, 0.939693, -0.34202, 0.971442, -0.0811542, -0.222969, -13.0163, 2.36027, 9.06769)
 markers = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
 game_manager = NodePath("../../GameManager")
 player = NodePath("../../PlayerDrone")
 length = 25.0
-radius = 7.0
+radius = 6.0
 
 [node name="Marker3D" type="Marker3D" parent="TutorialRoom/StationaryCamera"]
 transform = Transform3D(0.237279, 0.332253, 0.912857, -3.80952e-09, 0.939693, -0.34202, -0.971442, 0.0811542, 0.222969, 14.8708, -2.28543, -27.9874)
 top_level = true
 
 [node name="Marker3D2" type="Marker3D" parent="TutorialRoom/StationaryCamera"]
-transform = Transform3D(0.237279, 0.332253, 0.912857, -3.80952e-09, 0.939693, -0.34202, -0.971442, 0.0811542, 0.222969, 23.107, -2.28543, -37.1296)
+transform = Transform3D(0.237279, 0.332253, 0.912857, -3.80952e-09, 0.939693, -0.34202, -0.971442, 0.0811542, 0.222969, 23.3704, -2.34316, -35.2261)
 top_level = true
 
 [node name="Marker3D3" type="Marker3D" parent="TutorialRoom/StationaryCamera"]
-transform = Transform3D(0.237279, 0.332253, 0.912857, -3.80952e-09, 0.939693, -0.34202, -0.971442, 0.0811542, 0.222969, 32.6672, -2.28543, -31.227)
+transform = Transform3D(0.237279, 0.332253, 0.912857, -3.80952e-09, 0.939693, -0.34202, -0.971442, 0.0811542, 0.222969, 32.6672, -2.28543, -31.6502)
 top_level = true
 
 [node name="FirstLevel" parent="." instance=ExtResource("7_j1yv4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, -0.5, -27.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20.5, -0.5, -27.5)
 
-[node name="StationaryCamera" parent="FirstLevel" instance=ExtResource("4_n6obs")]
+[node name="StationaryCamera" parent="FirstLevel" node_paths=PackedStringArray("game_manager", "player") instance=ExtResource("4_n6obs")]
 transform = Transform3D(0.766044, 0.537745, 0.352145, 0, 0.547841, -0.836583, -0.642788, 0.640859, 0.41967, -11.8561, -18.3771, -15.5894)
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
 
-[node name="StationaryCamera2" parent="FirstLevel" instance=ExtResource("4_n6obs")]
+[node name="StationaryCamera2" parent="FirstLevel" node_paths=PackedStringArray("game_manager", "player") instance=ExtResource("4_n6obs")]
 transform = Transform3D(-0.488088, -0.730164, -0.478152, 4.19865e-08, 0.547841, -0.836583, 0.872794, -0.408326, -0.267394, -15.914, -18.3771, -19.602)
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
 
 [editable path="CanvasLayer"]

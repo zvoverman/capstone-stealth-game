@@ -6,11 +6,17 @@ class_name GameManager
 
 var detected_cams : Array[float] = []
 
-var has_key : bool = false
+var initial_player_position : Vector3 = Vector3.ZERO
+
+var keys = {
+	"green": false,
+	"blue": false,
+	"red": false
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	initial_player_position = player.global_position
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,5 +31,8 @@ func add_detection(cam_id : float):
 	
 func remove_detection(cam_id : float):
 	detected_cams.erase(cam_id)
+	
+func respawn() -> void:
+	player.global_position = initial_player_position
 	
 	
