@@ -117,11 +117,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, -21.02, 0)
 size = Vector3(49, 71.04, 49)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Geometry/Holes"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -38, -18, 27.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -38.5, -18, 27.5)
 size = Vector3(11, 30, 30)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Geometry/Holes"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -38, -1.50659, 27.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -38.5, -1.507, 27.5)
 size = Vector3(8.036, 6.013, 30)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geometry"]

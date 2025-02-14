@@ -9,7 +9,7 @@ var detected_cams : Array[float] = []
 var initial_player_position : Vector3 = Vector3.ZERO
 
 var keys = {
-	"green": false,
+	"green": false ,
 	"blue": false,
 	"red": false
 }

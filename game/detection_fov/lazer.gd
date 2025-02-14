@@ -11,14 +11,7 @@ var initial_length : float
 var initial_position_z : float
 
 func _ready() -> void:
-	initial_length = detection_fov.length
-	initial_position_z = initial_length / 2.0
-	
-	ray_cast.enabled = true
-	ray_cast.target_position.z = initial_length
-	
-	var angle_rad = atan2(detection_fov.radius, detection_fov.length)  # atan2(y, x) = atan(y/x) but handles all quadrants
-	rotation.x = angle_rad
+	pass
 
 func _process(delta: float) -> void:
 	if ray_cast.is_colliding():
@@ -31,4 +24,14 @@ func _process(delta: float) -> void:
 	else:
 		mesh.height = initial_length
 		mesh.position.z = initial_position_z
+		
+func initialize(length: float, radius: float) -> void:
+	initial_length = length
+	initial_position_z = initial_length / 2.0
+	
+	ray_cast.enabled = true
+	ray_cast.target_position.z = initial_length
+	
+	var angle_rad = atan2(detection_fov.radius, detection_fov.length)  # atan2(y, x) = atan(y/x) but handles all quadrants
+	rotation.x = angle_rad
 		

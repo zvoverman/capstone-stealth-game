@@ -32,12 +32,12 @@ func initialize(_length: float, _radius: float) -> void:
 	spotlight.spot_angle = angle_deg
 	spotlight.spot_range = length
 	
-	$Lazers/L1_Offset/L1.rotation.x = angle_rad
-	$Lazers/L2_Offset/L2.rotation.x = angle_rad
-	$Lazers/L3_Offset/L3.rotation.x = angle_rad
-	$Lazers/L4_Offset/L4.rotation.x = angle_rad
+	var lazers = $Lazers
+	for lazer_offset in lazers.get_children():
+		var lazer: Lazer = lazer_offset.get_child(0)
+		lazer.initialize(length, radius)
 	
-	# Dynamically build collision shape to match volume body
+	# Dynamically build collision shape to match volume body  
 	var radius_correction = radius / 4.0
 	var new_convex_shape : ConvexPolygonShape3D = ConvexPolygonShape3D.new()
 	

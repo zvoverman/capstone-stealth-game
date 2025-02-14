@@ -19,6 +19,8 @@ var look_at_threshold : float = 0.1
 var patrol_wait_time: float = 2.0
 var patrol_timer: float = 0.0
 
+var initial_pos : Vector3
+
 enum CameraState {
 	SCANNING,
 	DETECTED,
@@ -29,13 +31,14 @@ var current_state : CameraState = CameraState.SCANNING
 
 func _ready() -> void:
 	detection_fov.initialize(length, radius)
+	initial_pos = global_position
 	
 # Called every frame
 func _process(delta):
 	match current_state:
 		CameraState.SCANNING:
 			if markers.size() == 0:
-				forward_direction.global_position = global_position
+				forward_direction.global_position = lerp(forward_direction.global_position, initial_pos, delta)
 				return
 			
 			# Get the target marker position
