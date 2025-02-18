@@ -19,6 +19,8 @@ var is_in_air : bool = true
 var is_jumping : bool = false
 
 var jump_direction : Vector3 = Vector3.UP
+var jump_timer : float = 0.0
+@export var JUMP_COOLDOWN : float = 1.0
 
 var target_basis : Basis = Basis.IDENTITY
 @export var rotation_smoothness : float = 4.0
@@ -38,6 +40,10 @@ func _ready() -> void:
 		detection_bar_ui.max_value = max_detection_level
 
 func _process(delta: float) -> void:
+	# Update the jump timer
+	if jump_timer > 0:
+		jump_timer -= delta
+	
 	if is_detected:
 		increment_detection(delta)
 	else:
@@ -69,31 +75,40 @@ func _physics_process(delta: float) -> void:
 	# Apply speed based on current forward direction
 	velocity = MAX_SPEED * get_dir()
 	velocity += current_gravity
-
+	
 	# Toggle jump
-	if Input.is_action_just_pressed("jump") and not is_jumping:
+	if Input.is_action_just_pressed("jump") and not is_jumping and jump_timer <= 0:
 		is_jumping = true
 		var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
-		jump_direction = (current_normal + (2 * forwardDir)).normalized()
-
+		jump_direction = (current_normal + (forwardDir)).normalized()
+		
+		# Reset jump timer after jumping
+		jump_timer = JUMP_COOLDOWN
+	
 	# Reset orientation if currently jumping
 	if is_jumping:
 		current_normal = Vector3.UP
 		gravity_direction = Vector3.DOWN
 		target_basis = calculate_orientation()
 		velocity += jump_direction * MAX_JUMP_VELOCITY
-		
+
 	# Need to check for collisions, SLIDE!
 	move_and_slide()
 	
 	# Base player orientation on latest collision normal
 	var collision = get_last_slide_collision()
 	if collision:
-		is_in_air = false;
-		is_jumping = false;
 		var collider = collision.get_collider()
 		if collider.is_in_group("hazard"):
 			respawn()
+		elif collider.is_in_group("no_climb"):
+			var collision_normal = collision.get_normal()
+			if collision_normal == Vector3.UP:
+				is_in_air = false;
+				is_jumping = false
+		else:
+			is_in_air = false;
+			is_jumping = false;
 	else:
 		is_in_air = true;
 
@@ -131,16 +146,21 @@ func average_rays() -> Vector3:
 	var ray_container = $CollisionShape3D/Raycasts
 	var ray_total : Vector3 = Vector3.ZERO
 	var ray_count : int = 0
+	var no_climb_ray_count : int = 0
 	
 	for ray in ray_container.get_children():
 		if ray.is_colliding():
 			var collider = ray.get_collider()
-			if collider.is_in_group("no_climb"):
+			if collider.is_in_group("hazard"):
 				continue
+			elif collider.is_in_group("no_climb"):
+				no_climb_ray_count += 1
 			else:
 				ray_total += ray.get_collision_normal()
 				ray_count += 1
-	if ray_count > 0:
+	if no_climb_ray_count > ray_count:
+		return Vector3.UP ;
+	elif ray_count > 0:
 		return (ray_total / ray_count).normalized()
 	else:
 		return Vector3.ZERO

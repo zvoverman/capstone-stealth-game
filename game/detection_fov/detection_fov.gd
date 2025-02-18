@@ -59,7 +59,7 @@ func _ready() -> void:
 	
 # Called every frame
 func _process(delta):
-	lazers_container.global_rotation.z += lazer_rotation_speed * delta
+	lazers_container.rotation.z += lazer_rotation_speed * delta
 	
 	if ray_body:
 		var adjusted_point = ray_body.global_position - Vector3(0, 0.1, 0)
