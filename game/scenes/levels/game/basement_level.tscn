@@ -1,0 +1,300 @@
+[gd_scene load_steps=9 format=3 uid="uid://di0uwq5vw2ehs"]
+
+[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_tlag4"]
+[ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="2_gt5v5"]
+[ext_resource type="Material" uid="uid://dph4epe7umdau" path="res://materials/concrete_wall_mat.tres" id="2_h6v23"]
+[ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="3_42wl1"]
+[ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="4_k87r1"]
+[ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="5_83tk1"]
+[ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="6_6r8fc"]
+
+[sub_resource type="Environment" id="Environment_wowde"]
+background_mode = 1
+background_color = Color(0.705882, 0.835294, 0.862745, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.298615, 0.384191, 0.402344, 1)
+ssao_enabled = true
+ssao_radius = 3.0
+ssao_power = 0.53033
+ssil_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+sdfgi_cascades = 8
+sdfgi_min_cell_size = 0.15
+sdfgi_cascade0_distance = 9.6
+sdfgi_max_distance = 2457.6
+sdfgi_y_scale = 0
+glow_enabled = true
+glow_normalized = true
+fog_enabled = true
+fog_light_color = Color(0.298039, 0.384314, 0.403922, 1)
+volumetric_fog_enabled = true
+volumetric_fog_anisotropy = 0.0
+volumetric_fog_length = 32.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PlayerDrone" parent="." instance=ExtResource("1_tlag4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 6, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+light_color = Color(0.705882, 0.839216, 0.862745, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wowde")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="Basement" type="Node3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
+
+[node name="Geometry" type="CSGCombiner3D" parent="CSGCombiner3D/Basement"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Basement/Geometry"]
+size = Vector3(20, 8, 40)
+
+[node name="Holes" type="CSGCombiner3D" parent="CSGCombiner3D/Basement/Geometry"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Basement/Geometry/Holes"]
+size = Vector3(19, 7, 39)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/Basement/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -10.9126)
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/Basement/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 20)
+size = Vector3(5, 4, 4)
+
+[node name="Details" type="CSGCombiner3D" parent="CSGCombiner3D/Basement/Geometry"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/Basement/Geometry/Details"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
+radius = 1.0
+height = 8.0
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/Basement/Geometry/Details"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
+radius = 1.0
+height = 8.0
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/Basement/Geometry/Details"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
+radius = 1.0
+height = 8.0
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D/Basement/Geometry/Details"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+radius = 1.0
+height = 8.0
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGCombiner3D/Basement/Geometry/Details"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Basement/Geometry/Details/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6, 0.35)
+size = Vector3(20, 0.8, 40.7)
+material = ExtResource("2_h6v23")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGCombiner3D/Basement/Geometry/Details/CSGCombiner3D"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Basement/Geometry/Details/CSGCombiner3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+size = Vector3(18.7, 2, 38.7)
+material = ExtResource("2_h6v23")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/Basement/Geometry/Details/CSGCombiner3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-07, -2, 20)
+size = Vector3(4.8, 5, 4)
+material = ExtResource("2_h6v23")
+
+[node name="NoClimb" type="CSGCombiner3D" parent="CSGCombiner3D/Basement" groups=["no_climb"]]
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/Basement/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75024, -10.9126)
+size = Vector3(4, 4.49951, 4)
+
+[node name="Holes" type="CSGCombiner3D" parent="CSGCombiner3D/Basement/NoClimb"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/Basement/NoClimb/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, -10.9126)
+size = Vector3(3, 4, 3)
+
+[node name="Lights" type="Node3D" parent="CSGCombiner3D/Basement"]
+
+[node name="BigHangingLight" parent="CSGCombiner3D/Basement/Lights" instance=ExtResource("2_gt5v5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.54619, 0)
+
+[node name="BigHangingLight2" parent="CSGCombiner3D/Basement/Lights" instance=ExtResource("2_gt5v5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3.54619, 0)
+
+[node name="HangingLight2" parent="CSGCombiner3D/Basement/Lights" instance=ExtResource("3_42wl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 19.4)
+
+[node name="HangingLight3" parent="CSGCombiner3D/Basement/Lights" instance=ExtResource("3_42wl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 19.4)
+
+[node name="Door" parent="CSGCombiner3D/Basement" instance=ExtResource("4_k87r1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 20)
+
+[node name="Tutorial" type="Node3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 40)
+
+[node name="Geometry" type="CSGCombiner3D" parent="CSGCombiner3D/Tutorial"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 11)
+size = Vector3(8, 11, 41)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 51)
+size = Vector3(8, 7, 40)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 75)
+size = Vector3(30, 7, 8)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 51)
+size = Vector3(8, 7, 40)
+
+[node name="Holes" type="CSGCombiner3D" parent="CSGCombiner3D/Tutorial/Geometry"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.5)
+size = Vector3(7, 6, 38)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -9)
+size = Vector3(5, 4, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 11)
+size = Vector3(7, 6, 15)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 52)
+size = Vector3(7, 6, 36)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 31.5)
+size = Vector3(7, 3, 5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 70.5)
+size = Vector3(3, 4, 3)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 75)
+size = Vector3(29, 6, 7)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 51.5)
+size = Vector3(7, 6, 41)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 22.5)
+size = Vector3(7, 2, 5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 39.5)
+size = Vector3(7, 3, 5)
+
+[node name="NoClimb" type="CSGCombiner3D" parent="CSGCombiner3D/Tutorial" groups=["no_climb"]]
+use_collision = true
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, -2.5, 75)
+size = Vector3(1, 1, 7)
+material = ExtResource("6_6r8fc")
+
+[node name="Hazard" type="CSGCombiner3D" parent="CSGCombiner3D/Tutorial" groups=["hazard"]]
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.5, 11)
+size = Vector3(7, 1, 15)
+material = ExtResource("5_83tk1")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95, 31.001)
+size = Vector3(7, 0.1, 12)
+material = ExtResource("5_83tk1")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 39.5)
+size = Vector3(7, 1, 4.8)
+material = ExtResource("5_83tk1")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0, 1, -1, -2, 53)
+radius = 0.05
+height = 12.0
+material = ExtResource("5_83tk1")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, -1.4, 0, 54)
+radius = 0.05
+height = 12.0
+material = ExtResource("5_83tk1")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 0, 0, 57)
+radius = 0.05
+height = 12.0
+material = ExtResource("5_83tk1")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(-0.984923, -0.026114, -0.17101, -0.0261138, -0.954769, 0.296198, -0.17101, 0.296198, 0.939693, 3, 0, 56)
+radius = 0.05
+height = 12.0
+material = ExtResource("5_83tk1")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(-0.906308, 0.422618, 0, -0.422618, -0.906308, 0, 0, 0, 1, 0.437487, -0.404003, 59)
+radius = 0.05
+height = 12.0
+material = ExtResource("5_83tk1")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 0, 0, 1, -1.83749, -2.496, 60)
+radius = 0.05
+height = 12.0
+material = ExtResource("5_83tk1")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0, 1, 0.948889, 0.388229, 64)
+radius = 0.05
+height = 12.0
+material = ExtResource("5_83tk1")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="CSGCombiner3D/Tutorial/Hazard"]
+transform = Transform3D(0.944604, -0.221888, 0.241845, 0.280141, 0.928995, -0.241845, -0.17101, 0.296198, 0.939693, -1.94889, -0.388229, 63)
+radius = 0.05
+height = 12.0
+material = ExtResource("5_83tk1")
+
+[node name="Door" parent="CSGCombiner3D/Tutorial" instance=ExtResource("4_k87r1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0197929, -0.833139, 70.6691)
+
+[node name="Lights" type="Node3D" parent="CSGCombiner3D/Tutorial"]
+
+[node name="BigHangingLight" parent="CSGCombiner3D/Tutorial/Lights" instance=ExtResource("2_gt5v5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 11)
+
+[node name="HangingLight" parent="CSGCombiner3D/Tutorial/Lights" instance=ExtResource("3_42wl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.51781, -0.0363634, 69.8)
+
+[node name="HangingLight2" parent="CSGCombiner3D/Tutorial/Lights" instance=ExtResource("3_42wl1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48219, -0.0363634, 69.8)
+
+[node name="BigHangingLight2" parent="CSGCombiner3D/Tutorial/Lights" instance=ExtResource("2_gt5v5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 3, 75)

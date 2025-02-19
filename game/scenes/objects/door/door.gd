@@ -20,7 +20,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_open:
-		$CSGBox3D.global_position.y = lerp($CSGBox3D.global_position.y, initial_pos.y + 3, 3.0 * delta)
+		$CSGBox3D.global_position.y = lerp($CSGBox3D.global_position.y, initial_pos.y + 5, 3.0 * delta)
 	else:
 		$CSGBox3D.global_position.y = lerp($CSGBox3D.global_position.y, initial_pos.y, 3.0 * delta)
 

@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://dph4epe7umdau"]
+
+[ext_resource type="Texture2D" uid="uid://cx0cki3g5ob1n" path="res://materials/textures/concrete_wall/Poliigon_ConcreteWallCladding_7856_BaseColor.jpg" id="1_tlclk"]
+[ext_resource type="Texture2D" uid="uid://b0rooeofo7b4h" path="res://materials/textures/concrete_wall/Poliigon_ConcreteWallCladding_7856_AmbientOcclusion.png" id="2_uinoe"]
+[ext_resource type="Texture2D" uid="uid://cmnxy6b5l2o17" path="res://materials/textures/concrete_wall/Poliigon_ConcreteWallCladding_7856_Metallic.png" id="3_c5ka0"]
+[ext_resource type="Texture2D" uid="uid://doceyhhpn4wa" path="res://materials/textures/concrete_wall/Poliigon_ConcreteWallCladding_7856_Normal.png" id="4_xwghf"]
+[ext_resource type="Texture2D" uid="uid://hpja4fujstja" path="res://materials/textures/concrete_wall/Poliigon_ConcreteWallCladding_7856_Roughness.png" id="5_bu4ug"]
+
+[resource]
+albedo_texture = ExtResource("1_tlclk")
+metallic = 1.0
+metallic_texture = ExtResource("3_c5ka0")
+roughness_texture = ExtResource("5_bu4ug")
+normal_enabled = true
+normal_texture = ExtResource("4_xwghf")
+ao_enabled = true
+ao_texture = ExtResource("2_uinoe")
+uv1_scale = Vector3(5.16, 2.27, 1)
+uv1_offset = Vector3(-0.01, -0.15, 0)

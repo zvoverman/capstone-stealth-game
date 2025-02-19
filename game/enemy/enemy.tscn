@@ -1,20 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://bapg7j4qlh4ec"]
+[gd_scene load_steps=9 format=3 uid="uid://bapg7j4qlh4ec"]
 
-[ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="2_h7dpu"]
 [ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://detection_fov/detection_fov.tscn" id="2_uxcq4"]
 [ext_resource type="Script" path="res://enemy/enemy_navigation.gd" id="3_nord4"]
+[ext_resource type="Shader" path="res://materials/jitter.gdshader" id="3_sxhva"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx4qn"]
 radius = 1.0
 height = 4.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ek87m"]
+render_priority = 0
+shader = ExtResource("3_sxhva")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2mtkv"]
-material = ExtResource("2_h7dpu")
+material = SubResource("ShaderMaterial_ek87m")
 radius = 1.0
 height = 4.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhgeb"]
+render_priority = 0
+shader = ExtResource("3_sxhva")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
 [sub_resource type="BoxMesh" id="BoxMesh_h3gcj"]
-material = ExtResource("2_h7dpu")
+material = SubResource("ShaderMaterial_lhgeb")
 size = Vector3(1.2, 0.4, 0.8)
 
 [node name="Enemy" type="RigidBody3D"]
