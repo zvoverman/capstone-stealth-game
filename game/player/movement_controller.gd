@@ -31,6 +31,8 @@ var detection_level : float = 0.0
 @export var max_detection_level : float = 1.0
 var time_since_detected : float = 0.0
 
+var jump_power_up : bool = true
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
 		respawn()
@@ -77,7 +79,7 @@ func _physics_process(delta: float) -> void:
 	velocity += current_gravity
 	
 	# Toggle jump
-	if Input.is_action_just_pressed("jump") and not is_jumping and jump_timer <= 0:
+	if Input.is_action_just_pressed("jump") and not is_jumping and jump_timer <= 0 and jump_power_up:
 		is_jumping = true
 		var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
 		jump_direction = (current_normal + (forwardDir)).normalized()
@@ -102,10 +104,13 @@ func _physics_process(delta: float) -> void:
 		if collider.is_in_group("hazard"):
 			respawn()
 		elif collider.is_in_group("no_climb"):
-			var collision_normal = collision.get_normal()
-			if collision_normal == Vector3.UP:
+			var collision_normal = collision.get_normal().normalized()
+			# floating point precision error with ==
+			if collision_normal.is_equal_approx(Vector3.UP):
 				is_in_air = false;
-				is_jumping = false
+				is_jumping = false;
+			else:
+				is_in_air = true;
 		else:
 			is_in_air = false;
 			is_jumping = false;
@@ -159,7 +164,7 @@ func average_rays() -> Vector3:
 				ray_total += ray.get_collision_normal()
 				ray_count += 1
 	if no_climb_ray_count > ray_count:
-		return Vector3.UP ;
+		return Vector3.UP
 	elif ray_count > 0:
 		return (ray_total / ray_count).normalized()
 	else:
@@ -183,7 +188,7 @@ func set_detection_level(new_value: float):
 	detection_bar_ui.value = detection_level
 		
 func respawn():
-	var game_manager = get_tree().get_root().get_node("Game/GameManager")
+	var game_manager = get_tree().get_root().get_node("Node3D/GameManager")
 	game_manager.respawn()
 	is_detected = false
 	set_detection_level(0.0)
