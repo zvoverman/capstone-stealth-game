@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsqa3wy0e4i8"]
 
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="1_j0m2q"]
-[ext_resource type="Script" path="res://scenes/objects/hazards/rotating_lazer.gd" id="1_q4m1d"]
+[ext_resource type="Script" path="res://scenes/objects/hazards/rotating_lazer/rotating_lazer.gd" id="1_q4m1d"]
 
 [node name="RotatingLazer" type="Node3D"]
 script = ExtResource("1_q4m1d")
