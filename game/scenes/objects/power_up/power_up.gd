@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "PlayerDrone":
-		var game_manager = get_tree().get_root().get_node("Node3D/GameManager")
+		var game_manager = get_tree().get_root().get_node("Game/GameManager")
 		if game_manager:
 			game_manager.set_jump_power_up(true)
 			queue_free()

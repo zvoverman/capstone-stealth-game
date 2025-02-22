@@ -188,7 +188,7 @@ func set_detection_level(new_value: float):
 	detection_bar_ui.value = detection_level
 		
 func respawn():
-	var game_manager = get_tree().get_root().get_node("Node3D/GameManager")
+	var game_manager = get_tree().get_root().get_node("Game/GameManager")
 	game_manager.respawn()
 	is_detected = false
 	set_detection_level(0.0)

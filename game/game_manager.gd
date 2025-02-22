@@ -17,7 +17,7 @@ var keys = {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initial_player_position = player.global_position
-	set_jump_power_up(true)
+	set_jump_power_up(false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
