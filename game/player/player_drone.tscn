@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://1ho3oqfnll2i"]
+[gd_scene load_steps=16 format=4 uid="uid://1ho3oqfnll2i"]
 
 [ext_resource type="Script" path="res://player/movement_controller.gd" id="1_qujey"]
 [ext_resource type="Script" path="res://player/IK/start_ik.gd" id="2_dfnor"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://player/IK/step_target_container.gd" id="4_ijx8o"]
 [ext_resource type="Script" path="res://player/IK/step_ray.gd" id="5_0wsnl"]
 [ext_resource type="Script" path="res://player/camera_controller.gd" id="6_2qcp2"]
+[ext_resource type="Texture2D" uid="uid://dpouv35yfcnun" path="res://materials/textures/Untitled.png" id="8_ojsau"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bumat"]
 radius = 0.6
@@ -98,6 +99,8 @@ albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5rkb1"]
 radius = 0.1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ffx1t"]
 
 [node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction")]
 collision_layer = 2
@@ -476,6 +479,13 @@ spring_length = 3.3
 [node name="Camera3D" type="Camera3D" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.995692, -0.0927176, 0, 0.0927176, 0.995692, 0, 0.00175059, 3.32294)
 
+[node name="TextureRect" type="TextureRect" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_ojsau")
+
 [node name="ForwardMarker" type="Marker3D" parent="CameraRootNode/CamYaw/CamPitch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
 
@@ -486,3 +496,9 @@ target_position = Vector3(0, 0, -5)
 hit_back_faces = false
 collide_with_bodies = false
 debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraRootNode/CamYaw"]
+transform = Transform3D(1, 0, 0, 0, 0.926994, 0.375076, 0, -0.375076, 0.926994, 0, 0.975495, 0.0430653)
+visible = false
+mesh = SubResource("QuadMesh_ffx1t")
+skeleton = NodePath("../CamPitch/SpringArm3D/Camera3D")

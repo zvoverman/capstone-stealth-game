@@ -1,17 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwpd4m1oebcj0"]
+[gd_scene load_steps=12 format=3 uid="uid://dwpd4m1oebcj0"]
 
 [ext_resource type="PackedScene" uid="uid://mm6hgpy86fbq" path="res://scenes/levels/game/main_hub.tscn" id="1_1sk1m"]
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_g3hnr"]
 [ext_resource type="Script" path="res://game_manager.gd" id="3_nsbbq"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="4_k007b"]
-[ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="5_filnv"]
-[ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="6_w02s7"]
-[ext_resource type="PackedScene" uid="uid://dsqa3wy0e4i8" path="res://scenes/objects/hazards/rotating_lazer/rotating_lazer.tscn" id="7_2j454"]
-[ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="10_t48dx"]
-[ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="11_byxml"]
+[ext_resource type="PackedScene" uid="uid://cmmahjrnq16or" path="res://scenes/levels/game/tutorial.tscn" id="5_ck61k"]
 [ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://scenes/objects/power_up/power_up.tscn" id="11_dibpg"]
 [ext_resource type="PackedScene" uid="uid://bx1mmgt2rdp34" path="res://scenes/levels/game/level_1.tscn" id="12_a4pys"]
-[ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="12_pq3s5"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="13_23erp"]
 [ext_resource type="PackedScene" uid="uid://bflxvhtvauddo" path="res://scenes/objects/key/key.tscn" id="14_2cf46"]
 [ext_resource type="Material" uid="uid://fqg7c7dfy2r4" path="res://materials/green_key.tres" id="15_btsly"]
@@ -65,443 +60,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_daeso")
 
-[node name="Tutorial" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, -19.505)
-
-[node name="Geometry" type="CSGCombiner3D" parent="Tutorial"]
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 11)
-size = Vector3(8, 11, 41)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 51)
-size = Vector3(8, 7, 40)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 75)
-size = Vector3(30, 7, 8)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -3, 51)
-size = Vector3(8, 13, 40)
-
-[node name="CSGBox3D11" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3.5, 11)
-size = Vector3(8, 14, 40)
-
-[node name="CSGBox3D16" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.499, 3.5, -2.499)
-size = Vector3(1, 14, 15)
-
-[node name="Holes" type="CSGCombiner3D" parent="Tutorial/Geometry"]
-operation = 2
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.5)
-size = Vector3(7, 6, 38)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -9)
-size = Vector3(5, 4, 4)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 11)
-size = Vector3(7, 6, 15)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 52)
-size = Vector3(7, 6, 36)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 31.5)
-size = Vector3(7, 3, 5)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 70.5)
-size = Vector3(3, 4, 3)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 75)
-size = Vector3(29, 6, 7)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 52)
-size = Vector3(7, 6, 40)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -2.8, 51.5)
-size = Vector3(7, 11.6, 25)
-
-[node name="CSGBox3D11" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3.5, 11)
-size = Vector3(7, 13, 39)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -1, 31.7)
-size = Vector3(3, 4, 3)
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 26.6667, 8, -5.93334)
-size = Vector3(3, 2, 3)
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5, 8, -9.06666)
-size = Vector3(4, 3, 4)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D22" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5, 8, -15.6)
-size = Vector3(14, 3, 4)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D19" type="CSGBox3D" parent="Tutorial/Geometry/Holes"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42.5, 8, 3.50001)
-size = Vector3(14, 2, 3)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 22.5)
-size = Vector3(7, 2, 5)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 39.5)
-size = Vector3(7, 3, 5)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 37.15)
-size = Vector3(7, 1.1, 0.3)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.55, -4, 43.5)
-size = Vector3(4.1, 4, 1.3)
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 7, 21.5)
-size = Vector3(7, 6, 18)
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 5.5, 4.5)
-size = Vector3(8, 1, 2)
-
-[node name="CSGBox3D14" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 6.5, -6)
-size = Vector3(2, 1, 6)
-
-[node name="CSGBox3D17" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.499, 5.5, -6.049)
-size = Vector3(1, 18, 22.1)
-
-[node name="CSGBox3D18" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.999, 12.5, -2.499)
-size = Vector3(20, 4, 15)
-
-[node name="CSGBox3D19" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.499, -4, -20.499)
-size = Vector3(37, 1, 5)
-
-[node name="CSGBox3D20" type="CSGBox3D" parent="Tutorial/Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.499, -4, -6.499)
-size = Vector3(41, 1, 23)
-
-[node name="NoClimb" type="CSGCombiner3D" parent="Tutorial" groups=["no_climb"]]
-use_collision = true
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, -2.5, 75)
-size = Vector3(1, 1, 7)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -3, 63.5)
-size = Vector3(1, 12, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -3, 63.5)
-size = Vector3(1, 12, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2.5, 58.5)
-size = Vector3(8, 1, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -3, 53.5)
-size = Vector3(1, 12, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2.5, 53.5)
-size = Vector3(8, 1, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -3, 49.5)
-size = Vector3(1, 12, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, -3, 43.5)
-size = Vector3(4, 12, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -3, 43.5)
-size = Vector3(1, 12, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 2.5, 43.5)
-size = Vector3(8, 1, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D11" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1.5, -8)
-size = Vector3(1, 9, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1.5, -8)
-size = Vector3(1, 9, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 5.5, -8)
-size = Vector3(8, 1, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D14" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.05, 3.5, -1.5)
-size = Vector3(10.1, 14, 15)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D22" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5, 8, -15.6)
-size = Vector3(14, 3, 4)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D23" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5, 5.3, -19.6)
-size = Vector3(4, 2.4, 4)
-material = ExtResource("5_filnv")
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Tutorial/NoClimb"]
-operation = 2
-
-[node name="CSGBox3D14" type="CSGBox3D" parent="Tutorial/NoClimb/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1, 3.5, -1.5)
-size = Vector3(9, 13, 14)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="Tutorial/NoClimb/CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.8, 8, -5.92574)
-size = Vector3(3, 2, 3)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="Tutorial/NoClimb/CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5, 8, -14.5667)
-size = Vector3(14, 2, 3)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D23" type="CSGBox3D" parent="Tutorial/NoClimb/CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 32.5, 5.6, -19.6)
-size = Vector3(3, 3, 3)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D19" type="CSGBox3D" parent="Tutorial/NoClimb/CSGCombiner3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 40, 8, 3.50001)
-size = Vector3(9, 2, 3)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D15" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4, -1.8, 1.8)
-size = Vector3(2.5, 2.5, 2.5)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D16" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.6, 0, -7.6)
-size = Vector3(2, 6, 2)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D17" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 5.5, 12)
-size = Vector3(8, 1, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D18" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 10.2, -8.25)
-size = Vector3(8, 1, 0.5)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D20" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.1, -1.25, -4.5)
-size = Vector3(1, 3.5, 2)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D19" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 10.2, -5.5)
-size = Vector3(1, 1, 5)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D21" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 7.7, -2.501)
-size = Vector3(1, 6, 1)
-material = ExtResource("5_filnv")
-
-[node name="CSGBox3D24" type="CSGBox3D" parent="Tutorial/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7, 1, -8)
-size = Vector3(1, 8, 1)
-material = ExtResource("5_filnv")
-
-[node name="Hazard" type="CSGCombiner3D" parent="Tutorial" groups=["hazard"]]
-use_collision = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Tutorial/Hazard"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.5, 11)
-size = Vector3(7, 1, 15)
-material = ExtResource("6_w02s7")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Tutorial/Hazard"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95, 31.001)
-size = Vector3(7, 0.1, 12)
-material = ExtResource("6_w02s7")
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Tutorial/Hazard"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 39.55)
-size = Vector3(7, 1, 4.7)
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0, 1, -1, -2, 53)
-radius = 0.05
-height = 12.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, -1.4, 0, 54)
-radius = 0.05
-height = 12.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, 0, 0, 57)
-radius = 0.05
-height = 12.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(-0.984923, -0.026114, -0.17101, -0.0261138, -0.954769, 0.296198, -0.17101, 0.296198, 0.939693, 3, 0, 56)
-radius = 0.05
-height = 12.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(-0.906308, 0.422618, 0, -0.422618, -0.906308, 0, 0, 0, 1, 0.437487, -0.404003, 59)
-radius = 0.05
-height = 12.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 0, 0, 1, -1.83749, -2.496, 60)
-radius = 0.05
-height = 12.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0, 1, 0.948889, 0.388229, 64)
-radius = 0.05
-height = 12.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(0.944604, -0.221888, 0.241845, 0.280141, 0.928995, -0.241845, -0.17101, 0.296198, 0.939693, -1.94889, -0.388229, 63)
-radius = 0.05
-height = 12.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Tutorial/Hazard"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, -8.45, 51.5)
-size = Vector3(7, 0.3, 25)
-material = ExtResource("6_w02s7")
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="Tutorial/Hazard"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0.9, -8.4)
-size = Vector3(8, 9, 0.3)
-material = ExtResource("6_w02s7")
-
-[node name="RotatingLazer" parent="Tutorial/Hazard" instance=ExtResource("7_2j454")]
-transform = Transform3D(-6.46836e-08, 0.92838, -0.371632, -5.61149e-08, 0.371632, 0.92838, 1, 8.0905e-08, 2.80574e-08, 22.0302, 0.307813, 24.4774)
-
-[node name="RotatingLazer2" parent="Tutorial/Hazard" instance=ExtResource("7_2j454")]
-transform = Transform3D(1.01038e-07, -0.169141, 0.985592, 1.4882e-07, -0.985592, -0.169141, 1, 1.63766e-07, -7.44101e-08, 22.0302, 0.307813, 19.4774)
-
-[node name="RotatingLazer3" parent="Tutorial/Hazard" instance=ExtResource("7_2j454")]
-transform = Transform3D(-1.0439e-07, 0.980829, -0.194868, -2.94242e-08, 0.194868, 0.980829, 1, 1.08122e-07, 8.51794e-09, 22.0302, 0.307813, 14.4774)
-
-[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 25.0625, 4.504, 2.4)
-radius = 0.05
-height = 22.0
-material = ExtResource("6_w02s7")
-
-[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="Tutorial/Hazard"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 19.0625, 6.504, 2.5)
-radius = 0.05
-height = 22.0
-material = ExtResource("6_w02s7")
-
-[node name="Door" parent="Tutorial" instance=ExtResource("10_t48dx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0197929, -0.833139, 70.6691)
-
-[node name="Door2" parent="Tutorial" instance=ExtResource("10_t48dx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0038, -1.0545, 31.2129)
-
-[node name="Lights" type="Node3D" parent="Tutorial"]
-
-[node name="BigHangingLight3" parent="Tutorial/Lights" instance=ExtResource("11_byxml")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 3, 49.5)
-
-[node name="BigHangingLight" parent="Tutorial/Lights" instance=ExtResource("11_byxml")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 11)
-
-[node name="HangingLight" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.51781, -0.0363634, 69.8)
-
-[node name="HangingLight2" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48219, -0.0363634, 69.8)
-
-[node name="BigHangingLight2" parent="Tutorial/Lights" instance=ExtResource("11_byxml")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 3, 75)
-
-[node name="HangingLight3" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 0.1, 32.2)
-
-[node name="HangingLight4" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4822, 0.1, 32.2033)
-
-[node name="HangingLight5" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 0.1, 30.3)
-
-[node name="HangingLight6" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4822, 0.1, 30.3033)
-
-[node name="HangingLight7" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.2683, 8.5, -7.93334)
-
-[node name="HangingLight8" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.2683, 8.5, -3.93334)
-
-[node name="BigHangingLight4" parent="Tutorial/Lights" instance=ExtResource("11_byxml")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 10, 4.4)
-
-[node name="HangingLight9" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30.2, 8.5, -8.26666)
-
-[node name="HangingLight10" parent="Tutorial/Lights" instance=ExtResource("12_pq3s5")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 34.9, 8.5, -8.26667)
+[node name="Tutorial" parent="." instance=ExtResource("5_ck61k")]
 
 [node name="PowerUp" parent="." instance=ExtResource("11_dibpg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, -1.4, -21)
@@ -542,33 +101,33 @@ transform = Transform3D(0.984808, -0.0868241, -0.150384, 2.98023e-08, 0.866025, 
 top_level = true
 
 [node name="StationaryCamera3" parent="Level_1" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("13_23erp")]
-transform = Transform3D(0.5, -0.224144, -0.836516, 0, 0.965926, -0.258819, 0.866026, 0.12941, 0.482963, -22.2, 13, -18.7)
+transform = Transform3D(0.5, -0.224144, -0.836516, 0, 0.965926, -0.258819, 0.866026, 0.12941, 0.482963, -22.2, 12.5, -18.7)
 markers = [NodePath("Marker3D"), NodePath("Marker3D2")]
 game_manager = NodePath("../../GameManager")
 player = NodePath("../../PlayerDrone")
 length = 25.0
 
 [node name="Marker3D" type="Marker3D" parent="Level_1/StationaryCamera3"]
-transform = Transform3D(-0.866026, -0.129409, -0.482963, 5.75737e-08, 0.965925, -0.258819, 0.5, -0.224144, -0.836516, -50.3, 11.2, -30.5)
+transform = Transform3D(-0.866026, -0.129409, -0.482963, 5.75737e-08, 0.965925, -0.258819, 0.5, -0.224144, -0.836516, -50.3, 11.823, -30.5)
 top_level = true
 
 [node name="Marker3D2" type="Marker3D" parent="Level_1/StationaryCamera3"]
-transform = Transform3D(-0.866026, -0.12941, -0.482963, 5.75737e-08, 0.965925, -0.258819, 0.5, -0.224144, -0.836516, -58.3, 6.6, -29.5)
+transform = Transform3D(-0.866026, -0.12941, -0.482963, 5.75737e-08, 0.965925, -0.258819, 0.5, -0.224144, -0.836516, -58.3, 7.6, -29.5)
 top_level = true
 
 [node name="StationaryCamera4" parent="Level_1" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("13_23erp")]
-transform = Transform3D(0.707107, -0.183013, -0.683013, 7.45058e-09, 0.965926, -0.258819, 0.707107, 0.183013, 0.683013, -26.7, 13, -2.10001)
+transform = Transform3D(0.707107, -0.183013, -0.683013, 7.45058e-09, 0.965926, -0.258819, 0.707107, 0.183013, 0.683013, -26.7, 12.5, -2.10001)
 markers = [NodePath("Marker3D"), NodePath("Marker3D2")]
 game_manager = NodePath("../../GameManager")
 player = NodePath("../../PlayerDrone")
 length = 25.0
 
 [node name="Marker3D" type="Marker3D" parent="Level_1/StationaryCamera4"]
-transform = Transform3D(0.5, -0.224144, -0.836516, 0, 0.965925, -0.258819, 0.866026, 0.12941, 0.482963, -64.1, 9.68536, -35.591)
+transform = Transform3D(0.5, -0.224144, -0.836516, 0, 0.965925, -0.258819, 0.866026, 0.12941, 0.482963, -64.1, 10.4854, -35.591)
 top_level = true
 
 [node name="Marker3D2" type="Marker3D" parent="Level_1/StationaryCamera4"]
-transform = Transform3D(0.5, -0.224144, -0.836516, 0, 0.965925, -0.258819, 0.866026, 0.12941, 0.482963, -69.8, 9.38536, -32.891)
+transform = Transform3D(0.5, -0.224144, -0.836516, 0, 0.965925, -0.258819, 0.866026, 0.12941, 0.482963, -69.8, 9.68536, -32.891)
 top_level = true
 
 [node name="Key" parent="." instance=ExtResource("14_2cf46")]

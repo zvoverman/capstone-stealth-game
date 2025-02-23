@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 class_name MovementController
 
+@onready var detection_overlay = $CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D/TextureRect
+
 @export var forward_direction : Marker3D
 
 @export var detection_bar_ui : ProgressBar
@@ -48,10 +50,13 @@ func _process(delta: float) -> void:
 	
 	if is_detected:
 		increment_detection(delta)
+		detection_overlay.self_modulate.a = lerp(detection_overlay.self_modulate.a, detection_level, 5.0 * delta)
 	else:
 		detection_level = lerp(detection_level, 0.0, 0.1 * delta)
 		if detection_bar_ui:
 			detection_bar_ui.value = detection_level
+		
+		detection_overlay.self_modulate.a = lerp(detection_overlay.self_modulate.a, 0.0, delta)
 
 func _physics_process(delta: float) -> void:
 	
@@ -186,8 +191,10 @@ func increment_detection(delta : float):
 func set_detection_level(new_value: float):
 	detection_level = new_value
 	detection_bar_ui.value = detection_level
+	#$CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D/ColorRect.self_modulate
 		
 func respawn():
+	detection_overlay.self_modulate.a = 0.0
 	var game_manager = get_tree().get_root().get_node("Game/GameManager")
 	game_manager.respawn()
 	is_detected = false

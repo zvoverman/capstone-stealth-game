@@ -4,6 +4,7 @@ class_name StationaryCamera
 
 @onready var forward_direction : Marker3D = $ForwardDirection
 @onready var detection_fov : DetectionFOV = $DetectionFOV
+@onready var glint_overlay = $MeshInstance3D
 
 # Array of Marker3D nodes to look at
 @export var markers : Array[Marker3D] = []
@@ -32,11 +33,14 @@ var current_state : CameraState = CameraState.SCANNING
 func _ready() -> void:
 	detection_fov.initialize(length, radius)
 	initial_pos = global_position
+	glint_overlay.get_active_material(0).albedo_color.a = 0.0
 	
 # Called every frame
 func _process(delta):
 	match current_state:
 		CameraState.SCANNING:
+			glint_overlay.get_active_material(0).albedo_color.a = lerp(glint_overlay.get_active_material(0).albedo_color.a, 0.0, 3.0 * delta)
+			
 			if markers.size() == 0:
 				forward_direction.global_position = lerp(forward_direction.global_position, initial_pos, delta)
 				return
@@ -61,6 +65,7 @@ func _process(delta):
 					patrol_timer = 0.0
 					current_marker_index = (current_marker_index + 1) % markers.size()
 		CameraState.DETECTED:
+			glint_overlay.get_active_material(0).albedo_color.a = lerp(glint_overlay.get_active_material(0).albedo_color.a, 1.0, delta)
 			var target_position = player.global_position
 			forward_direction.global_position = lerp(forward_direction.global_position, target_position, 2.0 * delta)
 			look_at_point(forward_direction.global_position)

@@ -7,6 +7,7 @@ class_name GameManager
 var detected_cams : Array[float] = []
 
 var initial_player_position : Vector3 = Vector3.ZERO
+var initial_player_rotation : Vector3 = Vector3.ZERO
 
 var keys = {
 	"green": false ,
@@ -17,6 +18,7 @@ var keys = {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initial_player_position = player.global_position
+	initial_player_rotation = player.global_rotation
 	set_jump_power_up(false)
 
 
@@ -35,6 +37,7 @@ func remove_detection(cam_id : float):
 	
 func respawn() -> void:
 	player.global_position = initial_player_position
+	player.global_rotation = initial_player_rotation
 	
 func set_jump_power_up(flag: bool) -> void:
 	player.jump_power_up = flag

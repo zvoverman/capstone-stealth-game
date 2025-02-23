@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://x2t5j7bc3fbu"]
+[gd_scene load_steps=12 format=4 uid="uid://x2t5j7bc3fbu"]
 
 [ext_resource type="Script" path="res://stationary_camera/stationary_camera.gd" id="1_3dts6"]
 [ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://detection_fov/detection_fov.tscn" id="2_o3l5m"]
+[ext_resource type="Texture2D" uid="uid://vci75d4y340d" path="res://materials/textures/sparkle-41980.png" id="3_saxd1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mt4o"]
 albedo_color = Color(0.828125, 0.828125, 0.828125, 1)
@@ -75,11 +76,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rbv54")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aamvu"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("3_saxd1")
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i234h"]
+material = SubResource("StandardMaterial3D_aamvu")
+
 [node name="StationaryCamera" type="Node3D"]
 script = ExtResource("1_3dts6")
 
 [node name="DetectionFOV" parent="." instance=ExtResource("2_o3l5m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.209189)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.409189)
 length = 25.0
 radius = 6.0
 
@@ -99,6 +111,10 @@ skeleton = NodePath("")
 transform = Transform3D(0, 0.801732, 0, -0.801732, 0, 0, 0, 0, 0.801732, 0.369776, 0, 0)
 mesh = SubResource("ArrayMesh_mm545")
 skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.4)
+mesh = SubResource("PlaneMesh_i234h")
 
 [connection signal="player_detected" from="DetectionFOV" to="." method="_on_detection_fov_player_detected"]
 [connection signal="player_undetected" from="DetectionFOV" to="." method="_on_detection_fov_player_undetected"]
