@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgx71v3n0qufj"]
+[gd_scene load_steps=12 format=3 uid="uid://dgx71v3n0qufj"]
 
 [ext_resource type="Material" uid="uid://1w3f7cug5s4g" path="res://materials/ceramic_floor_mat.tres" id="1_lq6w7"]
 [ext_resource type="Material" uid="uid://bbckl8exthy85" path="res://materials/concrete_floor_mat.tres" id="1_lyuie"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_d4d1g"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="3_c5vut"]
 [ext_resource type="Script" path="res://game_manager.gd" id="4_ewmxw"]
+[ext_resource type="PackedScene" uid="uid://bflxvhtvauddo" path="res://scenes/objects/key/key.tscn" id="7_y40xl"]
+[ext_resource type="Material" uid="uid://fqg7c7dfy2r4" path="res://materials/green_key.tres" id="8_6lagx"]
+[ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://scenes/objects/power_up/power_up.tscn" id="9_bhw2n"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1hnkd"]
 vertices = PackedVector3Array(-4.55, 0.45, -47.1177, -4.55, 0.45, 1.8823, 4.45, 0.45, 1.8823, 4.45, 0.45, -47.1177, -4.55, 10.45, -24.6177, -4.55, 10.45, -15.3677, 4.45, 10.45, -15.3677, 4.45, 10.45, -24.6177)
@@ -82,18 +85,17 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57355, -38.2866)
 top_level = true
 
-[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("2_d4d1g")]
+[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui", "jump_timer_ui") instance=ExtResource("2_d4d1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.09365, 0)
-detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
+detection_bar_ui = NodePath("../CanvasLayer/DetectionProgressBar")
+jump_timer_ui = NodePath("../CanvasLayer/JumpTimerProgressBar")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_c5vut")]
 
-[node name="ProgressBar" parent="CanvasLayer" index="0"]
-metadata/_edit_use_anchors_ = true
-
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player", "tooltip_text_ui")]
 script = ExtResource("4_ewmxw")
 player = NodePath("../PlayerDrone")
+tooltip_text_ui = NodePath("../CanvasLayer/RichTextLabel")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
@@ -102,5 +104,13 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7eehh")
+
+[node name="Key" parent="." instance=ExtResource("7_y40xl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.40623, 1.32283, -16.7062)
+key_color = "green"
+material = ExtResource("8_6lagx")
+
+[node name="PowerUp" parent="." instance=ExtResource("9_bhw2n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.593943, 1.47303, -5.64195)
 
 [editable path="CanvasLayer"]

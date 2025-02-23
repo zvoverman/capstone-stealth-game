@@ -1,14 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb17e3w1o28gd"]
+[gd_scene load_steps=5 format=3 uid="uid://bb17e3w1o28gd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75cw2"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgfgr"]
+bg_color = Color(1, 0.65625, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbxfw"]
+bg_color = Color(0, 0, 0, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ir30a"]
-bg_color = Color(1, 0.5625, 0, 1)
+bg_color = Color(0.584106, 0.859375, 0.859375, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="DetectionProgressBar" type="ProgressBar" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -18,5 +24,37 @@ offset_right = 155.0
 offset_bottom = 28.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_75cw2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dgfgr")
+show_percentage = false
+
+[node name="JumpTimerProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -155.0
+offset_top = 43.0
+offset_right = 155.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_kbxfw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ir30a")
 show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.0
+offset_top = -156.0
+offset_right = 408.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+fit_content = true
+scroll_active = false

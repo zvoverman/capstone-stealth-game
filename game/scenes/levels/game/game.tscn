@@ -39,18 +39,17 @@ volumetric_fog_length = 32.0
 
 [node name="MainHub" parent="." instance=ExtResource("1_1sk1m")]
 
-[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("2_g3hnr")]
+[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui", "jump_timer_ui") instance=ExtResource("2_g3hnr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.18812, 16.9792)
-detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
+detection_bar_ui = NodePath("../CanvasLayer/DetectionProgressBar")
+jump_timer_ui = NodePath("../CanvasLayer/JumpTimerProgressBar")
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player", "tooltip_text_ui")]
 script = ExtResource("3_nsbbq")
 player = NodePath("../PlayerDrone")
+tooltip_text_ui = NodePath("../CanvasLayer/RichTextLabel")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_k007b")]
-
-[node name="ProgressBar" parent="CanvasLayer" index="0"]
-metadata/_edit_use_anchors_ = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)

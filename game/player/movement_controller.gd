@@ -7,6 +7,7 @@ class_name MovementController
 @export var forward_direction : Marker3D
 
 @export var detection_bar_ui : ProgressBar
+@export var jump_timer_ui : ProgressBar
 
 @export var MAX_SPEED: float = 3
 @export var MAX_JUMP_VELOCITY: float = 10
@@ -22,7 +23,7 @@ var is_jumping : bool = false
 
 var jump_direction : Vector3 = Vector3.UP
 var jump_timer : float = 0.0
-@export var JUMP_COOLDOWN : float = 1.0
+@export var JUMP_COOLDOWN : float = 1.5
 
 var target_basis : Basis = Basis.IDENTITY
 @export var rotation_smoothness : float = 4.0
@@ -42,11 +43,16 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	if detection_bar_ui:
 		detection_bar_ui.max_value = max_detection_level
+		
+	if jump_timer_ui:
+		jump_timer_ui.max_value = JUMP_COOLDOWN
 
 func _process(delta: float) -> void:
 	# Update the jump timer
 	if jump_timer > 0:
 		jump_timer -= delta
+		jump_timer_ui.value = jump_timer
+		
 	
 	if is_detected:
 		increment_detection(delta)
@@ -194,6 +200,8 @@ func set_detection_level(new_value: float):
 	#$CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D/ColorRect.self_modulate
 		
 func respawn():
+	jump_timer_ui.value = 0
+	jump_timer = 0
 	detection_overlay.self_modulate.a = 0.0
 	var game_manager = get_tree().get_root().get_node("Game/GameManager")
 	game_manager.respawn()
