@@ -20,7 +20,7 @@ var keys = {
 func _ready() -> void:
 	initial_player_position = player.global_position
 	initial_player_rotation = player.global_rotation
-	set_jump_power_up(false)
+	set_jump_power_up(true)
 	
 	tooltip_text_ui.visible_ratio = 0.0
 

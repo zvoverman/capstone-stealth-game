@@ -376,12 +376,15 @@ material = ExtResource("2_s82mc")
 
 [node name="RotatingLazer" parent="Hazard" instance=ExtResource("3_ewhy8")]
 transform = Transform3D(-6.46836e-08, 0.92838, -0.371632, -5.61149e-08, 0.371632, 0.92838, 1, 8.0905e-08, 2.80574e-08, 22.0302, 0.307813, 24.4774)
+speed = 0.5
 
 [node name="RotatingLazer2" parent="Hazard" instance=ExtResource("3_ewhy8")]
 transform = Transform3D(1.01038e-07, -0.169141, 0.985592, 1.4882e-07, -0.985592, -0.169141, 1, 1.63766e-07, -7.44101e-08, 22.0302, 0.307813, 19.4774)
+speed = 0.5
 
 [node name="RotatingLazer3" parent="Hazard" instance=ExtResource("3_ewhy8")]
 transform = Transform3D(-1.0439e-07, 0.980829, -0.194868, -2.94242e-08, 0.194868, 0.980829, 1, 1.08122e-07, 8.51794e-09, 22.0302, 0.307813, 14.4774)
+speed = 0.5
 
 [node name="CSGCylinder3D9" type="CSGCylinder3D" parent="Hazard"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 25.0625, 4.504, 2.4)
