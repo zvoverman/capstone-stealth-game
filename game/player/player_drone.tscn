@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://1ho3oqfnll2i"]
+[gd_scene load_steps=18 format=4 uid="uid://1ho3oqfnll2i"]
 
 [ext_resource type="Script" path="res://player/movement_controller.gd" id="1_qujey"]
 [ext_resource type="Script" path="res://player/IK/start_ik.gd" id="2_dfnor"]
@@ -101,6 +101,17 @@ albedo_color = Color(1, 0, 1, 1)
 radius = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_ffx1t"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6rjx2"]
+radius = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1q48a"]
+render_priority = 0
+shader = ExtResource("2_h6l54")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction")]
 collision_layer = 2
@@ -502,3 +513,25 @@ transform = Transform3D(1, 0, 0, 0, 0.926994, 0.375076, 0, -0.375076, 0.926994, 
 visible = false
 mesh = SubResource("QuadMesh_ffx1t")
 skeleton = NodePath("../CamPitch/SpringArm3D/Camera3D")
+
+[node name="Dangle" type="Node3D" parent="."]
+
+[node name="PinJoint3D" type="PinJoint3D" parent="Dangle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.228274, 0)
+node_a = NodePath("../..")
+node_b = NodePath("../RigidBody3D")
+params/bias = 0.9
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Dangle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.360372, 0)
+collision_layer = 0
+collision_mask = 0
+mass = 0.5
+gravity_scale = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dangle/RigidBody3D"]
+shape = SubResource("SphereShape3D_6rjx2")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Dangle/RigidBody3D"]
+radius = 0.05
+material = SubResource("ShaderMaterial_1q48a")
