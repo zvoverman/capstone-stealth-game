@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwpd4m1oebcj0"]
+[gd_scene load_steps=12 format=3 uid="uid://dwpd4m1oebcj0"]
 
 [ext_resource type="PackedScene" uid="uid://mm6hgpy86fbq" path="res://scenes/levels/game/main_hub.tscn" id="1_1sk1m"]
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_g3hnr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="4_k007b"]
 [ext_resource type="PackedScene" uid="uid://cmmahjrnq16or" path="res://scenes/levels/game/tutorial.tscn" id="5_ck61k"]
 [ext_resource type="PackedScene" uid="uid://bx1mmgt2rdp34" path="res://scenes/levels/game/level_1.tscn" id="9_u4xfv"]
+[ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="10_fg1s2"]
 [ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://scenes/objects/power_up/power_up.tscn" id="11_dibpg"]
 [ext_resource type="PackedScene" uid="uid://bflxvhtvauddo" path="res://scenes/objects/key/key.tscn" id="14_2cf46"]
 [ext_resource type="Material" uid="uid://fqg7c7dfy2r4" path="res://materials/green_key.tres" id="15_btsly"]
@@ -70,5 +71,53 @@ material = ExtResource("15_btsly")
 
 [node name="Level_1" parent="." instance=ExtResource("9_u4xfv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -84.3985, 21.4774, 0)
+
+[node name="StationaryCamera" parent="Level_1" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("10_fg1s2")]
+transform = Transform3D(-0.965926, 0.0669873, 0.25, 1.13133e-08, 0.965926, -0.258819, -0.258819, -0.25, -0.933013, -2.4, 2.5226, -24.3458)
+markers = [NodePath("Marker3D"), NodePath("Marker3D2")]
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
+length = 30.0
+radius = 5.0
+
+[node name="Marker3D" type="Marker3D" parent="Level_1/StationaryCamera"]
+transform = Transform3D(0.258819, 0.25, 0.933013, 5.8867e-08, 0.965927, -0.258819, -0.965926, 0.0669873, 0.25, -51.9, 19, -1.40002)
+top_level = true
+
+[node name="Marker3D2" type="Marker3D" parent="Level_1/StationaryCamera"]
+transform = Transform3D(0.258819, 0.25, 0.933013, 7.32604e-08, 0.965927, -0.258819, -0.965926, 0.0669873, 0.25, -42.9, 20, 1.59998)
+top_level = true
+
+[node name="StationaryCamera2" parent="Level_1" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("10_fg1s2")]
+transform = Transform3D(-0.965926, 0.0669873, 0.25, 1.13133e-08, 0.965926, -0.258819, -0.258819, -0.25, -0.933013, -2.4, 2.5226, 3.65424)
+markers = [NodePath("Marker3D"), NodePath("Marker3D2")]
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
+length = 30.0
+radius = 4.0
+
+[node name="Marker3D" type="Marker3D" parent="Level_1/StationaryCamera2"]
+transform = Transform3D(0.258819, 0.25, 0.933013, 5.8867e-08, 0.965927, -0.258819, -0.965926, 0.0669873, 0.25, -86.3, 19, -0.100016)
+top_level = true
+
+[node name="Marker3D2" type="Marker3D" parent="Level_1/StationaryCamera2"]
+transform = Transform3D(0.258819, 0.25, 0.933013, 7.32604e-08, 0.965927, -0.258819, -0.965926, 0.0669873, 0.25, -70.4, 18, -0.400025)
+top_level = true
+
+[node name="StationaryCamera3" parent="Level_1" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("10_fg1s2")]
+transform = Transform3D(1, 3.09086e-08, -1.28028e-08, -3.09086e-08, 0.707107, -0.707107, -1.28028e-08, 0.707107, 0.707107, 40, -2.0774, 5.6015)
+markers = [NodePath("Marker3D"), NodePath("Marker3D2")]
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
+length = 30.0
+radius = 6.0
+
+[node name="Marker3D" type="Marker3D" parent="Level_1/StationaryCamera3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93, 9.40001, 40)
+top_level = true
+
+[node name="Marker3D2" type="Marker3D" parent="Level_1/StationaryCamera3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102, 11.4, 40)
+top_level = true
 
 [editable path="CanvasLayer"]
