@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx1mmgt2rdp34"]
+[gd_scene load_steps=8 format=3 uid="uid://bx1mmgt2rdp34"]
 
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="1_0g2nc"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="1_8x3jc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_dxal1"]
 [ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="3_uuwjv"]
 [ext_resource type="PackedScene" uid="uid://cv1rns134dss0" path="res://scenes/objects/hazards/horizontal_moving_lazer/horizontal_moving_lazer.tscn" id="4_ye53p"]
+[ext_resource type="PackedScene" uid="uid://cbt5f3a7mppr1" path="res://interactable/switch.tscn" id="7_qe7cn"]
 
 [node name="Level_1" type="Node3D"]
 
@@ -356,3 +357,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.6, 
 
 [node name="Door4" parent="." instance=ExtResource("1_8x3jc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 54.5)
+is_locked = true
+
+[node name="Switch" parent="." node_paths=PackedStringArray("interact_object") instance=ExtResource("7_qe7cn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0476, 0.00475597, 5.46403)
+interact_object = NodePath("../Door4")

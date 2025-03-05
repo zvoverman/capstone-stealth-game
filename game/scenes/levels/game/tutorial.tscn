@@ -288,13 +288,13 @@ size = Vector3(1, 6, 1)
 material = ExtResource("1_cced4")
 
 [node name="CSGBox3D24" type="CSGBox3D" parent="NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.3, 0.75, 17.7)
-size = Vector3(1.5, 7.5, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.05, 0.75, 18.45)
+size = Vector3(3, 7.5, 3)
 material = ExtResource("1_cced4")
 
 [node name="CSGBox3D23" type="CSGBox3D" parent="NoClimb"]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 18.1, -2.5, 18.3)
-size = Vector3(2, 1, 1)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 18.1, -2.25, 18.3)
+size = Vector3(2.5, 1.5, 1.5)
 material = ExtResource("1_cced4")
 
 [node name="Hazard" type="CSGCombiner3D" parent="." groups=["hazard"]]

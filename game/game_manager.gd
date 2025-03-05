@@ -18,7 +18,7 @@ var keys = {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_transform = player.global_transform
-	set_jump_power_up(false)
+	set_jump_power_up(true)
 	
 	tooltip_text_ui.visible_ratio = 0.0
 

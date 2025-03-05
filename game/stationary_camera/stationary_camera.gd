@@ -71,11 +71,6 @@ func _process(delta):
 			look_at_point(forward_direction.global_position)
 		CameraState.OFF:
 			pass
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_E and player.global_position.distance_to(global_position) < 1.0:
-			queue_free()
 			
 func look_at_point(target_pos : Vector3) -> void:
 	# I don't even know, look_at() looks backwards for some reason
