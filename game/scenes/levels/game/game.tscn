@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwpd4m1oebcj0"]
+[gd_scene load_steps=13 format=3 uid="uid://dwpd4m1oebcj0"]
 
 [ext_resource type="PackedScene" uid="uid://mm6hgpy86fbq" path="res://scenes/levels/game/main_hub.tscn" id="1_1sk1m"]
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_g3hnr"]
@@ -8,8 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bx1mmgt2rdp34" path="res://scenes/levels/game/level_1.tscn" id="9_u4xfv"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="10_fg1s2"]
 [ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://scenes/objects/power_up/power_up.tscn" id="11_dibpg"]
-[ext_resource type="PackedScene" uid="uid://bflxvhtvauddo" path="res://scenes/objects/key/key.tscn" id="14_2cf46"]
-[ext_resource type="Material" uid="uid://fqg7c7dfy2r4" path="res://materials/green_key.tres" id="15_btsly"]
+[ext_resource type="Script" path="res://checkpoint/checkpoint.gd" id="11_uvcia"]
 
 [sub_resource type="Environment" id="Environment_daeso"]
 background_mode = 1
@@ -34,6 +33,13 @@ fog_light_color = Color(0.298039, 0.384314, 0.403922, 1)
 volumetric_fog_enabled = true
 volumetric_fog_anisotropy = 0.0
 volumetric_fog_length = 32.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f6273"]
+height = 25.0
+radius = 20.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8y0ov"]
+size = Vector3(56, 20, 40)
 
 [node name="Game" type="Node3D"]
 
@@ -63,11 +69,6 @@ environment = SubResource("Environment_daeso")
 
 [node name="PowerUp" parent="." instance=ExtResource("11_dibpg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, -1.4, -47)
-
-[node name="Key" parent="." instance=ExtResource("14_2cf46")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.7277, 8.5, -30.3998)
-key_color = "green"
-material = ExtResource("15_btsly")
 
 [node name="Level_1" parent="." instance=ExtResource("9_u4xfv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -84.3985, 21.4774, 0)
@@ -119,5 +120,35 @@ top_level = true
 [node name="Marker3D2" type="Marker3D" parent="Level_1/StationaryCamera3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102, 11.4, 40)
 top_level = true
+
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="Checkpoint_1" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("game_manager")]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("11_uvcia")
+game_manager = NodePath("../../GameManager")
+spawn_name = "Ventilation Duct"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.5, 14, 0)
+shape = SubResource("CylinderShape3D_f6273")
+
+[node name="Marker3D" type="Marker3D" parent="Checkpoints/Checkpoint_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.7, 30, 0)
+
+[node name="Hub" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("game_manager")]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("11_uvcia")
+game_manager = NodePath("../../GameManager")
+spawn_name = "Hub"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Hub"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
+shape = SubResource("BoxShape3D_8y0ov")
+
+[node name="Marker3D" type="Marker3D" parent="Checkpoints/Hub"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4, 16)
 
 [editable path="CanvasLayer"]

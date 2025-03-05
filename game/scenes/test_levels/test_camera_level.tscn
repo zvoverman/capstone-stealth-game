@@ -55,9 +55,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 size = Vector3(5, 0.1, 10)
 material = SubResource("ShaderMaterial_dmjvt")
 
-[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("1_2ot38")]
+[node name="PlayerDrone" parent="." instance=ExtResource("1_2ot38")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
-detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
 
 [node name="StationaryCamera" parent="." node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("2_n47cb")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.21319, 4.24297, -3.98592)
@@ -78,9 +77,6 @@ script = ExtResource("3_fvqr7")
 player = NodePath("../PlayerDrone")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_doy8k")]
-
-[node name="ProgressBar" parent="CanvasLayer" index="0"]
-metadata/_edit_use_anchors_ = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)

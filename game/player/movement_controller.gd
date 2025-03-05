@@ -13,7 +13,7 @@ class_name MovementController
 @export var MAX_JUMP_VELOCITY: float = 10
 @export var GRAVITY_STRENGTH: float = 12
 
-var gravity_direction = Vector3.DOWN
+var gravity_direction : Vector3 = Vector3.DOWN
 var current_gravity = Vector3.ZERO
 
 var current_normal = Vector3.DOWN
@@ -203,8 +203,13 @@ func respawn():
 	jump_timer_ui.value = 0
 	jump_timer = 0
 	detection_overlay.self_modulate.a = 0.0
+	is_detected = false
+	is_in_air = true
+	is_jumping = false 
+	current_gravity = Vector3.ZERO
+	set_detection_level(0.0)
+	velocity = Vector3.ZERO
+	
 	var game_manager = get_tree().get_root().get_node("Game/GameManager")
 	game_manager.respawn()
-	is_detected = false
-	set_detection_level(0.0)
 	

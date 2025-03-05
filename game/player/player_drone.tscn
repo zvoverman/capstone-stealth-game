@@ -520,7 +520,6 @@ skeleton = NodePath("../CamPitch/SpringArm3D/Camera3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.228274, 0)
 node_a = NodePath("../..")
 node_b = NodePath("../RigidBody3D")
-params/bias = 0.9
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Dangle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.360372, 0)
