@@ -15,10 +15,6 @@
 [node name="Geometry" type="CSGCombiner3D" parent="."]
 use_collision = true
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Geometry"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.499, -23.5)
-size = Vector3(7, 3, 58)
-
 [node name="CSGBox3D2" type="CSGBox3D" parent="Geometry"]
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 40.2775, -4.99524, 19.0107)
 size = Vector3(7, 18, 31)
@@ -113,6 +109,10 @@ size = Vector3(6, 15, 6)
 [node name="CSGBox3D18" type="CSGBox3D" parent="Geometry/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, -11, 30.1)
 size = Vector3(3, 4, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.499, -23.5)
+size = Vector3(7, 3, 58)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Geometry"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 40.2275, -11.9952, 16.7107)
