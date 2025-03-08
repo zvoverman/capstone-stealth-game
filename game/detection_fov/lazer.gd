@@ -13,7 +13,7 @@ var initial_position_z : float
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ray_cast.is_colliding():
 		var collision_point = ray_cast.get_collision_point()
 		var distance = ray_cast.global_transform.origin.distance_to(collision_point)

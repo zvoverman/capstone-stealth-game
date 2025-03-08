@@ -62,8 +62,6 @@ func _process(delta):
 	lazers_container.rotation.z += lazer_rotation_speed * delta
 	
 	if ray_body:
-		var adjusted_point = ray_body.global_position - Vector3(0, 0.1, 0)
-		
 		raycast.global_position = global_position
 		raycast.look_at(look_at_point(ray_body.global_position), Vector3.UP)
 		

@@ -7,24 +7,24 @@ class_name GameManager
 
 var detected_cams : Array[float] = []
 
-var spawn_transform : Transform3D
+@export var spawn_node : Node3D
 
 var keys = {
-	"green": false ,
+	"green": false,
 	"blue": false,
 	"red": false
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn_transform = player.global_transform
-	set_jump_power_up(true)
+	respawn()
+	set_jump_power_up(false)
 	
 	tooltip_text_ui.visible_ratio = 0.0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if detected_cams.size() > 0:
 		player.is_detected = true
 	else:
@@ -37,8 +37,7 @@ func remove_detection(cam_id : float):
 	detected_cams.erase(cam_id)
 	
 func respawn() -> void:
-	player.global_transform = spawn_transform
-	player
+	player.global_transform = spawn_node.transform
 	
 func set_jump_power_up(flag: bool) -> void:
 	player.jump_power_up = flag

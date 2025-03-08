@@ -2,7 +2,7 @@
 
 extends Node3D
 
-@export var range : float = 5.0
+@export var distance_from_origin : float = 5.0
 @export var speed : float = 2.0  # Adjust the speed of movement
 @export var height : int = 16
 
@@ -22,8 +22,8 @@ func _process(delta: float) -> void:
 	mesh.position.x += speed * direction * delta
 	
 	# Check if the laser has moved beyond the allowed range in local space
-	if mesh.position.x > initial_position + range:
-		mesh.position.x = initial_position + range
+	if mesh.position.x > initial_position + distance_from_origin:
+		mesh.position.x = initial_position + distance_from_origin
 		direction = -1  # Change direction to left
 	elif mesh.position.x < initial_position:
 		mesh.position.x = initial_position

@@ -50,10 +50,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0474105, 7.58812, 16.2848)
 detection_bar_ui = NodePath("../CanvasLayer/DetectionProgressBar")
 jump_timer_ui = NodePath("../CanvasLayer/JumpTimerProgressBar")
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player", "tooltip_text_ui")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player", "tooltip_text_ui", "spawn_node")]
 script = ExtResource("3_nsbbq")
 player = NodePath("../PlayerDrone")
 tooltip_text_ui = NodePath("../CanvasLayer/RichTextLabel")
+spawn_node = NodePath("../Checkpoints/Hub/Marker3D")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_k007b")]
 
@@ -121,6 +122,38 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -102, 11.4, 40)
 top_level = true
 
+[node name="StationaryCamera4" parent="Level_1" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("10_fg1s2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27, -2.5774, 78.1015)
+markers = [NodePath("Marker3D"), NodePath("Marker3D2")]
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
+length = 30.0
+radius = 6.0
+
+[node name="Marker3D" type="Marker3D" parent="Level_1/StationaryCamera4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -157.5, 8.9, -15)
+top_level = true
+
+[node name="Marker3D2" type="Marker3D" parent="Level_1/StationaryCamera4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.5, 16.9, -30)
+top_level = true
+
+[node name="StationaryCamera5" parent="Level_1" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("10_fg1s2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -63, -3.9774, 76.1015)
+markers = [NodePath("Marker3D"), NodePath("Marker3D2")]
+game_manager = NodePath("../../GameManager")
+player = NodePath("../../PlayerDrone")
+length = 30.0
+radius = 5.0
+
+[node name="Marker3D" type="Marker3D" parent="Level_1/StationaryCamera5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.5, 17.5, -71)
+top_level = true
+
+[node name="Marker3D2" type="Marker3D" parent="Level_1/StationaryCamera5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.5, 6.5, -71)
+top_level = true
+
 [node name="Checkpoints" type="Node" parent="."]
 
 [node name="Checkpoint_1" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("game_manager")]
@@ -149,6 +182,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
 shape = SubResource("BoxShape3D_8y0ov")
 
 [node name="Marker3D" type="Marker3D" parent="Checkpoints/Hub"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4, 16.7)
 
 [editable path="CanvasLayer"]
