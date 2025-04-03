@@ -151,6 +151,10 @@ size = Vector3(3, 4, 3)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -72.55, 1, 14.15)
 size = Vector3(3, 4, 4)
 
+[node name="CSGBox3D19" type="CSGBox3D" parent="Geometry/Holes_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.749, -21)
+size = Vector3(6, 5, 6)
+
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -15, 73)
 radius = 3.0
@@ -435,7 +439,7 @@ use_collision = true
 
 [node name="HorizontalMovingLazer" parent="Hazard" instance=ExtResource("4_ye53p")]
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 37.4775, -3.99524, 4.51068)
-distance_from_origin = null
+distance_from_origin = 29.2
 speed = 5.0
 height = 6
 

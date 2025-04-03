@@ -197,7 +197,6 @@ func increment_detection(delta : float):
 func set_detection_level(new_value: float):
 	detection_level = new_value
 	detection_bar_ui.value = detection_level
-	#$CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D/ColorRect.self_modulate
 		
 func respawn():
 	jump_timer_ui.value = 0
