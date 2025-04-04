@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="3_o322j"]
 [ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="4_6helj"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="6_xrkpt"]
-[ext_resource type="Script" path="res://game_manager.gd" id="7_dnomg"]
+[ext_resource type="Script" uid="uid://uvw5yorcsdeo" path="res://game_manager.gd" id="7_dnomg"]
 [ext_resource type="PackedScene" uid="uid://bapg7j4qlh4ec" path="res://enemy/enemy.tscn" id="9_tua18"]
 
 [sub_resource type="Environment" id="Environment_7cfau"]

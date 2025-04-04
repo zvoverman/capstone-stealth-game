@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cv1rns134dss0"]
 
-[ext_resource type="Script" path="res://scenes/objects/hazards/horizontal_moving_lazer/horizontal_moving_lazer.gd" id="1_2u1gd"]
+[ext_resource type="Script" uid="uid://djfe0w3mgdsno" path="res://scenes/objects/hazards/horizontal_moving_lazer/horizontal_moving_lazer.gd" id="1_2u1gd"]
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="1_6shao"]
 
 [node name="HorizontalMovingLazer" type="Node3D"]

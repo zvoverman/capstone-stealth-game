@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://ceu64d4waoynv"]
 
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_2ot38"]
-[ext_resource type="Shader" path="res://materials/jitter.gdshader" id="1_it7o8"]
+[ext_resource type="Shader" uid="uid://clo1arui8o8ss" path="res://materials/jitter.gdshader" id="1_it7o8"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="2_n47cb"]
-[ext_resource type="Script" path="res://game_manager.gd" id="3_fvqr7"]
+[ext_resource type="Script" uid="uid://uvw5yorcsdeo" path="res://game_manager.gd" id="3_fvqr7"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="4_doy8k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dmjvt"]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bapg7j4qlh4ec" path="res://enemy/enemy.tscn" id="1_txyuc"]
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_d4d1g"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="3_c5vut"]
-[ext_resource type="Script" path="res://game_manager.gd" id="4_ewmxw"]
+[ext_resource type="Script" uid="uid://uvw5yorcsdeo" path="res://game_manager.gd" id="4_ewmxw"]
 [ext_resource type="PackedScene" uid="uid://bflxvhtvauddo" path="res://scenes/objects/key/key.tscn" id="7_y40xl"]
 [ext_resource type="Material" uid="uid://fqg7c7dfy2r4" path="res://materials/green_key.tres" id="8_6lagx"]
 [ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://scenes/objects/power_up/power_up.tscn" id="9_bhw2n"]

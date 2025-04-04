@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_a7i1s"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="2_a87xw"]
-[ext_resource type="Script" path="res://game_manager.gd" id="3_dicbj"]
+[ext_resource type="Script" uid="uid://uvw5yorcsdeo" path="res://game_manager.gd" id="3_dicbj"]
 [ext_resource type="Material" uid="uid://bjkdq32mfrp33" path="res://materials/test_mat.tres" id="4_h7gd6"]
 [ext_resource type="PackedScene" uid="uid://bapg7j4qlh4ec" path="res://enemy/enemy.tscn" id="5_m26am"]
 [ext_resource type="Material" uid="uid://c70kocqjyuppd" path="res://materials/windows_mat.tres" id="5_tsyf0"]

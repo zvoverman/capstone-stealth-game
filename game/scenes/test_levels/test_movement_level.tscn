@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c22f4cib04jtk"]
 
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_k1wdp"]
-[ext_resource type="Shader" path="res://materials/jitter.gdshader" id="2_0jn5d"]
+[ext_resource type="Shader" uid="uid://clo1arui8o8ss" path="res://materials/jitter.gdshader" id="2_0jn5d"]
 
 [sub_resource type="Environment" id="Environment_b4gl8"]
 background_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bx1mmgt2rdp34"]
+[gd_scene load_steps=11 format=3 uid="uid://bx1mmgt2rdp34"]
 
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="1_0g2nc"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="1_8x3jc"]
@@ -9,6 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cbt5f3a7mppr1" path="res://interactable/switch.tscn" id="7_qe7cn"]
 [ext_resource type="PackedScene" uid="uid://bflxvhtvauddo" path="res://scenes/objects/key/key.tscn" id="8_kf7rt"]
 [ext_resource type="Material" uid="uid://fqg7c7dfy2r4" path="res://materials/green_key.tres" id="9_dfcqq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3n2o"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.523438, 0, 0, 1)
 
 [node name="Level_1" type="Node3D"]
 
@@ -453,7 +458,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23, 30.1)
 radius = 24.0
 height = 1.0
 sides = 32
-material = ExtResource("3_ab3m4")
+material = SubResource("StandardMaterial3D_j3n2o")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Hazard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6, -4, 19)

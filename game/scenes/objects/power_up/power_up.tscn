@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dd4xiuq23yfrx"]
 
-[ext_resource type="Script" path="res://scenes/objects/power_up/power_up.gd" id="1_vo4ok"]
+[ext_resource type="Script" uid="uid://bjrpcitgfndl5" path="res://scenes/objects/power_up/power_up.gd" id="1_vo4ok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o87ct"]
 metallic_specular = 1.0

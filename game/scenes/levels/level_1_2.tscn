@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://qmpkmewvbxpb"]
 
-[ext_resource type="Script" path="res://game_manager.gd" id="1_75tli"]
+[ext_resource type="Script" uid="uid://uvw5yorcsdeo" path="res://game_manager.gd" id="1_75tli"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="1_f4i0i"]
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_36b5i"]
 [ext_resource type="Material" uid="uid://c70kocqjyuppd" path="res://materials/windows_mat.tres" id="3_67pdi"]

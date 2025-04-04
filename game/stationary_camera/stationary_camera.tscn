@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://x2t5j7bc3fbu"]
 
-[ext_resource type="Script" path="res://stationary_camera/stationary_camera.gd" id="1_3dts6"]
+[ext_resource type="Script" uid="uid://duc5klwhr5iyi" path="res://stationary_camera/stationary_camera.gd" id="1_3dts6"]
 [ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://detection_fov/detection_fov.tscn" id="2_o3l5m"]
 [ext_resource type="Texture2D" uid="uid://vci75d4y340d" path="res://materials/textures/sparkle-41980.png" id="3_saxd1"]
 

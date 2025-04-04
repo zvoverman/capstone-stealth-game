@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_tlag4"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="2_gt5v5"]
 [ext_resource type="Material" uid="uid://dph4epe7umdau" path="res://materials/concrete_wall_mat.tres" id="2_h6v23"]
-[ext_resource type="Script" path="res://game_manager.gd" id="2_w7n2y"]
+[ext_resource type="Script" uid="uid://uvw5yorcsdeo" path="res://game_manager.gd" id="2_w7n2y"]
 [ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="3_42wl1"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="3_xl04a"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="4_k87r1"]
