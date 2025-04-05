@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://hujhdkmm1f3n"]
+
+[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_rwu7c"]
+
+[sub_resource type="Gradient" id="Gradient_rwu7c"]
+offsets = PackedFloat32Array(0, 0.10119, 0.529762, 0.863095, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0705882, 0.0666667, 0.0627451, 1, 0.498039, 0.576471, 0.517647, 1, 0.929412, 0.780392, 0.796078, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rwu7c"]
+gradient = SubResource("Gradient_rwu7c")
+
+[sub_resource type="Environment" id="Environment_1cd0d"]
+background_mode = 1
+background_color = Color(0.536393, 0.377338, 0.364307, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.470588, 0.32549, 0.313726, 1)
+ambient_light_energy = 1.68
+tonemap_mode = 1
+ssr_enabled = true
+ssr_max_steps = 32
+ssao_enabled = true
+ssao_radius = 3.0
+ssao_power = 0.53033
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_read_sky_light = false
+sdfgi_min_cell_size = 0.8
+sdfgi_y_scale = 0
+glow_normalized = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.351625, 0.235977, 0.229063, 1)
+fog_density = 1.0
+fog_depth_curve = 0.25
+fog_depth_begin = 6.0
+fog_depth_end = 50.0
+volumetric_fog_density = 0.1
+volumetric_fog_anisotropy = 0.0
+volumetric_fog_length = 32.0
+adjustment_enabled = true
+adjustment_saturation = 1.25
+adjustment_color_correction = SubResource("GradientTexture1D_rwu7c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwu7c"]
+metallic = 0.3
+roughness = 0.75
+
+[node name="TestEnvironment" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+light_color = Color(0.898444, 0.812391, 0.804056, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1cd0d")
+
+[node name="PlayerDrone" parent="." instance=ExtResource("1_rwu7c")]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_rwu7c")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 7)
+size = Vector3(5, 5, 19)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5, 14)
+size = Vector3(5, 15, 5)
