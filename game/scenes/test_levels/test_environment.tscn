@@ -1,0 +1,159 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhiruhvpxbumj"]
+
+[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_rwu7c"]
+[ext_resource type="Material" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
+[ext_resource type="Material" path="res://materials/textures/new_floor/new_floor_material.tres" id="2_ylxws"]
+[ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_gpt7g"]
+[ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="5_bvxc0"]
+[ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="7_ogeen"]
+
+[sub_resource type="Gradient" id="Gradient_bvxc0"]
+colors = PackedColorArray(0.109804, 0.145098, 0.172549, 1, 0.964706, 0.94902, 0.964706, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dgcus"]
+gradient = SubResource("Gradient_bvxc0")
+
+[sub_resource type="Environment" id="Environment_1cd0d"]
+background_mode = 1
+ambient_light_energy = 1.68
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_y_scale = 0
+glow_enabled = true
+glow_normalized = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.652344, 0.652344, 0.652344, 1)
+fog_density = 1.0
+fog_depth_curve = 0.5
+fog_depth_end = 40.0
+volumetric_fog_anisotropy = 0.0
+volumetric_fog_length = 32.0
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 1.2
+adjustment_color_correction = SubResource("GradientTexture1D_dgcus")
+
+[node name="TestEnvironment" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1cd0d")
+
+[node name="PlayerDrone" parent="." instance=ExtResource("1_rwu7c")]
+MAX_SPEED = 5.0
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 7)
+size = Vector3(5, 5, 19)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5, 14)
+size = Vector3(5, 15, 5)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 1.5, 19.5)
+size = Vector3(10, 6, 20)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 1.5, 19.5)
+size = Vector3(10, 6, 20)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGCombiner3D"]
+operation = 2
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 1, 19.5)
+size = Vector3(8, 5, 18)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, 10)
+size = Vector3(3, 4, 2)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 1, 19.5)
+size = Vector3(8, 5, 18)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0.5, 10)
+size = Vector3(3, 4, 2)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 5, 19.5)
+size = Vector3(6, 5, 10)
+material = ExtResource("2_1cd0d")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+size = Vector3(100, 1, 100)
+material = ExtResource("2_ylxws")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -1.25, 27)
+size = Vector3(8, 0.5, 3)
+material = ExtResource("7_ogeen")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.25, 27)
+size = Vector3(1, 4.5, 3)
+material = ExtResource("5_bvxc0")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -1.25, 27)
+size = Vector3(8, 0.5, 3)
+material = ExtResource("7_ogeen")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1.25, 27)
+size = Vector3(1, 4.5, 3)
+material = ExtResource("5_bvxc0")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -1.25, 25.2)
+size = Vector3(8, 0.5, 0.6)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -1.25, 25.2)
+size = Vector3(8, 0.5, 0.6)
+
+[node name="BigHangingLight" parent="." instance=ExtResource("3_gpt7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 3.4, 22)
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="."]
+transform = Transform3D(4.37114e-08, 0.5, 0.866025, -7.57104e-08, -0.866025, 0.5, 1, -8.74228e-08, 1.91069e-15, -8.25698, 1, 15)
+use_collision = true
+radius = 0.025
+height = 6.0
+material = ExtResource("7_ogeen")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-2.26267e-08, -0.258819, 0.965926, -8.44439e-08, -0.965926, -0.258819, 1, -8.74228e-08, 3.82137e-15, -10.257, 1, 17)
+use_collision = true
+radius = 0.025
+height = 6.0
+material = ExtResource("7_ogeen")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="."]
+transform = Transform3D(2.26267e-08, 0.258819, 0.965926, -0.5, -0.836516, 0.224144, 0.866025, -0.482963, 0.12941, -11.257, 1, 15)
+use_collision = true
+radius = 0.025
+height = 6.0
+material = ExtResource("7_ogeen")
