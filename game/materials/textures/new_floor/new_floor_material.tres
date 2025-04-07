@@ -1,0 +1,21 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://duuakn6swi76k"]
+
+[ext_resource type="Texture2D" uid="uid://d3h1ok0voqpan" path="res://materials/textures/new_floor/exquistite-polished-tile_ao.png" id="1_lqlvy"]
+[ext_resource type="Texture2D" uid="uid://bjr06alhuqpqs" path="res://materials/textures/new_floor/exquistite-polished-tile_metallic.png" id="1_vi1t7"]
+[ext_resource type="Texture2D" uid="uid://cgwtupiduwsd7" path="res://materials/textures/new_floor/exquistite-polished-tile_height.png" id="2_6v7k5"]
+[ext_resource type="Texture2D" uid="uid://c4ij1mlrfy81u" path="res://materials/textures/new_floor/exquistite-polished-tile_normal-ogl.png" id="2_lqlvy"]
+[ext_resource type="Texture2D" uid="uid://cw7pefnxphmxu" path="res://materials/textures/new_floor/exquistite-polished-tile_roughness.png" id="3_6v7k5"]
+
+[resource]
+albedo_color = Color(0.84, 0.84, 0.84, 1)
+metallic = 1.0
+metallic_texture = ExtResource("1_vi1t7")
+roughness_texture = ExtResource("3_6v7k5")
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = ExtResource("2_lqlvy")
+ao_enabled = true
+ao_texture = ExtResource("1_lqlvy")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_6v7k5")
+uv1_scale = Vector3(8, 8, 8)
