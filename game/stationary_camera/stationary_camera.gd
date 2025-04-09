@@ -22,6 +22,9 @@ var patrol_timer: float = 0.0
 
 var initial_pos : Vector3
 
+signal add_detection(instance_id: String)
+signal remove_detection(instance_id: String)
+
 enum CameraState {
 	SCANNING,
 	DETECTED,
@@ -80,9 +83,11 @@ func look_at_point(target_pos : Vector3) -> void:
 
 func _on_detection_fov_player_detected() -> void:
 	current_state = CameraState.DETECTED
-	game_manager.add_detection(get_instance_id())
+	#game_manager.add_detection(get_instance_id())
+	add_detection.emit(get_instance_id())
 
 
 func _on_detection_fov_player_undetected() -> void:
 	current_state = CameraState.SCANNING
-	game_manager.remove_detection(get_instance_id())
+	#game_manager.remove_detection(get_instance_id())
+	remove_detection.emit(get_instance_id())

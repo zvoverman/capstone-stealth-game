@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://hujhdkmm1f3n"]
+[gd_scene load_steps=9 format=3 uid="uid://hujhdkmm1f3n"]
 
-[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_rwu7c"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
 [ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/textures/new_floor/new_floor_material.tres" id="2_ylxws"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_gpt7g"]
@@ -46,9 +45,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1cd0d")
-
-[node name="PlayerDrone" parent="." instance=ExtResource("1_rwu7c")]
-MAX_SPEED = 5.0
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -157,3 +153,6 @@ use_collision = true
 radius = 0.025
 height = 6.0
 material = ExtResource("7_ogeen")
+
+[node name="InitialSpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)

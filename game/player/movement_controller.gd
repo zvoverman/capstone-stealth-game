@@ -36,11 +36,15 @@ var time_since_detected : float = 0.0
 
 var jump_power_up : bool = true
 
+signal player_died
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
-		respawn()
+		player_died.emit()
 
 func _ready() -> void:
+	self.connect("player_died", GameManager, _on_player_died)
+	
 	if detection_bar_ui:
 		detection_bar_ui.max_value = max_detection_level
 		
@@ -113,7 +117,7 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var collider = collision.get_collider()
 		if collider.is_in_group("hazard"):
-			respawn()
+			player_died.emit()
 		elif collider.is_in_group("no_climb"):
 			var collision_normal = collision.get_normal().normalized()
 			# floating point precision error with ==
@@ -192,23 +196,21 @@ func increment_detection(delta : float):
 	detection_bar_ui.value = detection_level
 	
 	if detection_level >= max_detection_level:
-		respawn()
+		player_died.emit()
 		
 func set_detection_level(new_value: float):
 	detection_level = new_value
 	detection_bar_ui.value = detection_level
 		
-func respawn():
-	jump_timer_ui.value = 0
-	jump_timer = 0
-	detection_overlay.self_modulate.a = 0.0
+func respawn(spawn_point: Transform3D):
+	#jump_timer_ui.value = 0
+	#jump_timer = 0
+	#detection_overlay.self_modulate.a = 0.0
 	is_detected = false
 	is_in_air = true
 	is_jumping = false 
 	current_gravity = Vector3.ZERO
-	set_detection_level(0.0)
+	#set_detection_level(0.0)
 	velocity = Vector3.ZERO
-	
-	var game_manager = get_tree().get_root().get_node("Game/GameManager")
-	game_manager.respawn()
+	global_position = spawn_point.origin
 	

@@ -102,8 +102,13 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_qujey")
 forward_direction = NodePath("Armature/ForwardMarker")
+MAX_SPEED = null
 MAX_JUMP_VELOCITY = 8.0
+GRAVITY_STRENGTH = null
+JUMP_COOLDOWN = null
+rotation_smoothness = null
 detection_level_step = 0.3
+max_detection_level = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.371501, 0)

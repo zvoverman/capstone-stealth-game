@@ -55,6 +55,7 @@ func initialize(_length: float, _radius: float) -> void:
 	
 func _ready() -> void:
 	#initialize(length, radius)
+	self.connect("add_detection", GameManager, "_on_add_detection")
 	pass
 	
 # Called every frame
