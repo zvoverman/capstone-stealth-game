@@ -35,7 +35,7 @@ volumetric_fog_anisotropy = 0.0
 volumetric_fog_length = 32.0
 adjustment_enabled = true
 adjustment_brightness = 0.9
-adjustment_contrast = 1.2
+adjustment_contrast = 1.3
 adjustment_color_correction = SubResource("GradientTexture1D_dgcus")
 
 [node name="TestEnvironment" type="Node3D"]
