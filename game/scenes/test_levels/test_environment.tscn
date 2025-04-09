@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhiruhvpxbumj"]
+[gd_scene load_steps=10 format=3 uid="uid://hujhdkmm1f3n"]
 
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_rwu7c"]
-[ext_resource type="Material" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
-[ext_resource type="Material" path="res://materials/textures/new_floor/new_floor_material.tres" id="2_ylxws"]
+[ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
+[ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/textures/new_floor/new_floor_material.tres" id="2_ylxws"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_gpt7g"]
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="5_bvxc0"]
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="7_ogeen"]
@@ -35,7 +35,7 @@ volumetric_fog_anisotropy = 0.0
 volumetric_fog_length = 32.0
 adjustment_enabled = true
 adjustment_brightness = 0.9
-adjustment_contrast = 1.2
+adjustment_contrast = 1.3
 adjustment_color_correction = SubResource("GradientTexture1D_dgcus")
 
 [node name="TestEnvironment" type="Node3D"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ck5dl85ds4yc3"]
 
-[ext_resource type="Script" path="res://detection_fov/detection_fov.gd" id="1_82axy"]
-[ext_resource type="Shader" path="res://materials/fov_shader.gdshader" id="2_frev8"]
-[ext_resource type="Script" path="res://detection_fov/lazer.gd" id="2_mjoly"]
+[ext_resource type="Script" uid="uid://q6doeejjoe4r" path="res://detection_fov/detection_fov.gd" id="1_82axy"]
+[ext_resource type="Shader" uid="uid://ctucw6oouh2ro" path="res://materials/fov_shader.gdshader" id="2_frev8"]
+[ext_resource type="Script" uid="uid://ciwkrjs21mtay" path="res://detection_fov/lazer.gd" id="2_mjoly"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8pfhl"]
 render_priority = 0
@@ -94,8 +94,6 @@ debug_shape_custom_color = Color(1, 0, 1, 1)
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 light_color = Color(1, 0, 0, 1)
-light_energy = 10.0
-light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 shadow_bias = 0.01
 shadow_normal_bias = 0.5

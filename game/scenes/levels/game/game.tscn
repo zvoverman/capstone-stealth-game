@@ -2,37 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://mm6hgpy86fbq" path="res://scenes/levels/game/main_hub.tscn" id="1_1sk1m"]
 [ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="2_g3hnr"]
-[ext_resource type="Script" path="res://game_manager.gd" id="3_nsbbq"]
+[ext_resource type="Script" uid="uid://uvw5yorcsdeo" path="res://game_manager.gd" id="3_nsbbq"]
 [ext_resource type="PackedScene" uid="uid://bb17e3w1o28gd" path="res://ui/detection_bar.tscn" id="4_k007b"]
 [ext_resource type="PackedScene" uid="uid://cmmahjrnq16or" path="res://scenes/levels/game/tutorial.tscn" id="5_ck61k"]
 [ext_resource type="PackedScene" uid="uid://bx1mmgt2rdp34" path="res://scenes/levels/game/level_1.tscn" id="9_u4xfv"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="10_fg1s2"]
 [ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://scenes/objects/power_up/power_up.tscn" id="11_dibpg"]
-[ext_resource type="Script" path="res://checkpoint/checkpoint.gd" id="11_uvcia"]
-
-[sub_resource type="Environment" id="Environment_daeso"]
-background_mode = 1
-background_color = Color(0.705882, 0.835294, 0.862745, 1)
-ambient_light_source = 2
-ambient_light_color = Color(0.298615, 0.384191, 0.402344, 1)
-ssao_enabled = true
-ssao_radius = 3.0
-ssao_power = 0.53033
-ssil_enabled = true
-sdfgi_use_occlusion = true
-sdfgi_read_sky_light = false
-sdfgi_cascades = 8
-sdfgi_min_cell_size = 0.15
-sdfgi_cascade0_distance = 9.6
-sdfgi_max_distance = 2457.6
-sdfgi_y_scale = 0
-glow_enabled = true
-glow_normalized = true
-fog_enabled = true
-fog_light_color = Color(0.298039, 0.384314, 0.403922, 1)
-volumetric_fog_enabled = true
-volumetric_fog_anisotropy = 0.0
-volumetric_fog_length = 32.0
+[ext_resource type="Script" uid="uid://ijlh15eihdxu" path="res://checkpoint/checkpoint.gd" id="11_uvcia"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_f6273"]
 height = 25.0
@@ -40,6 +16,28 @@ radius = 20.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y0ov"]
 size = Vector3(56, 20, 40)
+
+[sub_resource type="Environment" id="Environment_wnnoo"]
+background_mode = 1
+ambient_light_energy = 1.68
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_min_cell_size = 0.4
+sdfgi_y_scale = 0
+glow_enabled = true
+glow_normalized = true
+fog_enabled = true
+fog_mode = 1
+fog_density = 1.0
+fog_depth_curve = 0.5
+fog_depth_end = 40.0
+volumetric_fog_density = 0.1
+volumetric_fog_anisotropy = 0.0
+volumetric_fog_length = 32.0
 
 [node name="Game" type="Node3D"]
 
@@ -62,9 +60,6 @@ spawn_node = NodePath("../Checkpoints/Hub/Marker3D")
 transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
 light_color = Color(0.705882, 0.839216, 0.862745, 1)
 shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_daeso")
 
 [node name="Tutorial" parent="." instance=ExtResource("5_ck61k")]
 
@@ -183,5 +178,8 @@ shape = SubResource("BoxShape3D_8y0ov")
 
 [node name="Marker3D" type="Marker3D" parent="Checkpoints/Hub"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4, 16.7)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wnnoo")
 
 [editable path="CanvasLayer"]

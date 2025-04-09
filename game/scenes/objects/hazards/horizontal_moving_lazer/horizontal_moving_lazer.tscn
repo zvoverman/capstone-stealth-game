@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cv1rns134dss0"]
 
-[ext_resource type="Script" path="res://scenes/objects/hazards/horizontal_moving_lazer/horizontal_moving_lazer.gd" id="1_2u1gd"]
+[ext_resource type="Script" uid="uid://djfe0w3mgdsno" path="res://scenes/objects/hazards/horizontal_moving_lazer/horizontal_moving_lazer.gd" id="1_2u1gd"]
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="1_6shao"]
 
 [node name="HorizontalMovingLazer" type="Node3D"]
 script = ExtResource("1_2u1gd")
 
 [node name="CSGCylinder3D6" type="CSGCylinder3D" parent="." groups=["hazard"]]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0.333333, 0, 0)
 use_collision = true
 radius = 0.05
 height = 16.0

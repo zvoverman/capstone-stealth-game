@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bapg7j4qlh4ec"]
 
 [ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://detection_fov/detection_fov.tscn" id="2_uxcq4"]
-[ext_resource type="Script" path="res://enemy/enemy_navigation.gd" id="3_nord4"]
-[ext_resource type="Shader" path="res://materials/jitter.gdshader" id="3_sxhva"]
+[ext_resource type="Script" uid="uid://bqul13b4jnxoh" path="res://enemy/enemy_navigation.gd" id="3_nord4"]
+[ext_resource type="Shader" uid="uid://clo1arui8o8ss" path="res://materials/jitter.gdshader" id="3_sxhva"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tx4qn"]
 radius = 1.0
