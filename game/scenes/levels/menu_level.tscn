@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://0rhel5am8iyj"]
+
+[ext_resource type="PackedScene" uid="uid://cgj1ry2tt6o27" path="res://scenes/objects/console/console_screen.tscn" id="1_ja47c"]
+
+[node name="MenuLevel" type="Node3D"]
+
+[node name="ConsoleScreen" parent="." instance=ExtResource("1_ja47c")]
