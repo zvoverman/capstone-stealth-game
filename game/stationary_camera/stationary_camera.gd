@@ -11,7 +11,6 @@ class_name StationaryCamera
 var current_marker_index : int = 0
 var look_at_threshold : float = 0.1
 
-@export var game_manager : GameManager
 @export var player : CharacterBody3D
 
 @export var length : float = 20.0
@@ -31,12 +30,19 @@ enum CameraState {
 	OFF
 }
 
+var bodyToFollow : Node3D
+
 var current_state : CameraState = CameraState.SCANNING
 
 func _ready() -> void:
+	add_detection.connect(GameManager._on_add_detection)
+	remove_detection.connect(GameManager._on_remove_detection)
+	
 	detection_fov.initialize(length, radius)
 	initial_pos = global_position
 	glint_overlay.get_active_material(0).albedo_color.a = 0.0
+	
+	$ForwardDirection.top_level = true
 	
 # Called every frame
 func _process(delta):
@@ -68,8 +74,11 @@ func _process(delta):
 					patrol_timer = 0.0
 					current_marker_index = (current_marker_index + 1) % markers.size()
 		CameraState.DETECTED:
+			if not bodyToFollow: 
+				print("NO BODY TO FOLLOW")
 			glint_overlay.get_active_material(0).albedo_color.a = lerp(glint_overlay.get_active_material(0).albedo_color.a, 1.0, delta)
-			var target_position = player.global_position
+			var target_position = bodyToFollow.global_position
+			print(target_position)
 			forward_direction.global_position = lerp(forward_direction.global_position, target_position, 2.0 * delta)
 			look_at_point(forward_direction.global_position)
 		CameraState.OFF:
@@ -81,9 +90,10 @@ func look_at_point(target_pos : Vector3) -> void:
 	look_at(global_transform.origin - opposite_dir, Vector3.UP)
 
 
-func _on_detection_fov_player_detected() -> void:
+func _on_detection_fov_player_detected(body: Node3D) -> void:
 	current_state = CameraState.DETECTED
-	#game_manager.add_detection(get_instance_id())
+	bodyToFollow = body
+	#game_manager.add_detection(get_instance_id())aww
 	add_detection.emit(get_instance_id())
 
 func _on_detection_fov_player_undetected() -> void:

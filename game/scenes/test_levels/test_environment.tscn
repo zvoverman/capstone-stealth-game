@@ -99,6 +99,10 @@ size = Vector3(8, 0.5, 0.6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -1.25, 25.2)
 size = Vector3(8, 0.5, 0.6)
 
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4, 0, 0)
+size = Vector3(2, 3, 1)
+
 [node name="BigHangingLight" parent="." instance=ExtResource("3_gpt7g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 3.4, 22)
 
@@ -130,5 +134,5 @@ height = 6.0
 material = ExtResource("7_ogeen")
 
 [node name="StationaryCamera" parent="." instance=ExtResource("6_bvxc0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 6.18172e-08, 0.707107, -0.707107, 6.18172e-08, -0.707107, -0.707107, -5, 3, 8)
+transform = Transform3D(-1, 0, -8.74228e-08, 4.37114e-08, 0.866026, -0.5, 7.57103e-08, -0.5, -0.866026, -6, 3, 8)
 radius = 8.0

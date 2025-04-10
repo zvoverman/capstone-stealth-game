@@ -97,7 +97,6 @@ radius = 6.0
 
 [node name="ForwardDirection" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
-top_level = true
 
 [node name="CameraMesh" type="Node3D" parent="."]
 transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 0, 0, 0)
@@ -115,3 +114,6 @@ skeleton = NodePath("")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.4)
 mesh = SubResource("PlaneMesh_i234h")
+
+[connection signal="player_detected" from="DetectionFOV" to="." method="_on_detection_fov_player_detected"]
+[connection signal="player_undetected" from="DetectionFOV" to="." method="_on_detection_fov_player_undetected"]
