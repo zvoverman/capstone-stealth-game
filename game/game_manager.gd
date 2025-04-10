@@ -4,8 +4,6 @@ extends Node
 
 var detected_cams : Array[int] = []
 
-@export var spawn_node : Node3D
-
 var keys = {
 	"green": false,
 	"blue": false,
@@ -15,11 +13,14 @@ var keys = {
 var player_scene = preload("res://player/player_drone.tscn")
 var player : CharacterBody3D = null
 
+var spawn_node : Node3D = null 
+
 # Spawns the player and begins the game
 # TODO: need to pick and instantiate chosen scene
 func start_game():
 	player = player_scene.instantiate()
 	get_tree().current_scene.add_child(player)
+	player.set_jump_power_up(true)
 	player.respawn(spawn_node.transform)
 
 func _ready() -> void:
@@ -77,11 +78,9 @@ func set_tooltip_text(text: String) -> void:
 	
 func _on_add_detection(instance_id: int):
 	detected_cams.append(instance_id)
-	print("add")
 	
 func _on_remove_detection(instance_id: int):
 	detected_cams.erase(instance_id)
-	print("remove")
 	
 func _on_player_died():
 	player.respawn(spawn_node.transform)

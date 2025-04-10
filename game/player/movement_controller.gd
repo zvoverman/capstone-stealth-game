@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 	# Update the jump timer
 	if jump_timer > 0:
 		jump_timer -= delta
-		jump_timer_ui.value = jump_timer
+		#jump_timer_ui.value = jump_timer
 		
 	
 	if is_detected:
@@ -204,7 +204,7 @@ func increment_detection(delta : float):
 		
 func set_detection_level(new_value: float):
 	detection_level = new_value
-	detection_bar_ui.value = detection_level
+	#detection_bar_ui.value = detection_level
 		
 func respawn(spawn_point: Transform3D):
 	#jump_timer_ui.value = 0
@@ -214,6 +214,9 @@ func respawn(spawn_point: Transform3D):
 	is_in_air = true
 	is_jumping = false 
 	current_gravity = Vector3.ZERO
-	#set_detection_level(0.0)
+	set_detection_level(0.0)
 	velocity = Vector3.ZERO
 	global_position = spawn_point.origin
+	
+func set_jump_power_up(flag: bool):
+	jump_power_up = flag

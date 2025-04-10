@@ -48,10 +48,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0474105, 7.58812, 16.2848)
 detection_bar_ui = NodePath("../CanvasLayer/DetectionProgressBar")
 jump_timer_ui = NodePath("../CanvasLayer/JumpTimerProgressBar")
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("tooltip_text_ui", "spawn_node")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("tooltip_text_ui")]
 script = ExtResource("3_nsbbq")
 tooltip_text_ui = NodePath("../CanvasLayer/RichTextLabel")
-spawn_node = NodePath("../Checkpoints/Hub/Marker3D")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("4_k007b")]
 
