@@ -17,9 +17,6 @@ points = PackedVector3Array(0, 0, 0, 3, 0, 15, -3, 0, 15, 0, 3, 15, 0, -3, 15)
 
 [node name="DetectionFOV" type="Node3D"]
 script = ExtResource("1_82axy")
-length = null
-radius = null
-lazer_rotation_speed = null
 
 [node name="Lazers" type="Node3D" parent="."]
 

@@ -47,11 +47,6 @@ volumetric_fog_length = 32.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0474105, 7.58812, 16.2848)
 detection_bar_ui = NodePath("../CanvasLayer/DetectionProgressBar")
 jump_timer_ui = NodePath("../CanvasLayer/JumpTimerProgressBar")
-MAX_SPEED = null
-GRAVITY_STRENGTH = null
-JUMP_COOLDOWN = null
-rotation_smoothness = null
-max_detection_level = null
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("tooltip_text_ui", "spawn_node")]
 script = ExtResource("3_nsbbq")

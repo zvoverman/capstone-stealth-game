@@ -2,7 +2,7 @@ extends Node
 
 @export var tooltip_text_ui : RichTextLabel
 
-var detected_cams : Array[float] = []
+var detected_cams : Array[int] = []
 
 @export var spawn_node : Node3D
 
@@ -15,14 +15,13 @@ var keys = {
 var player_scene = preload("res://player/player_drone.tscn")
 var player : CharacterBody3D = null
 
+# Spawns the player and begins the game
+# TODO: need to pick and instantiate chosen scene
 func start_game():
-	# Instance and add to scene
 	player = player_scene.instantiate()
-	#player.global_position = spawn_node.global_position
 	get_tree().current_scene.add_child(player)
 	player.respawn(spawn_node.transform)
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#set_jump_power_up(true)
 	
@@ -43,13 +42,16 @@ func _process(_delta: float) -> void:
 		player.is_detected = true
 	else:
 		player.is_detected = false
-	
+
+## @deprecated: now Signal _on_add_detection
 func add_detection(cam_id : float):
 	detected_cams.append(cam_id)
-	
+
+## @deprecated: now Signal _on_remove_detection
 func remove_detection(cam_id : float):
 	detected_cams.erase(cam_id)
-	
+
+## @deprecated 
 #func respawn() -> void:
 	#player.respawn(spawn_node.transform)
 	
@@ -73,12 +75,19 @@ func set_tooltip_text(text: String) -> void:
 	await get_tree().create_timer(5.0).timeout
 	tooltip_text_ui.visible_ratio = 0.0
 	
-func _on_add_detection(instance_id: String):
+func _on_add_detection(instance_id: int):
 	detected_cams.append(instance_id)
+	print("add")
 	
-func _on_remove_detection(instance_id: String):
+func _on_remove_detection(instance_id: int):
 	detected_cams.erase(instance_id)
+	print("remove")
 	
 func _on_player_died():
 	player.respawn(spawn_node.transform)
 	
+func _on_game_paused():
+	print("Game paused")
+	
+func update_settings():
+	print("Update settings")

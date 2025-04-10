@@ -22,8 +22,8 @@ var patrol_timer: float = 0.0
 
 var initial_pos : Vector3
 
-signal add_detection(instance_id: String)
-signal remove_detection(instance_id: String)
+signal add_detection(instance_id: int)
+signal remove_detection(instance_id: int)
 
 enum CameraState {
 	SCANNING,
@@ -85,7 +85,6 @@ func _on_detection_fov_player_detected() -> void:
 	current_state = CameraState.DETECTED
 	#game_manager.add_detection(get_instance_id())
 	add_detection.emit(get_instance_id())
-
 
 func _on_detection_fov_player_undetected() -> void:
 	current_state = CameraState.SCANNING

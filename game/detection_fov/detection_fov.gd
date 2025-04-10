@@ -55,7 +55,8 @@ func initialize(_length: float, _radius: float) -> void:
 	
 func _ready() -> void:
 	#initialize(length, radius)
-	self.connect("add_detection", GameManager, "_on_add_detection")
+	player_detected.connect(GameManager._on_add_detection)
+	player_undetected.connect(GameManager._on_remove_detection)
 	pass
 	
 # Called every frame
@@ -73,10 +74,10 @@ func _process(delta):
 		var collider = raycast.get_collider()
 		if not is_player_detected and collider.name == "PlayerDrone":
 			is_player_detected = true
-			player_detected.emit()
+			player_detected.emit(get_instance_id())
 		elif is_player_detected and collider.name != "PlayerDrone":
 			is_player_detected = false
-			player_undetected.emit()
+			player_undetected.emit(get_instance_id())
 
 func _on_detection_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "PlayerDrone":
@@ -89,7 +90,7 @@ func _on_detection_area_3d_body_exited(body: Node3D) -> void:
 		is_player_in_area = false
 		is_player_detected = false
 		ray_body = null
-		player_undetected.emit()
+		player_undetected.emit(get_instance_id())
 		
 
 func look_at_point(target_pos : Vector3) -> Vector3:

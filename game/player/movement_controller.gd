@@ -38,12 +38,16 @@ var jump_power_up : bool = true
 
 signal player_died
 
+signal pause_game
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
 		player_died.emit()
 
 func _ready() -> void:
-	self.connect("player_died", GameManager, _on_player_died)
+	#self.connect("player_died", GameManager, _on_player_died)
+	player_died.connect(GameManager._on_player_died)
+	pause_game.connect(GameManager._on_game_paused)
 	
 	if detection_bar_ui:
 		detection_bar_ui.max_value = max_detection_level
@@ -193,7 +197,7 @@ func increment_detection(delta : float):
 	detection_level += detection_level_step * delta;
 	
 	# Set UI
-	detection_bar_ui.value = detection_level
+	#detection_bar_ui.value = detection_level
 	
 	if detection_level >= max_detection_level:
 		player_died.emit()
@@ -213,4 +217,3 @@ func respawn(spawn_point: Transform3D):
 	#set_detection_level(0.0)
 	velocity = Vector3.ZERO
 	global_position = spawn_point.origin
-	
