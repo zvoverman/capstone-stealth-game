@@ -17,7 +17,7 @@ class_name DetectionFOV
 var is_player_in_area : bool = false
 var is_player_detected : bool = false
 
-signal player_detected
+signal player_detected(bodyToFollow: Node3D)
 signal player_undetected
 
 var ray_body : Node3D
@@ -72,7 +72,7 @@ func _process(delta):
 		var collider = raycast.get_collider()
 		if not is_player_detected and collider.name == "PlayerDrone":
 			is_player_detected = true
-			player_detected.emit()
+			player_detected.emit(ray_body)
 		elif is_player_detected and collider.name != "PlayerDrone":
 			is_player_detected = false
 			player_undetected.emit()

@@ -97,7 +97,6 @@ radius = 6.0
 
 [node name="ForwardDirection" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
-top_level = true
 
 [node name="CameraMesh" type="Node3D" parent="."]
 transform = Transform3D(-3.0598e-08, 0, -0.7, 0, 0.7, 0, 0.7, 0, -3.0598e-08, 0, 0, 0)

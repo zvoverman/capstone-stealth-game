@@ -1,13 +1,8 @@
 extends Node
 
-class_name GameManager
-
-@export var player : CharacterBody3D
 @export var tooltip_text_ui : RichTextLabel
 
-var detected_cams : Array[float] = []
-
-@export var spawn_node : Node3D
+var detected_cams : Array[int] = []
 
 var keys = {
 	"green": false,
@@ -15,29 +10,51 @@ var keys = {
 	"red": false
 }
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	respawn()
-	set_jump_power_up(true)
-	
-	tooltip_text_ui.visible_ratio = 0.0
+var player_scene = preload("res://player/player_drone.tscn")
+var player : CharacterBody3D = null
 
+var spawn_node : Node3D = null 
+
+# Spawns the player and begins the game
+# TODO: need to pick and instantiate chosen scene
+func start_game():
+	player = player_scene.instantiate()
+	get_tree().current_scene.add_child(player)
+	player.set_jump_power_up(true)
+	player.respawn(spawn_node.transform)
+
+func _ready() -> void:
+	#set_jump_power_up(true)
+	
+	var scene = get_tree().current_scene
+	spawn_node = scene.get_node("InitialSpawnPoint")
+	
+	start_game()
+	
+	#tooltip_text_ui.visible_ratio = 0.0
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if not player: return
+	
+	#print(player)
 	if detected_cams.size() > 0:
 		player.is_detected = true
 	else:
 		player.is_detected = false
-	
+
+## @deprecated: now Signal _on_add_detection
 func add_detection(cam_id : float):
 	detected_cams.append(cam_id)
-	
+
+## @deprecated: now Signal _on_remove_detection
 func remove_detection(cam_id : float):
 	detected_cams.erase(cam_id)
-	
-func respawn() -> void:
-	player.global_transform = spawn_node.transform
+
+## @deprecated 
+#func respawn() -> void:
+	#player.respawn(spawn_node.transform)
 	
 func set_jump_power_up(flag: bool) -> void:
 	player.jump_power_up = flag
@@ -59,3 +76,17 @@ func set_tooltip_text(text: String) -> void:
 	await get_tree().create_timer(5.0).timeout
 	tooltip_text_ui.visible_ratio = 0.0
 	
+func _on_add_detection(instance_id: int):
+	detected_cams.append(instance_id)
+	
+func _on_remove_detection(instance_id: int):
+	detected_cams.erase(instance_id)
+	
+func _on_player_died():
+	player.respawn(spawn_node.transform)
+	
+func _on_game_paused():
+	print("Game paused")
+	
+func update_settings():
+	print("Update settings")
