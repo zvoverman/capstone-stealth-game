@@ -92,9 +92,8 @@ jump_timer_ui = NodePath("../CanvasLayer/JumpTimerProgressBar")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_c5vut")]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player", "tooltip_text_ui")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("tooltip_text_ui")]
 script = ExtResource("4_ewmxw")
-player = NodePath("../PlayerDrone")
 tooltip_text_ui = NodePath("../CanvasLayer/RichTextLabel")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
