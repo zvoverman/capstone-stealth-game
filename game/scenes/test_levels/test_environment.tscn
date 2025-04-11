@@ -98,9 +98,6 @@ size = Vector3(8, 0.5, 0.6)
 [node name="BigHangingLight" parent="." instance=ExtResource("3_gpt7g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 3.4, 22)
 
-[node name="InitialSpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
-
 [node name="Hazards" type="CSGCombiner3D" parent="." groups=["hazard"]]
 use_collision = true
 
@@ -138,3 +135,8 @@ material = ExtResource("7_ogeen")
 [node name="StationaryCamera" parent="." instance=ExtResource("6_bvxc0")]
 transform = Transform3D(-1, 0, -8.74228e-08, 4.37114e-08, 0.866026, -0.5, 7.57103e-08, -0.5, -0.866026, -6, 3, 8)
 radius = 8.0
+
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="InitialSpawnPoint" type="Node3D" parent="Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)

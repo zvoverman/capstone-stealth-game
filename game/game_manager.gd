@@ -10,27 +10,52 @@ var keys = {
 	"red": false
 }
 
-var player_scene = preload("res://player/player_drone.tscn")
 var player : CharacterBody3D = null
-
 var spawn_node : Node3D = null 
 
 # Spawns the player and begins the game
-# TODO: need to pick and instantiate chosen scene
-func start_game():
-	player = player_scene.instantiate()
+func start_game(scene_path: String, player_scene_path: String):
+	# Load the new scene
+	var scene_resource = load(scene_path)
+	if scene_resource == null:
+		push_error("Failed to load scene: " + scene_path)
+		return
+
+	var new_scene = scene_resource.instantiate()
+	if new_scene == null:
+		push_error("Failed to instantiate scene.")
+		return
+
+	## Remove the current scene
+	#var current_scene = get_tree().current_scene
+	#if current_scene:
+		#current_scene.queue_free()
+
+	# Add the new scene to the scene tree
+	get_tree().root.add_child.call_deferred(new_scene)
+	get_tree().current_scene = new_scene
+	
+	var player_resource = load(player_scene_path)
+	player = player_resource.instantiate()
 	get_tree().current_scene.add_child(player)
 	player.set_jump_power_up(true)
-	player.respawn(spawn_node.transform)
+	
+	var spawn_point = new_scene.get_node_or_null("InitialSpawnPoint")
+	if spawn_point == null:
+		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
+		return
+
+	player.respawn(spawn_point.transform)
+	
 
 func _ready() -> void:
 	#set_jump_power_up(true)
 	
 	var scene = get_tree().current_scene
-	spawn_node = scene.get_node("InitialSpawnPoint")
+	spawn_node = scene.get_node("Checkpoints/InitialSpawnPoint")
 	
-	start_game()
-	
+	#start_game("res://scenes/test_levels/test_environment.tscn", "res://player/player_drone.tscn")
+	start_game("res://scenes/levels/game/game.tscn", "res://player/player_drone.tscn")
 	#tooltip_text_ui.visible_ratio = 0.0
 	
 

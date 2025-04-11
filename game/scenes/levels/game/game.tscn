@@ -144,33 +144,31 @@ top_level = true
 
 [node name="Checkpoints" type="Node" parent="."]
 
-[node name="Checkpoint_1" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("game_manager")]
+[node name="Marker3D" type="Marker3D" parent="Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.7, 30, 0)
+script = ExtResource("11_uvcia")
+
+[node name="Checkpoint_1" type="Area3D" parent="Checkpoints/Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.7, -30, 0)
 collision_layer = 7
 collision_mask = 7
-script = ExtResource("11_uvcia")
-game_manager = NodePath("../../GameManager")
-spawn_name = "Ventilation Duct"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Checkpoint_1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Marker3D/Checkpoint_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.5, 14, 0)
 shape = SubResource("CylinderShape3D_f6273")
 
-[node name="Marker3D" type="Marker3D" parent="Checkpoints/Checkpoint_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.7, 30, 0)
+[node name="InitialSpawnPoint" type="Marker3D" parent="Checkpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4, 16.7)
+script = ExtResource("11_uvcia")
 
-[node name="Hub" type="Area3D" parent="Checkpoints" node_paths=PackedStringArray("game_manager")]
+[node name="Hub" type="Area3D" parent="Checkpoints/InitialSpawnPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.4, -16.7)
 collision_layer = 7
 collision_mask = 7
-script = ExtResource("11_uvcia")
-game_manager = NodePath("../../GameManager")
-spawn_name = "Hub"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/Hub"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/InitialSpawnPoint/Hub"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 0)
 shape = SubResource("BoxShape3D_8y0ov")
-
-[node name="Marker3D" type="Marker3D" parent="Checkpoints/Hub"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.4, 16.7)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wnnoo")
