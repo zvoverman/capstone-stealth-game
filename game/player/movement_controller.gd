@@ -34,6 +34,8 @@ var detection_level : float = 0.0
 @export var max_detection_level : float = 1.0
 var time_since_detected : float = 0.0
 
+@onready var camera = $CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D
+
 var jump_power_up : bool = true
 
 signal player_died
@@ -61,7 +63,6 @@ func _process(delta: float) -> void:
 		jump_timer -= delta
 		#jump_timer_ui.value = jump_timer
 		
-	
 	if is_detected:
 		increment_detection(delta)
 		detection_overlay.self_modulate.a = lerp(detection_overlay.self_modulate.a, detection_level, 5.0 * delta)
@@ -189,8 +190,6 @@ func average_rays() -> Vector3:
 	else:
 		return Vector3.ZERO
 
-
-
 ### NON MOVEMENT RELATED
 
 func increment_detection(delta : float):
@@ -220,3 +219,4 @@ func respawn(spawn_point: Transform3D):
 	
 func set_jump_power_up(flag: bool):
 	jump_power_up = flag
+	

@@ -14,7 +14,7 @@ var game_manager : GameManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	game_manager = get_tree().get_root().get_node("Game/GameManager")
+	#game_manager = get_tree().get_root().get_node("Game/GameManager")
 	initial_pos = $CSGBox3D.global_position
 	if (is_locked and material and mesh_instance):
 		set_material(material)

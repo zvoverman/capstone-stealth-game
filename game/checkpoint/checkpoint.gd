@@ -6,7 +6,7 @@ class_name Checkpoint
 
 @export var spawn_name : String
 
-@onready var collision_area : Marker3D = $Area3D
+#@onready var collision_area : Marker3D = $Area3D
 
 # TODO: FIX CHECKPOINTS!
 
