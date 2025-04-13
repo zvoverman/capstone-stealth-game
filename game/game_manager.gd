@@ -63,7 +63,11 @@ func _ready() -> void:
 		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED
 	}
 	
+	
+	## Test Environment Scene (ALL WORKING)
 	start_game("res://scenes/test_levels/test_environment.tscn", "res://player/player_drone.tscn")
+	
+	## Old Game Scene (Checkpoints and Lever NOT working)
 	#start_game("res://scenes/levels/game/game.tscn", "res://player/player_drone.tscn")
 
 
