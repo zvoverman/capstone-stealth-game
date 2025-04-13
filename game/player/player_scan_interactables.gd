@@ -6,7 +6,8 @@ extends Node
 @export var interact_distance : float = 10.0
 var current_interactable : Interactable = null
 
-signal looking_at_interactable(collider: Interactable)
+signal focus_interactable(collider: Interactable)
+signal unfocus_interactable(collider: Interactable)
 
 func _ready():
 	pass
@@ -18,10 +19,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	var result = shoot_ray()
 	
-	if result:
+	if result and current_interactable != result:
 		current_interactable = result
-		looking_at_interactable.emit(current_interactable)
+		focus_interactable.emit(current_interactable)
 	else:
+		unfocus_interactable.emit(current_interactable)
 		current_interactable = null
 		
 

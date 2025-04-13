@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="5_bvxc0"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="6_bvxc0"]
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="7_ogeen"]
-[ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://scenes/objects/power_up/power_up.tscn" id="8_ebji3"]
+[ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://interactable/player_ability/player_ability.tscn" id="8_ebji3"]
 
 [node name="TestEnvironment" type="Node3D"]
 
@@ -142,5 +142,5 @@ radius = 8.0
 [node name="InitialSpawnPoint" type="Marker3D" parent="Checkpoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
 
-[node name="PowerUp" parent="." instance=ExtResource("8_ebji3")]
+[node name="PlayerJumpAbility" parent="." instance=ExtResource("8_ebji3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1, -7)

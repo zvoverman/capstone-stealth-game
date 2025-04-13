@@ -36,11 +36,16 @@ var time_since_detected : float = 0.0
 
 @onready var camera = $CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D
 
-var jump_power_up : bool = true
+#var jump_power_up : bool = true
+
+var ability_to_status: Dictionary # Dictionary[int: int] where keys = AbilityType, values = AbilityCategory
 
 signal player_died
 
 signal pause_game
+
+const PlayerAbilityType = preload("res://interactable/player_ability/player_ability.gd").PlayerAbilityType
+const PlayerAbilityStatus = preload("res://game_manager.gd").PlayerAbilityStatus
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
@@ -99,7 +104,7 @@ func _physics_process(delta: float) -> void:
 	velocity += current_gravity
 	
 	# Toggle jump
-	if Input.is_action_just_pressed("jump") and not is_jumping and jump_timer <= 0 and jump_power_up:
+	if Input.is_action_just_pressed("jump") and not is_jumping and jump_timer <= 0 and ability_to_status[PlayerAbilityType.JUMP] == PlayerAbilityStatus.UNLOCKED:
 		is_jumping = true
 		var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
 		jump_direction = (current_normal + (forwardDir)).normalized()
@@ -216,7 +221,8 @@ func respawn(spawn_point: Transform3D):
 	set_detection_level(0.0)
 	velocity = Vector3.ZERO
 	global_position = spawn_point.origin
-	
-func set_jump_power_up(flag: bool):
-	jump_power_up = flag
+
+# DO NOT CALL FROM PLAYER, call from GameManager
+func update_abilities(new_ability_to_status: Dictionary):
+	ability_to_status = new_ability_to_status
 	

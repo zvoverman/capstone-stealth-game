@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dd4xiuq23yfrx"]
 
-[ext_resource type="Script" uid="uid://bjrpcitgfndl5" path="res://scenes/objects/power_up/power_up.gd" id="1_vo4ok"]
+[ext_resource type="Script" uid="uid://bjrpcitgfndl5" path="res://interactable/player_ability/player_ability.gd" id="1_vo4ok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o87ct"]
 metallic_specular = 1.0
@@ -10,8 +10,9 @@ emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n84hw"]
+radius = 5.0
 
-[node name="PowerUp" type="StaticBody3D"]
+[node name="PlayerAbility" type="StaticBody3D"]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_vo4ok")
