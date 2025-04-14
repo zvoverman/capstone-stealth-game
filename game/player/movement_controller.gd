@@ -50,6 +50,8 @@ const PlayerAbilityStatus = preload("res://game_manager.gd").PlayerAbilityStatus
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
 		player_died.emit()
+	if event.is_action_pressed("pause_game"):
+		pause_game.emit()
 
 func _ready() -> void:
 	#self.connect("player_died", GameManager, _on_player_died)

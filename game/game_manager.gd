@@ -107,9 +107,6 @@ func _on_player_died():
 func _on_game_paused():
 	print("Game paused")
 	
-func update_settings():
-	print("Update settings")
-	
 func _on_grab_ability(ability: PlayerAbilityType):
 	# TODO: Once NPC has been implemented, this should set ability->status to IN_TRANSIT
 	ability_to_status[ability] = PlayerAbilityStatus.UNLOCKED
