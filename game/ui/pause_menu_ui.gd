@@ -4,13 +4,15 @@ extends Control
 @export var settings_menu : Control
 
 func _ready() -> void:
-	print("TODO: subscribe to game_paused signal on game-manager")
+	# TODO : Listen for pausing and unpausing on the Game Manager
+	pass
 
 func _on_game_paused() -> void:
 	pause_menu.visible = true
 
 func _on_resume_button_pressed() -> void:
-	print("TODO: call resume_game on game-manager")
+	# TODO : Tell the Game Manager that we want to unpause the game
+	pass
 
 func _on_settings_button_pressed() -> void:
 	pause_menu.visible = false

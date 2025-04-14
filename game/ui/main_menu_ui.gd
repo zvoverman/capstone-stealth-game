@@ -4,7 +4,8 @@ extends Control
 @export var settings_menu : Control
 
 func _on_start_button_pressed() -> void:
-	print("TODO: call start_game on game manager")
+	# TODO : Tell game manager the game has started
+	pass
 
 func _on_settings_button_pressed() -> void:
 	main_menu.visible = false

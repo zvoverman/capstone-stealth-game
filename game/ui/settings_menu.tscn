@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/settings_menu.gd" id="1_f02vx"]
 [ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/text_theme.tres" id="1_vj1n3"]
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("dialogue_speed_slow_button", "dialogue_speed_default_button", "dialogue_speed_fast_button", "color_blind_mode_off_button", "color_blind_mode_protanopia_button", "color_blind_mode_deuteranopia_button", "color_blind_mode_tritanopia_button")]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("camera_sensitivity_slider", "music_volume_slider", "sound_effect_volume_slider", "dialogue_speed_slow_button", "dialogue_speed_default_button", "dialogue_speed_fast_button", "color_blind_mode_off_button", "color_blind_mode_protanopia_button", "color_blind_mode_deuteranopia_button", "color_blind_mode_tritanopia_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f02vx")
+camera_sensitivity_slider = NodePath("VBoxContainer/Camera Sensitivity/HSlider")
+music_volume_slider = NodePath("VBoxContainer/Music Volume/HSlider")
+sound_effect_volume_slider = NodePath("VBoxContainer/Sound Effect Volume/HSlider")
 dialogue_speed_slow_button = NodePath("VBoxContainer/Dialogue Speed/HBoxContainer/Slow Button")
 dialogue_speed_default_button = NodePath("VBoxContainer/Dialogue Speed/HBoxContainer/Default Button")
 dialogue_speed_fast_button = NodePath("VBoxContainer/Dialogue Speed/HBoxContainer/Fast Button")
@@ -202,3 +205,5 @@ text = "Back"
 [connection signal="pressed" from="VBoxContainer/Color Blind Mode/HBoxContainer/Protanopia Button" to="." method="_on_color_blind_mode_protanopia_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Color Blind Mode/HBoxContainer/Deuteranopia Button" to="." method="_on_color_blind_mode_deuteranopia_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Color Blind Mode/HBoxContainer/Tritanopia Button" to="." method="_on_color_blind_mode_tritanopia_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save Settings Button" to="." method="_on_save_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Reset to Default Button" to="." method="_on_reset_to_default_button_pressed"]
