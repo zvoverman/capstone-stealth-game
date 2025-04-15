@@ -2,12 +2,18 @@ extends Node
 
 #@export var tooltip_text_ui : RichTextLabel
 
+signal game_paused
+signal game_unpaused
+var is_paused: bool = false
+
 const PlayerAbilityType = preload("res://interactable/player_ability/player_ability.gd").PlayerAbilityType
 enum PlayerAbilityStatus {
 	LOCKED,
 	IN_TRANSIT,
 	UNLOCKED
 }
+
+var game_settings : GameSettings = GameSettings.new()
 
 # Keep track of which cams are currently detecting the player
 var detected_cams : Array[int] = []
@@ -41,7 +47,9 @@ func load_level(scene_path: String) -> Node:
 	return new_scene
 
 # Loads a specified scene path, finds InitialSpawnPoint, and spawns the player there
-func start_game(scene_path: String, player_scene_path: String):
+func start_game():
+	const scene_path = "res://scenes/test_levels/test_environment.tscn"
+	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
 	spawn_node= level_root.get_node("Checkpoints/InitialSpawnPoint")
@@ -57,19 +65,25 @@ func start_game(scene_path: String, player_scene_path: String):
 
 	player.respawn(spawn_node.transform)
 	
+	# TEMP??
+	unpause_game()
+	
 
 func _ready() -> void:
 	ability_to_status = {
 		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED
 	}
-	
-	
-	## Test Environment Scene (ALL WORKING)
-	start_game("res://scenes/test_levels/test_environment.tscn", "res://player/player_drone.tscn")
-	
-	## Old Game Scene (Checkpoints and Lever NOT working)
-	#start_game("res://scenes/levels/game/game.tscn", "res://player/player_drone.tscn")
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause_game"):
+		if is_paused:
+			is_paused = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			game_unpaused.emit()
+		else:
+			is_paused = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			game_paused.emit()
 
 func _process(_delta: float) -> void:
 	if not player: return
@@ -104,10 +118,16 @@ func _on_remove_detection(instance_id: int):
 func _on_player_died():
 	player.respawn(spawn_node.transform)
 	
-func _on_game_paused():
-	print("Game paused")
-	
 func _on_grab_ability(ability: PlayerAbilityType):
 	# TODO: Once NPC has been implemented, this should set ability->status to IN_TRANSIT
 	ability_to_status[ability] = PlayerAbilityStatus.UNLOCKED
 	player.update_abilities(ability_to_status)
+	
+func set_settings(new_settings: GameSettings) -> void:
+	game_settings = new_settings
+	
+func get_settings() -> GameSettings:
+	return game_settings
+	
+func unpause_game():
+	game_unpaused.emit()

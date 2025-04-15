@@ -15,7 +15,7 @@ extends Control
 @export var color_blind_mode_tritanopia_button : Button
 
 # TODO : Put this in the game manager
-var saved_settings : GameSettings = GameSettings.new()
+#var saved_settings : GameSettings = GameSettings.new()
 
 func _on_visibility_changed() -> void:
 	
@@ -24,7 +24,7 @@ func _on_visibility_changed() -> void:
 		return
 		
 	# TODO: Grab current settings from game manager
-	_load_settings(saved_settings)
+	_load_settings(GameManager.get_settings())
 
 func _on_dialogue_speed_slow_button_pressed() -> void:
 	_reset_all_dialogue_speed_buttons()
@@ -111,14 +111,13 @@ func _on_save_settings_button_pressed() -> void:
 		settings._color_blind_mode = GameSettings.ColorBlindModeOptions.TRITANOPIA
 		
 	#TODO : Send setting info to game manager
-	saved_settings = settings
+	GameManager.set_settings(settings)
 
 func _on_reset_to_default_button_pressed() -> void:
 	
 	# The default settings are on the settings object when it's instantiated
 	var settings : GameSettings = GameSettings.new()
 	
-	#TODO : Send setting info the game manager
 	_load_settings(settings)
 
 func _load_settings(settings : GameSettings) -> void:

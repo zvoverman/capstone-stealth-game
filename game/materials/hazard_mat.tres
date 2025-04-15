@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dlhxxyl2js7cu"]
 
-[ext_resource type="Shader" path="res://materials/hazard_shader.gdshader" id="1_khcc6"]
+[ext_resource type="Shader" uid="uid://cdxis033gwgla" path="res://materials/hazard_shader.gdshader" id="1_khcc6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_khcc6"]
 render_priority = 1

@@ -21,12 +21,12 @@ var pitch : float = 0
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	yaw_sensitivity = SettingsManager.get_sensitivity()
-	pitch_sensitivity = SettingsManager.get_sensitivity()
+	yaw_sensitivity = GameManager.game_settings.get_camera_sensitivity() / 100
+	pitch_sensitivity = GameManager.game_settings.get_camera_sensitivity() / 100
 	SettingsManager.sensitivity_changed.connect(_on_sensitivity_changed)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not GameManager.is_paused:
 		yaw += -event.relative.x * yaw_sensitivity
 		pitch += -event.relative.y * pitch_sensitivity
 		
