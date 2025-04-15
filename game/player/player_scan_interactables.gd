@@ -1,4 +1,5 @@
 extends Node
+class_name ScanInteractables
 
 @export var player : CharacterBody3D = null
 @export var camera : Camera3D = null
