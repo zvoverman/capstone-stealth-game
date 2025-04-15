@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://hujhdkmm1f3n"]
+[gd_scene load_steps=11 format=3 uid="uid://hujhdkmm1f3n"]
 
 [ext_resource type="Environment" uid="uid://csx7na13kft7w" path="res://scenes/test_levels/environment_settings.tres" id="1_dgcus"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="7_ogeen"]
 [ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://interactable/player_ability/player_ability.tscn" id="8_ebji3"]
 [ext_resource type="PackedScene" uid="uid://8beb4vyrowop" path="res://npc/npc.tscn" id="9_ogeen"]
+[ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="10_owkps"]
 
 [node name="TestEnvironment" type="Node3D"]
 
@@ -148,3 +149,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1, -7)
 
 [node name="NPC" parent="." instance=ExtResource("9_ogeen")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, -0.5, 12)
+
+[node name="Door" parent="." instance=ExtResource("10_owkps")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, 10)

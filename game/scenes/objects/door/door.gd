@@ -10,11 +10,7 @@ var is_open : bool = false
 
 var initial_pos : Vector3
 
-var game_manager : GameManager
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#game_manager = get_tree().get_root().get_node("Game/GameManager")
 	initial_pos = $CSGBox3D.global_position
 	if (is_locked and material and mesh_instance):
 		set_material(material)
@@ -31,8 +27,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.name == "PlayerDrone":
 		if is_locked:
 			if key_color:
-				if game_manager.keys.has(key_color):
-					if game_manager.keys[key_color]:
+				if GameManager.keys.has(key_color):
+					if GameManager.keys[key_color]:
 						is_open = true
 		else:
 			is_open = true
@@ -44,10 +40,3 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		
 func set_material(new_material : StandardMaterial3D):
 	mesh_instance.material = new_material
-	
-func interact():
-	is_locked = false
-	if game_manager:
-		game_manager.set_tooltip_text("[center]A door has been opened somewhere...")
-	else:
-		print("No game manager??")
