@@ -20,6 +20,10 @@ var pitch : float = 0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	yaw_sensitivity = SettingsManager.get_sensitivity()
+	pitch_sensitivity = SettingsManager.get_sensitivity()
+	SettingsManager.sensitivity_changed.connect(_on_sensitivity_changed)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -38,3 +42,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Must bring yaw back to 0 or will endlessly rotate
 	yaw = lerp(yaw, 0.0, yaw_acceleration * delta)
+	
+func _on_sensitivity_changed(new_value: float):
+	yaw_sensitivity = new_value
+	pitch_sensitivity = new_value

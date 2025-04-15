@@ -575,9 +575,8 @@ light_volumetric_fog_energy = 5.0
 spot_range = 30.0
 spot_angle = 25.0
 
-[node name="Switch" parent="." node_paths=PackedStringArray("interact_object") instance=ExtResource("7_qe7cn")]
+[node name="Switch" parent="." instance=ExtResource("7_qe7cn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.0476, 0.00475597, 5.46403)
-interact_object = NodePath("../Doors/Door4")
 
 [node name="Doors" type="Node3D" parent="."]
 

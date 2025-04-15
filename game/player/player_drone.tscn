@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://1ho3oqfnll2i"]
+[gd_scene load_steps=17 format=4 uid="uid://1ho3oqfnll2i"]
 
 [ext_resource type="Script" uid="uid://c2xjsks07hwc7" path="res://player/movement_controller.gd" id="1_qujey"]
 [ext_resource type="Script" uid="uid://fveqasmpx35u" path="res://player/IK/start_ik.gd" id="2_dfnor"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dbjjfpuusupc2" path="res://player/IK/step_ray.gd" id="5_0wsnl"]
 [ext_resource type="Script" uid="uid://btfjl3wddo4pl" path="res://player/camera_controller.gd" id="6_2qcp2"]
 [ext_resource type="Texture2D" uid="uid://dpouv35yfcnun" path="res://materials/textures/Untitled.png" id="8_ojsau"]
+[ext_resource type="Script" uid="uid://2pax4nxgt8v8" path="res://player/player_scan_interactables.gd" id="9_gpfwp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bumat"]
 radius = 0.6
@@ -517,3 +518,8 @@ shape = SubResource("SphereShape3D_6rjx2")
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Dangle/RigidBody3D"]
 radius = 0.05
 material = ExtResource("2_kghnf")
+
+[node name="ScanInteractables" type="Node" parent="." node_paths=PackedStringArray("player", "camera")]
+script = ExtResource("9_gpfwp")
+player = NodePath("..")
+camera = NodePath("../CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D")

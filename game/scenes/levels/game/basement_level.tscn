@@ -11,7 +11,7 @@
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="6_6r8fc"]
 [ext_resource type="PackedScene" uid="uid://dsqa3wy0e4i8" path="res://scenes/objects/hazards/rotating_lazer/rotating_lazer.tscn" id="8_6ixon"]
 [ext_resource type="Material" uid="uid://bbckl8exthy85" path="res://materials/concrete_floor_mat.tres" id="9_ijoxs"]
-[ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://scenes/objects/power_up/power_up.tscn" id="10_6buks"]
+[ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://interactable/player_ability/player_ability.tscn" id="10_6buks"]
 [ext_resource type="PackedScene" uid="uid://cv1rns134dss0" path="res://scenes/objects/hazards/horizontal_moving_lazer/horizontal_moving_lazer.tscn" id="12_n7bsn"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="14_hgoqk"]
 
