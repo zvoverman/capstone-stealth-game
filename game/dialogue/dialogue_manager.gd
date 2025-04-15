@@ -1,5 +1,9 @@
 extends Node
 
+signal dialogue_opened
+signal dialogue_closed
+signal dialogue_spat(line: String)
+
 @export var dialogue_sequence: DialogueSequence
 var current_index := 0
 var is_active := false
@@ -11,6 +15,7 @@ func start_sequence(sequence: DialogueSequence):
 	dialogue_sequence = sequence
 	current_index = 0
 	is_active = true
+	dialogue_opened.emit()
 	_show_line()
 
 func _show_line():
@@ -20,6 +25,7 @@ func _show_line():
 	
 	print(current_index)
 	var line = dialogue_sequence.lines[current_index]
+	dialogue_spat.emit(line)
 	print("> " + line)
 	if label:
 		label.text = line
@@ -28,7 +34,7 @@ func _end_dialogue():
 	print("[Dialogue Ended]")
 	is_active = false
 	current_index = 0
-	emit_signal("dialogue_finished")
+	dialogue_closed.emit()
 		
 func _on_start_sequence(sequence: DialogueSequence, temp_label: Label3D):
 	if not is_active:

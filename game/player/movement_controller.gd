@@ -56,7 +56,6 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	#self.connect("player_died", GameManager, _on_player_died)
 	player_died.connect(GameManager._on_player_died)
-	pause_game.connect(GameManager._on_game_paused)
 	
 	if detection_bar_ui:
 		detection_bar_ui.max_value = max_detection_level

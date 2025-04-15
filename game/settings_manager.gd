@@ -1,7 +1,7 @@
 extends Node
 
 # Only using sensitivty right now -> can be easily extended later
-var settings := {
+var settings = {
 	"controls": {
 		"sensitivity": 0.07
 	}
@@ -12,7 +12,8 @@ const SETTINGS_PATH := "user://settings.cfg"
 signal sensitivity_changed(new_value)
 
 func _ready():
-	load_settings()
+	pass
+	#load_settings()
 
 # For now, there should be no need to save_settings across sessions...
 # it's set up though!

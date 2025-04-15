@@ -1,0 +1,209 @@
+[gd_scene load_steps=3 format=3 uid="uid://b825y76mftvgw"]
+
+[ext_resource type="Script" uid="uid://2b205pkgpgbq" path="res://ui/settings_menu.gd" id="1_f02vx"]
+[ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/text_theme.tres" id="1_vj1n3"]
+
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("camera_sensitivity_slider", "music_volume_slider", "sound_effect_volume_slider", "dialogue_speed_slow_button", "dialogue_speed_default_button", "dialogue_speed_fast_button", "color_blind_mode_off_button", "color_blind_mode_protanopia_button", "color_blind_mode_deuteranopia_button", "color_blind_mode_tritanopia_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f02vx")
+camera_sensitivity_slider = NodePath("VBoxContainer/Camera Sensitivity/HSlider")
+music_volume_slider = NodePath("VBoxContainer/Music Volume/HSlider")
+sound_effect_volume_slider = NodePath("VBoxContainer/Sound Effect Volume/HSlider")
+dialogue_speed_slow_button = NodePath("VBoxContainer/Dialogue Speed/HBoxContainer/Slow Button")
+dialogue_speed_default_button = NodePath("VBoxContainer/Dialogue Speed/HBoxContainer/Default Button")
+dialogue_speed_fast_button = NodePath("VBoxContainer/Dialogue Speed/HBoxContainer/Fast Button")
+color_blind_mode_off_button = NodePath("VBoxContainer/Color Blind Mode/HBoxContainer/Off Button")
+color_blind_mode_protanopia_button = NodePath("VBoxContainer/Color Blind Mode/HBoxContainer/Protanopia Button")
+color_blind_mode_deuteranopia_button = NodePath("VBoxContainer/Color Blind Mode/HBoxContainer/Deuteranopia Button")
+color_blind_mode_tritanopia_button = NodePath("VBoxContainer/Color Blind Mode/HBoxContainer/Tritanopia Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="Camera Sensitivity" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer/Camera Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+theme_override_font_sizes/font_size = 50
+text = "Camera Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Camera Sensitivity"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+min_value = 1.0
+max_value = 99.0
+value = 50.0
+
+[node name="Music Volume" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+theme_override_font_sizes/font_size = 50
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Music Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+min_value = 1.0
+max_value = 99.0
+value = 50.0
+
+[node name="Sound Effect Volume" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer/Sound Effect Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+theme_override_font_sizes/font_size = 50
+text = "Sound Effect Volume"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Sound Effect Volume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+min_value = 1.0
+max_value = 99.0
+value = 50.0
+
+[node name="Dialogue Speed" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer/Dialogue Speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+theme_override_font_sizes/font_size = 50
+text = "Dialogue Speed"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Dialogue Speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Slow Button" type="Button" parent="VBoxContainer/Dialogue Speed/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+toggle_mode = true
+text = "Slow"
+
+[node name="Default Button" type="Button" parent="VBoxContainer/Dialogue Speed/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+toggle_mode = true
+text = "Default"
+
+[node name="Fast Button" type="Button" parent="VBoxContainer/Dialogue Speed/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+toggle_mode = true
+text = "Fast"
+
+[node name="Color Blind Mode" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="VBoxContainer/Color Blind Mode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+theme_override_font_sizes/font_size = 50
+text = "Color Blind Mode"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Color Blind Mode"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Off Button" type="Button" parent="VBoxContainer/Color Blind Mode/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+toggle_mode = true
+text = "Off"
+
+[node name="Protanopia Button" type="Button" parent="VBoxContainer/Color Blind Mode/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+toggle_mode = true
+text = "Protanopia"
+
+[node name="Deuteranopia Button" type="Button" parent="VBoxContainer/Color Blind Mode/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+toggle_mode = true
+text = "Deuteranopia"
+
+[node name="Tritanopia Button" type="Button" parent="VBoxContainer/Color Blind Mode/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+toggle_mode = true
+text = "Tritanopia"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Save Settings Button" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+text = "Save Settings"
+
+[node name="Reset to Default Button" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vj1n3")
+text = "Reset to Default Settings"
+
+[node name="Back Button" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_vj1n3")
+text = "Back"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/Dialogue Speed/HBoxContainer/Slow Button" to="." method="_on_dialogue_speed_slow_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dialogue Speed/HBoxContainer/Default Button" to="." method="_on_dialogue_speed_default_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dialogue Speed/HBoxContainer/Fast Button" to="." method="_on_dialogue_speed_fast_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Color Blind Mode/HBoxContainer/Off Button" to="." method="_on_color_blind_mode_off_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Color Blind Mode/HBoxContainer/Protanopia Button" to="." method="_on_color_blind_mode_protanopia_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Color Blind Mode/HBoxContainer/Deuteranopia Button" to="." method="_on_color_blind_mode_deuteranopia_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Color Blind Mode/HBoxContainer/Tritanopia Button" to="." method="_on_color_blind_mode_tritanopia_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save Settings Button" to="." method="_on_save_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Reset to Default Button" to="." method="_on_reset_to_default_button_pressed"]

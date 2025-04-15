@@ -47,17 +47,13 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7cfau")
 
-[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("1_16qqs")]
-detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
+[node name="PlayerDrone" parent="." instance=ExtResource("1_16qqs")]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("7_dnomg")
 player = NodePath("../PlayerDrone")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_o322j")]
-
-[node name="ProgressBar" parent="CanvasLayer" index="0"]
-metadata/_edit_use_anchors_ = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_rs2ra")
