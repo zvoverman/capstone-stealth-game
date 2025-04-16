@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://7qc16uarmrlp"]
+[gd_scene load_steps=3 format=3 uid="uid://7qc16uarmrlp"]
 
-[ext_resource type="Script" uid="uid://dgqui65fvkf5t" path="res://ui/main_menu_ui.gd" id="1_kyud6"]
-[ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/text_theme.tres" id="2_pst23"]
+[ext_resource type="Script" path="res://ui/main_menu_ui.gd" id="1_kyud6"]
 [ext_resource type="PackedScene" uid="uid://b825y76mftvgw" path="res://ui/settings_menu.tscn" id="3_gndvg"]
 
 [node name="MainMenuUI" type="Control" node_paths=PackedStringArray("main_menu", "settings_menu")]
@@ -22,10 +21,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
 
 [node name="MainMenu" type="Control" parent="MarginContainer"]
 layout_mode = 2
@@ -34,24 +29,20 @@ layout_mode = 2
 layout_mode = 2
 offset_right = 1720.0
 offset_bottom = 880.0
-theme_override_constants/separation = 100
 
 [node name="Start Button" type="Button" parent="MarginContainer/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_pst23")
 text = "Start"
 
 [node name="Settings Button" type="Button" parent="MarginContainer/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_pst23")
 text = "Settings"
 
 [node name="Quit Button" type="Button" parent="MarginContainer/MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_pst23")
 text = "Quit"
 
 [node name="SettingsMenu" parent="MarginContainer" instance=ExtResource("3_gndvg")]
