@@ -1,7 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://0rhel5am8iyj"]
+[gd_scene load_steps=4 format=3 uid="uid://0rhel5am8iyj"]
 
 [ext_resource type="PackedScene" uid="uid://cgj1ry2tt6o27" path="res://scenes/objects/console/console_screen.tscn" id="1_ja47c"]
+[ext_resource type="PackedScene" uid="uid://c6v8exhorm7c2" path="res://scenes/objects/console/terminal.glb" id="2_p36d1"]
+[ext_resource type="Environment" uid="uid://chfuj30xuftg4" path="res://scenes/test_levels/environment_settings.tres" id="3_rviff"]
 
 [node name="MenuLevel" type="Node3D"]
 
 [node name="ConsoleScreen" parent="." instance=ExtResource("1_ja47c")]
+
+[node name="terminal" parent="." instance=ExtResource("2_p36d1")]
+transform = Transform3D(-9.17939e-08, 0, -2.3, 0, 2.1, 0, 2.1, 0, -1.00536e-07, 0, -0.2, -1.7)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_rviff")

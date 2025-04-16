@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://hujhdkmm1f3n"]
+[gd_scene load_steps=13 format=3 uid="uid://hujhdkmm1f3n"]
 
 [ext_resource type="Environment" uid="uid://chfuj30xuftg4" path="res://scenes/test_levels/environment_settings.tres" id="1_dgcus"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://8beb4vyrowop" path="res://npc/npc.tscn" id="9_ogeen"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="10_owkps"]
 [ext_resource type="PackedScene" uid="uid://bvmrgcjk43qtb" path="res://ui/pause_menu_ui.tscn" id="11_cywi7"]
+[ext_resource type="PackedScene" uid="uid://c6v8exhorm7c2" path="res://scenes/objects/console/terminal.glb" id="12_65fks"]
 
 [node name="TestEnvironment" type="Node3D"]
 
@@ -155,3 +156,11 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, 10)
 
 [node name="PauseMenuUi" parent="." instance=ExtResource("11_cywi7")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9, -1, -6)
+size = Vector3(1, 1, 2)
+material = ExtResource("2_1cd0d")
+
+[node name="terminal" parent="." instance=ExtResource("12_65fks")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9, 0.7, -6)
