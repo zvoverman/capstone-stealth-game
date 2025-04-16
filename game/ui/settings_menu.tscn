@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b825y76mftvgw"]
 
-[ext_resource type="Script" path="res://ui/settings_menu.gd" id="1_f02vx"]
+[ext_resource type="Script" uid="uid://2b205pkgpgbq" path="res://ui/settings_menu.gd" id="1_f02vx"]
 [ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/console_theme.tres" id="1_vj1n3"]
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("camera_sensitivity_slider", "music_volume_slider", "sound_effect_volume_slider", "dialogue_speed_slow_button", "dialogue_speed_default_button", "dialogue_speed_fast_button", "color_blind_mode_off_button", "color_blind_mode_protanopia_button", "color_blind_mode_deuteranopia_button", "color_blind_mode_tritanopia_button")]

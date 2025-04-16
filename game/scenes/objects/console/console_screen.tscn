@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgj1ry2tt6o27"]
 
-[ext_resource type="Script" uid="uid://cjvkip5xt8of4" path="res://scenes/objects/console/console_screen.gd" id="1_gk24j"]
-[ext_resource type="Shader" uid="uid://csma67jfbm7cg" path="res://scenes/objects/console/console_screen.gdshader" id="1_mppyi"]
+[ext_resource type="Script" uid="uid://b73pglw0m5fi7" path="res://scenes/objects/console/console_screen.gd" id="1_gk24j"]
+[ext_resource type="Shader" uid="uid://xwpbfsp0bnkl" path="res://scenes/objects/console/console_screen.gdshader" id="1_mppyi"]
 [ext_resource type="PackedScene" uid="uid://7qc16uarmrlp" path="res://ui/main_menu_ui.tscn" id="2_jgaq8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0j31v"]
