@@ -154,4 +154,6 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 [node name="Door" parent="." instance=ExtResource("10_owkps")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, 10)
 
-[node name="PauseMenuUi" parent="." instance=ExtResource("11_cywi7")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenuUi" parent="CanvasLayer" instance=ExtResource("11_cywi7")]

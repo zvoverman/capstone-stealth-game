@@ -69,6 +69,11 @@ func start_game():
 	unpause_game()
 	
 
+func quit_to_main_menu():
+	const scene_path = "res://scenes/levels/menu_level.tscn"
+	var scene_root = await load_level(scene_path)
+	
+
 func _ready() -> void:
 	ability_to_status = {
 		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED
@@ -77,9 +82,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_game"):
 		if is_paused:
-			is_paused = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			game_unpaused.emit()
+			unpause_game()
 		else:
 			is_paused = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
@@ -130,4 +133,7 @@ func get_settings() -> GameSettings:
 	return game_settings
 	
 func unpause_game():
+	
+	is_paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	game_unpaused.emit()
