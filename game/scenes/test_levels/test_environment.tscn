@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://hujhdkmm1f3n"]
+[gd_scene load_steps=14 format=3 uid="uid://hujhdkmm1f3n"]
 
 [ext_resource type="Environment" uid="uid://chfuj30xuftg4" path="res://scenes/test_levels/environment_settings.tres" id="1_dgcus"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
-[ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/textures/new_floor/new_floor_material.tres" id="2_ylxws"]
+[ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/new_floor_material.tres" id="2_ylxws"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_gpt7g"]
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="5_bvxc0"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="6_bvxc0"]
@@ -11,7 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://8beb4vyrowop" path="res://npc/npc.tscn" id="9_ogeen"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="10_owkps"]
 [ext_resource type="PackedScene" uid="uid://bvmrgcjk43qtb" path="res://ui/pause_menu_ui.tscn" id="11_cywi7"]
-[ext_resource type="PackedScene" uid="uid://c6v8exhorm7c2" path="res://scenes/objects/console/terminal.glb" id="12_65fks"]
+[ext_resource type="PackedScene" uid="uid://bbg547ouy7s4c" path="res://models/low_poly_terminal.glb" id="12_65fks"]
+[ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="13_851dw"]
 
 [node name="TestEnvironment" type="Node3D"]
 
@@ -137,9 +138,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, -1.25, 27)
 size = Vector3(8, 0.5, 3)
 material = ExtResource("7_ogeen")
 
-[node name="StationaryCamera" parent="." instance=ExtResource("6_bvxc0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 4.37114e-08, 0.866026, -0.5, 7.57103e-08, -0.5, -0.866026, -6, 3, 8)
-radius = 8.0
+[node name="StationaryCamera" parent="." node_paths=PackedStringArray("markers") instance=ExtResource("6_bvxc0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4, 2, -6.9)
+markers = [NodePath("Marker3D")]
+
+[node name="Marker3D" type="Marker3D" parent="StationaryCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4, -1, 0.0999999)
+top_level = true
 
 [node name="Checkpoints" type="Node" parent="."]
 
@@ -153,14 +158,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1, -7)
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, -0.5, 12)
 
 [node name="Door" parent="." instance=ExtResource("10_owkps")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, -7.9)
 
 [node name="PauseMenuUi" parent="." instance=ExtResource("11_cywi7")]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9, -1, -6)
-size = Vector3(1, 1, 2)
-material = ExtResource("2_1cd0d")
+[node name="low_poly_terminal" parent="." instance=ExtResource("12_65fks")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4, -1.29064, -7)
 
-[node name="terminal" parent="." instance=ExtResource("12_65fks")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 9, 0.7, -6)
+[node name="Sphere" parent="low_poly_terminal" index="2"]
+surface_material_override/0 = ExtResource("7_ogeen")
+
+[node name="Sphere_001" parent="low_poly_terminal" index="3"]
+surface_material_override/0 = ExtResource("13_851dw")
+
+[node name="Cube_002" parent="low_poly_terminal" index="4"]
+surface_material_override/0 = ExtResource("13_851dw")
+
+[node name="Cylinder" parent="low_poly_terminal" index="5"]
+surface_material_override/0 = ExtResource("13_851dw")
+
+[node name="Cube_003" parent="low_poly_terminal" index="6"]
+surface_material_override/0 = ExtResource("7_ogeen")
+
+[editable path="low_poly_terminal"]

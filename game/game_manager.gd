@@ -48,7 +48,7 @@ func load_level(scene_path: String) -> Node:
 
 # Loads a specified scene path, finds InitialSpawnPoint, and spawns the player there
 func start_game():
-	const scene_path = "res://scenes/test_levels/test_environment.tscn"
+	const scene_path = "res://scenes/levels/game_2.0/factory_first_room.tscn"
 	#const scene_path = "res://scenes/levels/game/game.tscn" # old game scene
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
