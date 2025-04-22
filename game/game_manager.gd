@@ -48,12 +48,13 @@ func load_level(scene_path: String) -> Node:
 
 # Loads a specified scene path, finds InitialSpawnPoint, and spawns the player there
 func start_game():
-	const scene_path = "res://scenes/levels/game_2.0/factory_first_room.tscn"
+	const scene_path = "res://scenes/levels/game_2.0/level_1.tscn"
 	#const scene_path = "res://scenes/levels/game/game.tscn" # old game scene
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
-	spawn_node= level_root.get_node("Checkpoints/InitialSpawnPoint")
+	#spawn_node= level_root.get_node("Checkpoints/InitialSpawnPoint")
+	spawn_node= level_root.get_node("Checkpoints/EngineerHub")
 	if spawn_node == null:
 		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
 		return
