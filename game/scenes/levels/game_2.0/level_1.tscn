@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://biraruxitdbgq"]
 
-[ext_resource type="Environment" uid="uid://chfuj30xuftg4" path="res://scenes/test_levels/environment_settings.tres" id="1_sqkwn"]
+[ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://materials/horror.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_vgehi"]
 [ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="3_jku2k"]
 [ext_resource type="Texture2D" uid="uid://d3h1ok0voqpan" path="res://materials/textures/new_floor/exquistite-polished-tile_ao.png" id="4_cadw5"]
@@ -94,7 +94,7 @@ shadow_bias = 0.05
 shadow_blur = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_sqkwn")
+environment = ExtResource("1_vgehi")
 
 [node name="EnvironmentMeshes" type="Node" parent="."]
 
