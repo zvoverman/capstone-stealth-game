@@ -35,6 +35,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -31)
 size = Vector3(5, 4, 4)
 material = ExtResource("1_g5hjb")
 
+[node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/MainHub/CanCollide/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 30)
+size = Vector3(5, 4, 4)
+material = ExtResource("1_g5hjb")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="EnvironmentMeshes/MainHub/CanCollide/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 30)
+size = Vector3(4, 3, 4)
+material = ExtResource("1_g5hjb")
+
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/MainHub/CanCollide"]
 size = Vector3(6, 1, 60)
 material = ExtResource("1_g5hjb")

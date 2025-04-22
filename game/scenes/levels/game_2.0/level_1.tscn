@@ -957,7 +957,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.7, 20.2, 38.3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 3)
 
 [node name="EngineerHub" type="Marker3D" parent="Checkpoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 23, 11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 23, 38.3)
 
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly"]
 [editable path="EnvironmentMeshes/Room_4/NoClimb/vent_cover"]
