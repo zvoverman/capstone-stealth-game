@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://d00s478uh23om"]
+
+[ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/console_theme.tres" id="1_kiqvc"]
+[ext_resource type="Script" uid="uid://52h7b40elbg" path="res://ui/dialogue_box_ui.gd" id="2_ihu1p"]
+
+[node name="DialogueBoxUi" type="Control" node_paths=PackedStringArray("_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kiqvc")
+script = ExtResource("2_ihu1p")
+_label = NodePath("PanelContainer/MarginContainer/Label")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+text = "This is some sample text!"
+autowrap_mode = 2
