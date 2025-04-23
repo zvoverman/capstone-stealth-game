@@ -115,19 +115,14 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bnnmu")
 
-[node name="PlayerDrone" parent="." node_paths=PackedStringArray("detection_bar_ui") instance=ExtResource("1_a7i1s")]
+[node name="PlayerDrone" parent="." instance=ExtResource("1_a7i1s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7745, 0)
-detection_bar_ui = NodePath("../CanvasLayer/ProgressBar")
 MAX_SPEED = 4.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_a87xw")]
 
-[node name="ProgressBar" parent="CanvasLayer" index="0"]
-metadata/_edit_use_anchors_ = true
-
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="GameManager" type="Node" parent="."]
 script = ExtResource("3_dicbj")
-player = NodePath("../PlayerDrone")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_b8rqp")
@@ -243,17 +238,15 @@ top_level = true
 transform = Transform3D(0.0264387, 0, -0.999651, 0, 1, 0, 0.999651, 0, 0.0264387, 8.26664, 2.24227, -45.1588)
 top_level = true
 
-[node name="StationaryCamera" parent="." node_paths=PackedStringArray("game_manager", "player") instance=ExtResource("6_p8xfi")]
+[node name="StationaryCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_p8xfi")]
 transform = Transform3D(1, 0, 0, 0, 0.809837, -0.586655, 0, 0.586655, 0.809837, 0, 13.037, -58.3803)
-game_manager = NodePath("../GameManager")
 player = NodePath("../PlayerDrone")
 length = 30.0
 radius = 7.0
 
-[node name="StationaryCamera2" parent="." node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("6_p8xfi")]
+[node name="StationaryCamera2" parent="." node_paths=PackedStringArray("markers", "player") instance=ExtResource("6_p8xfi")]
 transform = Transform3D(0.277969, -0.563535, -0.777921, 0, 0.809837, -0.586655, 0.96059, 0.163072, 0.225109, 13.1191, 6.87228, -64.0181)
 markers = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
-game_manager = NodePath("../GameManager")
 player = NodePath("../PlayerDrone")
 length = 30.0
 radius = 8.0

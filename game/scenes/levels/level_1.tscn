@@ -49,9 +49,8 @@ environment = SubResource("Environment_7cfau")
 
 [node name="PlayerDrone" parent="." instance=ExtResource("1_16qqs")]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="GameManager" type="Node" parent="."]
 script = ExtResource("7_dnomg")
-player = NodePath("../PlayerDrone")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("3_o322j")]
 
@@ -206,10 +205,9 @@ material = ExtResource("1_677f3")
 
 [node name="Enemies" type="Node3D" parent="NavigationRegion3D/Environment/Room2"]
 
-[node name="StationaryCamera" parent="NavigationRegion3D/Environment/Room2/Enemies" node_paths=PackedStringArray("markers", "game_manager", "player") instance=ExtResource("6_xrkpt")]
+[node name="StationaryCamera" parent="NavigationRegion3D/Environment/Room2/Enemies" node_paths=PackedStringArray("markers", "player") instance=ExtResource("6_xrkpt")]
 transform = Transform3D(-2.44975e-08, -0.828197, -0.560437, -3.62017e-08, 0.560437, -0.828197, 1, 0, -4.37114e-08, 33.8343, 2.76968, -26.7386)
 markers = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3"), NodePath("Marker3D4")]
-game_manager = NodePath("../../../../../GameManager")
 player = NodePath("../../../../../PlayerDrone")
 length = 30.0
 radius = 6.0
@@ -439,9 +437,8 @@ top_level = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.8493, 8.31867, -41.902)
 top_level = true
 
-[node name="StationaryCamera" parent="NavigationRegion3D/Environment/Room4/Enemies" node_paths=PackedStringArray("game_manager", "player") instance=ExtResource("6_xrkpt")]
+[node name="StationaryCamera" parent="NavigationRegion3D/Environment/Room4/Enemies" node_paths=PackedStringArray("player") instance=ExtResource("6_xrkpt")]
 transform = Transform3D(0.931749, -0.317276, -0.176579, -0.169422, 0.050243, -0.984262, 0.321154, 0.947001, -0.00693963, 2.00714, 17.1018, -17.8769)
-game_manager = NodePath("../../../../../GameManager")
 player = NodePath("../../../../../PlayerDrone")
 radius = 5.0
 
