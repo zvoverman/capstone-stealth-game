@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://hujhdkmm1f3n"]
+[gd_scene load_steps=12 format=3 uid="uid://hujhdkmm1f3n"]
 
 [ext_resource type="Environment" uid="uid://chfuj30xuftg4" path="res://scenes/test_levels/environment_settings.tres" id="1_dgcus"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
@@ -11,8 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://8beb4vyrowop" path="res://npc/npc.tscn" id="9_ogeen"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="10_owkps"]
 [ext_resource type="PackedScene" uid="uid://bvmrgcjk43qtb" path="res://ui/pause_menu_ui.tscn" id="11_cywi7"]
-[ext_resource type="PackedScene" uid="uid://bbg547ouy7s4c" path="res://models/low_poly_terminal.glb" id="12_65fks"]
-[ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="13_851dw"]
 
 [node name="TestEnvironment" type="Node3D"]
 

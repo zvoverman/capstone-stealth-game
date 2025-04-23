@@ -20,14 +20,18 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	var result = shoot_ray()
 	
-	if result and current_interactable != result:
+	if result:
 		current_interactable = result
-		focus_interactable.emit(current_interactable)
-		current_interactable.focus()
-	elif current_interactable != null:
-		unfocus_interactable.emit(current_interactable)
-		current_interactable.unfocus()
+	else:
 		current_interactable = null
+		
+	#if current_interactable != result:
+		#focus_interactable.emit(current_interactable)
+		#current_interactable.focus()
+	#elif current_interactable:
+		#unfocus_interactable.emit(current_interactable)
+		#current_interactable.unfocus()
+
 		
 
 func shoot_ray() -> Interactable:
