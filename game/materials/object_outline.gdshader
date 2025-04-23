@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode cull_front, unshaded;
 
-uniform vec4 outline_color : source_color;
+uniform vec4 outline_color = vec4(0.81, 0.95, 0.02, 1.0); // Highlighter Yellow
 uniform float outline_width = 2.0;
 
 uniform int use_outline = 0; // 0 = off, 1 = on

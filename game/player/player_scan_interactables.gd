@@ -23,8 +23,10 @@ func _physics_process(delta: float) -> void:
 	if result and current_interactable != result:
 		current_interactable = result
 		focus_interactable.emit(current_interactable)
-	else:
+		current_interactable.focus()
+	elif current_interactable != null:
 		unfocus_interactable.emit(current_interactable)
+		current_interactable.unfocus()
 		current_interactable = null
 		
 
