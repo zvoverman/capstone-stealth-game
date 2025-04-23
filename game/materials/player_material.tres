@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://x2xl5qglorhn" path="res://materials/object_outline.gdshader" id="1_yh180"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2npv"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_yh180")
 shader_parameter/outline_color = Vector4(0.81, 0.95, 0.02, 1)
@@ -10,6 +11,7 @@ shader_parameter/outline_width = 2.0
 shader_parameter/use_outline = 0
 
 [resource]
+resource_local_to_scene = true
 next_pass = SubResource("ShaderMaterial_h2npv")
 albedo_color = Color(0.25, 0.25, 0.25, 1)
 metallic = 0.3
