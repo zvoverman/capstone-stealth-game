@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvmrgcjk43qtb"]
 
-[ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/text_theme.tres" id="1_17iso"]
+[ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/console_theme.tres" id="1_17iso"]
 [ext_resource type="Script" uid="uid://66rspy4cir0b" path="res://ui/pause_menu_ui.gd" id="1_pbi13"]
 [ext_resource type="PackedScene" uid="uid://b825y76mftvgw" path="res://ui/settings_menu.tscn" id="3_rjdwr"]
 
@@ -11,55 +11,55 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_17iso")
 script = ExtResource("1_pbi13")
-pause_menu = NodePath("MarginContainer/PauseMenu")
-settings_menu = NodePath("MarginContainer/SettingsMenu")
+pause_menu = NodePath("PanelContainer/MarginContainer/PauseMenu")
+settings_menu = NodePath("PanelContainer/MarginContainer/SettingsMenu")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
 
-[node name="PauseMenu" type="Control" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PauseMenu"]
+[node name="PauseMenu" type="Control" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-offset_right = 1720.0
-offset_bottom = 880.0
-theme_override_constants/separation = 100
 
-[node name="Resume Button" type="Button" parent="MarginContainer/PauseMenu/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume Button" type="Button" parent="PanelContainer/MarginContainer/PauseMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_17iso")
 text = "Resume"
 
-[node name="Settings Button" type="Button" parent="MarginContainer/PauseMenu/VBoxContainer"]
+[node name="Settings Button" type="Button" parent="PanelContainer/MarginContainer/PauseMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_17iso")
 text = "Settings"
 
-[node name="Quit Button" type="Button" parent="MarginContainer/PauseMenu/VBoxContainer"]
+[node name="Quit Button" type="Button" parent="PanelContainer/MarginContainer/PauseMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_17iso")
 text = "Quit to Main Menu"
 
-[node name="SettingsMenu" parent="MarginContainer" instance=ExtResource("3_rjdwr")]
+[node name="SettingsMenu" parent="PanelContainer/MarginContainer" instance=ExtResource("3_rjdwr")]
 visible = false
 layout_mode = 2
 
-[connection signal="pressed" from="MarginContainer/PauseMenu/VBoxContainer/Resume Button" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PauseMenu/VBoxContainer/Settings Button" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MarginContainer/SettingsMenu/VBoxContainer/VBoxContainer/Back Button" to="." method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/PauseMenu/VBoxContainer/Resume Button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/PauseMenu/VBoxContainer/Settings Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/PauseMenu/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/SettingsMenu/PanelContainer/VBoxContainer/VBoxContainer/Back Button" to="." method="_on_settings_back_button_pressed"]
 
-[editable path="MarginContainer/SettingsMenu"]
+[editable path="PanelContainer/MarginContainer/SettingsMenu"]

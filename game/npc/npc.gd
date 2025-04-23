@@ -2,16 +2,22 @@ extends Interactable
 
 class_name NonPersonCharacter
 
-@export var sequence : DialogueSequence
+@export var dialogue_sequence : DialogueSequence
+@export var dialogue_box : DialogueBox
+@export var mesh : MeshInstance3D
 
-## FIXME: THIS IS TEMPORARY. Text should be displayed in UI.
-@onready var temp_label: Label3D = $Label
-
-signal on_start_sequence(sequence: DialogueSequence, label: Label3D)
-
-func _ready():
-	on_start_sequence.connect(DialogueManager._on_start_sequence)
+var _in_dialogue : bool = false
 	
 func interact() -> void:
 	super()
-	on_start_sequence.emit(sequence, temp_label)
+	
+	if not _in_dialogue:
+		_in_dialogue = dialogue_box.begin_dialogue(dialogue_sequence)
+	else:
+		_in_dialogue = dialogue_box.continue_dialogue()
+
+func focus() -> void:
+	mesh.get_active_material(0).next_pass.set_shader_parameter("use_outline", 1)
+	
+func unfocus() -> void:
+	mesh.get_active_material(0).next_pass.set_shader_parameter("use_outline", 0)

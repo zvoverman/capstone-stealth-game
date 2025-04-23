@@ -160,24 +160,6 @@ transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 
 [node name="Door" parent="." instance=ExtResource("10_owkps")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, -7.9)
 
-[node name="PauseMenuUi" parent="." instance=ExtResource("11_cywi7")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="low_poly_terminal" parent="." instance=ExtResource("12_65fks")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4, -1.29064, -7)
-
-[node name="Sphere" parent="low_poly_terminal" index="2"]
-surface_material_override/0 = ExtResource("7_ogeen")
-
-[node name="Sphere_001" parent="low_poly_terminal" index="3"]
-surface_material_override/0 = ExtResource("13_851dw")
-
-[node name="Cube_002" parent="low_poly_terminal" index="4"]
-surface_material_override/0 = ExtResource("13_851dw")
-
-[node name="Cylinder" parent="low_poly_terminal" index="5"]
-surface_material_override/0 = ExtResource("13_851dw")
-
-[node name="Cube_003" parent="low_poly_terminal" index="6"]
-surface_material_override/0 = ExtResource("7_ogeen")
-
-[editable path="low_poly_terminal"]
+[node name="PauseMenuUi" parent="CanvasLayer" instance=ExtResource("11_cywi7")]

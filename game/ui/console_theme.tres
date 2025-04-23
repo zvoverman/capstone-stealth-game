@@ -1,0 +1,68 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://xfkmr7u3ugdu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8r3r7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j75to"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.375, 0.75, 0.375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nk86l"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.5, 0.25, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43xyg"]
+draw_center = false
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.5, 1, 0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1drnn"]
+bg_color = Color(0.5, 1, 0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjlay"]
+bg_color = Color(0.5, 1, 0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uldfk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.25, 0.5, 0.25, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t50ct"]
+bg_color = Color(0.125, 0.25, 0.125, 1)
+
+[resource]
+default_font_size = 50
+Button/colors/font_color = Color(0.5, 1, 0.5, 1)
+Button/colors/font_focus_color = Color(0.5, 1, 0.5, 1)
+Button/colors/font_hover_color = Color(0.5, 1, 0.5, 1)
+Button/colors/font_pressed_color = Color(0.5, 1, 0.5, 1)
+Button/constants/align_to_largest_stylebox = 1
+Button/font_sizes/font_size = 40
+Button/styles/focus = SubResource("StyleBoxEmpty_8r3r7")
+Button/styles/hover = SubResource("StyleBoxFlat_j75to")
+Button/styles/normal = SubResource("StyleBoxFlat_nk86l")
+Button/styles/pressed = SubResource("StyleBoxFlat_43xyg")
+HBoxContainer/constants/separation = 25
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_1drnn")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_bjlay")
+HSlider/styles/slider = SubResource("StyleBoxFlat_uldfk")
+Label/colors/font_color = Color(0.5, 1, 0.5, 1)
+Label/font_sizes/font_size = 40
+MarginContainer/constants/margin_bottom = 50
+MarginContainer/constants/margin_left = 50
+MarginContainer/constants/margin_right = 50
+MarginContainer/constants/margin_top = 50
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_t50ct")
+VBoxContainer/constants/separation = 50
