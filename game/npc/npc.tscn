@@ -13,6 +13,9 @@ metadata/_custom_type_script = "uid://cm8td2foi648f"
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gfcum"]
 material = ExtResource("2_nhy3c")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldo70"]
+next_pass = ExtResource("4_o6cys")
+
 [sub_resource type="SphereMesh" id="SphereMesh_2xp5l"]
 material = ExtResource("2_nhy3c")
 radius = 0.1
@@ -35,6 +38,7 @@ dialogue_box = NodePath("DialogueBox")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_gfcum")
+surface_material_override/0 = SubResource("StandardMaterial3D_ldo70")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.4, -0.2)
