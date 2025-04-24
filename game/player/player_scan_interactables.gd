@@ -6,6 +6,7 @@ class_name ScanInteractables
 
 @export var interact_distance : float = 10.0
 var current_interactable : Interactable = null
+var prev_interactable : Interactable = null
 
 signal focus_interactable(collider: Interactable)
 signal unfocus_interactable(collider: Interactable)
@@ -20,18 +21,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	var result = shoot_ray()
 	
-	if result:
+	if result and not current_interactable:
 		current_interactable = result
-	else:
-		current_interactable = null
+		focus_interactable.emit(current_interactable)
+		current_interactable.focus()
 		
-	#if current_interactable != result:
-		#focus_interactable.emit(current_interactable)
-		#current_interactable.focus()
-	#elif current_interactable:
-		#unfocus_interactable.emit(current_interactable)
-		#current_interactable.unfocus()
-
+	if not result and current_interactable:
+		unfocus_interactable.emit(current_interactable)
+		current_interactable.unfocus()
+		current_interactable = null
 		
 
 func shoot_ray() -> Interactable:
