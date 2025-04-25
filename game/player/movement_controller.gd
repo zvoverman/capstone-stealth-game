@@ -146,18 +146,21 @@ func _physics_process(delta: float) -> void:
 # Movement direction calculation based on forward direction,
 # player "forward" will always be "away" from camera
 func get_dir() -> Vector3:
-	var dir : Vector3 = Vector3.ZERO
-	var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
-	var dirBase : Vector3 = current_normal.cross(forwardDir).normalized()
-
-	if Input.is_action_pressed("forward"):
-		dir = dirBase.rotated(current_normal.normalized(), -PI/2)
-	if Input.is_action_pressed("backward"):
-		dir = dirBase.rotated(current_normal.normalized(), PI/2)
-	if Input.is_action_pressed("left"):
-		dir = dirBase
-	if Input.is_action_pressed("right"):
-		dir = dirBase.rotated(current_normal.normalized(), PI)
+	var dir: Vector3 = Vector3.ZERO
+	var forwardDir: Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
+	var dirBase: Vector3 = current_normal.cross(forwardDir).normalized()
+	
+	var inputDirection: Vector3 = Vector3.ZERO
+	
+	inputDirection.x = Input.get_axis("right", "left")
+	inputDirection.z = Input.get_axis("forward", "backward")
+	
+	inputDirection = inputDirection.normalized()
+		
+	# Calculate the movement direction by combining the axes
+	# `dirBase` handles left/right (X axis), while `forwardMovementAxis` handles forward/backward (Z axis)
+	var forwardMovementAxis: Vector3 = current_normal.cross(dirBase).normalized()
+	dir = forwardMovementAxis * inputDirection.z + dirBase * inputDirection.x
 	
 	return dir.normalized()
 
