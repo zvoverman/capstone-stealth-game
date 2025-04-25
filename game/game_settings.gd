@@ -15,7 +15,7 @@ enum ColorBlindModeOptions
 	TRITANOPIA
 }
 
-var _camera_sensitivity : float = 7
+var _camera_sensitivity : float = 50
 func get_camera_sensitivity() -> float:
 	return _camera_sensitivity
 

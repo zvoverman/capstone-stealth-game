@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=28 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://materials/horror.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_vgehi"]
@@ -19,6 +19,7 @@
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="17_idbx1"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="18_6jjab"]
 [ext_resource type="PackedScene" uid="uid://scwwmvqtdlsh" path="res://scenes/levels/game_2.0/engineer_hub.tscn" id="19_vgehi"]
+[ext_resource type="PackedScene" uid="uid://bvmrgcjk43qtb" path="res://ui/pause_menu_ui.tscn" id="20_jku2k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ndar"]
 albedo_color = Color(0.84, 0.84, 0.84, 1)
@@ -958,6 +959,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 3)
 
 [node name="EngineerHub" type="Marker3D" parent="Checkpoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 23, 38.3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenuUi" parent="CanvasLayer" instance=ExtResource("20_jku2k")]
 
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly"]
 [editable path="EnvironmentMeshes/Room_4/NoClimb/vent_cover"]

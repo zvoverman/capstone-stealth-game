@@ -19,13 +19,14 @@ var yaw : float = 0
 var pitch : float = 0
 
 const STICK_DEADZONE := 0.5
-const STICK_LOOK_SPEED := 5  # how fast the stick turns the camera
+const YAW_STICK_LOOK_SPEED := 80
+const PITCH_STICK_LOOK_SPEED := 30
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	yaw_sensitivity = GameManager.get_settings().get_camera_sensitivity() / 100
-	pitch_sensitivity = GameManager.get_settings().get_camera_sensitivity() / 100
+	yaw_sensitivity =  get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
+	pitch_sensitivity = get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
 	SettingsManager.sensitivity_changed.connect(_on_sensitivity_changed)
 
 func _input(event: InputEvent) -> void:
@@ -37,28 +38,24 @@ func _input(event: InputEvent) -> void:
 		# Clamp pitch to avoid flipping the camera
 		pitch = clamp(pitch, pitch_min, pitch_max)
 		
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event is InputEventJoypadMotion and not GameManager.is_paused:
-		#if abs(event.axis_value) < STICK_DEADZONE:
-			#return  # ignore slight nudges
-#
-		#if event.axis == JOY_AXIS_RIGHT_X:
-			#yaw += -event.axis_value * STICK_LOOK_SPEED
-		#elif event.axis == JOY_AXIS_RIGHT_Y:
-			#pitch += -event.axis_value * STICK_LOOK_SPEED
-#
-		#pitch = clamp(pitch, pitch_min, pitch_max)
-	
-
-func _physics_process(delta: float) -> void:
+func check_joystick_movement() -> void:
 	# Process potential controller input
 	var inputDirection := Vector3.ZERO
 	inputDirection.x = Input.get_axis("look_right", "look_left")
 	inputDirection.y = Input.get_axis( "look_down", "look_up")
 	
 	if inputDirection != Vector3.ZERO:
-		yaw += inputDirection.x * STICK_LOOK_SPEED
-		pitch += inputDirection.y * STICK_LOOK_SPEED
+		yaw += inputDirection.x * YAW_STICK_LOOK_SPEED * yaw_sensitivity
+		pitch += inputDirection.y * PITCH_STICK_LOOK_SPEED * pitch_sensitivity
+		
+	pitch = clamp(pitch, pitch_min, pitch_max)
+
+func _physics_process(delta: float) -> void:
+	# TODO: Should probably be updated by signal
+	yaw_sensitivity =  get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
+	pitch_sensitivity = get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
+	
+	check_joystick_movement()
 	
 	# Rotate the camera root's pitch, but leave yaw rotation to the player armature itself.
 	yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
@@ -72,3 +69,6 @@ func _physics_process(delta: float) -> void:
 func _on_sensitivity_changed(new_value: float):
 	yaw_sensitivity = new_value
 	pitch_sensitivity = new_value
+	
+func get_scaled_sensitivity(x: float) -> float:
+	return ((x - 1) / (100 - 1)) * (0.15 - 0.01) + 0.01
