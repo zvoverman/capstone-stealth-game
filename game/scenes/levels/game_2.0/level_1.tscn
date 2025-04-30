@@ -1,9 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=49 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://materials/horror.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_vgehi"]
+[ext_resource type="Material" uid="uid://dtf6n2w1gt4xg" path="res://materials/textures/square_concrete_wall/new_standard_material_3d.tres" id="3_iiyc2"]
 [ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="3_jku2k"]
 [ext_resource type="Texture2D" uid="uid://d3h1ok0voqpan" path="res://materials/textures/new_floor/exquistite-polished-tile_ao.png" id="4_cadw5"]
+[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/textures/shiny_metal/shiny_metal_mat.tres" id="4_xetng"]
 [ext_resource type="Texture2D" uid="uid://cgwtupiduwsd7" path="res://materials/textures/new_floor/exquistite-polished-tile_height.png" id="5_32klb"]
 [ext_resource type="Texture2D" uid="uid://bjr06alhuqpqs" path="res://materials/textures/new_floor/exquistite-polished-tile_metallic.png" id="6_5jnw2"]
 [ext_resource type="Texture2D" uid="uid://c4ij1mlrfy81u" path="res://materials/textures/new_floor/exquistite-polished-tile_normal-ogl.png" id="7_1h3np"]
@@ -12,17 +14,26 @@
 [ext_resource type="PackedScene" uid="uid://cjeocotxh35tl" path="res://scenes/objects/lights/tube_light.tscn" id="10_xetng"]
 [ext_resource type="PackedScene" uid="uid://oyephryxos40" path="res://models/big_tv_low_poly.glb" id="11_iiyc2"]
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="12_00k5i"]
+[ext_resource type="Material" uid="uid://cegnehag0e106" path="res://materials/textures/dull_metal/dull_metal_mat.tres" id="12_1h3np"]
 [ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="13_337q8"]
 [ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="14_l5b4i"]
+[ext_resource type="Texture2D" uid="uid://cx1fouj4wpy3b" path="res://materials/textures/new_floor/exquistite-polished-tile_albedo.png" id="14_m6rai"]
 [ext_resource type="PackedScene" uid="uid://bmpqckck3s04h" path="res://models/vent_cover.fbx" id="15_m6rai"]
 [ext_resource type="PackedScene" uid="uid://dsqa3wy0e4i8" path="res://scenes/objects/hazards/rotating_lazer/rotating_lazer.tscn" id="16_3yid2"]
+[ext_resource type="Material" uid="uid://cnw58pov846yl" path="res://materials/textures/wavy_crete/wavy_concrete_mat.tres" id="16_iiyc2"]
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="17_idbx1"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="18_6jjab"]
 [ext_resource type="PackedScene" uid="uid://scwwmvqtdlsh" path="res://scenes/levels/game_2.0/engineer_hub.tscn" id="19_vgehi"]
 [ext_resource type="PackedScene" uid="uid://bvmrgcjk43qtb" path="res://ui/pause_menu_ui.tscn" id="20_jku2k"]
+[ext_resource type="PackedScene" uid="uid://cvn3xkrr25uro" path="res://scenes/objects/Debris.tscn" id="20_m8yc0"]
+[ext_resource type="Texture2D" uid="uid://dsfempwxrcgxm" path="res://materials/textures/square_concrete_wall/Concrete031_1K-JPG_AmbientOcclusion.jpg" id="22_l5b4i"]
+[ext_resource type="Texture2D" uid="uid://due2tcjwmhtgn" path="res://materials/textures/square_concrete_wall/Concrete031_1K-JPG_NormalGL.jpg" id="23_m6rai"]
+[ext_resource type="Texture2D" uid="uid://ihrcs4nttoje" path="res://materials/textures/square_concrete_wall/Concrete031_1K-JPG_Roughness.jpg" id="24_3yid2"]
+[ext_resource type="PackedScene" uid="uid://drw2vhcmq60ow" path="res://scenes/objects/lights/big_hanging_spotlight.tscn" id="26_hjfkx"]
+[ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark/wire_spark.tscn" id="26_l5b4i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ndar"]
-albedo_color = Color(0.84, 0.84, 0.84, 1)
+albedo_texture = ExtResource("14_m6rai")
 metallic = 1.0
 metallic_texture = ExtResource("6_5jnw2")
 roughness_texture = ExtResource("8_m8yc0")
@@ -41,8 +52,50 @@ size = Vector3(0.7, 3, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7djw3"]
 size = Vector3(0.6, 2, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0sfl"]
+[sub_resource type="Curve3D" id="Curve3D_1h3np"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5, 8, -0.6, 0, 0, 0, 0, 0, 0, -5, 6.36, 0.355, 0, 0, 0, 0, 0, 0, -4.9, 3.685, 3.555, 0, 0, 0, 0, 0, 0, -4.22, 3.355, 6.02),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_m8yc0"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.7, 6, -0.5, 0, 0, 0, 0, 0, 0, 3.8, 4.56, -1.245, 0, 0, 0, 0, 0, 0, 3.8, 3.685, -2.745, 0, 0, 0, 0, 0, 0, 2.58, 4.355, -3.38),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_hjfkx"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1, 6.1, -1.7, 0, 0, 0, 0, 0, 0, -1.2, 5.56, -2.245, 0, 0, 0, 0, 0, 0, -3.2, 6.685, -1.745, 0, 0, 0, 0, 0, 0, -4.62, 8.355, -1.68),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_xetng"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.8, 5.5, -6.7, 0, 0, 0, 0, 0, 0, -4.47035e-08, 3.66, -5.545, 0, 0, 0, 0, 0, 0, -3.2, 5.385, -3.445, 0, 0, 0, 0, 0, 0, -4.52, 8.255, -1.68),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idbx1"]
+albedo_color = Color(0.89, 0.89, 0.89, 1)
+roughness_texture = ExtResource("24_3yid2")
+normal_enabled = true
+normal_texture = ExtResource("23_m6rai")
+ao_enabled = true
+ao_texture = ExtResource("22_l5b4i")
+uv1_scale = Vector3(1.26, 2.615, 1.26)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_337q8"]
 albedo_color = Color(0.84, 0.84, 0.84, 1)
+albedo_texture = ExtResource("14_m6rai")
 metallic = 1.0
 metallic_texture = ExtResource("6_5jnw2")
 roughness_texture = ExtResource("8_m8yc0")
@@ -53,10 +106,57 @@ ao_enabled = true
 ao_texture = ExtResource("4_cadw5")
 heightmap_enabled = true
 heightmap_texture = ExtResource("5_32klb")
-uv1_scale = Vector3(5.25, 1, 2)
+uv1_scale = Vector3(3.175, 0.8, 2)
+uv1_offset = Vector3(-0.03, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jjab"]
+albedo_color = Color(0.89, 0.89, 0.89, 1)
+roughness_texture = ExtResource("24_3yid2")
+normal_enabled = true
+normal_texture = ExtResource("23_m6rai")
+ao_enabled = true
+ao_texture = ExtResource("22_l5b4i")
+uv1_scale = Vector3(0.63, 0.63, 0.63)
+uv1_offset = Vector3(0.02, -0.145, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6rai"]
+albedo_color = Color(0.89, 0.89, 0.89, 1)
+roughness_texture = ExtResource("24_3yid2")
+normal_enabled = true
+normal_texture = ExtResource("23_m6rai")
+ao_enabled = true
+ao_texture = ExtResource("22_l5b4i")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5b4i"]
+albedo_color = Color(0.89, 0.89, 0.89, 1)
+roughness_texture = ExtResource("24_3yid2")
+normal_enabled = true
+normal_texture = ExtResource("23_m6rai")
+ao_enabled = true
+ao_texture = ExtResource("22_l5b4i")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ndar"]
 size = Vector3(0.595459, 1.93933, 1.96765)
+
+[sub_resource type="Curve3D" id="Curve3D_337q8"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 13.98, 16.255, -31.98, 0, 0, 0, 0, 0, 0, 13.98, 11.755, -27.87, 0, 0, 0, 0, 0, 0, 13.98, 11.755, -25.98, 0, 0, 0, 0, 0, 0, 13.98, 10.755, -21.785, 0, 0, 0, 0, 0, 0, 14.08, 11.855, -17.48, 0, 0, 0, 0, 0, 0, 13.58, 11.455, -17.48, 0, 0, 0, 0, 0, 0, 11.9, 7.455, -14.88, 0, 0, 0, 0, 0, 0, 11.58, 7.955, -14.48),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[sub_resource type="Curve3D" id="Curve3D_l5b4i"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 13.98, 16.255, -31.98, 0, 0, 0, 0, 0, 0, 15.18, 10.755, -28.87, 0, 0, 0, 0, 0, 0, 15.98, 10.155, -26.875, 0, 0, 0, 0, 0, 0, 16.28, 10.655, -25.615),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ajk2"]
 albedo_color = Color(0.84, 0.84, 0.84, 1)
@@ -97,9 +197,9 @@ shadow_blur = 2.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_vgehi")
 
-[node name="EnvironmentMeshes" type="Node" parent="."]
+[node name="EnvironmentMeshes" type="Node3D" parent="."]
 
-[node name="Room_1" type="Node" parent="EnvironmentMeshes"]
+[node name="Room_1" type="Node3D" parent="EnvironmentMeshes"]
 
 [node name="CanCollide" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1"]
 use_collision = true
@@ -115,7 +215,7 @@ operation = 2
 [node name="Container" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Holes"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200001, 6.25, -0.0200001)
 size = Vector3(14, 12, 14)
-material = ExtResource("2_vgehi")
+material = ExtResource("3_iiyc2")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/CanCollide/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 3)
@@ -130,11 +230,12 @@ size = Vector3(2, 2.5, 3.5)
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.75, 6.75, -4.7)
 size = Vector3(9.3, 3, 4)
+material = ExtResource("4_xetng")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 6.75, -8.65)
 size = Vector3(4, 3, 3.9)
-material = ExtResource("3_jku2k")
+material = ExtResource("4_xetng")
 
 [node name="Floor" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200001, 0, -0.0200001)
@@ -149,31 +250,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)
 radius = 2.0
 height = 6.0
 sides = 16
-material = ExtResource("2_vgehi")
-
-[node name="BigHangingLight" parent="EnvironmentMeshes/Room_1/CanCollide/Holes2" instance=ExtResource("9_hjfkx")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 12.1, 0.5)
+material = ExtResource("3_iiyc2")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 6.75, -4.7)
 size = Vector3(11, 2, 3)
-material = ExtResource("3_jku2k")
+material = ExtResource("4_xetng")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 7.75, -4.7)
 size = Vector3(2, 2, 2)
-material = ExtResource("3_jku2k")
+material = ExtResource("4_xetng")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 6.75, -7.2)
 size = Vector3(3, 2, 8)
-material = ExtResource("3_jku2k")
+material = ExtResource("4_xetng")
 
 [node name="DeathTubeCap" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 radius = 2.0
 height = 0.3
 sides = 16
+material = ExtResource("12_1h3np")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 3)
@@ -184,29 +283,35 @@ sides = 16
 [node name="Pipes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Pipes"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 9, 0)
-size = Vector3(14, 1, 2)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.45, 9, 2.18557e-09)
+size = Vector3(14, 1, 1.7)
+material = ExtResource("12_1h3np")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Pipes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.7, -2)
 size = Vector3(14, 0.5, 0.5)
+material = ExtResource("12_1h3np")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Pipes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.2, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.8, 6.4)
 size = Vector3(14, 0.5, 0.5)
+material = ExtResource("12_1h3np")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Pipes"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 9, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.8, 9, 0)
 size = Vector3(14, 0.5, 1)
+material = ExtResource("12_1h3np")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Pipes"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 9, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.9, 9, 0)
 size = Vector3(14, 0.5, 1)
+material = ExtResource("12_1h3np")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/CanCollide/Pipes"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 11, -4)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 11, -3.7)
 radius = 1.0
 height = 14.0
+material = ExtResource("12_1h3np")
 
 [node name="NoClimb" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1" groups=["no_climb"]]
 use_collision = true
@@ -231,21 +336,21 @@ material = ExtResource("2_vgehi")
 [node name="Hazards" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1" groups=["hazard"]]
 use_collision = true
 
-[node name="Objects" type="Node" parent="EnvironmentMeshes/Room_1"]
+[node name="Objects" type="Node3D" parent="EnvironmentMeshes/Room_1"]
 
-[node name="Lights" type="Node" parent="EnvironmentMeshes/Room_1/Objects"]
+[node name="Lights" type="Node3D" parent="EnvironmentMeshes/Room_1/Objects"]
 
 [node name="TubeLight" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("10_xetng")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 8.7, 4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.9, 8.63395, 4)
 
 [node name="TubeLight2" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("10_xetng")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 8.7, -4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 8.63395, -4)
 
 [node name="TubeLight3" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("10_xetng")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 8.7, 4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.8, 8.63395, 4)
 
 [node name="TubeLight4" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("10_xetng")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 8.7, -4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.8, 8.63395, -4)
 
 [node name="TubeLight5" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("10_xetng")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 9.4, 7.7, -6)
@@ -253,11 +358,20 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 9.4, 7.7, -6)
 [node name="TubeLight6" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("10_xetng")]
 transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, 15.4321, 7.66018, -8.19201)
 
+[node name="HangingLight" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("14_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 5, -0.254963)
+
+[node name="HangingLight2" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("14_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6, 5, -0.254963)
+
+[node name="BigHangingLight" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("9_hjfkx")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 4, 12.1, 2.5)
+
 [node name="big_tv_low_poly" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("11_iiyc2")]
-transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 0, 4.5, -7)
+transform = Transform3D(-8.08186e-08, -6.9004e-10, -1.79, -0.612216, 1.68205, 2.69932e-08, 1.68205, 0.612216, -7.61807e-08, 0, 5.5, -3)
 
 [node name="Cube" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly" index="0"]
-surface_material_override/0 = ExtResource("3_jku2k")
+surface_material_override/0 = ExtResource("12_1h3np")
 
 [node name="Sphere" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly" index="1"]
 surface_material_override/0 = ExtResource("12_00k5i")
@@ -265,18 +379,38 @@ surface_material_override/0 = ExtResource("12_00k5i")
 [node name="Sphere_001" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly" index="2"]
 surface_material_override/0 = ExtResource("13_337q8")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95, 3.25, -7.1)
-size = Vector3(2.4, 4, 0.5)
-material = ExtResource("2_vgehi")
+[node name="big_tv_low_poly2" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("11_iiyc2")]
+transform = Transform3D(0.408218, 0.109382, -0.906308, -0.258819, 0.965926, 9.7219e-09, 0.875426, 0.23457, 0.422618, -2.5, 3, -2.6)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.15, 4.85, -7.1)
-size = Vector3(3, 2, 0.5)
+[node name="Cube" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2" index="0"]
+surface_material_override/0 = ExtResource("12_1h3np")
+
+[node name="Sphere" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2" index="1"]
+surface_material_override/0 = ExtResource("12_00k5i")
+
+[node name="Sphere_001" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2" index="2"]
+surface_material_override/0 = ExtResource("13_337q8")
+
+[node name="big_tv_low_poly3" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("11_iiyc2")]
+transform = Transform3D(-0.411502, -0.21107, -0.998056, -0.548954, 0.952908, 0.0248133, 0.859835, 0.507361, -0.46181, 2.2, 7, -0.6)
+
+[node name="Cube" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly3" index="0"]
+transform = Transform3D(0.0716525, 0, 0, -3.72529e-09, 0.75429, 1.49012e-08, 0, 0, 1, 0, 0, 0)
+surface_material_override/0 = ExtResource("12_1h3np")
+
+[node name="Sphere" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly3" index="1"]
+surface_material_override/0 = ExtResource("12_00k5i")
+
+[node name="Sphere_001" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly3" index="2"]
+surface_material_override/0 = ExtResource("13_337q8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 2.25, -7)
+size = Vector3(1, 2, 0.5)
 material = ExtResource("2_vgehi")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 2.55, -7.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.55, 4.55, -7)
 size = Vector3(1, 2, 0.5)
 material = ExtResource("2_vgehi")
 
@@ -284,20 +418,14 @@ material = ExtResource("2_vgehi")
 use_collision = true
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects/CollideableObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.95, 7.25, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45, 7.25, -1.5)
 size = Vector3(2, 15, 2)
-material = ExtResource("2_vgehi")
+material = ExtResource("16_iiyc2")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects/CollideableObjects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.05, 7.25, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.55, 7.25, -1.5)
 size = Vector3(2, 15, 2)
-material = ExtResource("2_vgehi")
-
-[node name="HangingLight" parent="EnvironmentMeshes/Room_1/Objects/CollideableObjects" instance=ExtResource("14_l5b4i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7, 5, -1.5)
-
-[node name="HangingLight2" parent="EnvironmentMeshes/Room_1/Objects/CollideableObjects" instance=ExtResource("14_l5b4i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8, 5, -1.5)
+material = ExtResource("16_iiyc2")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects/CollideableObjects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.7, 6)
@@ -318,8 +446,19 @@ transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107
 size = Vector3(1, 1, 2)
 material = ExtResource("3_jku2k")
 
+[node name="CSGBox3D7" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects/CollideableObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15, 2.85, -6.85)
+size = Vector3(3, 6, 1)
+material = ExtResource("2_vgehi")
+
 [node name="vent_cover" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("15_m6rai")]
 transform = Transform3D(-1, 0, -2.26494e-07, 0, 1.1, 0, 1.50996e-07, 0, -1.5, 16.4, 6.8, -4.7)
+
+[node name="Cube" parent="EnvironmentMeshes/Room_1/Objects/vent_cover" index="0"]
+surface_material_override/0 = ExtResource("4_xetng")
+
+[node name="Cube_001" parent="EnvironmentMeshes/Room_1/Objects/vent_cover" index="1"]
+surface_material_override/0 = ExtResource("4_xetng")
 
 [node name="Collide" type="StaticBody3D" parent="EnvironmentMeshes/Room_1/Objects/vent_cover"]
 
@@ -330,11 +469,131 @@ shape = SubResource("BoxShape3D_oplm3")
 [node name="vent_cover2" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("15_m6rai")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 12, 8.1, -4.7)
 
+[node name="Cube" parent="EnvironmentMeshes/Room_1/Objects/vent_cover2" index="0"]
+surface_material_override/0 = ExtResource("4_xetng")
+
+[node name="Cube_001" parent="EnvironmentMeshes/Room_1/Objects/vent_cover2" index="1"]
+surface_material_override/0 = ExtResource("4_xetng")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="EnvironmentMeshes/Room_1/Objects/vent_cover2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentMeshes/Room_1/Objects/vent_cover2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0)
 shape = SubResource("BoxShape3D_7djw3")
+
+[node name="Wires" type="Node3D" parent="EnvironmentMeshes/Room_1/Objects"]
+
+[node name="Wire" type="Node3D" parent="EnvironmentMeshes/Room_1/Objects/Wires"]
+
+[node name="Path3D_1" type="Path3D" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire"]
+curve = SubResource("Curve3D_1h3np")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire"]
+polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("../Path3D_1")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("12_1h3np")
+
+[node name="Wire2" type="Node3D" parent="EnvironmentMeshes/Room_1/Objects/Wires"]
+
+[node name="Path3D_2" type="Path3D" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire2"]
+curve = SubResource("Curve3D_m8yc0")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire2"]
+polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("../Path3D_2")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("12_1h3np")
+
+[node name="WireSpark" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire2" instance=ExtResource("26_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7.8, -1.4)
+
+[node name="Wire3" type="Node3D" parent="EnvironmentMeshes/Room_1/Objects/Wires"]
+
+[node name="Path3D_3" type="Path3D" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire3"]
+curve = SubResource("Curve3D_hjfkx")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire3"]
+polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("../Path3D_3")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("12_1h3np")
+
+[node name="Wire4" type="Node3D" parent="EnvironmentMeshes/Room_1/Objects/Wires"]
+
+[node name="Path3D_4" type="Path3D" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire4"]
+curve = SubResource("Curve3D_xetng")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="EnvironmentMeshes/Room_1/Objects/Wires/Wire4"]
+polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("../Path3D_4")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("12_1h3np")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.25, -6.95)
+size = Vector3(0.2, 2, 0.2)
+material = ExtResource("2_vgehi")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.35, 2.75, -6.95)
+size = Vector3(0.2, 1, 0.2)
+material = ExtResource("2_vgehi")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 4.85, 4.75, -6.95)
+size = Vector3(0.2, 1, 0.2)
+material = ExtResource("2_vgehi")
+
+[node name="Debris" type="Node3D" parent="EnvironmentMeshes/Room_1/Objects"]
+
+[node name="Debris" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.7, 0.2, -3.2)
+
+[node name="Debris2" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1.03591, 0, 1.03591, 0, 1.465, 0, -1.03591, 0, 1.03591, -6.7, 0.3, 0.3)
+
+[node name="Debris3" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1.28558, 0, 1.53209, 0, 2, 0, -1.53209, 0, 1.28558, 4.3, 0.2, 6.3)
+
+[node name="Debris4" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1.5909, 0, 1.89596, 0, 2.475, 0, -1.89596, 0, 1.5909, 6, 0.2, -5.3)
 
 [node name="Room_2" type="Node" parent="EnvironmentMeshes"]
 
@@ -353,7 +612,7 @@ operation = 2
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 8.2, -25.2)
 size = Vector3(5, 12, 29)
-material = ExtResource("2_vgehi")
+material = SubResource("StandardMaterial3D_idbx1")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 4.85, -10.7)
@@ -368,7 +627,7 @@ material = ExtResource("3_jku2k")
 [node name="Floor" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.7, -21.5)
 size = Vector3(5, 5, 21.6)
-material = SubResource("StandardMaterial3D_r0sfl")
+material = SubResource("StandardMaterial3D_337q8")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 11.405, -44)
@@ -380,60 +639,60 @@ size = Vector3(3.5, 2.5, 8.4)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 12.6, 13, -20.7406)
 radius = 1.0
 height = 20.4813
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 13.7, 13.7, -25)
 radius = 0.3
 height = 29.0
 sides = 6
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 16.1, 13.5, -25)
 radius = 0.2
 height = 29.0
 sides = 6
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="Pipe2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 10.2, -26.2)
 size = Vector3(6, 0.5, 2)
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="Pipe3" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 10.2, -18.2)
 size = Vector3(6, 0.5, 2)
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="Pipe4" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2, 9.225, -25.2)
 size = Vector3(0.7, 0.7, 29)
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="Pipe5" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8, 9.225, -25.2)
 size = Vector3(0.7, 0.7, 29)
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 15.6, 13.5, -25)
 radius = 0.2
 height = 29.0
 sides = 6
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="CSGCylinder3D5" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6, 8.5, -31)
 radius = 1.0
 height = 11.0
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="CSGCylinder3D6" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1, 6.225, -32)
 radius = 0.1
 height = 6.45
-material = ExtResource("3_jku2k")
+material = ExtResource("12_1h3np")
 
 [node name="Holes2" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 operation = 2
@@ -441,7 +700,7 @@ operation = 2
 [node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1.7, -21.2)
 size = Vector3(5, 5, 7)
-material = ExtResource("2_vgehi")
+material = SubResource("StandardMaterial3D_6jjab")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 11.405, -44.6)
@@ -460,20 +719,45 @@ height = 5.5547
 sides = 12
 material = ExtResource("3_jku2k")
 
-[node name="Pipe2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+[node name="RaisedFloor" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5.45, -36.2)
 size = Vector3(6, 8.5, 8)
-material = ExtResource("2_vgehi")
+material = SubResource("StandardMaterial3D_m6rai")
 
-[node name="Pipe3" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+[node name="Ceiling" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 13.7, -36.2)
 size = Vector3(6, 1, 8)
-material = ExtResource("2_vgehi")
+material = SubResource("StandardMaterial3D_l5b4i")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 15.3, 3.9, -31.1)
 size = Vector3(1.5, 1.5, 1.5)
 material = ExtResource("3_jku2k")
+
+[node name="Pipes2" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 12.4946, 4.2, -27.3125)
+radius = 0.8
+height = 7.375
+material = ExtResource("12_1h3np")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes2"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 12.4, 2.28437, -23.625)
+radius = 1.0
+height = 6.16875
+material = ExtResource("12_1h3np")
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes2"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 12.4, 5.40547, -23.625)
+radius = 0.7
+height = 0.242187
+material = ExtResource("12_1h3np")
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes/Pipes2"]
+transform = Transform3D(-4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -3.82137e-15, 0, -8.74228e-08, -1, 14.6422, 2.28437, -23.625)
+height = 4.08437
+material = ExtResource("12_1h3np")
 
 [node name="Hazards" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_2" groups=["hazard"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
@@ -490,6 +774,7 @@ material = ExtResource("12_00k5i")
 
 [node name="BigHangingLight" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("9_hjfkx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9226, 16, -28.6)
+visible = false
 
 [node name="TubeLight" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("10_xetng")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.8, 10.7, -25)
@@ -505,6 +790,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.2, 
 
 [node name="BigHangingLight2" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("9_hjfkx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9226, 16, -17)
+visible = false
 
 [node name="HangingLight" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("14_l5b4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 12.5, -13)
@@ -518,6 +804,15 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3, 13.7, -39)
 visible = false
 
+[node name="BigHangingSpotlight2" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("26_hjfkx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 11.3, -18)
+
+[node name="BigHangingSpotlight3" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("26_hjfkx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 11.3, -26)
+
+[node name="TubeLight5" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("10_xetng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 15, -39)
+
 [node name="vent_cover" parent="EnvironmentMeshes/Room_2/Objects" instance=ExtResource("15_m6rai")]
 transform = Transform3D(-6.55671e-08, -6.55671e-08, 1.5, -1.5, -6.55671e-08, -6.55671e-08, 6.55671e-08, -1.5, -6.55671e-08, 14, 14.555, -43.9)
 
@@ -526,6 +821,75 @@ transform = Transform3D(-6.55671e-08, -6.55671e-08, 1.5, -1.5, -6.55671e-08, -6.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentMeshes/Room_2/Objects/vent_cover/StaticBody3D"]
 transform = Transform3D(1, 1.06581e-14, 1.64203e-15, 0, 1, 1.06581e-14, -1.91069e-15, 0, 1, -0.202271, 0.0126343, 0.00189209)
 shape = SubResource("BoxShape3D_0ndar")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Objects"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.525, 7.65, -14.075)
+size = Vector3(1, 1.6, 0.5)
+material = ExtResource("2_vgehi")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Objects"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.575, 5.85, -13.875)
+size = Vector3(0.2, 2, 0.2)
+material = ExtResource("2_vgehi")
+
+[node name="Wires" type="Node3D" parent="EnvironmentMeshes/Room_2/Objects"]
+
+[node name="Wire" type="Node3D" parent="EnvironmentMeshes/Room_2/Objects/Wires"]
+
+[node name="Path3D_1" type="Path3D" parent="EnvironmentMeshes/Room_2/Objects/Wires/Wire"]
+curve = SubResource("Curve3D_337q8")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="EnvironmentMeshes/Room_2/Objects/Wires/Wire"]
+polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("../Path3D_1")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("12_1h3np")
+
+[node name="WireSpark2" parent="EnvironmentMeshes/Room_2/Objects/Wires/Wire" instance=ExtResource("26_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 11.8, -26)
+
+[node name="Wire2" type="Node3D" parent="EnvironmentMeshes/Room_2/Objects/Wires"]
+
+[node name="Path3D_1" type="Path3D" parent="EnvironmentMeshes/Room_2/Objects/Wires/Wire2"]
+curve = SubResource("Curve3D_l5b4i")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="EnvironmentMeshes/Room_2/Objects/Wires/Wire2"]
+polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("../Path3D_1")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("12_1h3np")
+
+[node name="Debris" type="Node3D" parent="EnvironmentMeshes/Room_2/Objects"]
+
+[node name="Debris2" parent="EnvironmentMeshes/Room_2/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1.42028, 0, 0.82, 0, 1.64, 0, -0.82, 0, 1.42028, 14, 5.1, -31.5)
+
+[node name="Debris3" parent="EnvironmentMeshes/Room_2/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1, 0, 1.90739e-07, 0, 1, 0, -1.90739e-07, 0, 1, 16, 5.1, -30.2)
+
+[node name="Debris" parent="EnvironmentMeshes/Room_2/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1.19209e-07, 0, -1.25, 0, 1.25, 0, 1.25, 0, 1.19209e-07, 16.2, 5.1, -13)
+
+[node name="Debris4" parent="EnvironmentMeshes/Room_2/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1.60215, 0, -0.925, 0, 1.85, 0, 0.925, 0, 1.60215, 15.9, 5.1, -11.8)
 
 [node name="Room_3" type="Node" parent="EnvironmentMeshes"]
 
@@ -965,5 +1329,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 23, 38.3)
 [node name="PauseMenuUi" parent="CanvasLayer" instance=ExtResource("20_jku2k")]
 
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly"]
+[editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2"]
+[editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly3"]
+[editable path="EnvironmentMeshes/Room_1/Objects/vent_cover"]
+[editable path="EnvironmentMeshes/Room_1/Objects/vent_cover2"]
 [editable path="EnvironmentMeshes/Room_4/NoClimb/vent_cover"]
 [editable path="EnvironmentMeshes/Room_4/NoClimb/vent_cover2"]

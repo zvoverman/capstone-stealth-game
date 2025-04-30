@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5853ewrhxus3"]
 
-[ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="1_il1b0"]
+[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/textures/shiny_metal/shiny_metal_mat.tres" id="1_rqngr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mllsb"]
 albedo_color = Color(0.5625, 0.5625, 0.5625, 1)
@@ -12,23 +12,48 @@ emission_energy_multiplier = 5.0
 
 [node name="HangingLight" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0935022, 0)
-size = Vector3(0.5, 0.5, 0.5)
-material = ExtResource("1_il1b0")
+[node name="Case" type="CSGCombiner3D" parent="."]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.120215, 0)
-size = Vector3(0.3, 0.222852, 0.3)
+[node name="CSGBox3D" type="CSGBox3D" parent="Case"]
+size = Vector3(0.5, 0.5, 0.5)
+material = ExtResource("1_rqngr")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Case"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Case/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0516113, 0)
+size = Vector3(0.4, 0.496777, 0.4)
+material = ExtResource("1_rqngr")
+
+[node name="Light" type="CSGBox3D" parent="."]
+size = Vector3(0.4, 0.4, 0.4)
 material = SubResource("StandardMaterial3D_mllsb")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.121914, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.0575208, 0)
 light_energy = 3.0
 light_volumetric_fog_energy = 3.0
 light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 3.0
-spot_range = 15.0
+spot_range = 10.0
+spot_angle = 35.0
+spot_angle_attenuation = 1.51572
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22697, 0)
+visible = false
+light_energy = 0.5
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, -3.82137e-15, 8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 0, -1, -4.37114e-08, 0, 0.0702107, 0)
+visible = false
+light_energy = 3.0
+light_volumetric_fog_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 3.0
+spot_range = 10.0
 spot_angle = 35.0
 spot_angle_attenuation = 1.51572

@@ -2,7 +2,7 @@
 
 [ext_resource type="Environment" uid="uid://chfuj30xuftg4" path="res://scenes/test_levels/environment_settings.tres" id="1_dgcus"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="2_1cd0d"]
-[ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/new_floor_material.tres" id="2_ylxws"]
+[ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/textures/new_floor/new_floor_material.tres" id="2_ylxws"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_gpt7g"]
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="5_bvxc0"]
 [ext_resource type="PackedScene" uid="uid://x2t5j7bc3fbu" path="res://stationary_camera/stationary_camera.tscn" id="6_bvxc0"]
