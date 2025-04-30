@@ -3,6 +3,11 @@ extends Node3D
 @export var console_camera : Camera3D
 @export var ui_subviewport : SubViewport
 
+func _ready() -> void:
+	
+	var tween : Tween = create_tween()
+	tween.tween_property(console_camera, "position", Vector3(0.0, 0.0, 1.5), 2.0).set_delay(2.0).set_trans(Tween.TRANS_CUBIC)
+
 func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
