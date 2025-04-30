@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvn3xkrr25uro"]
+
+[ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="1_lald2"]
+
+[node name="Debris" type="Node3D"]
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.984808, 0.0301537, -0.17101, 0, 0.984808, 0.173648, 0.173648, -0.17101, 0.969846, 0.3, 0.05, -0.3)
+size = Vector3(0.4, 0.05, 0.4)
+material = ExtResource("1_lald2")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.984808, 0.0301537, 0.17101, 0.0301537, 0.999542, -0.00259808, -0.17101, 0.00259799, -0.985266, 0.223768, 0.0711285, 0.0301746)
+size = Vector3(0.4, 0.05, 0.4)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.939692, -0.0593912, 0.336824, 0.0593912, 0.941511, 0.331707, -0.336824, 0.331707, -0.881203, -0.123768, 0.0288715, 0.269825)
+size = Vector3(0.4, 0.05, 0.4)
+material = ExtResource("1_lald2")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.173648, 0.984808, 0, 0.984808, -0.173648, -1, -7.5904e-09, -4.30473e-08, 2.23517e-08, 0.05, 0.1)
+size = Vector3(0.4, 0.05, 0.4)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.173648, -0.17101, 0.969846, 6.25625e-09, 0.984808, 0.173648, -0.984808, -0.0301537, 0.17101, -0.3, 0.05, -0.2)
+size = Vector3(0.4, 0.05, 0.4)
+material = ExtResource("1_lald2")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.17101, 0.00259799, -0.985266, 0.0301537, 0.999542, -0.00259808, 0.984808, -0.0301537, -0.17101, 0.0301746, 0.0345785, -0.123768)
+size = Vector3(0.4, 0.05, 0.4)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.336824, 0.331707, -0.881203, 0.0593912, 0.941511, 0.331707, 0.939692, 0.0593911, -0.336824, 0.269825, 0.0288715, 0.223768)
+size = Vector3(0.4, 0.05, 0.4)
+material = ExtResource("1_lald2")
