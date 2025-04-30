@@ -3,7 +3,7 @@ render_mode unshaded;
 
 uniform sampler2D display_texture;
 
-const float curvature = 0.5;
+const float curvature = 0.35;
 
 void vertex() {
 	// Called for every vertex the material is visible on.

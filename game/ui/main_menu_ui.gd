@@ -13,15 +13,22 @@ extends Control
 
 func _ready():
 	
-	company_name.visible = true
+	company_name.visible = false
 	main_menu.visible = false
 	settings_menu.visible = false
 	about_us_menu.visible = false
 	credits_menu.visible = false
 	
+	await get_tree().create_timer(1.0).timeout
+	
 	# Diplay the company name
+	company_name.visible = true
 	company_name.drop_in_from_left()
 	await company_name.animation_finished
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	# Remove the company name
 	company_name.drop_out_to_right()
 	await company_name.animation_finished
 	

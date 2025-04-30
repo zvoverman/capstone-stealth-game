@@ -7,6 +7,7 @@
 [node name="MenuLevel" type="Node3D"]
 
 [node name="ConsoleScreen" parent="." instance=ExtResource("1_ja47c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
 
 [node name="terminal" parent="." instance=ExtResource("2_p36d1")]
 transform = Transform3D(-9.17939e-08, 0, -2.3, 0, 2.1, 0, 2.1, 0, -1.00536e-07, 0, -0.2, -1.7)
