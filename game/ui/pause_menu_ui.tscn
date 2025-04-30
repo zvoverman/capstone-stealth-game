@@ -60,5 +60,6 @@ layout_mode = 2
 [connection signal="pressed" from="PanelContainer/MarginContainer/PauseMenu/VBoxContainer/Resume Button" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PauseMenu/VBoxContainer/Settings Button" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PauseMenu/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/SettingsMenu/PanelContainer/VBoxContainer/Back Button Wrapper/Back Button" to="." method="_on_settings_back_button_pressed"]
 
 [editable path="PanelContainer/MarginContainer/SettingsMenu"]
