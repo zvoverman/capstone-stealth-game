@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://7qc16uarmrlp"]
+[gd_scene load_steps=6 format=3 uid="uid://7qc16uarmrlp"]
 
 [ext_resource type="Script" uid="uid://dgqui65fvkf5t" path="res://ui/main_menu_ui.gd" id="1_kyud6"]
 [ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/console_theme.tres" id="2_pst23"]
 [ext_resource type="PackedScene" uid="uid://b825y76mftvgw" path="res://ui/settings_menu.tscn" id="3_gndvg"]
 [ext_resource type="Script" uid="uid://b2d0muxjnmsby" path="res://ui/ui_container_drop_animation.gd" id="3_wkomq"]
+[ext_resource type="Texture2D" uid="uid://c6wdhsk3nx8ij" path="res://icon.svg" id="5_bfl7c"]
 
-[node name="MainMenuUI" type="Control" node_paths=PackedStringArray("main_menu", "settings_menu", "company_name", "main_menu_options", "settings_menu_options")]
+[node name="MainMenuUI" type="Control" node_paths=PackedStringArray("main_menu", "settings_menu", "about_us_menu", "credits_menu", "company_name", "main_menu_options", "settings_menu_options", "about_us_menu_options", "credits_menu_options")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,9 +17,13 @@ theme = ExtResource("2_pst23")
 script = ExtResource("1_kyud6")
 main_menu = NodePath("PanelContainer/MarginContainer/MainMenu")
 settings_menu = NodePath("PanelContainer/MarginContainer/SettingsMenu")
+about_us_menu = NodePath("PanelContainer/MarginContainer/About Us Menu")
+credits_menu = NodePath("PanelContainer/MarginContainer/Credits Menu")
 company_name = NodePath("PanelContainer/MarginContainer/Company Name")
 main_menu_options = NodePath("PanelContainer/MarginContainer/MainMenu/Buttons")
 settings_menu_options = NodePath("PanelContainer/MarginContainer/SettingsMenu/PanelContainer/VBoxContainer")
+about_us_menu_options = NodePath("PanelContainer/MarginContainer/About Us Menu/Container")
+credits_menu_options = NodePath("PanelContainer/MarginContainer/Credits Menu/VBoxContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -243,7 +248,7 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
-text = "Start"
+text = "Place an Order"
 
 [node name="Settings Button Wrapper" type="Control" parent="PanelContainer/MarginContainer/MainMenu/Buttons"]
 layout_mode = 2
@@ -257,7 +262,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-text = "Settings"
+text = "Customize Your Bot"
+
+[node name="About Us Button Wrapper" type="Control" parent="PanelContainer/MarginContainer/MainMenu/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="About Us Button" type="Button" parent="PanelContainer/MarginContainer/MainMenu/Buttons/About Us Button Wrapper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+text = "About Us"
+
+[node name="Credits Button Wrapper" type="Control" parent="PanelContainer/MarginContainer/MainMenu/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Credits Button" type="Button" parent="PanelContainer/MarginContainer/MainMenu/Buttons/Credits Button Wrapper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+text = "Meet Our Founders"
 
 [node name="Quit Button Wrapper" type="Control" parent="PanelContainer/MarginContainer/MainMenu/Buttons"]
 layout_mode = 2
@@ -277,9 +308,178 @@ text = "Quit"
 visible = false
 layout_mode = 2
 
+[node name="Back Button" parent="PanelContainer/MarginContainer/SettingsMenu/PanelContainer/VBoxContainer/Back Button Wrapper" index="0"]
+text = "Return to Homepage"
+
+[node name="About Us Menu" type="Control" parent="PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="PanelContainer/MarginContainer/About Us Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_wkomq")
+
+[node name="Label Wrapper" type="Control" parent="PanelContainer/MarginContainer/About Us Menu/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/About Us Menu/Container/Label Wrapper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Intellibot is an AI research and deployment company. Our mission is to ensure that artificial general intelligence benefits all of humanity."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label Wrapper2" type="Control" parent="PanelContainer/MarginContainer/About Us Menu/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/About Us Menu/Container/Label Wrapper2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Our latest model, Intellibot o3, is our most capable model to date with full tool customisation. Available now!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Image Wrapper" type="Control" parent="PanelContainer/MarginContainer/About Us Menu/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/About Us Menu/Container/Image Wrapper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/About Us Menu/Container/Image Wrapper/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_bfl7c")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/MarginContainer/About Us Menu/Container/Image Wrapper/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_bfl7c")
+stretch_mode = 5
+
+[node name="Back Button Wrapper" type="Control" parent="PanelContainer/MarginContainer/About Us Menu/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/About Us Menu/Container/Back Button Wrapper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Return to Homepage"
+
+[node name="Credits Menu" type="Control" parent="PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Credits Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_wkomq")
+
+[node name="A Game By Wrapper" type="Control" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/A Game By Wrapper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 100
+text = "A Game By"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Zach Credits Wrapper" type="Control" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Zach Credits" type="VBoxContainer" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Zach Credits Wrapper"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 0
+
+[node name="Zach Name" type="Label" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Zach Credits Wrapper/Zach Credits"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Zachary Overman"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Zach Contributions" type="Label" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Zach Credits Wrapper/Zach Credits"]
+layout_mode = 2
+text = "Gameplay Programming, Level Design, 3D Modeling, Level Lighting"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ethan Credits Wrapper" type="Control" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Ethan Credits" type="VBoxContainer" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Ethan Credits Wrapper"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 0
+
+[node name="Ethan Name" type="Label" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Ethan Credits Wrapper/Ethan Credits"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Ethan Baedke"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ethan Contributions" type="Label" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Ethan Credits Wrapper/Ethan Credits"]
+layout_mode = 2
+text = "UI Programming, Music/SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back Button Wrapper" type="Control" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Back Button Wrapper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Return to Homepage"
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/MainMenu/Buttons/Start Button Wrapper/Start Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/MainMenu/Buttons/Settings Button Wrapper/Settings Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/MainMenu/Buttons/About Us Button Wrapper/About Us Button" to="." method="_on_about_us_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/MainMenu/Buttons/Credits Button Wrapper/Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/MainMenu/Buttons/Quit Button Wrapper/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/SettingsMenu/PanelContainer/VBoxContainer/Back Button Wrapper/Back Button" to="." method="_on_settings_back_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/About Us Menu/Container/Back Button Wrapper/Button" to="." method="_on_about_us_back_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Back Button Wrapper/Button" to="." method="_on_credits_back_button_pressed"]
 
 [editable path="PanelContainer/MarginContainer/SettingsMenu"]
