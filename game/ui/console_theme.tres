@@ -1,65 +1,76 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://xfkmr7u3ugdu"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://xfkmr7u3ugdu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8r3r7"]
+[ext_resource type="FontFile" uid="uid://bhwomklg4boii" path="res://ui/SFUIDisplay-Light.ttf" id="1_wamb4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j75to"]
-draw_center = false
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.375, 0.75, 0.375, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nk86l"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wamb4"]
+bg_color = Color(1, 1, 1, 1)
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25, 0.5, 0.25, 1)
+border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43xyg"]
-draw_center = false
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.5, 1, 0.5, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ohcpg"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nk86l"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8ryd"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1drnn"]
-bg_color = Color(0.5, 1, 0.5, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjlay"]
-bg_color = Color(0.5, 1, 0.5, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uldfk"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.25, 0.5, 0.25, 1)
+bg_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t50ct"]
-bg_color = Color(0.125, 0.25, 0.125, 1)
+bg_color = Color(1, 1, 1, 1)
 
 [resource]
 default_font_size = 50
-Button/colors/font_color = Color(0.5, 1, 0.5, 1)
-Button/colors/font_focus_color = Color(0.5, 1, 0.5, 1)
-Button/colors/font_hover_color = Color(0.5, 1, 0.5, 1)
-Button/colors/font_pressed_color = Color(0.5, 1, 0.5, 1)
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/constants/align_to_largest_stylebox = 1
-Button/font_sizes/font_size = 40
-Button/styles/focus = SubResource("StyleBoxEmpty_8r3r7")
-Button/styles/hover = SubResource("StyleBoxFlat_j75to")
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_wamb4")
+Button/styles/focus = SubResource("StyleBoxFlat_wamb4")
+Button/styles/hover = SubResource("StyleBoxFlat_ohcpg")
 Button/styles/normal = SubResource("StyleBoxFlat_nk86l")
-Button/styles/pressed = SubResource("StyleBoxFlat_43xyg")
+Button/styles/pressed = SubResource("StyleBoxFlat_p8ryd")
 HBoxContainer/constants/separation = 25
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_1drnn")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_bjlay")
 HSlider/styles/slider = SubResource("StyleBoxFlat_uldfk")
-Label/colors/font_color = Color(0.5, 1, 0.5, 1)
-Label/font_sizes/font_size = 40
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 50
+Label/fonts/font = ExtResource("1_wamb4")
 MarginContainer/constants/margin_bottom = 50
 MarginContainer/constants/margin_left = 50
 MarginContainer/constants/margin_right = 50

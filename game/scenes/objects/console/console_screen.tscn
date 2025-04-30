@@ -28,7 +28,7 @@ console_camera = NodePath("Camera3D")
 ui_subviewport = NodePath("SubViewport")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 5)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

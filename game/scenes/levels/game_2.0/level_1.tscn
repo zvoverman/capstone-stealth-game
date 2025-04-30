@@ -1327,6 +1327,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 23, 38.3)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenuUi" parent="CanvasLayer" instance=ExtResource("20_jku2k")]
+visible = false
 
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly"]
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2"]

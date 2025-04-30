@@ -8,6 +8,8 @@ func _ready() -> void:
 	GameManager.game_unpaused.connect(_on_game_unpaused)
 
 func _on_game_paused() -> void:
+	pause_menu.visible = true
+	settings_menu.visible = false
 	self.visible = true
 
 func _on_game_unpaused() -> void:
