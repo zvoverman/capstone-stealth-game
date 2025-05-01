@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjeocotxh35tl"]
 
 [ext_resource type="Material" uid="uid://dhpbuuwgu0t6y" path="res://materials/light_material.tres" id="1_jg5ay"]
-[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/textures/shiny_metal/shiny_metal_mat.tres" id="2_jg5ay"]
+[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/shiny_metal/shiny_metal_mat.tres" id="2_jg5ay"]
 
 [node name="TubeLight" type="Node3D"]
 

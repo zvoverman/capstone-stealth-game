@@ -34,7 +34,6 @@ func _input(event: InputEvent) -> void:
 		yaw += -event.relative.x * yaw_sensitivity
 		pitch += -event.relative.y * pitch_sensitivity
 		
-		print(yaw)
 		# Clamp pitch to avoid flipping the camera
 		pitch = clamp(pitch, pitch_min, pitch_max)
 		

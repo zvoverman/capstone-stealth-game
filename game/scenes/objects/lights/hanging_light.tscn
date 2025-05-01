@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5853ewrhxus3"]
 
-[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/textures/shiny_metal/shiny_metal_mat.tres" id="1_rqngr"]
+[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/shiny_metal/shiny_metal_mat.tres" id="1_rqngr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mllsb"]
 albedo_color = Color(0.5625, 0.5625, 0.5625, 1)

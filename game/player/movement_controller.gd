@@ -44,7 +44,7 @@ signal player_died
 
 signal pause_game
 
-const PlayerAbilityType = preload("res://interactable/player_ability/player_ability.gd").PlayerAbilityType
+const PlayerAbilityType = preload("res://interactable/player_ability.gd").PlayerAbilityType
 const PlayerAbilityStatus = preload("res://game_manager.gd").PlayerAbilityStatus
 
 func _input(event: InputEvent) -> void:

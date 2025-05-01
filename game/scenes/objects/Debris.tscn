@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cvn3xkrr25uro"]
 
-[ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="1_lald2"]
+[ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/grey_object_mat.tres" id="1_lald2"]
 
 [node name="Debris" type="Node3D"]
 

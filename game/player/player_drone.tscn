@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bflfmjp6gb4v8" path="res://player/IK/step_target_container.gd" id="4_ijx8o"]
 [ext_resource type="Script" uid="uid://dbjjfpuusupc2" path="res://player/IK/step_ray.gd" id="5_0wsnl"]
 [ext_resource type="Script" uid="uid://btfjl3wddo4pl" path="res://player/camera_controller.gd" id="6_2qcp2"]
-[ext_resource type="Texture2D" uid="uid://dpouv35yfcnun" path="res://materials/textures/Untitled.png" id="8_ojsau"]
+[ext_resource type="Texture2D" uid="uid://dpouv35yfcnun" path="res://post_processing/Untitled.png" id="8_ojsau"]
 [ext_resource type="Script" uid="uid://2pax4nxgt8v8" path="res://player/player_scan_interactables.gd" id="9_gpfwp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bumat"]

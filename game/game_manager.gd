@@ -6,7 +6,7 @@ signal game_paused
 signal game_unpaused
 var is_paused: bool = false
 
-const PlayerAbilityType = preload("res://interactable/player_ability/player_ability.gd").PlayerAbilityType
+const PlayerAbilityType = preload("res://interactable/player_ability.gd").PlayerAbilityType
 enum PlayerAbilityStatus {
 	LOCKED,
 	IN_TRANSIT,

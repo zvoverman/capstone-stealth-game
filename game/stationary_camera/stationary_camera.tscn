@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://duc5klwhr5iyi" path="res://stationary_camera/stationary_camera.gd" id="1_3dts6"]
 [ext_resource type="PackedScene" uid="uid://ck5dl85ds4yc3" path="res://detection_fov/detection_fov.tscn" id="2_o3l5m"]
-[ext_resource type="Texture2D" uid="uid://vci75d4y340d" path="res://materials/textures/sparkle-41980.png" id="3_saxd1"]
+[ext_resource type="Texture2D" uid="uid://vci75d4y340d" path="res://post_processing/sparkle-41980.png" id="3_saxd1"]
 [ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="5_ndt3d"]
-[ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="6_l30tk"]
+[ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard/hazard_mat.tres" id="6_l30tk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3g7t4"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ck5dl85ds4yc3"]
 
 [ext_resource type="Script" uid="uid://q6doeejjoe4r" path="res://detection_fov/detection_fov.gd" id="1_82axy"]
-[ext_resource type="Shader" uid="uid://ctucw6oouh2ro" path="res://materials/fov_shader.gdshader" id="2_frev8"]
+[ext_resource type="Shader" uid="uid://ctucw6oouh2ro" path="res://detection_fov/fov_shader.gdshader" id="2_frev8"]
 [ext_resource type="Script" uid="uid://ciwkrjs21mtay" path="res://detection_fov/lazer.gd" id="2_mjoly"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8pfhl"]

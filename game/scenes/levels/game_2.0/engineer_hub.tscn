@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://scwwmvqtdlsh"]
 
-[ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/test_environment_material.tres" id="1_g5hjb"]
-[ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/object_mat.tres" id="2_7a5qc"]
+[ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="1_g5hjb"]
+[ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/grey_object_mat.tres" id="2_7a5qc"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_7a5qc"]
 [ext_resource type="PackedScene" uid="uid://bbg547ouy7s4c" path="res://models/low_poly_terminal.glb" id="4_8dg3n"]
-[ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard_mat.tres" id="5_p1m0m"]
+[ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard/hazard_mat.tres" id="5_p1m0m"]
 [ext_resource type="PackedScene" uid="uid://cjeocotxh35tl" path="res://scenes/objects/lights/tube_light.tscn" id="5_uvj65"]
 [ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="6_hwk41"]
 [ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="7_hwk41"]
-[ext_resource type="PackedScene" uid="uid://8beb4vyrowop" path="res://npc/npc.tscn" id="9_2hvyt"]
+[ext_resource type="PackedScene" uid="uid://8beb4vyrowop" path="res://interactable/npc.tscn" id="9_2hvyt"]
 
 [node name="EngineerHub" type="Node3D"]
 

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game Capstone"
-run/main_scene="res://scenes/levels/menu_level.tscn"
+run/main_scene="res://scenes/levels/game_2.0/menu_level.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 GameManager="*res://game_manager.gd"
 SettingsManager="*res://settings_manager.gd"
-DialogueManager="*res://dialogue/dialogue_manager.gd"
 
 [display]
 
