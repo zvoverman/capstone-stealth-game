@@ -36,13 +36,11 @@
 roughness_texture = ExtResource("24_3yid2")
 normal_enabled = true
 normal_texture = ExtResource("23_m6rai")
-ao_enabled = true
 ao_texture = ExtResource("22_l5b4i")
 uv1_scale = Vector3(1.24, 1.08, 1.26)
 uv1_offset = Vector3(-0.075, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ndar"]
-albedo_texture = ExtResource("14_m6rai")
 metallic = 1.0
 metallic_texture = ExtResource("6_5jnw2")
 roughness_texture = ExtResource("8_m8yc0")
@@ -104,7 +102,6 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_337q8"]
 albedo_color = Color(0.84, 0.84, 0.84, 1)
-albedo_texture = ExtResource("14_m6rai")
 metallic = 1.0
 metallic_texture = ExtResource("6_5jnw2")
 roughness_texture = ExtResource("8_m8yc0")
