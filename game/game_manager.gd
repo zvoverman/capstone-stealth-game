@@ -78,7 +78,7 @@ func quit_to_main_menu():
 
 func _ready() -> void:
 	ability_to_status = {
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED
 	}
 
 func _unhandled_input(event: InputEvent) -> void:
