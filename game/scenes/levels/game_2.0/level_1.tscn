@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=56 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_vgehi"]
@@ -28,14 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://ihrcs4nttoje" path="res://materials/square_concrete_wall/Concrete031_1K-JPG_Roughness.jpg" id="24_3yid2"]
 [ext_resource type="PackedScene" uid="uid://drw2vhcmq60ow" path="res://scenes/objects/lights/big_hanging_spotlight.tscn" id="26_hjfkx"]
 [ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark.tscn" id="26_l5b4i"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emya0"]
-roughness_texture = ExtResource("24_3yid2")
-normal_enabled = true
-normal_texture = ExtResource("23_m6rai")
-ao_texture = ExtResource("22_l5b4i")
-uv1_scale = Vector3(1.24, 1.08, 1.26)
-uv1_offset = Vector3(-0.075, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ndar"]
 metallic = 1.0
@@ -298,7 +290,7 @@ operation = 2
 [node name="Container" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide/Holes"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200001, 6.25, -0.0200001)
 size = Vector3(14, 12, 14)
-material = SubResource("StandardMaterial3D_emya0")
+material = ExtResource("12_1h3np")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/CanCollide/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 3)
