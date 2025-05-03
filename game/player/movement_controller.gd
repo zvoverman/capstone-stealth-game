@@ -3,14 +3,19 @@ extends CharacterBody3D
 class_name MovementController
 
 @onready var detection_overlay = $CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D/TextureRect
-
+@onready var ray_container = $Raycasts
 @export var forward_direction : Marker3D
 
 @export var detection_bar_ui : ProgressBar
 @export var jump_timer_ui : ProgressBar
 
-@export var MAX_SPEED: float = 3
-@export var MAX_JUMP_VELOCITY: float = 10
+@export var SPEED: float = 3
+@export var MAX_VERTICAL_JUMP_VELOCITY: float = 8
+
+@export var HORIZONTAL_AIR_SPEED: float = 5
+@export var MAX_HORIZONTAL_AIR_SPEED: float = 10
+@export var HORIZONTAL_AIR_RESISTANCE: float = 0.3
+
 @export var GRAVITY_STRENGTH: float = 12
 
 var gravity_direction : Vector3 = Vector3.DOWN
@@ -83,6 +88,7 @@ func _process(delta: float) -> void:
 		
 		detection_overlay.self_modulate.a = lerp(detection_overlay.self_modulate.a, 0.0, delta)
 
+var prev_velocity: Vector3 = Vector3.ZERO
 func _physics_process(delta: float) -> void:
 	
 	# Calculate player orientation based on average normal of rays
@@ -96,55 +102,49 @@ func _physics_process(delta: float) -> void:
 	# Get target basis from result of raycasts + forward_direction
 	target_basis = calculate_orientation(current_normal, forward_direction)
 	
-	
-
-	## No gravity if on the ground
-	#if is_in_air:
-		#current_gravity += gravity_direction * GRAVITY_STRENGTH * delta
-	#else:
-		#current_gravity = Vector3.ZERO
-		
 	# Knowing the new orientation, adjust the player
 	var next_basis : Basis = global_transform.basis.slerp(target_basis.get_rotation_quaternion(), delta * rotation_smoothness)
 	global_transform.basis = next_basis
 
+	# No gravity if on the ground
+	if is_in_air:
+		current_gravity += gravity_direction * GRAVITY_STRENGTH * delta
+	else:
+		current_gravity = Vector3.ZERO
+
 	# Apply speed based on current forward direction
-	var target_velocity = MAX_SPEED * get_dir()
+	var direction = get_dir()
 	
 	if not is_in_air:
-		#velocity.x = lerp(velocity.x, target_velocity.x, 0.9)
-		#velocity.z = lerp(velocity.z, target_velocity.z, 0.9)
-		velocity = target_velocity
-		print("not in air: ", target_velocity)
+		velocity = direction * SPEED
 	else:
-		#velocity.x = lerp(velocity.x, target_velocity.x, 0.05)
-		#velocity.z = lerp(velocity.z, target_velocity.z, 0.05)
-		velocity = lerp(Vector3.ZERO, target_velocity, 0.5)
+		velocity = lerp(prev_velocity, direction * HORIZONTAL_AIR_SPEED, HORIZONTAL_AIR_RESISTANCE * delta)
 		
-		#velocity = Vector3.ZERO
-		print("in air: ", target_velocity)
+	prev_velocity = velocity
 	
-	#velocity = target_velocity
+	# Tracking gravity seperately - so this is down after prev_vel is assigned
 	velocity += current_gravity
 	
 	# Toggle jump
 	if Input.is_action_just_pressed("jump") and not is_jumping and jump_timer <= 0 and ability_to_status[PlayerAbilityType.JUMP] == PlayerAbilityStatus.UNLOCKED:
 		is_jumping = true
-		var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
-		jump_direction = (current_normal + (forwardDir)).normalized()
+		#var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
+		#jump_direction = (current_normal + (forwardDir)).normalized()
+		if current_normal != Vector3.UP and current_normal != Vector3.DOWN:
+			jump_direction = (3 * current_normal + Vector3.UP).normalized()
+		else:
+			jump_direction = current_normal
 		
 		# Reset jump timer after jumping
 		jump_timer = JUMP_COOLDOWN
 	
 	# Reset orientation if currently jumping
 	if is_jumping:
-		current_normal = Vector3.UP
-		gravity_direction = Vector3.DOWN
-		target_basis = calculate_orientation()
+		velocity += jump_direction * MAX_VERTICAL_JUMP_VELOCITY
 		
-		# THIS WILL IGNORE PREVIOUS JUMP DIRECTION CALCULATIONS
-		# velocity += jump_direction * MAX_JUMP_VELOCITY
-		velocity += Vector3.UP * MAX_JUMP_VELOCITY
+	# Clamp velocity for Maximum value check
+	var MAX_VELOCITY: Vector3 = Vector3(MAX_HORIZONTAL_AIR_SPEED, MAX_VERTICAL_JUMP_VELOCITY, MAX_HORIZONTAL_AIR_SPEED)
+	clamp(velocity, -MAX_VELOCITY, MAX_VELOCITY)
 
 	# Need to check for collisions, SLIDE!
 	move_and_slide()
@@ -204,7 +204,6 @@ func calculate_orientation(_normal: Vector3, _forward_direction: Node3D) -> Basi
 	
 # Average the collision normals of all rays in the Raycasts node
 func average_rays() -> Vector3:
-	var ray_container = $CollisionShape3D/Raycasts
 	var ray_total : Vector3 = Vector3.ZERO
 	var ray_count : int = 0
 	var no_climb_ray_count : int = 0
