@@ -4,17 +4,21 @@ class_name MovementController
 
 @onready var detection_overlay = $CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D/TextureRect
 @onready var ray_container = $Raycasts
-@export var forward_direction : Marker3D
+@export var forward_direction_node : Marker3D
 
 @export var detection_bar_ui : ProgressBar
 @export var jump_timer_ui : ProgressBar
 
-@export var SPEED: float = 3
+@export var GROUND_SPEED: float = 3
+@export var HORIZONTAL_GROUND_RESISTANCE := 0.2
+
 @export var MAX_VERTICAL_JUMP_VELOCITY: float = 8
 
 @export var HORIZONTAL_AIR_SPEED: float = 5
 @export var MAX_HORIZONTAL_AIR_SPEED: float = 10
-@export var HORIZONTAL_AIR_RESISTANCE: float = 0.3
+@export var HORIZONTAL_AIR_RESISTANCE: float = 0.03
+
+@export var DASH_SPEED: float = 10
 
 @export var GRAVITY_STRENGTH: float = 12
 
@@ -60,7 +64,8 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	ability_to_status = {
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED,
+		PlayerAbilityType.DASH: PlayerAbilityStatus.UNLOCKED
 	}
 	
 	#self.connect("player_died", GameManager, _on_player_died)
@@ -89,6 +94,7 @@ func _process(delta: float) -> void:
 		detection_overlay.self_modulate.a = lerp(detection_overlay.self_modulate.a, 0.0, delta)
 
 var prev_velocity: Vector3 = Vector3.ZERO
+var is_dashing: bool = false
 func _physics_process(delta: float) -> void:
 	
 	# Calculate player orientation based on average normal of rays
@@ -100,7 +106,7 @@ func _physics_process(delta: float) -> void:
 	gravity_direction = -current_normal
 	
 	# Get target basis from result of raycasts + forward_direction
-	target_basis = calculate_orientation(current_normal, forward_direction)
+	target_basis = calculate_orientation(current_normal, forward_direction_node)
 	
 	# Knowing the new orientation, adjust the player
 	var next_basis : Basis = global_transform.basis.slerp(target_basis.get_rotation_quaternion(), delta * rotation_smoothness)
@@ -115,10 +121,28 @@ func _physics_process(delta: float) -> void:
 	# Apply speed based on current forward direction
 	var direction = get_dir()
 	
+	var target_velocity := Vector3.ZERO
+	
 	if not is_in_air:
-		velocity = direction * SPEED
+		target_velocity += direction * GROUND_SPEED
+		velocity = lerp(prev_velocity, target_velocity, HORIZONTAL_GROUND_RESISTANCE)
 	else:
-		velocity = lerp(prev_velocity, direction * HORIZONTAL_AIR_SPEED, HORIZONTAL_AIR_RESISTANCE * delta)
+		target_velocity += direction * HORIZONTAL_AIR_SPEED
+		velocity = lerp(prev_velocity, target_velocity, HORIZONTAL_AIR_RESISTANCE)
+	
+	
+	# TODO: With many movement-based abilities... this should be a State Machine
+	# Check if Player has Dashed (affects HORIZONTAL movement)
+	if Input.is_action_just_pressed("dash"):
+		# FIXME: gravity needs to reset, but it makes us jump??
+		# current_gravity = Vector3.ZERO
+		if direction == Vector3.ZERO:
+			var forwardDir: Vector3 = ( forward_direction_node.global_transform.origin - global_transform.origin ).normalized()
+			var dirBase: Vector3 = current_normal.cross(forwardDir).normalized()
+			var forwardMovementAxis: Vector3 = current_normal.cross(dirBase).normalized()
+			velocity = -forwardMovementAxis * DASH_SPEED
+		else:
+			velocity = direction * DASH_SPEED
 		
 	prev_velocity = velocity
 	
@@ -137,10 +161,10 @@ func _physics_process(delta: float) -> void:
 		
 		# Reset jump timer after jumping
 		jump_timer = JUMP_COOLDOWN
-	
-	# Reset orientation if currently jumping
+		
 	if is_jumping:
 		velocity += jump_direction * MAX_VERTICAL_JUMP_VELOCITY
+		
 		
 	# Clamp velocity for Maximum value check
 	var MAX_VELOCITY: Vector3 = Vector3(MAX_HORIZONTAL_AIR_SPEED, MAX_VERTICAL_JUMP_VELOCITY, MAX_HORIZONTAL_AIR_SPEED)
@@ -173,7 +197,7 @@ func _physics_process(delta: float) -> void:
 # player "forward" will always be "away" from camera
 func get_dir() -> Vector3:
 	var dir: Vector3 = Vector3.ZERO
-	var forwardDir: Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
+	var forwardDir: Vector3 = ( forward_direction_node.global_transform.origin - global_transform.origin ).normalized()
 	var dirBase: Vector3 = current_normal.cross(forwardDir).normalized()
 	
 	var inputDirection: Vector3 = Vector3.ZERO
@@ -191,9 +215,9 @@ func get_dir() -> Vector3:
 	return dir.normalized()
 
 # Calculate player orientation
-func calculate_orientation(_normal: Vector3, _forward_direction: Node3D) -> Basis:
+func calculate_orientation(_normal: Vector3, _forward_direction_node: Node3D) -> Basis:
 	var up = _normal                        # Up direction from surface normal
-	var forward = _forward_direction.global_transform.basis.z  # Current forward direction
+	var forward = _forward_direction_node.global_transform.basis.z  # Current forward direction
 	forward = forward.slide(up).normalized()       # Project forward onto surface
 	var right = up.cross(forward).normalized()     # Right vector from up × forward
 	forward = right.cross(up).normalized()         # Recalculate forward to ensure orthogonal
