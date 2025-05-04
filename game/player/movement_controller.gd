@@ -45,8 +45,6 @@ var time_since_detected : float = 0.0
 
 @onready var camera = $CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D
 
-#var jump_power_up : bool = true
-
 var ability_to_status: Dictionary # Dictionary[int: int] where keys = AbilityType, values = AbilityCategory
 
 signal player_died
@@ -68,7 +66,6 @@ func _ready() -> void:
 		PlayerAbilityType.DASH: PlayerAbilityStatus.UNLOCKED
 	}
 	
-	#self.connect("player_died", GameManager, _on_player_died)
 	player_died.connect(GameManager._on_player_died)
 	
 	if detection_bar_ui:
@@ -134,8 +131,8 @@ func _physics_process(delta: float) -> void:
 	# TODO: With many movement-based abilities... this should be a State Machine
 	# Check if Player has Dashed (affects HORIZONTAL movement)
 	if Input.is_action_just_pressed("dash"):
-		# FIXME: gravity needs to reset, but it makes us jump??
-		# current_gravity = Vector3.ZERO
+		is_jumping = false
+		current_gravity = Vector3.ZERO
 		if direction == Vector3.ZERO:
 			var forwardDir: Vector3 = ( forward_direction_node.global_transform.origin - global_transform.origin ).normalized()
 			var dirBase: Vector3 = current_normal.cross(forwardDir).normalized()
