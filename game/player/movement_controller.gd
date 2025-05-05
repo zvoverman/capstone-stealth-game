@@ -43,6 +43,8 @@ var detection_level : float = 0.0
 @export var max_detection_level : float = 1.0
 var time_since_detected : float = 0.0
 
+var leg_targets: Array
+
 @onready var camera = $CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D
 
 var ability_to_status: Dictionary # Dictionary[int: int] where keys = AbilityType, values = AbilityCategory
@@ -65,7 +67,7 @@ func _ready() -> void:
 		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED,
 		PlayerAbilityType.DASH: PlayerAbilityStatus.UNLOCKED
 	}
-	
+		
 	player_died.connect(GameManager._on_player_died)
 	
 	if detection_bar_ui:
@@ -170,6 +172,19 @@ func _physics_process(delta: float) -> void:
 	# Need to check for collisions, SLIDE!
 	move_and_slide()
 	
+	#leg_targets = [$Armature/BackLeftIKTarget.global_position, $Armature/BackRightIKTarget.global_position, $Armature/FrontLeftIKTarget.global_position, $Armature/FrontRightIKTarget.global_position]
+	#var leg_center = get_average_leg_position(leg_targets) + Vector3(0, 1, 0)
+	#var balance_strength = 0.1  # 0 = no constraint, 1 = fully locked to center
+	#var balanced_position = global_position.lerp(leg_center, balance_strength)
+	
+	#global_position = balanced_position
+	
+	#if normal == Vector3.ZERO:
+		#is_in_air = true
+	#else:
+		#is_in_air = false
+		#is_jumping = false
+	
 	# Base player orientation on latest collision normal
 	var collision = get_last_slide_collision()
 	if collision:
@@ -189,6 +204,14 @@ func _physics_process(delta: float) -> void:
 			is_jumping = false;
 	else:
 		is_in_air = true;
+		
+
+func get_average_leg_position(targets: Array) -> Vector3:
+	var avg = Vector3.ZERO
+	for pos in targets:
+		avg += pos
+	return avg / targets.size()
+
 
 # Movement direction calculation based on forward direction,
 # player "forward" will always be "away" from camera
@@ -236,13 +259,14 @@ func average_rays() -> Vector3:
 				continue
 			elif collider.is_in_group("no_climb"):
 				no_climb_ray_count += 1
+				ray_total += ray.get_collision_normal()
 			else:
 				ray_total += ray.get_collision_normal()
 				ray_count += 1
-	if no_climb_ray_count > ray_count:
+	if no_climb_ray_count > 0 and ray_count == 0:
 		return Vector3.UP
 	elif ray_count > 0:
-		return (ray_total / ray_count).normalized()
+		return (ray_total/ ray_count).normalized()
 	else:
 		return Vector3.ZERO
 
