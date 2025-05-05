@@ -18,7 +18,7 @@ class_name MovementController
 @export var MAX_HORIZONTAL_AIR_SPEED: float = 10
 @export var HORIZONTAL_AIR_RESISTANCE: float = 0.03
 
-@export var DASH_SPEED: float = 10
+@export var DASH_SPEED: float = 20
 
 @export var GRAVITY_STRENGTH: float = 12
 
@@ -133,20 +133,16 @@ func _physics_process(delta: float) -> void:
 	# TODO: With many movement-based abilities... this should be a State Machine
 	# Check if Player has Dashed (affects HORIZONTAL movement)
 	if Input.is_action_just_pressed("dash"):
-		is_jumping = false
+		#is_jumping = false
 		current_gravity = Vector3.ZERO
 		if direction == Vector3.ZERO:
 			var forwardDir: Vector3 = ( forward_direction_node.global_transform.origin - global_transform.origin ).normalized()
 			var dirBase: Vector3 = current_normal.cross(forwardDir).normalized()
 			var forwardMovementAxis: Vector3 = current_normal.cross(dirBase).normalized()
-			velocity = -forwardMovementAxis * DASH_SPEED
+			velocity += -forwardMovementAxis * DASH_SPEED
 		else:
-			velocity = direction * DASH_SPEED
+			velocity += direction * DASH_SPEED
 		
-	prev_velocity = velocity
-	
-	# Tracking gravity seperately - so this is down after prev_vel is assigned
-	velocity += current_gravity
 	
 	# Toggle jump
 	if Input.is_action_just_pressed("jump") and not is_jumping and jump_timer <= 0 and ability_to_status[PlayerAbilityType.JUMP] == PlayerAbilityStatus.UNLOCKED:
@@ -157,17 +153,24 @@ func _physics_process(delta: float) -> void:
 			jump_direction = (3 * current_normal + Vector3.UP).normalized()
 		else:
 			jump_direction = current_normal
+			
+		velocity += jump_direction * MAX_VERTICAL_JUMP_VELOCITY
 		
 		# Reset jump timer after jumping
 		jump_timer = JUMP_COOLDOWN
 		
-	if is_jumping:
-		velocity += jump_direction * MAX_VERTICAL_JUMP_VELOCITY
+	#if is_jumping:
+		#velocity += jump_direction * MAX_VERTICAL_JUMP_VELOCITY
 		
 		
 	# Clamp velocity for Maximum value check
 	var MAX_VELOCITY: Vector3 = Vector3(MAX_HORIZONTAL_AIR_SPEED, MAX_VERTICAL_JUMP_VELOCITY, MAX_HORIZONTAL_AIR_SPEED)
-	clamp(velocity, -MAX_VELOCITY, MAX_VELOCITY)
+	velocity = clamp(velocity, -MAX_VELOCITY, MAX_VELOCITY)
+	
+	prev_velocity = velocity
+	
+	# Tracking gravity seperately - so this is down after prev_vel is assigned
+	velocity += current_gravity
 
 	# Need to check for collisions, SLIDE!
 	move_and_slide()
