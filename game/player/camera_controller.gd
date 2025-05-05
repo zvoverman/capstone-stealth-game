@@ -49,20 +49,26 @@ func check_joystick_movement() -> void:
 		
 	pitch = clamp(pitch, pitch_min, pitch_max)
 
+const YAW_DEADZONE := 0.1
+const PITCH_DEADZONE := 0.1
+
 func _physics_process(delta: float) -> void:
-	# TODO: Should probably be updated by signal
-	yaw_sensitivity =  get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
+	# Sensitivity retrieval
+	yaw_sensitivity = get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
 	pitch_sensitivity = get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
-	
+
 	check_joystick_movement()
-	
-	# Rotate the camera root's pitch, but leave yaw rotation to the player armature itself.
-	yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
-	pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
-	# Adjust forward direction pitch as well for better orientation control
-	forward_direction.position.y = lerp(forward_direction.rotation_degrees.x, pitch, pitch_acceleration * delta)
-	
-	# Must bring yaw back to 0 or will endlessly rotate
+
+	# Only apply yaw rotation if outside deadzone
+	if abs(yaw) > YAW_DEADZONE:
+		yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
+
+	# Only apply pitch rotation if outside deadzone
+	if abs(pitch) > PITCH_DEADZONE:
+		pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+		forward_direction.position.y = lerp(forward_direction.position.y, pitch, pitch_acceleration * delta)
+
+	# Return yaw to 0 to stop rotation over time
 	yaw = lerp(yaw, 0.0, yaw_acceleration * delta)
 	
 func _on_sensitivity_changed(new_value: float):

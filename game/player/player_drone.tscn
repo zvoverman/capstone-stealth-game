@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://1ho3oqfnll2i"]
+[gd_scene load_steps=16 format=4 uid="uid://1ho3oqfnll2i"]
 
 [ext_resource type="Script" uid="uid://c2xjsks07hwc7" path="res://player/movement_controller.gd" id="1_qujey"]
 [ext_resource type="Script" uid="uid://fveqasmpx35u" path="res://player/IK/start_ik.gd" id="2_dfnor"]
@@ -92,8 +92,6 @@ albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5rkb1"]
 radius = 0.1
-
-[sub_resource type="QuadMesh" id="QuadMesh_ffx1t"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6rjx2"]
 radius = 0.05
@@ -366,9 +364,11 @@ forward_direction = NodePath("../Armature/ForwardMarker")
 transform = Transform3D(1, 0, 0, 0, 0.888225, 0.459409, 0, -0.459409, 0.888225, 0, 0, 0)
 shape = SubResource("SphereShape3D_5rkb1")
 spring_length = 5.0
+margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.995692, -0.0927175, 0, 0.0927175, 0.995692, 0, -0.0288417, 5.5588)
+fov = 90.0
 
 [node name="TextureRect" type="TextureRect" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D"]
 self_modulate = Color(1, 1, 1, 0)
@@ -387,12 +387,6 @@ target_position = Vector3(0, 0, -5)
 hit_back_faces = false
 collide_with_bodies = false
 debug_shape_custom_color = Color(0, 1, 0, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraRootNode/CamYaw"]
-transform = Transform3D(1, 0, 0, 0, 0.926994, 0.375076, 0, -0.375076, 0.926994, 0, 0.975495, 0.0430653)
-visible = false
-mesh = SubResource("QuadMesh_ffx1t")
-skeleton = NodePath("../CamPitch/SpringArm3D/Camera3D")
 
 [node name="Dangle" type="Node3D" parent="."]
 
