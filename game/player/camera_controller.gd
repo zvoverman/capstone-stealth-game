@@ -16,7 +16,7 @@ class_name CameraController
 var yaw_sensitivity : float = 0.07
 var pitch_sensitivity : float = 0.07
 
-var snap_speed : float = 5
+@export var snap_speed : float = 3
 
 var yaw : float = 0
 var pitch : float = 0
