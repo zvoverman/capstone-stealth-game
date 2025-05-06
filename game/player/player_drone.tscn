@@ -91,7 +91,7 @@ bind/16/pose = Transform3D(3.96304, 0, 3.96304, 3.96304, 0, -3.96304, 0, 5.60458
 albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5rkb1"]
-radius = 0.1
+radius = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6rjx2"]
 radius = 0.05

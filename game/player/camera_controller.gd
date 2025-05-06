@@ -69,7 +69,9 @@ func _physics_process(delta: float) -> void:
 	# Follow node to follow
 	self.global_position = node_to_follow.global_position
 	
-	snap_orientation(delta)
+	self.global_basis = lerp_to_target_quat(self.global_basis, node_to_follow.global_basis, delta, snap_speed)
+	
+	#snap_orientation(delta)
 	
 	# Sensitivity retrieval
 	yaw_sensitivity = get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
@@ -79,6 +81,8 @@ func _physics_process(delta: float) -> void:
 
 	yaw_node.rotation_degrees.y = safe_lerp_angle(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
 	pitch_node.rotation_degrees.x = safe_lerp_angle(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+	
+	yaw = lerp(yaw, 0.0, yaw_sensitivity)
 	
 func _on_sensitivity_changed(new_value: float):
 	yaw_sensitivity = new_value
