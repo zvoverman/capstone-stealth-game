@@ -2,6 +2,9 @@ extends Node3D
 
 class_name CameraController
 
+# Should the camera snap to 90 degree normals?
+@export var SHOULD_SNAP : bool = false
+
 @export var yaw_node : Node3D
 @export var pitch_node : Node3D
 @export var forward_direction : Node3D
@@ -69,9 +72,10 @@ func _physics_process(delta: float) -> void:
 	# Follow node to follow
 	self.global_position = node_to_follow.global_position
 	
-	self.global_basis = lerp_to_target_quat(self.global_basis, node_to_follow.global_basis, delta, snap_speed)
-	
-	#snap_orientation(delta)
+	if SHOULD_SNAP:
+		snap_orientation(delta)
+	else:
+		change_orientation(delta)
 	
 	# Sensitivity retrieval
 	yaw_sensitivity = get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
@@ -82,7 +86,8 @@ func _physics_process(delta: float) -> void:
 	yaw_node.rotation_degrees.y = safe_lerp_angle(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
 	pitch_node.rotation_degrees.x = safe_lerp_angle(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
 	
-	yaw = lerp(yaw, 0.0, yaw_sensitivity)
+	# Must bring yaw back to 0 or will endlessly rotate
+	yaw = lerp(yaw, 0.0, yaw_acceleration / 4 * delta)
 	
 func _on_sensitivity_changed(new_value: float):
 	yaw_sensitivity = new_value
@@ -90,6 +95,17 @@ func _on_sensitivity_changed(new_value: float):
 	
 func get_scaled_sensitivity(x: float) -> float:
 	return ((x - 1) / (100 - 1)) * (0.15 - 0.01) + 0.01
+	
+func change_orientation(delta):
+	var current_quat := self.global_basis.get_rotation_quaternion()
+	var target_quat := node_to_follow.global_basis.get_rotation_quaternion()
+	
+	# Get angular difference between current and target quaternions
+	var angle_diff := rad_to_deg(current_quat.angle_to(target_quat))
+	
+	# Only update if the difference is above a small threshold (e.g., 0.1 degrees)
+	if angle_diff > 5.0:
+		self.global_basis = lerp_to_target_quat(self.global_basis, node_to_follow.global_basis, delta, snap_speed)
 	
 func snap_orientation(delta) -> void:
 	# 1. Get the player's current "up" vector
