@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://duft84tt31p30"]
+
+[ext_resource type="Environment" uid="uid://c44vmyc3ullii" path="res://post_processing/abstract_world_environment.tres" id="1_gm6s4"]
+[ext_resource type="PackedScene" uid="uid://bvmrgcjk43qtb" path="res://ui/pause_menu_ui.tscn" id="1_vgmen"]
+[ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_xmj60"]
+[ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="3_0wgld"]
+[ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard/hazard_mat.tres" id="4_lny1w"]
+[ext_resource type="PackedScene" uid="uid://vvi51bfhe2pu" path="res://collectable/collectable.tscn" id="6_t3y6t"]
+
+[node name="AbstractWorld" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
+visible = false
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_blur = 2.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_gm6s4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenuUi" parent="CanvasLayer" instance=ExtResource("1_vgmen")]
+visible = false
+
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="InitialSpawnPoint" type="Marker3D" parent="Checkpoints"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Collide" type="CSGCombiner3D" parent="Environment"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Collide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, -30)
+size = Vector3(4, 2, 67)
+material = ExtResource("2_xmj60")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Collide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -68.5)
+size = Vector3(4, 12, 10)
+material = ExtResource("2_xmj60")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Collide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -83.5)
+size = Vector3(4, 1, 40)
+material = ExtResource("2_xmj60")
+
+[node name="NoClimb" type="CSGCombiner3D" parent="Environment" groups=["no_climb"]]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -28)
+size = Vector3(4, 1, 1)
+material = ExtResource("3_0wgld")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -63)
+size = Vector3(4, 1, 1)
+material = ExtResource("3_0wgld")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -74)
+size = Vector3(4, 1, 1)
+material = ExtResource("3_0wgld")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -68)
+size = Vector3(1, 1, 11)
+material = ExtResource("3_0wgld")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, -68)
+size = Vector3(1, 1, 11)
+material = ExtResource("3_0wgld")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 7, -69)
+size = Vector3(1, 1, 11)
+material = ExtResource("3_0wgld")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 7, -69)
+size = Vector3(1, 1, 11)
+material = ExtResource("3_0wgld")
+
+[node name="Hazard" type="CSGCombiner3D" parent="Environment" groups=["hazard"]]
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Hazard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -96)
+size = Vector3(4, 1, 1)
+material = ExtResource("4_lny1w")
+
+[node name="Collectable" parent="Environment" instance=ExtResource("6_t3y6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -33)
+
+[node name="Collectable2" parent="Environment" instance=ExtResource("6_t3y6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, -64)

@@ -3,7 +3,10 @@ extends Interactable
 class_name PlayerAbility
 
 enum PlayerAbilityType {
-	JUMP
+	JUMP,
+	DASH,
+	BALL,
+	GRAPPLE
 }
 
 @export var ability_type : PlayerAbilityType

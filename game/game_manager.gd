@@ -50,11 +50,12 @@ func load_level(scene_path: String) -> Node:
 func start_game():
 	const scene_path = "res://scenes/levels/game_2.0/level_1.tscn"
 	#const scene_path = "res://scenes/levels/game/game.tscn" # old game scene
+	#const scene_path = "res://scenes/levels/game_2.0/abstract_world.tscn"
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
-	#spawn_node= level_root.get_node("Checkpoints/InitialSpawnPoint")
-	spawn_node= level_root.get_node("Checkpoints/EngineerHub")
+	spawn_node= level_root.get_node("Checkpoints/InitialSpawnPoint")
+	#spawn_node= level_root.get_node("Checkpoints/EngineerHub")
 	if spawn_node == null:
 		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
 		return
@@ -78,7 +79,7 @@ func quit_to_main_menu():
 
 func _ready() -> void:
 	ability_to_status = {
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED
 	}
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://1ho3oqfnll2i"]
+[gd_scene load_steps=16 format=4 uid="uid://1ho3oqfnll2i"]
 
 [ext_resource type="Script" uid="uid://c2xjsks07hwc7" path="res://player/movement_controller.gd" id="1_qujey"]
 [ext_resource type="Script" uid="uid://fveqasmpx35u" path="res://player/IK/start_ik.gd" id="2_dfnor"]
@@ -91,128 +91,21 @@ bind/16/pose = Transform3D(3.96304, 0, 3.96304, 3.96304, 0, -3.96304, 0, 5.60458
 albedo_color = Color(1, 0, 1, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5rkb1"]
-radius = 0.1
-
-[sub_resource type="QuadMesh" id="QuadMesh_ffx1t"]
+radius = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6rjx2"]
 radius = 0.05
 
-[node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction")]
+[node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction_node")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_qujey")
-forward_direction = NodePath("Armature/ForwardMarker")
-MAX_JUMP_VELOCITY = 8.0
+forward_direction_node = NodePath("CameraRootNode/CamYaw/CamPitch/ForwardMarker")
 detection_level_step = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.371501, 0)
 shape = SubResource("SphereShape3D_bumat")
-
-[node name="Raycasts" type="Node3D" parent="CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0154174, 0)
-
-[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.683765, -0.5)
-target_position = Vector3(0, 0, 1.5)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D2" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.5, -0.683765, 0)
-target_position = Vector3(0, 0, 1.5)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D3" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.683765, 0.5)
-target_position = Vector3(0, 0, 1.5)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D4" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, -0.683765, 0)
-target_position = Vector3(0, 0, 1.5)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D5" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D6" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-target_position = Vector3(0, 1, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D7" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-target_position = Vector3(1, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D8" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-target_position = Vector3(-1, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D9" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-target_position = Vector3(0, 0, 1)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D10" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-target_position = Vector3(0, 0, -1)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D11" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D12" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
-target_position = Vector3(0, 1, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D13" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
-target_position = Vector3(1, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D14" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
-target_position = Vector3(-1, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D15" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
-target_position = Vector3(0, 0, 1)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D16" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
-target_position = Vector3(0, 0, -1)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D17" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D18" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
-target_position = Vector3(0, 1, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D19" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
-target_position = Vector3(1, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D20" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
-target_position = Vector3(-1, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D21" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
-target_position = Vector3(0, 0, 1)
-debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[node name="RayCast3D22" type="RayCast3D" parent="CollisionShape3D/Raycasts"]
-transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
-target_position = Vector3(0, 0, -1)
-debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="Armature" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -457,11 +350,13 @@ visible = false
 material_override = SubResource("ORMMaterial3D_vbr6i")
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="CameraRootNode" type="Node3D" parent="." node_paths=PackedStringArray("yaw_node", "pitch_node", "forward_direction")]
+[node name="CameraRootNode" type="Node3D" parent="." node_paths=PackedStringArray("yaw_node", "pitch_node", "forward_direction", "node_to_follow")]
+top_level = true
 script = ExtResource("6_2qcp2")
-yaw_node = NodePath("../Armature")
+yaw_node = NodePath("CamYaw")
 pitch_node = NodePath("CamYaw/CamPitch")
-forward_direction = NodePath("../Armature/ForwardMarker")
+forward_direction = NodePath("CamYaw/CamPitch/ForwardMarker")
+node_to_follow = NodePath("..")
 
 [node name="CamYaw" type="Node3D" parent="CameraRootNode"]
 
@@ -470,10 +365,12 @@ forward_direction = NodePath("../Armature/ForwardMarker")
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraRootNode/CamYaw/CamPitch"]
 transform = Transform3D(1, 0, 0, 0, 0.888225, 0.459409, 0, -0.459409, 0.888225, 0, 0, 0)
 shape = SubResource("SphereShape3D_5rkb1")
-spring_length = 5.0
+spring_length = 3.5
+margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 0.995692, -0.0927175, 0, 0.0927175, 0.995692, 0, -0.0288417, 5.5588)
+transform = Transform3D(1, 0, 0, 0, 0.995692, -0.0927175, 0, 0.0927175, 0.995692, 0, 0.00175154, 3.32294)
+fov = 100.0
 
 [node name="TextureRect" type="TextureRect" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D"]
 self_modulate = Color(1, 1, 1, 0)
@@ -492,12 +389,6 @@ target_position = Vector3(0, 0, -5)
 hit_back_faces = false
 collide_with_bodies = false
 debug_shape_custom_color = Color(0, 1, 0, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraRootNode/CamYaw"]
-transform = Transform3D(1, 0, 0, 0, 0.926994, 0.375076, 0, -0.375076, 0.926994, 0, 0.975495, 0.0430653)
-visible = false
-mesh = SubResource("QuadMesh_ffx1t")
-skeleton = NodePath("../CamPitch/SpringArm3D/Camera3D")
 
 [node name="Dangle" type="Node3D" parent="."]
 
@@ -523,3 +414,107 @@ material = ExtResource("2_kghnf")
 script = ExtResource("9_gpfwp")
 player = NodePath("..")
 camera = NodePath("../CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D")
+
+[node name="Raycasts" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.386918, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.683765, -0.5)
+target_position = Vector3(0, 0, 1.5)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D2" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.5, -0.683765, 0)
+target_position = Vector3(0, 0, 1.5)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D3" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.683765, 0.5)
+target_position = Vector3(0, 0, 1.5)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D4" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, -0.683765, 0)
+target_position = Vector3(0, 0, 1.5)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D5" type="RayCast3D" parent="Raycasts"]
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D6" type="RayCast3D" parent="Raycasts"]
+target_position = Vector3(0, 1, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D7" type="RayCast3D" parent="Raycasts"]
+target_position = Vector3(1, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D8" type="RayCast3D" parent="Raycasts"]
+target_position = Vector3(-1, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D9" type="RayCast3D" parent="Raycasts"]
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D10" type="RayCast3D" parent="Raycasts"]
+target_position = Vector3(0, 0, -1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D11" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D12" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
+target_position = Vector3(0, 1, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D13" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
+target_position = Vector3(1, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D14" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
+target_position = Vector3(-1, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D15" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D16" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0)
+target_position = Vector3(0, 0, -1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D17" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D18" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+target_position = Vector3(0, 1, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D19" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+target_position = Vector3(1, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D20" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+target_position = Vector3(-1, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D21" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="RayCast3D22" type="RayCast3D" parent="Raycasts"]
+transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+target_position = Vector3(0, 0, -1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
