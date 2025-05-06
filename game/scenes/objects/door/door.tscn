@@ -1,8 +1,11 @@
-[gd_scene load_steps=27 format=4 uid="uid://cqrmjewqwwbyg"]
+[gd_scene load_steps=31 format=4 uid="uid://cqrmjewqwwbyg"]
 
 [ext_resource type="Script" uid="uid://buybpir3v6730" path="res://scenes/objects/door/door.gd" id="1_gatlk"]
-[ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="2_vijyo"]
+[ext_resource type="Texture2D" uid="uid://br6sb4ag15pyx" path="res://materials/wavy_crete/Concrete045_1K-JPG_AmbientOcclusion.jpg" id="3_82fhh"]
 [ext_resource type="Material" uid="uid://dhpbuuwgu0t6y" path="res://materials/light_material.tres" id="3_nrveb"]
+[ext_resource type="Texture2D" uid="uid://btk2a3q3537pw" path="res://materials/wavy_crete/Concrete045_1K-JPG_NormalGL.jpg" id="4_4gckg"]
+[ext_resource type="Texture2D" uid="uid://bwkkasagcqvnl" path="res://materials/wavy_crete/Concrete045_1K-JPG_Roughness.jpg" id="5_1ce7u"]
+[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/shiny_metal/shiny_metal_mat.tres" id="5_ij5hy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m064w"]
 radius = 5.0
@@ -75,6 +78,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_y2psa")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6iu8"]
+roughness_texture = ExtResource("5_1ce7u")
+normal_enabled = true
+normal_texture = ExtResource("4_4gckg")
+ao_enabled = true
+ao_texture = ExtResource("3_82fhh")
+uv1_scale = Vector3(-0.14, -0.14, -0.14)
+uv1_triplanar = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ap3r8"]
 data = PackedVector3Array(-0.25, -0.493162, 3.25532, -0.25, 4.40121, -3.26552, -0.25, 4.40121, 3.25532, -0.25, -0.493162, 3.25532, -0.25, -0.493162, -3.26552, -0.25, 4.40121, -3.26552, -0.25, -0.493162, -3.26552, 0.25, 4.40121, -3.26552, -0.25, 4.40121, -3.26552, -0.25, -0.493162, -3.26552, 0.25, -0.493162, -3.26552, 0.25, 4.40121, -3.26552, 0.25, -0.493162, -3.26552, 0.25, 4.40121, 3.25532, 0.25, 4.40121, -3.26552, 0.25, -0.493162, -3.26552, 0.25, -0.493162, 3.25532, 0.25, 4.40121, 3.25532, 0.25, -0.493162, 3.25532, -0.25, 4.40121, 3.25532, 0.25, 4.40121, 3.25532, 0.25, -0.493162, 3.25532, -0.25, -0.493162, 3.25532, -0.25, 4.40121, 3.25532, -0.25, -0.493162, -3.26552, 0.25, -0.493162, 3.25532, 0.25, -0.493162, -3.26552, -0.25, -0.493162, -3.26552, -0.25, -0.493162, 3.25532, 0.25, -0.493162, 3.25532, 0.25, 4.40121, -3.26552, -0.25, 4.40121, 3.25532, -0.25, 4.40121, -3.26552, 0.25, 4.40121, -3.26552, 0.25, 4.40121, 3.25532, -0.25, 4.40121, 3.25532)
@@ -233,6 +245,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -2,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 mesh = SubResource("ArrayMesh_3q0uf")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("5_ij5hy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="low_poly_garage_door/Cube_001 "]
 
@@ -242,7 +255,7 @@ shape = SubResource("ConcavePolygonShape3D_p88nm")
 [node name="Door " type="MeshInstance3D" parent="low_poly_garage_door"]
 mesh = SubResource("ArrayMesh_wljfj")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_vijyo")
+surface_material_override/0 = SubResource("StandardMaterial3D_m6iu8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="low_poly_garage_door/Door "]
 
@@ -264,6 +277,7 @@ shape = SubResource("ConcavePolygonShape3D_cnyeb")
 transform = Transform3D(0.98231, -0.571347, 0.00322687, 0.571347, 0.982243, -0.0119657, 0.00322687, 0.0119657, 1.13632, -0.708362, 4.67473, -2.78003)
 mesh = SubResource("ArrayMesh_fmrg8")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("5_ij5hy")
 
 [node name="Cylinder_001 " type="MeshInstance3D" parent="low_poly_garage_door"]
 transform = Transform3D(0.80968, 5.15527e-08, 0.407261, 0.407261, -1.02492e-07, -0.80968, 0, 0.906335, -1.14727e-07, 0.671672, 4.67273, 0)
@@ -280,6 +294,7 @@ shape = SubResource("ConcavePolygonShape3D_cn7w3")
 transform = Transform3D(0.620819, -0.951786, 0.00825811, 0.951816, 0.620759, -0.00924089, 0.0032287, 0.0119652, 1.13632, 0.668299, 4.67404, -2.78003)
 mesh = SubResource("ArrayMesh_rl22c")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("5_ij5hy")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
