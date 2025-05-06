@@ -167,7 +167,6 @@ func lerp_to_target_quat(current_quat: Quaternion, target_quat: Quaternion, delt
 	# Otherwise, interpolate smoothly between current and target using slerp
 	var smoothed_quat = current_quat.slerp(target_quat, delta * speed)
 
-	print(smoothed_quat)
 	return smoothed_quat
 
 func safe_lerp_angle(from: float, to: float, weight: float) -> float:

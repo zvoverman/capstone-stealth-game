@@ -12,10 +12,11 @@ class_name MovementController
 @export var GROUND_SPEED: float = 3
 @export var HORIZONTAL_GROUND_RESISTANCE := 0.2
 
-@export var MAX_VERTICAL_JUMP_VELOCITY: float = 8
+# Do not set this higher than MAX_HORIZONTAL_AIR_SPEED
+@export var MAX_VERTICAL_JUMP_VELOCITY: float = 12
 
 @export var HORIZONTAL_AIR_SPEED: float = 5
-@export var MAX_HORIZONTAL_AIR_SPEED: float = 10
+@export var MAX_HORIZONTAL_AIR_SPEED: float = 15
 @export var HORIZONTAL_AIR_RESISTANCE: float = 0.03
 
 @export var DASH_SPEED: float = 20
@@ -65,7 +66,7 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	ability_to_status = {
 		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED,
-		PlayerAbilityType.DASH: PlayerAbilityStatus.UNLOCKED
+		PlayerAbilityType.DASH: PlayerAbilityStatus.LOCKED
 	}
 		
 	player_died.connect(GameManager._on_player_died)
@@ -103,7 +104,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		current_normal = Vector3.UP
 	gravity_direction = -current_normal
-	
+		
 	# Get target basis from result of raycasts + forward_direction
 	target_basis = calculate_orientation(current_normal, forward_direction_node)
 	
@@ -132,7 +133,7 @@ func _physics_process(delta: float) -> void:
 	# FIXME: This is not working as intended
 	# TODO: With many movement-based abilities... this should be a State Machine
 	# Check if Player has Dashed (affects HORIZONTAL movement)
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and ability_to_status[PlayerAbilityType.DASH] == PlayerAbilityStatus.UNLOCKED:
 		#is_jumping = false
 		current_gravity = Vector3.ZERO
 		if direction == Vector3.ZERO:
@@ -149,12 +150,15 @@ func _physics_process(delta: float) -> void:
 		is_jumping = true
 		#var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
 		#jump_direction = (current_normal + (forwardDir)).normalized()
-		if current_normal != Vector3.UP and current_normal != Vector3.DOWN:
-			jump_direction = (3 * current_normal + Vector3.UP).normalized()
-		else:
-			jump_direction = current_normal
+		#if current_normal != Vector3.UP and current_normal != Vector3.DOWN:
+			#jump_direction = (2 * current_normal).normalized()
+		#else:
+			#jump_direction = current_normal
+		jump_direction = current_normal
 			
 		velocity += jump_direction * MAX_VERTICAL_JUMP_VELOCITY
+		
+		print(velocity)
 		
 		# Reset jump timer after jumping
 		jump_timer = JUMP_COOLDOWN
