@@ -104,7 +104,7 @@ func change_orientation(delta):
 	var angle_diff := rad_to_deg(current_quat.angle_to(target_quat))
 	
 	# Only update if the difference is above a small threshold (e.g., 0.1 degrees)
-	if angle_diff > 5.0:
+	if angle_diff > 1.0:
 		self.global_basis = lerp_to_target_quat(self.global_basis, node_to_follow.global_basis, delta, snap_speed)
 	
 func snap_orientation(delta) -> void:
