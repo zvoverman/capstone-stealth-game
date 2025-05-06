@@ -80,12 +80,8 @@ func _physics_process(delta: float) -> void:
 	var current_yaw = yaw_node.rotation_degrees.y
 	var delta_yaw = fmod(yaw - current_yaw + 180.0, 360.0) - 180.0
 
-	# Apply smoothing for smaller changes
 	yaw_node.rotation_degrees.y = safe_lerp_angle(current_yaw, yaw, yaw_acceleration * delta)
-
 	pitch_node.rotation_degrees.x = safe_lerp_angle(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
-		#forward_direction.position.y = lerp(forward_direction.position.y, pitch, pitch_acceleration * delta)
-	#pitch_node.rotation_degrees.x = pitch
 	
 func _on_sensitivity_changed(new_value: float):
 	yaw_sensitivity = new_value
@@ -147,7 +143,6 @@ func get_snapped_axis(input_vector: Vector3) -> Vector3:
 			best_axis = axis
 	return best_axis
 	
-# Function to smoothly rotate to a target quaternion with deadzone and snap on close alignment
 func lerp_to_target_quat(current_quat: Quaternion, target_quat: Quaternion, delta: float, speed: float, deadzone: float = 0.01) -> Quaternion:
 	# Calculate the angle between the two quaternions
 	var angle_diff = current_quat.angle_to(target_quat)
@@ -161,7 +156,7 @@ func lerp_to_target_quat(current_quat: Quaternion, target_quat: Quaternion, delt
 
 	print(smoothed_quat)
 	return smoothed_quat
-	
+
 func safe_lerp_angle(from: float, to: float, weight: float) -> float:
 	var delta = fmod(to - from + 180.0, 360.0) - 180.0
 	if abs(delta) == 180.0:

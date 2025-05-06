@@ -129,7 +129,7 @@ func _physics_process(delta: float) -> void:
 		target_velocity += direction * HORIZONTAL_AIR_SPEED
 		velocity = lerp(prev_velocity, target_velocity, HORIZONTAL_AIR_RESISTANCE)
 	
-	
+	# FIXME: This is not working as intended
 	# TODO: With many movement-based abilities... this should be a State Machine
 	# Check if Player has Dashed (affects HORIZONTAL movement)
 	if Input.is_action_just_pressed("dash"):
@@ -159,9 +159,6 @@ func _physics_process(delta: float) -> void:
 		# Reset jump timer after jumping
 		jump_timer = JUMP_COOLDOWN
 		
-	#if is_jumping:
-		#velocity += jump_direction * MAX_VERTICAL_JUMP_VELOCITY
-		
 		
 	# Clamp velocity for Maximum value check
 	var MAX_VELOCITY: Vector3 = Vector3(MAX_HORIZONTAL_AIR_SPEED, MAX_VERTICAL_JUMP_VELOCITY, MAX_HORIZONTAL_AIR_SPEED)
@@ -174,19 +171,6 @@ func _physics_process(delta: float) -> void:
 
 	# Need to check for collisions, SLIDE!
 	move_and_slide()
-	
-	#leg_targets = [$Armature/BackLeftIKTarget.global_position, $Armature/BackRightIKTarget.global_position, $Armature/FrontLeftIKTarget.global_position, $Armature/FrontRightIKTarget.global_position]
-	#var leg_center = get_average_leg_position(leg_targets) + Vector3(0, 1, 0)
-	#var balance_strength = 0.1  # 0 = no constraint, 1 = fully locked to center
-	#var balanced_position = global_position.lerp(leg_center, balance_strength)
-	
-	#global_position = balanced_position
-	
-	#if normal == Vector3.ZERO:
-		#is_in_air = true
-	#else:
-		#is_in_air = false
-		#is_jumping = false
 	
 	# Base player orientation on latest collision normal
 	var collision = get_last_slide_collision()
@@ -262,12 +246,12 @@ func average_rays() -> Vector3:
 				continue
 			elif collider.is_in_group("no_climb"):
 				no_climb_ray_count += 1
-				ray_total += ray.get_collision_normal()
+				#ray_total += ray.get_collision_normal()
 			else:
 				ray_total += ray.get_collision_normal()
 				ray_count += 1
-	if no_climb_ray_count > 0 and ray_count == 0:
-		return Vector3.UP
+	#if no_climb_ray_count > 0 and ray_count == 0:
+		#return Vector3.UP
 	if no_climb_ray_count > ray_count:
 		return Vector3.UP
 	elif ray_count > 0:
