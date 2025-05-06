@@ -13,6 +13,8 @@ extends Control
 
 func _ready():
 	
+	GameManager.start_game()
+	
 	company_name.visible = false
 	main_menu.visible = false
 	settings_menu.visible = false
@@ -33,11 +35,11 @@ func _ready():
 	await company_name.animation_finished
 	
 	# Display the main menu
-	_main_menu_in()
+	#_main_menu_in()
 
 func _on_start_button_pressed() -> void:
 	await _main_menu_out()
-	GameManager.start_game()
+	#GameManager.start_game()
 
 func _on_about_us_button_pressed() -> void:
 	await _main_menu_out()

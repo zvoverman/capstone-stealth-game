@@ -1645,7 +1645,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 20, 15.8)
 visible = false
 
 [node name="BigHangingSpotlight" parent="." instance=ExtResource("26_hjfkx")]
-transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, 12.2, 12.3, -62.7)
+transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, -1.9, 6.8, -68.4)
 
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly"]
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2"]

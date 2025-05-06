@@ -5,6 +5,7 @@ class_name CameraController
 @export var yaw_node : Node3D
 @export var pitch_node : Node3D
 @export var forward_direction : Node3D
+@export var node_to_follow : Node3D
 
 @export var yaw_acceleration : float = 10
 @export var pitch_acceleration : float = 10
@@ -15,12 +16,24 @@ class_name CameraController
 var yaw_sensitivity : float = 0.07
 var pitch_sensitivity : float = 0.07
 
+var snap_speed : float = 2
+
 var yaw : float = 0
 var pitch : float = 0
 
 const STICK_DEADZONE := 0.5
 const YAW_STICK_LOOK_SPEED := 80
 const PITCH_STICK_LOOK_SPEED := 30
+
+const CARDINAL_AXES = [
+	Vector3.UP,
+	Vector3.DOWN,
+	Vector3.LEFT,
+	Vector3.RIGHT,
+	Vector3.FORWARD,
+	Vector3.BACK
+]
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -53,23 +66,26 @@ const YAW_DEADZONE := 0.1
 const PITCH_DEADZONE := 0.1
 
 func _physics_process(delta: float) -> void:
+	# Follow node to follow
+	self.global_position = node_to_follow.global_position
+	
+	snap_orientation(delta)
+	
 	# Sensitivity retrieval
 	yaw_sensitivity = get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
 	pitch_sensitivity = get_scaled_sensitivity(GameManager.get_settings().get_camera_sensitivity())
 
 	check_joystick_movement()
 
-	# Only apply yaw rotation if outside deadzone
-	if abs(yaw) > YAW_DEADZONE:
-		yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
+	var current_yaw = yaw_node.rotation_degrees.y
+	var delta_yaw = fmod(yaw - current_yaw + 180.0, 360.0) - 180.0
 
-	# Only apply pitch rotation if outside deadzone
-	if abs(pitch) > PITCH_DEADZONE:
-		pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
-		forward_direction.position.y = lerp(forward_direction.position.y, pitch, pitch_acceleration * delta)
+	# Apply smoothing for smaller changes
+	yaw_node.rotation_degrees.y = safe_lerp_angle(current_yaw, yaw, yaw_acceleration * delta)
 
-	# Return yaw to 0 to stop rotation over time
-	yaw = lerp(yaw, 0.0, yaw_acceleration * delta)
+	pitch_node.rotation_degrees.x = safe_lerp_angle(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+		#forward_direction.position.y = lerp(forward_direction.position.y, pitch, pitch_acceleration * delta)
+	#pitch_node.rotation_degrees.x = pitch
 	
 func _on_sensitivity_changed(new_value: float):
 	yaw_sensitivity = new_value
@@ -77,3 +93,78 @@ func _on_sensitivity_changed(new_value: float):
 	
 func get_scaled_sensitivity(x: float) -> float:
 	return ((x - 1) / (100 - 1)) * (0.15 - 0.01) + 0.01
+	
+func snap_orientation(delta) -> void:
+	# 1. Get the player's current "up" vector
+	var raw_player_up = node_to_follow.global_transform.basis.y
+	
+	# 2. Snap it to the nearest 90-degree world axis
+	var player_up = get_snapped_axis(raw_player_up)
+
+	# 3. Get the camera's current up vector
+	var camera_up = self.global_transform.basis.y.normalized()
+
+	# 4. Only rotate if there's a misalignment
+	if camera_up.dot(player_up) < 0.999:
+		var axis = camera_up.cross(player_up)
+		var angle = acos(clamp(camera_up.dot(player_up), -1.0, 1.0))
+
+		if axis.length_squared() > 0.0001:
+			var rotation = Quaternion(axis.normalized(), angle)
+			var current_transform = self.global_transform
+			var quat = (rotation * current_transform.basis.get_rotation_quaternion()).normalized()
+			
+			var current_quat = current_transform.basis.get_rotation_quaternion()
+			var target_quat = (rotation * current_quat).normalized()
+			#var smoothed_quat = current_quat.lerp(target_quat, delta * snap_speed)
+			var smoothed_quat = lerp_to_target_quat(current_quat, target_quat, delta, snap_speed)
+			
+			current_transform.basis = Basis(smoothed_quat)
+			#current_transform.basis = Basis(quat)
+			self.global_transform = current_transform
+	
+func calculate_camera_orientation(surface_normal: Vector3, forward_hint: Vector3) -> Basis:
+	var up = surface_normal.normalized()
+	var forward = forward_hint.slide(up).normalized()
+
+	if forward.length_squared() < 0.0001:
+		forward = Vector3.FORWARD
+		if abs(up.dot(forward)) > 0.99:
+			forward = Vector3.RIGHT
+
+	var right = up.cross(forward).normalized()
+	forward = right.cross(up).normalized()
+	
+	return Basis(right, up, forward)
+	
+func get_snapped_axis(input_vector: Vector3) -> Vector3:
+	var best_axis = CARDINAL_AXES[0]
+	var best_dot = -1.0
+	for axis in CARDINAL_AXES:
+		var dot = input_vector.normalized().dot(axis)
+		if dot > best_dot:
+			best_dot = dot
+			best_axis = axis
+	return best_axis
+	
+# Function to smoothly rotate to a target quaternion with deadzone and snap on close alignment
+func lerp_to_target_quat(current_quat: Quaternion, target_quat: Quaternion, delta: float, speed: float, deadzone: float = 0.01) -> Quaternion:
+	# Calculate the angle between the two quaternions
+	var angle_diff = current_quat.angle_to(target_quat)
+
+	# If the difference is small enough (within the deadzone), directly return the target quaternion
+	if angle_diff < deadzone:
+		return target_quat
+
+	# Otherwise, interpolate smoothly between current and target using slerp
+	var smoothed_quat = current_quat.slerp(target_quat, delta * speed)
+
+	print(smoothed_quat)
+	return smoothed_quat
+	
+func safe_lerp_angle(from: float, to: float, weight: float) -> float:
+	var delta = fmod(to - from + 180.0, 360.0) - 180.0
+	if abs(delta) == 180.0:
+		# Force a direction (e.g., clockwise)
+		delta = 180.0
+	return from + delta * weight

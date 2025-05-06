@@ -100,7 +100,7 @@ radius = 0.05
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_qujey")
-forward_direction_node = NodePath("Armature/ForwardMarker")
+forward_direction_node = NodePath("CameraRootNode/CamYaw/CamPitch/ForwardMarker")
 detection_level_step = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -350,11 +350,13 @@ visible = false
 material_override = SubResource("ORMMaterial3D_vbr6i")
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="CameraRootNode" type="Node3D" parent="." node_paths=PackedStringArray("yaw_node", "pitch_node", "forward_direction")]
+[node name="CameraRootNode" type="Node3D" parent="." node_paths=PackedStringArray("yaw_node", "pitch_node", "forward_direction", "node_to_follow")]
+top_level = true
 script = ExtResource("6_2qcp2")
-yaw_node = NodePath("../Armature")
+yaw_node = NodePath("CamYaw")
 pitch_node = NodePath("CamYaw/CamPitch")
-forward_direction = NodePath("../Armature/ForwardMarker")
+forward_direction = NodePath("CamYaw/CamPitch/ForwardMarker")
+node_to_follow = NodePath("..")
 
 [node name="CamYaw" type="Node3D" parent="CameraRootNode"]
 
@@ -363,12 +365,12 @@ forward_direction = NodePath("../Armature/ForwardMarker")
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraRootNode/CamYaw/CamPitch"]
 transform = Transform3D(1, 0, 0, 0, 0.888225, 0.459409, 0, -0.459409, 0.888225, 0, 0, 0)
 shape = SubResource("SphereShape3D_5rkb1")
-spring_length = 5.0
+spring_length = 3.5
 margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 0.995692, -0.0927175, 0, 0.0927175, 0.995692, 0, -0.0288417, 5.5588)
-fov = 90.0
+transform = Transform3D(1, 0, 0, 0, 0.995692, -0.0927175, 0, 0.0927175, 0.995692, 0, 0.00175154, 3.32294)
+fov = 100.0
 
 [node name="TextureRect" type="TextureRect" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D"]
 self_modulate = Color(1, 1, 1, 0)

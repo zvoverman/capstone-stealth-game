@@ -54,8 +54,8 @@ func start_game():
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
-	#spawn_node= level_root.get_node("Checkpoints/InitialSpawnPoint")
-	spawn_node= level_root.get_node("Checkpoints/EngineerHub")
+	spawn_node= level_root.get_node("Checkpoints/InitialSpawnPoint")
+	#spawn_node= level_root.get_node("Checkpoints/EngineerHub")
 	if spawn_node == null:
 		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
 		return
