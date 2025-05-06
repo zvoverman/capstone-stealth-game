@@ -77,10 +77,7 @@ func _physics_process(delta: float) -> void:
 
 	check_joystick_movement()
 
-	var current_yaw = yaw_node.rotation_degrees.y
-	var delta_yaw = fmod(yaw - current_yaw + 180.0, 360.0) - 180.0
-
-	yaw_node.rotation_degrees.y = safe_lerp_angle(current_yaw, yaw, yaw_acceleration * delta)
+	yaw_node.rotation_degrees.y = safe_lerp_angle(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
 	pitch_node.rotation_degrees.x = safe_lerp_angle(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
 	
 func _on_sensitivity_changed(new_value: float):
@@ -106,17 +103,13 @@ func snap_orientation(delta) -> void:
 		var angle = acos(clamp(camera_up.dot(player_up), -1.0, 1.0))
 
 		if axis.length_squared() > 0.0001:
-			var rotation = Quaternion(axis.normalized(), angle)
-			var current_transform = self.global_transform
-			var quat = (rotation * current_transform.basis.get_rotation_quaternion()).normalized()
-			
+			var target_rotation = Quaternion(axis.normalized(), angle)
+			var current_transform = self.global_transform			
 			var current_quat = current_transform.basis.get_rotation_quaternion()
-			var target_quat = (rotation * current_quat).normalized()
-			#var smoothed_quat = current_quat.lerp(target_quat, delta * snap_speed)
+			var target_quat = (target_rotation * current_quat).normalized()
 			var smoothed_quat = lerp_to_target_quat(current_quat, target_quat, delta, snap_speed)
 			
 			current_transform.basis = Basis(smoothed_quat)
-			#current_transform.basis = Basis(quat)
 			self.global_transform = current_transform
 	
 func calculate_camera_orientation(surface_normal: Vector3, forward_hint: Vector3) -> Basis:

@@ -18,7 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		try_interact()
 		
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var result = shoot_ray()
 	
 	if result and not current_interactable:
