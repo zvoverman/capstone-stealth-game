@@ -268,6 +268,8 @@ func average_rays() -> Vector3:
 				ray_count += 1
 	if no_climb_ray_count > 0 and ray_count == 0:
 		return Vector3.UP
+	if no_climb_ray_count > ray_count:
+		return Vector3.UP
 	elif ray_count > 0:
 		return (ray_total/ ray_count).normalized()
 	else:
