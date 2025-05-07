@@ -176,7 +176,7 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var collider = collision.get_collider()
 		if collider.is_in_group("hazard"):
-			player_died.emit()
+			player_death_sequence()
 		elif collider.is_in_group("no_climb"):
 			var collision_normal = collision.get_normal().normalized()
 			# floating point precision error with ==
@@ -201,7 +201,10 @@ func get_average_leg_position(targets: Array) -> Vector3:
 
 # Movement direction calculation based on forward direction,
 # player "forward" will always be "away" from camera
+var can_move: bool = false
 func get_dir() -> Vector3:
+	if not can_move: return Vector3.ZERO
+	
 	var dir: Vector3 = Vector3.ZERO
 	var forwardDir: Vector3 = ( forward_direction_node.global_transform.origin - global_transform.origin ).normalized()
 	var dirBase: Vector3 = current_normal.cross(forwardDir).normalized()
@@ -267,12 +270,19 @@ func increment_detection(delta : float):
 	#detection_bar_ui.value = detection_level
 	
 	if detection_level >= max_detection_level:
-		player_died.emit()
+		player_death_sequence()
 		
 func set_detection_level(new_value: float):
 	detection_level = new_value
 	#detection_bar_ui.value = detection_level
-		
+	
+func player_death_sequence() -> void:
+	# Start Death vfx
+	can_move = false
+	await get_tree().create_timer(2.0).timeout
+	player_died.emit()
+
+	
 func respawn(spawn_point: Transform3D):
 	#jump_timer_ui.value = 0
 	#jump_timer = 0
