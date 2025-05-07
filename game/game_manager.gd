@@ -54,8 +54,8 @@ func start_game():
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
-	spawn_node = level_root.get_node("Checkpoints/InitialSpawnPoint")
-	#spawn_node= level_root.get_node("Checkpoints/EngineerHub")
+	#spawn_node = level_root.get_node("Checkpoints/InitialSpawnPoint")
+	spawn_node= level_root.get_node("Checkpoints/EngineerHub")
 	if spawn_node == null:
 		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
 		return
@@ -66,7 +66,7 @@ func start_game():
 	get_tree().current_scene.add_child(player)
 	player.update_abilities(ability_to_status)
 
-	player.respawn(spawn_node.transform)
+	player.player_respawn_sequence(spawn_node)
 	
 	# TEMP??
 	unpause_game()
@@ -79,7 +79,8 @@ func quit_to_main_menu():
 
 func _ready() -> void:
 	ability_to_status = {
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED,
+		PlayerAbilityType.DASH: PlayerAbilityStatus.LOCKED
 	}
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -122,7 +123,7 @@ func _on_remove_detection(instance_id: int):
 	detected_cams.erase(instance_id)
 	
 func _on_player_died():
-	player.respawn(spawn_node.transform)
+	player.player_respawn_sequence(spawn_node)
 	
 func _on_grab_ability(ability: PlayerAbilityType):
 	# TODO: Once NPC has been implemented, this should set ability->status to IN_TRANSIT
