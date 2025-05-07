@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://1ho3oqfnll2i"]
+[gd_scene load_steps=25 format=4 uid="uid://1ho3oqfnll2i"]
 
 [ext_resource type="Script" uid="uid://c2xjsks07hwc7" path="res://player/movement_controller.gd" id="1_qujey"]
 [ext_resource type="Script" uid="uid://fveqasmpx35u" path="res://player/IK/start_ik.gd" id="2_dfnor"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://dpouv35yfcnun" path="res://post_processing/Untitled.png" id="8_ojsau"]
 [ext_resource type="Script" uid="uid://gam0b3akvkqt" path="res://player/camera_shake.gd" id="8_wiaid"]
 [ext_resource type="Script" uid="uid://2pax4nxgt8v8" path="res://player/player_scan_interactables.gd" id="9_gpfwp"]
+[ext_resource type="Script" uid="uid://clf2xf1vjehev" path="res://audio/player_audio.gd" id="13_y4cj3"]
+[ext_resource type="AudioStream" uid="uid://chyt1ft74whnt" path="res://audio/footstep_concrete_003.ogg" id="14_ey0wn"]
+[ext_resource type="AudioStream" uid="uid://byyvj11ogufcy" path="res://audio/footstep_concrete_001.ogg" id="15_uaky4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bumat"]
 radius = 0.6
@@ -118,12 +121,13 @@ radius = 0.2
 [sub_resource type="SphereShape3D" id="SphereShape3D_6rjx2"]
 radius = 0.05
 
-[node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction_node")]
+[node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction_node", "player_audio")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_qujey")
 forward_direction_node = NodePath("CameraRootNode/CamYaw/CamPitch/ForwardMarker")
 detection_level_step = 0.3
+player_audio = NodePath("PlayerAudio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.371501, 0)
@@ -543,3 +547,14 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 transform = Transform3D(-0.707107, 0.5, -0.5, 0, -0.707107, -0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
 target_position = Vector3(0, 0, -1)
 debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="PlayerAudio" type="Node3D" parent="." node_paths=PackedStringArray("moving_audio_player", "landing_audio_player")]
+script = ExtResource("13_y4cj3")
+moving_audio_player = NodePath("Moving")
+landing_audio_player = NodePath("Landing")
+
+[node name="Moving" type="AudioStreamPlayer3D" parent="PlayerAudio"]
+stream = ExtResource("14_ey0wn")
+
+[node name="Landing" type="AudioStreamPlayer3D" parent="PlayerAudio"]
+stream = ExtResource("15_uaky4")

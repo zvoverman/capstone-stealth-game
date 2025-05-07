@@ -1,6 +1,7 @@
 extends RayCast3D
 
 @export var step_target: Node3D
+
 var step_normal
 
 func _physics_process(_delta):
