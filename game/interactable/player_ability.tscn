@@ -1,25 +1,108 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd4xiuq23yfrx"]
+[gd_scene load_steps=11 format=3 uid="uid://dd4xiuq23yfrx"]
 
 [ext_resource type="Script" uid="uid://bjrpcitgfndl5" path="res://interactable/player_ability.gd" id="1_vo4ok"]
+[ext_resource type="Shader" uid="uid://cdxis033gwgla" path="res://materials/hazard/hazard_shader.gdshader" id="2_3wdm2"]
+[ext_resource type="Material" uid="uid://cdwbqejx7e6yc" path="res://materials/object_outline/object_outline.tres" id="2_pqprg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o87ct"]
-metallic_specular = 1.0
-roughness = 0.0
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 2.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3wdm2"]
+render_priority = 0
+next_pass = ExtResource("2_pqprg")
+shader = ExtResource("2_3wdm2")
+shader_parameter/baseColor = Color(1, 1, 1, 1)
+shader_parameter/dissolveSlider = 0.5
+shader_parameter/dissolveNoiseScale = 2.0
+shader_parameter/edgeNoiseScale = -2.2352e-07
+shader_parameter/edgesThickness = 0.3
+shader_parameter/edgeColor = Color(1, 1, 1, 1)
+shader_parameter/edgeEmissionSlider = 1.0
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 2.0
+shader_parameter/animation_intensity = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqprg"]
+next_pass = SubResource("ShaderMaterial_3wdm2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ory2k"]
+material = SubResource("StandardMaterial3D_pqprg")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n84hw"]
 radius = 5.0
+
+[sub_resource type="Animation" id="Animation_3wdm2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ory2k"]
+resource_name = "collectable_float_anim"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.3, 0), Vector3(0, -0.3, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pqprg"]
+_data = {
+&"RESET": SubResource("Animation_3wdm2"),
+&"collectable_float_anim": SubResource("Animation_ory2k")
+}
 
 [node name="PlayerAbility" type="StaticBody3D"]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_vo4ok")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
 layers = 3
-material = SubResource("StandardMaterial3D_o87ct")
+mesh = SubResource("BoxMesh_ory2k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_n84hw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pqprg")
+}

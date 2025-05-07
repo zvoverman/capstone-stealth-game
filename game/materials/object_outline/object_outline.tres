@@ -5,4 +5,6 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_m7wxa")
-shader_parameter/outline_thickness = 2
+shader_parameter/outline_color = Vector4(0.81, 0.95, 0.02, 1)
+shader_parameter/outline_width = 4.0
+shader_parameter/use_outline = 0

@@ -64,11 +64,6 @@ func _input(event: InputEvent) -> void:
 		pause_game.emit()
 
 func _ready() -> void:
-	ability_to_status = {
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED,
-		PlayerAbilityType.DASH: PlayerAbilityStatus.LOCKED
-	}
-		
 	player_died.connect(GameManager._on_player_died)
 	
 	if detection_bar_ui:

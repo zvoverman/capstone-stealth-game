@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=57 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_vgehi"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://ihrcs4nttoje" path="res://materials/square_concrete_wall/Concrete031_1K-JPG_Roughness.jpg" id="24_3yid2"]
 [ext_resource type="PackedScene" uid="uid://drw2vhcmq60ow" path="res://scenes/objects/lights/big_hanging_spotlight.tscn" id="26_hjfkx"]
 [ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark.tscn" id="26_l5b4i"]
+[ext_resource type="Script" uid="uid://ijlh15eihdxu" path="res://checkpoint/checkpoint.gd" id="28_00k5i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ndar"]
 metallic = 1.0
@@ -257,6 +258,9 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 9
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iiyc2"]
+radius = 30.0
 
 [node name="Level_1" type="Node3D"]
 
@@ -1637,7 +1641,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2, 14.5, 60.821)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 3)
 
 [node name="EngineerHub" type="Marker3D" parent="Checkpoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 20, 15.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 20, 60.8)
+script = ExtResource("28_00k5i")
+spawn_name = "Ventillation Duct"
+
+[node name="Area3D" type="Area3D" parent="Checkpoints/EngineerHub"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -20, -60.8)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoints/EngineerHub/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 17, 61)
+shape = SubResource("SphereShape3D_iiyc2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

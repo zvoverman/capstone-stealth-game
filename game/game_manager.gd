@@ -54,7 +54,7 @@ func start_game():
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
-	spawn_node= level_root.get_node("Checkpoints/InitialSpawnPoint")
+	spawn_node = level_root.get_node("Checkpoints/InitialSpawnPoint")
 	#spawn_node= level_root.get_node("Checkpoints/EngineerHub")
 	if spawn_node == null:
 		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
@@ -79,7 +79,7 @@ func quit_to_main_menu():
 
 func _ready() -> void:
 	ability_to_status = {
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED
 	}
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -136,7 +136,9 @@ func get_settings() -> GameSettings:
 	return game_settings
 	
 func unpause_game():
-	
 	is_paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	game_unpaused.emit()
+	
+func _on_checkpoint_entered(node: Node3D):
+	spawn_node = node
