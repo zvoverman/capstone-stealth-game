@@ -1,13 +1,16 @@
-[gd_scene load_steps=16 format=4 uid="uid://1ho3oqfnll2i"]
+[gd_scene load_steps=22 format=4 uid="uid://1ho3oqfnll2i"]
 
 [ext_resource type="Script" uid="uid://c2xjsks07hwc7" path="res://player/movement_controller.gd" id="1_qujey"]
 [ext_resource type="Script" uid="uid://fveqasmpx35u" path="res://player/IK/start_ik.gd" id="2_dfnor"]
 [ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="2_kghnf"]
+[ext_resource type="Shader" uid="uid://cas1md1kis31a" path="res://post_processing/dissolve_shader.gdshader" id="3_4quak"]
+[ext_resource type="Script" uid="uid://bwcvytjkbs3pu" path="res://player/dissolve_mesh.gd" id="3_e6xxb"]
 [ext_resource type="Script" uid="uid://c1c0qge88mpws" path="res://player/IK/ik_target.gd" id="3_wgdm4"]
 [ext_resource type="Script" uid="uid://bflfmjp6gb4v8" path="res://player/IK/step_target_container.gd" id="4_ijx8o"]
 [ext_resource type="Script" uid="uid://dbjjfpuusupc2" path="res://player/IK/step_ray.gd" id="5_0wsnl"]
 [ext_resource type="Script" uid="uid://btfjl3wddo4pl" path="res://player/camera_controller.gd" id="6_2qcp2"]
 [ext_resource type="Texture2D" uid="uid://dpouv35yfcnun" path="res://post_processing/Untitled.png" id="8_ojsau"]
+[ext_resource type="Script" uid="uid://gam0b3akvkqt" path="res://player/camera_shake.gd" id="8_wiaid"]
 [ext_resource type="Script" uid="uid://2pax4nxgt8v8" path="res://player/player_scan_interactables.gd" id="9_gpfwp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bumat"]
@@ -86,6 +89,25 @@ bind/15/pose = Transform3D(3.96304, 0, 3.96303, 3.96303, 0, -3.96304, 0, 5.60458
 bind/16/name = &"Bone.016"
 bind/16/bone = -1
 bind/16/pose = Transform3D(3.96304, 0, 3.96304, 3.96304, 0, -3.96304, 0, 5.60458, 0, 9.8374e-07, -4.00034, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y4cj3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ey0wn"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_y4cj3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxlbp"]
+render_priority = 0
+shader = ExtResource("3_4quak")
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/inside_color = Color(0, 0, 0, 1)
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/glow_color = Color(0.29, 0.8225, 1, 1)
+shader_parameter/glow_intensity = 5.0
+shader_parameter/glow_border_width = 0.05
+shader_parameter/glow_border_smoothness = 0.04
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ey0wn")
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_vbr6i"]
 albedo_color = Color(1, 0, 1, 1)
@@ -234,6 +256,8 @@ bones/16/scale = Vector3(1, 1, 1)
 [node name="Mesh" type="MeshInstance3D" parent="Armature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_gvphy")
 skin = SubResource("Skin_i2rb1")
+surface_material_override/0 = SubResource("ShaderMaterial_dxlbp")
+script = ExtResource("3_e6xxb")
 
 [node name="FrontLeftIKLeg" type="SkeletonIK3D" parent="Armature/Skeleton3D"]
 root_bone = &"Bone.001"
@@ -371,6 +395,7 @@ margin = 1.0
 [node name="Camera3D" type="Camera3D" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.995692, -0.0927175, 0, 0.0927175, 0.995692, 0, 0.00175154, 3.32294)
 fov = 100.0
+script = ExtResource("8_wiaid")
 
 [node name="TextureRect" type="TextureRect" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D"]
 self_modulate = Color(1, 1, 1, 0)

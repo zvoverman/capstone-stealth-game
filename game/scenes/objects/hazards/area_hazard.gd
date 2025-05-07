@@ -8,4 +8,4 @@ func _ready() -> void:
 	
 func _body_entered(body) -> void:
 	if body.name == "PlayerDrone":
-		player_died.emit()
+		body.player_death_sequence()

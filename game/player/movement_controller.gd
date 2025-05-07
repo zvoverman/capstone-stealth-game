@@ -47,6 +47,7 @@ var time_since_detected : float = 0.0
 var leg_targets: Array
 
 @onready var camera = $CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D
+@onready var mesh = $Armature/Skeleton3D/Mesh
 
 var ability_to_status: Dictionary # Dictionary[int: int] where keys = AbilityType, values = AbilityCategory
 
@@ -176,7 +177,7 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var collider = collision.get_collider()
 		if collider.is_in_group("hazard"):
-			player_died.emit()
+			player_death_sequence()
 		elif collider.is_in_group("no_climb"):
 			var collision_normal = collision.get_normal().normalized()
 			# floating point precision error with ==
@@ -201,7 +202,10 @@ func get_average_leg_position(targets: Array) -> Vector3:
 
 # Movement direction calculation based on forward direction,
 # player "forward" will always be "away" from camera
+var can_move: bool = true
 func get_dir() -> Vector3:
+	if not can_move: return Vector3.ZERO
+	
 	var dir: Vector3 = Vector3.ZERO
 	var forwardDir: Vector3 = ( forward_direction_node.global_transform.origin - global_transform.origin ).normalized()
 	var dirBase: Vector3 = current_normal.cross(forwardDir).normalized()
@@ -267,13 +271,36 @@ func increment_detection(delta : float):
 	#detection_bar_ui.value = detection_level
 	
 	if detection_level >= max_detection_level:
-		player_died.emit()
+		player_death_sequence()
 		
 func set_detection_level(new_value: float):
 	detection_level = new_value
 	#detection_bar_ui.value = detection_level
-		
-func respawn(spawn_point: Transform3D):
+	
+func player_death_sequence() -> void:
+	# Temp fix to not trigger collision multiple times while death timer is active
+	if not can_move: return
+	
+	# Start death vfx
+	can_move = false
+	camera._camera_shake(0.6, 0.25)
+	mesh.trigger_dissolve()
+	await get_tree().create_timer(1.0).timeout
+	player_died.emit()
+
+func player_respawn_sequence(_spawn_point: Node3D) -> void:
+	# Handle state change
+	respawn(_spawn_point)
+	
+	# Start respawn vfx
+	mesh.trigger_reform()
+	await get_tree().create_timer(1.0).timeout
+	
+	# Let player move after respawn_sequence ends
+	can_move = true
+
+	
+func respawn(spawn_point: Node3D):
 	#jump_timer_ui.value = 0
 	#jump_timer = 0
 	#detection_overlay.self_modulate.a = 0.0
@@ -283,7 +310,11 @@ func respawn(spawn_point: Transform3D):
 	current_gravity = Vector3.ZERO
 	set_detection_level(0.0)
 	velocity = Vector3.ZERO
-	global_position = spawn_point.origin
+	
+	# Spawns player with orientation matching checkpoint Marker3D
+	global_position = spawn_point.transform.origin
+	$CameraRootNode.global_rotation = spawn_point.global_rotation
+	global_rotation = spawn_point.global_rotation
 
 # DO NOT CALL FROM PLAYER, call from GameManager
 func update_abilities(new_ability_to_status: Dictionary):

@@ -260,7 +260,7 @@ _data = {
 point_count = 9
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iiyc2"]
-radius = 30.0
+radius = 50.0
 
 [node name="Level_1" type="Node3D"]
 
@@ -1641,7 +1641,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2, 14.5, 60.821)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 3)
 
 [node name="EngineerHub" type="Marker3D" parent="Checkpoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 20, 60.8)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 22, 60.8)
 script = ExtResource("28_00k5i")
 spawn_name = "Ventillation Duct"
 
