@@ -434,7 +434,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -65.5, 0)
 shape = SubResource("BoxShape3D_nk20a")
 
 [node name="PlayerAbility" parent="." instance=ExtResource("13_nk20a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, -21.1)
 
 [editable path="EnvironmentMeshes/MainHub/Objects/big_tv_low_poly"]
 [editable path="EnvironmentMeshes/MainHub/Objects/low_poly_terminal"]
