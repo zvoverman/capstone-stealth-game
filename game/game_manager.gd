@@ -68,6 +68,8 @@ func start_game():
 
 	player.player_respawn_sequence(spawn_node)
 	
+	MusicManager.play_theme()
+	
 	# TEMP??
 	unpause_game()
 	

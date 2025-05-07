@@ -58,6 +58,8 @@ signal pause_game
 const PlayerAbilityType = preload("res://interactable/player_ability.gd").PlayerAbilityType
 const PlayerAbilityStatus = preload("res://game_manager.gd").PlayerAbilityStatus
 
+@export var player_audio : PlayerAudio
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
 		player_died.emit()
@@ -116,6 +118,8 @@ func _physics_process(delta: float) -> void:
 
 	# Apply speed based on current forward direction
 	var direction = get_dir()
+	if get_dir() != Vector3.ZERO:
+		player_audio.moving()
 	
 	var target_velocity := Vector3.ZERO
 	
