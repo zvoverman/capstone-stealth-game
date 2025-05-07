@@ -33,6 +33,8 @@ var power_ups = {}
 var player : CharacterBody3D = null
 var spawn_node : Node3D = null
 
+var hint_mode_mat := load("res://materials/climbable_highlight_sp.tres") as ShaderMaterial
+
 # Removes the current scene and loads a new level
 func load_level(scene_path: String) -> Node:
 	var current_scene = get_tree().current_scene
@@ -91,6 +93,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			is_paused = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			game_paused.emit()
+	elif event.is_action_pressed("hint_mode"):
+		if hint_mode_mat.get_shader_parameter("visible_flag") == 1:
+			hint_mode_mat.set_shader_parameter("visible_flag", 0);
+		else:
+			hint_mode_mat.set_shader_parameter("visible_flag", 1);
 
 func _process(_delta: float) -> void:
 	if not player: return

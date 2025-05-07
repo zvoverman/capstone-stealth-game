@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cyi55g0trnr64"]
+
+[ext_resource type="Shader" uid="uid://c828r48yjqry7" path="res://materials/climbable_highlight_sp.gdshader" id="1_ar1y3"]
+
+[resource]
+shader = ExtResource("1_ar1y3")
