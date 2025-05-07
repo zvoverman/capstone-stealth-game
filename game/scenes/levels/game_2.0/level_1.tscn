@@ -1124,6 +1124,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17.428
 [node name="TubeLight3" parent="EnvironmentMeshes/Room_3/Objects/Lights" instance=ExtResource("10_xetng")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.4289, 14.7016, -50.416)
 
+[node name="BigHangingSpotlight" parent="EnvironmentMeshes/Room_3/Objects/Lights" instance=ExtResource("26_hjfkx")]
+transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, 12.1, 12.3, -52.6214)
+
 [node name="CSGBox3D8" type="CSGBox3D" parent="EnvironmentMeshes/Room_3/Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4, 14.955, -50.5)
 size = Vector3(0.6, 0.3, 4)
@@ -1657,9 +1660,6 @@ shape = SubResource("SphereShape3D_iiyc2")
 
 [node name="PauseMenuUi" parent="CanvasLayer" instance=ExtResource("20_jku2k")]
 visible = false
-
-[node name="BigHangingSpotlight" parent="." instance=ExtResource("26_hjfkx")]
-transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, -1.9, 6.8, -68.4)
 
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly"]
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2"]
