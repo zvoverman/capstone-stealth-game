@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0qaje2x0crow"]
+
+[ext_resource type="Theme" uid="uid://xfkmr7u3ugdu" path="res://ui/console_theme.tres" id="1_npfy0"]
+[ext_resource type="PackedScene" uid="uid://bvmrgcjk43qtb" path="res://ui/pause_menu_ui.tscn" id="2_3o78s"]
+
+[node name="Game Overlay Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_npfy0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenuUi" parent="MarginContainer" instance=ExtResource("2_3o78s")]
+visible = false
+layout_mode = 2

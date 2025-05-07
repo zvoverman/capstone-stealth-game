@@ -11,16 +11,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f02vx")
-camera_sensitivity_slider = NodePath("PanelContainer/VBoxContainer/Camera Sensitivity Wrapper/Camera Sensitivity/HSlider")
-music_volume_slider = NodePath("PanelContainer/VBoxContainer/Music Volume Wrapper/Music Volume/HSlider")
-sound_effect_volume_slider = NodePath("PanelContainer/VBoxContainer/Sound Effect Volume Wrapper/Sound Effect Volume/HSlider")
-dialogue_speed_slow_button = NodePath("PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Slow Button")
-dialogue_speed_default_button = NodePath("PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Default Button")
-dialogue_speed_fast_button = NodePath("PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Fast Button")
-color_blind_mode_off_button = NodePath("PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Off Button")
-color_blind_mode_protanopia_button = NodePath("PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Protanopia Button")
-color_blind_mode_deuteranopia_button = NodePath("PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Deuteranopia Button")
-color_blind_mode_tritanopia_button = NodePath("PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Tritanopia Button")
+camera_sensitivity_slider = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Camera Sensitivity Wrapper/Camera Sensitivity/HSlider")
+music_volume_slider = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Music Volume Wrapper/Music Volume/HSlider")
+sound_effect_volume_slider = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Sound Effect Volume Wrapper/Sound Effect Volume/HSlider")
+dialogue_speed_slow_button = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Slow Button")
+dialogue_speed_default_button = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Default Button")
+dialogue_speed_fast_button = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Fast Button")
+color_blind_mode_off_button = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Off Button")
+color_blind_mode_protanopia_button = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Protanopia Button")
+color_blind_mode_deuteranopia_button = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Deuteranopia Button")
+color_blind_mode_tritanopia_button = NodePath("PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Tritanopia Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -30,26 +30,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 script = ExtResource("3_a6yft")
 
-[node name="Camera Sensitivity Wrapper" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="Camera Sensitivity Wrapper" type="Control" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Camera Sensitivity" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Camera Sensitivity Wrapper"]
+[node name="Camera Sensitivity" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Camera Sensitivity Wrapper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Camera Sensitivity Wrapper/Camera Sensitivity"]
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Camera Sensitivity Wrapper/Camera Sensitivity"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Camera Sensitivity"
 
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Camera Sensitivity Wrapper/Camera Sensitivity"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/ScrollContainer/VBoxContainer/Camera Sensitivity Wrapper/Camera Sensitivity"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -58,22 +62,22 @@ min_value = 1.0
 max_value = 99.0
 value = 50.0
 
-[node name="Music Volume Wrapper" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="Music Volume Wrapper" type="Control" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Music Volume" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Music Volume Wrapper"]
+[node name="Music Volume" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Music Volume Wrapper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Music Volume Wrapper/Music Volume"]
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Music Volume Wrapper/Music Volume"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Music Volume"
 
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Music Volume Wrapper/Music Volume"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/ScrollContainer/VBoxContainer/Music Volume Wrapper/Music Volume"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -82,22 +86,22 @@ min_value = 1.0
 max_value = 99.0
 value = 50.0
 
-[node name="Sound Effect Volume Wrapper" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="Sound Effect Volume Wrapper" type="Control" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Sound Effect Volume" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Sound Effect Volume Wrapper"]
+[node name="Sound Effect Volume" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Sound Effect Volume Wrapper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Sound Effect Volume Wrapper/Sound Effect Volume"]
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Sound Effect Volume Wrapper/Sound Effect Volume"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sound Effect Volume"
 
-[node name="HSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Sound Effect Volume Wrapper/Sound Effect Volume"]
+[node name="HSlider" type="HSlider" parent="PanelContainer/ScrollContainer/VBoxContainer/Sound Effect Volume Wrapper/Sound Effect Volume"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -106,113 +110,113 @@ min_value = 1.0
 max_value = 99.0
 value = 50.0
 
-[node name="Dialogue Speed Wrapper" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="Dialogue Speed Wrapper" type="Control" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Dialogue Speed" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Dialogue Speed Wrapper"]
+[node name="Dialogue Speed" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed"]
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Dialogue Speed"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Slow Button" type="Button" parent="PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer"]
+[node name="Slow Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Slow"
 
-[node name="Default Button" type="Button" parent="PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer"]
+[node name="Default Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Default"
 
-[node name="Fast Button" type="Button" parent="PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer"]
+[node name="Fast Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Fast"
 
-[node name="Color Blind Mode Wrapper" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="Color Blind Mode Wrapper" type="Control" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Color Blind Mode" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Color Blind Mode Wrapper"]
+[node name="Color Blind Mode" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode"]
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Color Blind Mode"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Off Button" type="Button" parent="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer"]
+[node name="Off Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Off"
 
-[node name="Protanopia Button" type="Button" parent="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer"]
+[node name="Protanopia Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Protanopia"
 
-[node name="Deuteranopia Button" type="Button" parent="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer"]
+[node name="Deuteranopia Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Deuteranopia"
 
-[node name="Tritanopia Button" type="Button" parent="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer"]
+[node name="Tritanopia Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Tritanopia"
 
-[node name="Save and Reset Wrapper" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="Save and Reset Wrapper" type="Control" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Save and Reset" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Save and Reset Wrapper"]
+[node name="Save and Reset" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Save and Reset Wrapper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Save Settings Button" type="Button" parent="PanelContainer/VBoxContainer/Save and Reset Wrapper/Save and Reset"]
+[node name="Save Settings Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Save and Reset Wrapper/Save and Reset"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Save Settings"
 
-[node name="Reset to Default Button" type="Button" parent="PanelContainer/VBoxContainer/Save and Reset Wrapper/Save and Reset"]
+[node name="Reset to Default Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Save and Reset Wrapper/Save and Reset"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Reset to Default Settings"
 
-[node name="Back Button Wrapper" type="Control" parent="PanelContainer/VBoxContainer"]
+[node name="Back Button Wrapper" type="Control" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Back Button" type="Button" parent="PanelContainer/VBoxContainer/Back Button Wrapper"]
+[node name="Back Button" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/Back Button Wrapper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -220,12 +224,12 @@ anchor_bottom = 1.0
 text = "Back"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Slow Button" to="." method="_on_dialogue_speed_slow_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Default Button" to="." method="_on_dialogue_speed_default_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Fast Button" to="." method="_on_dialogue_speed_fast_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Off Button" to="." method="_on_color_blind_mode_off_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Protanopia Button" to="." method="_on_color_blind_mode_protanopia_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Deuteranopia Button" to="." method="_on_color_blind_mode_deuteranopia_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Tritanopia Button" to="." method="_on_color_blind_mode_tritanopia_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Save and Reset Wrapper/Save and Reset/Save Settings Button" to="." method="_on_save_settings_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Save and Reset Wrapper/Save and Reset/Reset to Default Button" to="." method="_on_reset_to_default_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Slow Button" to="." method="_on_dialogue_speed_slow_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Default Button" to="." method="_on_dialogue_speed_default_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Dialogue Speed Wrapper/Dialogue Speed/HBoxContainer/Fast Button" to="." method="_on_dialogue_speed_fast_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Off Button" to="." method="_on_color_blind_mode_off_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Protanopia Button" to="." method="_on_color_blind_mode_protanopia_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Deuteranopia Button" to="." method="_on_color_blind_mode_deuteranopia_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Color Blind Mode Wrapper/Color Blind Mode/HBoxContainer/Tritanopia Button" to="." method="_on_color_blind_mode_tritanopia_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Save and Reset Wrapper/Save and Reset/Save Settings Button" to="." method="_on_save_settings_button_pressed"]
+[connection signal="pressed" from="PanelContainer/ScrollContainer/VBoxContainer/Save and Reset Wrapper/Save and Reset/Reset to Default Button" to="." method="_on_reset_to_default_button_pressed"]

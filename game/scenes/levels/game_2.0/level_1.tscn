@@ -21,7 +21,6 @@
 [ext_resource type="Material" uid="uid://cnw58pov846yl" path="res://materials/wavy_crete/wavy_concrete_mat.tres" id="16_iiyc2"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="18_6jjab"]
 [ext_resource type="PackedScene" uid="uid://scwwmvqtdlsh" path="res://scenes/levels/game_2.0/engineer_hub.tscn" id="19_vgehi"]
-[ext_resource type="PackedScene" uid="uid://bvmrgcjk43qtb" path="res://ui/pause_menu_ui.tscn" id="20_jku2k"]
 [ext_resource type="PackedScene" uid="uid://cvn3xkrr25uro" path="res://scenes/objects/Debris.tscn" id="20_m8yc0"]
 [ext_resource type="Texture2D" uid="uid://dsfempwxrcgxm" path="res://materials/square_concrete_wall/Concrete031_1K-JPG_AmbientOcclusion.jpg" id="22_l5b4i"]
 [ext_resource type="Texture2D" uid="uid://due2tcjwmhtgn" path="res://materials/square_concrete_wall/Concrete031_1K-JPG_NormalGL.jpg" id="23_m6rai"]
@@ -29,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://drw2vhcmq60ow" path="res://scenes/objects/lights/big_hanging_spotlight.tscn" id="26_hjfkx"]
 [ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark.tscn" id="26_l5b4i"]
 [ext_resource type="Script" uid="uid://ijlh15eihdxu" path="res://checkpoint/checkpoint.gd" id="28_00k5i"]
+[ext_resource type="PackedScene" uid="uid://d0qaje2x0crow" path="res://ui/game_overlay_ui.tscn" id="29_00k5i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ndar"]
 metallic = 1.0
@@ -1655,8 +1655,7 @@ shape = SubResource("SphereShape3D_iiyc2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenuUi" parent="CanvasLayer" instance=ExtResource("20_jku2k")]
-visible = false
+[node name="Game Overlay Ui" parent="CanvasLayer" instance=ExtResource("29_00k5i")]
 
 [node name="BigHangingSpotlight" parent="." instance=ExtResource("26_hjfkx")]
 transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, -1.9, 6.8, -68.4)
