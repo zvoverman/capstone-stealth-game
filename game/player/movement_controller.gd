@@ -310,8 +310,11 @@ func respawn(spawn_point: Node3D):
 	current_gravity = Vector3.ZERO
 	set_detection_level(0.0)
 	velocity = Vector3.ZERO
+	
+	# Spawns player with orientation matching checkpoint Marker3D
 	global_position = spawn_point.transform.origin
-	camera.global_rotation = spawn_point.global_rotation
+	$CameraRootNode.global_rotation = spawn_point.global_rotation
+	global_rotation = spawn_point.global_rotation
 
 # DO NOT CALL FROM PLAYER, call from GameManager
 func update_abilities(new_ability_to_status: Dictionary):
