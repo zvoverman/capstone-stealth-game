@@ -33,6 +33,9 @@ var power_ups = {}
 var player : CharacterBody3D = null
 var spawn_node : Node3D = null
 
+var in_hint_mode : bool = false
+var hint_mode_visibility : float = 0.0;
+var hint_mode_time : float = 0.0;
 var hint_mode_mat := load("res://materials/climbable_highlight_sp.tres") as ShaderMaterial
 
 # Removes the current scene and loads a new level
@@ -94,10 +97,28 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			game_paused.emit()
 	elif event.is_action_pressed("hint_mode"):
-		if hint_mode_mat.get_shader_parameter("visible_flag") == 1:
-			hint_mode_mat.set_shader_parameter("visible_flag", 0);
-		else:
-			hint_mode_mat.set_shader_parameter("visible_flag", 1);
+		_toggle_hint_mode()
+
+func _toggle_hint_mode():
+	if in_hint_mode:
+		in_hint_mode = false
+	else:
+		in_hint_mode = true
+		hint_mode_visibility = 1.0;
+		hint_mode_time = 0.0;
+		hint_mode_mat.set_shader_parameter("visibility", hint_mode_visibility);
+		hint_mode_mat.set_shader_parameter("start_position", player.global_position);
+	
+func _update_hint_mode(_delta : float):
+	if in_hint_mode:
+		hint_mode_time = hint_mode_time + _delta;
+		hint_mode_mat.set_shader_parameter("time", hint_mode_time);
+	elif hint_mode_visibility > 0.0:
+		hint_mode_visibility = hint_mode_visibility - (_delta * 2.0);
+		hint_mode_mat.set_shader_parameter("visibility", hint_mode_visibility)
+	else:
+		hint_mode_visibility = 0.0;
+		hint_mode_mat.set_shader_parameter("visibility", hint_mode_visibility)
 
 func _process(_delta: float) -> void:
 	if not player: return
@@ -106,6 +127,8 @@ func _process(_delta: float) -> void:
 		player.is_detected = true
 	else:
 		player.is_detected = false
+	
+	_update_hint_mode(_delta)
 	
 func set_key(key_color: String) -> void:
 	if keys.has(key_color):

@@ -1,13 +1,28 @@
 shader_type spatial;
+render_mode unshaded, world_vertex_coords;
 
-uniform int visible_flag = 0;
+const vec3 HIGHLIGHT_COLOR = vec3(0.0, 1.0, 0.0);
+const float HIGHLIGHT_SMOOTHNESS = 2.0;
+const float HIGHLIGHT_SPEED = 20.0;
+const float MAX_DIST = 1000.0;
+
+uniform float visibility = 0.0;
+uniform vec3 start_position = vec3(0.0);
+uniform float time = 0.0;
+
+varying vec3 world_position;
+
+void vertex() {
+	world_position = VERTEX;
+}
 
 void fragment() {
+	float dist = distance(world_position, start_position);
+	float effect_time = time * HIGHLIGHT_SPEED;
 	
-	if (visible_flag == 0)
-		discard;
+	float percent = 1.0 - smoothstep(-HIGHLIGHT_SMOOTHNESS, HIGHLIGHT_SMOOTHNESS, dist - effect_time);
 	
-	ALBEDO = vec3(1.0, 0.92, 0.59);
-	ALPHA = 0.5;
-	EMISSION = vec3(0.1, 0.1, 0.1);
+	ALBEDO = HIGHLIGHT_COLOR * percent;
+	
+	ALPHA = 0.25 * percent * visibility;
 }
