@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cgj1ry2tt6o27" path="res://scenes/levels/console/console_screen.tscn" id="1_ja47c"]
 [ext_resource type="PackedScene" uid="uid://c6v8exhorm7c2" path="res://scenes/levels/console/terminal.glb" id="2_p36d1"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="3_fenn0"]
-[ext_resource type="Environment" uid="uid://dumxq2vwhbimg" path="res://post_processing/abstract_world_environment.tres" id="3_rw1fu"]
+[ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="4_fenn0"]
 
 [node name="MenuLevel" type="Node3D"]
 
@@ -56,6 +56,6 @@ shadow_bias = 0.05
 shadow_blur = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_rw1fu")
+environment = ExtResource("4_fenn0")
 
 [editable path="terminal"]
