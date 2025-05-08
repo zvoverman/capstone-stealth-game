@@ -1,6 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://c70kocqjyuppd"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c70kocqjyuppd"]
+
+[ext_resource type="Material" uid="uid://cyi55g0trnr64" path="res://materials/climbable_highlight_np.tres" id="1_7gw2i"]
 
 [resource]
+next_pass = ExtResource("1_7gw2i")
 transparency = 1
 blend_mode = 1
 cull_mode = 2

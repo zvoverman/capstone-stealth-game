@@ -14,6 +14,7 @@ varying vec3 world_position;
 
 void vertex() {
 	world_position = VERTEX;
+	VERTEX = VERTEX + (NORMAL * 0.01);
 }
 
 void fragment() {

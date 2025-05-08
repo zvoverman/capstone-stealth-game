@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://duuakn6swi76k"]
+[gd_resource type="StandardMaterial3D" load_steps=8 format=3 uid="uid://duuakn6swi76k"]
 
 [ext_resource type="Texture2D" uid="uid://d3h1ok0voqpan" path="res://materials/floor/exquistite-polished-tile_ao.png" id="1_lqlvy"]
 [ext_resource type="Texture2D" uid="uid://cx1fouj4wpy3b" path="res://materials/floor/exquistite-polished-tile_albedo.png" id="1_qfhvn"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cgwtupiduwsd7" path="res://materials/floor/exquistite-polished-tile_height.png" id="2_6v7k5"]
 [ext_resource type="Texture2D" uid="uid://c4ij1mlrfy81u" path="res://materials/floor/exquistite-polished-tile_normal-ogl.png" id="2_lqlvy"]
 [ext_resource type="Texture2D" uid="uid://cw7pefnxphmxu" path="res://materials/floor/exquistite-polished-tile_roughness.png" id="3_6v7k5"]
+[ext_resource type="Material" uid="uid://cyi55g0trnr64" path="res://materials/climbable_highlight_np.tres" id="5_7e84l"]
 
 [resource]
+next_pass = ExtResource("5_7e84l")
 albedo_color = Color(0.84, 0.84, 0.84, 1)
 albedo_texture = ExtResource("1_qfhvn")
 metallic = 1.0

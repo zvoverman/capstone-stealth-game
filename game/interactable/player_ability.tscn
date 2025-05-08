@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjrpcitgfndl5" path="res://interactable/player_ability.gd" id="1_vo4ok"]
 [ext_resource type="Shader" uid="uid://cdxis033gwgla" path="res://materials/hazard/hazard_shader.gdshader" id="2_3wdm2"]
-[ext_resource type="Material" uid="uid://cdwbqejx7e6yc" path="res://materials/object_outline/object_outline.tres" id="2_pqprg"]
+[ext_resource type="Material" uid="uid://cdwbqejx7e6yc" path="res://materials/object_outline/object_outline_np.tres" id="2_pqprg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3wdm2"]
 render_priority = 0

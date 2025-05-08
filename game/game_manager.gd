@@ -36,7 +36,7 @@ var spawn_node : Node3D = null
 var in_hint_mode : bool = false
 var hint_mode_visibility : float = 0.0;
 var hint_mode_time : float = 0.0;
-var hint_mode_mat := load("res://materials/climbable_highlight_sp.tres") as ShaderMaterial
+var hint_mode_mat := load("res://materials/climbable_highlight_np.tres") as ShaderMaterial
 
 # Removes the current scene and loads a new level
 func load_level(scene_path: String) -> Node:

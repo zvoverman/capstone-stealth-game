@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dnvhnska4f5f8"]
 
-[ext_resource type="Shader" uid="uid://x2xl5qglorhn" path="res://materials/object_outline/object_outline.gdshader" id="1_yh180"]
+[ext_resource type="Shader" uid="uid://x2xl5qglorhn" path="res://materials/object_outline/object_outline_np.gdshader" id="1_yh180"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2npv"]
 resource_local_to_scene = true
