@@ -1,7 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjeocotxh35tl"]
+[gd_scene load_steps=7 format=3 uid="uid://cjeocotxh35tl"]
 
 [ext_resource type="Material" uid="uid://dhpbuuwgu0t6y" path="res://materials/light_material.tres" id="1_jg5ay"]
-[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/shiny_metal/shiny_metal_mat.tres" id="2_jg5ay"]
+[ext_resource type="Texture2D" uid="uid://bfl7fvi4ormup" path="res://materials/shiny_metal/Metal051B_1K-JPG_Metalness.jpg" id="2_71nkb"]
+[ext_resource type="Texture2D" uid="uid://bqawwt6pf8rke" path="res://materials/shiny_metal/Metal051B_1K-JPG_NormalGL.jpg" id="3_lq2ub"]
+[ext_resource type="Texture2D" uid="uid://0rb74ifpogh5" path="res://materials/shiny_metal/Metal051B_1K-JPG_Roughness.jpg" id="4_7j3wt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fw6p6"]
+metallic = 0.5
+metallic_texture = ExtResource("2_71nkb")
+roughness_texture = ExtResource("4_7j3wt")
+normal_enabled = true
+normal_texture = ExtResource("3_lq2ub")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plcdb"]
+metallic = 0.5
+metallic_texture = ExtResource("2_71nkb")
+roughness_texture = ExtResource("4_7j3wt")
+normal_enabled = true
+normal_texture = ExtResource("3_lq2ub")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
 
 [node name="TubeLight" type="Node3D"]
 
@@ -14,9 +34,9 @@ material = ExtResource("1_jg5ay")
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, 0)
 size = Vector3(0.25, 0.25, 0.25)
-material = ExtResource("2_jg5ay")
+material = SubResource("StandardMaterial3D_fw6p6")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0, 0)
 size = Vector3(0.25, 0.25, 0.25)
-material = ExtResource("2_jg5ay")
+material = SubResource("StandardMaterial3D_plcdb")

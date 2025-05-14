@@ -1,15 +1,10 @@
-[gd_scene load_steps=58 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=40 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_vgehi"]
 [ext_resource type="Material" uid="uid://dtf6n2w1gt4xg" path="res://materials/square_concrete_wall/new_standard_material_3d.tres" id="3_iiyc2"]
 [ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/grey_object_mat.tres" id="3_jku2k"]
-[ext_resource type="Texture2D" uid="uid://d3h1ok0voqpan" path="res://materials/floor/exquistite-polished-tile_ao.png" id="4_cadw5"]
 [ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/shiny_metal/shiny_metal_mat.tres" id="4_xetng"]
-[ext_resource type="Texture2D" uid="uid://cgwtupiduwsd7" path="res://materials/floor/exquistite-polished-tile_height.png" id="5_32klb"]
-[ext_resource type="Texture2D" uid="uid://bjr06alhuqpqs" path="res://materials/floor/exquistite-polished-tile_metallic.png" id="6_5jnw2"]
-[ext_resource type="Texture2D" uid="uid://c4ij1mlrfy81u" path="res://materials/floor/exquistite-polished-tile_normal-ogl.png" id="7_1h3np"]
-[ext_resource type="Texture2D" uid="uid://cw7pefnxphmxu" path="res://materials/floor/exquistite-polished-tile_roughness.png" id="8_m8yc0"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="9_hjfkx"]
 [ext_resource type="PackedScene" uid="uid://cjeocotxh35tl" path="res://scenes/objects/lights/tube_light.tscn" id="10_xetng"]
 [ext_resource type="PackedScene" uid="uid://oyephryxos40" path="res://models/big_tv_low_poly.glb" id="11_iiyc2"]
@@ -22,26 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="18_6jjab"]
 [ext_resource type="PackedScene" uid="uid://scwwmvqtdlsh" path="res://scenes/levels/game_2.0/engineer_hub.tscn" id="19_vgehi"]
 [ext_resource type="PackedScene" uid="uid://cvn3xkrr25uro" path="res://scenes/objects/Debris.tscn" id="20_m8yc0"]
-[ext_resource type="Texture2D" uid="uid://dsfempwxrcgxm" path="res://materials/square_concrete_wall/Concrete031_1K-JPG_AmbientOcclusion.jpg" id="22_l5b4i"]
-[ext_resource type="Texture2D" uid="uid://due2tcjwmhtgn" path="res://materials/square_concrete_wall/Concrete031_1K-JPG_NormalGL.jpg" id="23_m6rai"]
-[ext_resource type="Texture2D" uid="uid://ihrcs4nttoje" path="res://materials/square_concrete_wall/Concrete031_1K-JPG_Roughness.jpg" id="24_3yid2"]
+[ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/floor/floor_material.tres" id="26_337q8"]
 [ext_resource type="PackedScene" uid="uid://drw2vhcmq60ow" path="res://scenes/objects/lights/big_hanging_spotlight.tscn" id="26_hjfkx"]
 [ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark.tscn" id="26_l5b4i"]
 [ext_resource type="Script" uid="uid://ijlh15eihdxu" path="res://checkpoint/checkpoint.gd" id="28_00k5i"]
 [ext_resource type="PackedScene" uid="uid://d0qaje2x0crow" path="res://ui/game_overlay_ui.tscn" id="29_00k5i"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ndar"]
-metallic = 1.0
-metallic_texture = ExtResource("6_5jnw2")
-roughness_texture = ExtResource("8_m8yc0")
-normal_enabled = true
-normal_scale = 2.0
-normal_texture = ExtResource("7_1h3np")
-ao_enabled = true
-ao_texture = ExtResource("4_cadw5")
-heightmap_enabled = true
-heightmap_texture = ExtResource("5_32klb")
-uv1_scale = Vector3(2, 2, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7djw3"]
 size = Vector3(0.6, 2, 2)
@@ -78,60 +58,6 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idbx1"]
-roughness_texture = ExtResource("24_3yid2")
-normal_enabled = true
-normal_texture = ExtResource("23_m6rai")
-ao_enabled = true
-ao_texture = ExtResource("22_l5b4i")
-uv1_scale = Vector3(0.087, 0.105, -0.118)
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_337q8"]
-albedo_color = Color(0.84, 0.84, 0.84, 1)
-metallic = 1.0
-metallic_texture = ExtResource("6_5jnw2")
-roughness_texture = ExtResource("8_m8yc0")
-normal_enabled = true
-normal_scale = 2.0
-normal_texture = ExtResource("7_1h3np")
-ao_enabled = true
-ao_texture = ExtResource("4_cadw5")
-heightmap_enabled = true
-heightmap_texture = ExtResource("5_32klb")
-uv1_scale = Vector3(3.405, 0.575, 2)
-uv1_offset = Vector3(-0.03, 0, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jjab"]
-albedo_color = Color(0.89, 0.89, 0.89, 1)
-roughness_texture = ExtResource("24_3yid2")
-normal_enabled = true
-normal_texture = ExtResource("23_m6rai")
-ao_enabled = true
-ao_texture = ExtResource("22_l5b4i")
-uv1_scale = Vector3(0.63, 0.63, 0.63)
-uv1_offset = Vector3(0.02, -0.145, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6rai"]
-albedo_color = Color(0.89, 0.89, 0.89, 1)
-roughness_texture = ExtResource("24_3yid2")
-normal_enabled = true
-normal_texture = ExtResource("23_m6rai")
-ao_enabled = true
-ao_texture = ExtResource("22_l5b4i")
-uv1_scale = Vector3(0.1, 0.1, 0.1)
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5b4i"]
-albedo_color = Color(0.89, 0.89, 0.89, 1)
-roughness_texture = ExtResource("24_3yid2")
-normal_enabled = true
-normal_texture = ExtResource("23_m6rai")
-ao_enabled = true
-ao_texture = ExtResource("22_l5b4i")
-uv1_scale = Vector3(0.1, 0.1, 0.1)
-uv1_triplanar = true
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ndar"]
 size = Vector3(0.595459, 1.93933, 1.96765)
 
@@ -150,28 +76,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yid2"]
-roughness_texture = ExtResource("24_3yid2")
-normal_enabled = true
-normal_texture = ExtResource("23_m6rai")
-ao_enabled = true
-ao_texture = ExtResource("22_l5b4i")
-uv1_scale = Vector3(3.04, 2.77, 1.26)
-uv1_offset = Vector3(-0.075, 0, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_00k5i"]
-metallic = 1.0
-metallic_texture = ExtResource("6_5jnw2")
-roughness_texture = ExtResource("8_m8yc0")
-normal_enabled = true
-normal_scale = 2.0
-normal_texture = ExtResource("7_1h3np")
-ao_enabled = true
-ao_texture = ExtResource("4_cadw5")
-heightmap_enabled = true
-heightmap_texture = ExtResource("5_32klb")
-uv1_scale = Vector3(1, 2.25, 2)
 
 [sub_resource type="Curve3D" id="Curve3D_m6rai"]
 _data = {
@@ -193,43 +97,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 7
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8r51"]
-roughness_texture = ExtResource("24_3yid2")
-normal_enabled = true
-normal_texture = ExtResource("23_m6rai")
-ao_enabled = true
-ao_texture = ExtResource("22_l5b4i")
-uv1_scale = Vector3(0.049, 0.09, 0.085)
-uv1_offset = Vector3(-0.075, 0, 0)
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfrm3"]
-albedo_color = Color(0.84, 0.84, 0.84, 1)
-metallic = 1.0
-metallic_texture = ExtResource("6_5jnw2")
-roughness_texture = ExtResource("8_m8yc0")
-normal_enabled = true
-normal_scale = 2.0
-normal_texture = ExtResource("7_1h3np")
-ao_enabled = true
-ao_texture = ExtResource("4_cadw5")
-heightmap_enabled = true
-heightmap_texture = ExtResource("5_32klb")
-uv1_scale = Vector3(4.71, 0.66, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu1dv"]
-metallic = 1.0
-metallic_texture = ExtResource("6_5jnw2")
-roughness_texture = ExtResource("8_m8yc0")
-normal_enabled = true
-normal_scale = 2.0
-normal_texture = ExtResource("7_1h3np")
-ao_enabled = true
-ao_texture = ExtResource("4_cadw5")
-heightmap_enabled = true
-heightmap_texture = ExtResource("5_32klb")
-uv1_scale = Vector3(2.225, 0.685, 2)
 
 [sub_resource type="Curve3D" id="Curve3D_iiyc2"]
 _data = {
@@ -318,7 +185,7 @@ material = ExtResource("4_xetng")
 [node name="Floor" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200001, 0, -0.0200001)
 size = Vector3(15, 0.5, 15)
-material = SubResource("StandardMaterial3D_0ndar")
+material = ExtResource("26_337q8")
 
 [node name="Holes2" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
 operation = 2
@@ -686,7 +553,7 @@ operation = 2
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 8.2, -20.2)
 size = Vector3(5, 12, 39)
-material = SubResource("StandardMaterial3D_idbx1")
+material = ExtResource("3_iiyc2")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 4.85, -0.700001)
@@ -701,7 +568,7 @@ material = ExtResource("3_jku2k")
 [node name="Floor" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.7, -16.3)
 size = Vector3(5, 5, 32)
-material = SubResource("StandardMaterial3D_337q8")
+material = ExtResource("26_337q8")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 11.405, -44)
@@ -714,7 +581,7 @@ operation = 2
 [node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1.7, -21.2)
 size = Vector3(5, 5, 7)
-material = SubResource("StandardMaterial3D_6jjab")
+material = ExtResource("3_iiyc2")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 11.405, -44.6)
@@ -736,12 +603,12 @@ material = ExtResource("4_xetng")
 [node name="RaisedFloor" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 5.45, -36.2)
 size = Vector3(6, 8.5, 8)
-material = SubResource("StandardMaterial3D_m6rai")
+material = ExtResource("3_iiyc2")
 
 [node name="Ceiling" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 13.7, -36.2)
 size = Vector3(6, 1, 8)
-material = SubResource("StandardMaterial3D_l5b4i")
+material = ExtResource("3_iiyc2")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 15.3, 3.9, -31.1)
@@ -1027,7 +894,7 @@ transform = Transform3D(-4.37114e-08, 1, 0, -0.965926, -4.2222e-08, 0.258819, 0.
 radius = 4.0
 height = 20.0
 sides = 12
-material = ExtResource("2_vgehi")
+material = ExtResource("3_iiyc2")
 
 [node name="Holes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_3/Meshes"]
 operation = 2
@@ -1037,7 +904,7 @@ transform = Transform3D(-4.37114e-08, 1, 0, -0.965926, -4.2222e-08, 0.258819, 0.
 radius = 3.0
 height = 19.1094
 sides = 12
-material = SubResource("StandardMaterial3D_3yid2")
+material = ExtResource("3_iiyc2")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_3/Meshes/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 13.305, -46.6)
@@ -1067,7 +934,7 @@ material = ExtResource("3_jku2k")
 [node name="Floor" type="CSGBox3D" parent="EnvironmentMeshes/Room_3/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 9.6, -50.4)
 size = Vector3(20, 4, 8)
-material = SubResource("StandardMaterial3D_00k5i")
+material = ExtResource("26_337q8")
 
 [node name="Holes2" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_3/Meshes"]
 operation = 2
@@ -1175,7 +1042,7 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-material = ExtResource("4_xetng")
+material = ExtResource("12_1h3np")
 
 [node name="Wire2" type="Node3D" parent="EnvironmentMeshes/Room_3/Objects/Wires"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, 0)
@@ -1196,7 +1063,7 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-material = ExtResource("4_xetng")
+material = ExtResource("12_1h3np")
 
 [node name="Wire3" type="Node3D" parent="EnvironmentMeshes/Room_3/Objects/Wires"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, 0)
@@ -1217,7 +1084,7 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-material = ExtResource("4_xetng")
+material = ExtResource("12_1h3np")
 
 [node name="WireSpark" parent="EnvironmentMeshes/Room_3/Objects" instance=ExtResource("26_l5b4i")]
 transform = Transform3D(1, 2.68654e-16, 7.10543e-15, 2.68653e-16, 1, 0, -7.10543e-15, 0, 1, 23.7508, 14.9997, -51.3694)
@@ -1239,7 +1106,7 @@ operation = 2
 [node name="Container" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/Meshes/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 18.5, -7.7)
 size = Vector3(5, 16, 64)
-material = SubResource("StandardMaterial3D_b8r51")
+material = ExtResource("3_iiyc2")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/Meshes/Holes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 13.305, -39.9)
@@ -1254,12 +1121,12 @@ material = ExtResource("3_iiyc2")
 [node name="Floor" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 11, -19.7)
 size = Vector3(6, 1, 41)
-material = SubResource("StandardMaterial3D_cfrm3")
+material = ExtResource("26_337q8")
 
 [node name="Floor2" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 15, -16.5)
 size = Vector3(5, 7, 17)
-material = SubResource("StandardMaterial3D_tu1dv")
+material = ExtResource("26_337q8")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 13.305, -44)
@@ -1277,7 +1144,7 @@ operation = 2
 [node name="Floor2" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/Meshes/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 16, 2)
 size = Vector3(5, 9, 20)
-material = ExtResource("2_vgehi")
+material = ExtResource("3_iiyc2")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/Meshes/Holes2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 13.305, -44.6)
@@ -1576,7 +1443,7 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-material = ExtResource("4_xetng")
+material = ExtResource("12_1h3np")
 
 [node name="Wire4" type="Node3D" parent="EnvironmentMeshes/Room_4/Objects/Wires"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, 0)
@@ -1660,7 +1527,7 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-material = ExtResource("4_xetng")
+material = ExtResource("12_1h3np")
 
 [node name="Wire8" type="Node3D" parent="EnvironmentMeshes/Room_4/Objects/Wires"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, 7)
@@ -1681,7 +1548,7 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
-material = ExtResource("4_xetng")
+material = ExtResource("12_1h3np")
 
 [node name="WireSpark" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("26_l5b4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 22, -29.0215)

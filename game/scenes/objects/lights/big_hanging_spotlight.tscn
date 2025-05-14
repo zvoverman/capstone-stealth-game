@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://drw2vhcmq60ow"]
+[gd_scene load_steps=12 format=4 uid="uid://drw2vhcmq60ow"]
 
 [ext_resource type="Material" uid="uid://dhpbuuwgu0t6y" path="res://materials/light_material.tres" id="1_771of"]
-[ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/shiny_metal/shiny_metal_mat.tres" id="1_t30ag"]
+[ext_resource type="Texture2D" uid="uid://bfl7fvi4ormup" path="res://materials/shiny_metal/Metal051B_1K-JPG_Metalness.jpg" id="1_k05eu"]
+[ext_resource type="Texture2D" uid="uid://bqawwt6pf8rke" path="res://materials/shiny_metal/Metal051B_1K-JPG_NormalGL.jpg" id="2_q8lhp"]
+[ext_resource type="Texture2D" uid="uid://0rb74ifpogh5" path="res://materials/shiny_metal/Metal051B_1K-JPG_Roughness.jpg" id="3_ol1og"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pa0c1"]
 
@@ -36,6 +38,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_g4kyi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpoej"]
+metallic = 0.5
+metallic_texture = ExtResource("1_k05eu")
+roughness_texture = ExtResource("3_ol1og")
+normal_enabled = true
+normal_texture = ExtResource("2_q8lhp")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ubko"]
 
@@ -89,7 +100,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 [node name="Case" type="MeshInstance3D" parent="big_hanging_spotlight"]
 mesh = SubResource("ArrayMesh_krig5")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_t30ag")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpoej")
 
 [node name="Light" type="MeshInstance3D" parent="big_hanging_spotlight"]
 mesh = SubResource("ArrayMesh_1tlmk")
