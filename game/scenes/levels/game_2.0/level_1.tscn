@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=58 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_vgehi"]
@@ -73,7 +73,7 @@ point_count = 4
 [sub_resource type="Curve3D" id="Curve3D_xetng"]
 bake_interval = 1.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.8, 5.5, -6.7, 0, 0, 0, 0, 0, 0, -4.47035e-08, 3.66, -5.545, 0, 0, 0, 0, 0, 0, -3.2, 5.385, -3.445, 0, 0, 0, 0, 0, 0, -4.52, 8.255, -1.68),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.2, 5.4, -7, 0, 0, 0, 0, 0, 0, -2, 3.66, -5.545, 0, 0, 0, 0, 0, 0, -3.2, 5.385, -3.445, 0, 0, 0, 0, 0, 0, -4.52, 8.255, -1.68),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -258,6 +258,13 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 9
+
+[sub_resource type="Curve3D" id="Curve3D_cfrm3"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 29.6, 22.9, -5.7, 0, 0, 0, 0, 0, 0, 29.6, 26.335, -5.7),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iiyc2"]
 radius = 50.0
@@ -1310,6 +1317,11 @@ material = ExtResource("2_vgehi")
 transform = Transform3D(0.906308, 0, 0.422618, 0, 1, 0, -0.422618, 0, 0.906308, 26.3, 12, -28.05)
 material = ExtResource("2_vgehi")
 
+[node name="Floor7" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 18.25, -26.5)
+size = Vector3(5, 0.5, 3)
+material = ExtResource("3_iiyc2")
+
 [node name="NoClimb" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_4" groups=["no_climb"]]
 use_collision = true
 
@@ -1415,13 +1427,23 @@ sides = 12
 material = ExtResource("12_1h3np")
 
 [node name="Floor4" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 18, -26.5)
-size = Vector3(5, 1, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 17.75, -26.5)
+size = Vector3(5, 0.5, 3)
 material = ExtResource("12_1h3np")
 
 [node name="Floor5" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/NoClimb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 24, -23.5)
-size = Vector3(5, 5, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.95, 22.5, -23.5)
+size = Vector3(1.5, 8, 3)
+material = ExtResource("12_1h3np")
+
+[node name="Floor7" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 25.55, -23.5)
+size = Vector3(2, 1.9, 3)
+material = ExtResource("12_1h3np")
+
+[node name="Floor6" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.45, 22.5, -23.5)
+size = Vector3(1.5, 8, 3)
 material = ExtResource("12_1h3np")
 
 [node name="PipeSupport" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/NoClimb"]
@@ -1436,11 +1458,13 @@ material = ExtResource("12_1h3np")
 
 [node name="PipeSupport3" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/NoClimb"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 24.25, -11)
+visible = false
 size = Vector3(5, 0.5, 2)
 material = ExtResource("12_1h3np")
 
 [node name="PipeSupport4" type="CSGBox3D" parent="EnvironmentMeshes/Room_4/NoClimb"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 24.25, -18)
+visible = false
 size = Vector3(5, 0.5, 2)
 material = ExtResource("12_1h3np")
 
@@ -1462,11 +1486,11 @@ transform = Transform3D(0.735, 0, 0, 0, 0.735, 0, 0, 0, 0.735, 28.2, 22.2, 25.5)
 [node name="BigHangingLight" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("9_hjfkx")]
 transform = Transform3D(0.815, 0, 9.52294e-08, 0, 0.815, 0, -9.52294e-08, 0, 0.815, 28, 26.5, -32.4)
 
-[node name="HangingLight3" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("14_l5b4i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 26.2, 1.7)
-
 [node name="BigHangingLight2" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("9_hjfkx")]
-transform = Transform3D(0.67, 0, 1.5925e-07, 0, 0.67, 0, -1.5925e-07, 0, 0.67, 27, 26.4, -14.8)
+transform = Transform3D(0.67, 0, 1.5925e-07, 0, 0.67, 0, -1.5925e-07, 0, 0.67, 27, 26.4, -4.9)
+
+[node name="BigHangingLight4" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("9_hjfkx")]
+transform = Transform3D(0.67, 0, 1.5925e-07, 0, 0.67, 0, -1.5925e-07, 0, 0.67, 27, 26.4, 0.1)
 
 [node name="BigHangingLight3" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("9_hjfkx")]
 transform = Transform3D(1.61607e-07, 0, -0.83, 0, 0.83, 0, 0.83, 0, 1.61607e-07, 28, 23.9, 9)
@@ -1476,6 +1500,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 21.8, -36.0215)
 
 [node name="BigHangingSpotlight2" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("26_hjfkx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 21.8, -29.0215)
+
+[node name="BigHangingSpotlight5" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("26_hjfkx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6547, 22.8, 1.24723)
+
+[node name="BigHangingSpotlight3" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("26_hjfkx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 17, -27.2215)
 
 [node name="HangingLight4" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("14_l5b4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9515, 16.5244, -31.0215)
@@ -1518,6 +1548,12 @@ transform = Transform3D(-1.05719, 0, 1.06412, 0, 1.5, 0, -1.06412, 0, -1.05719, 
 
 [node name="Debris4" parent="EnvironmentMeshes/Room_4/Objects/Debris" instance=ExtResource("20_m8yc0")]
 transform = Transform3D(-0.409231, 0, -1.95768, 0, 2, 0, 1.95768, 0, -0.409231, 26.2231, 11.4785, -39.2526)
+
+[node name="Debris5" parent="EnvironmentMeshes/Room_4/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 26, 20.5, 15.7786)
+
+[node name="Debris6" parent="EnvironmentMeshes/Room_4/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(0.883883, 0, 0.883883, 0, 1.25, 0, -0.883883, 0, 0.883883, 30, 20.5, 24.4786)
 
 [node name="Wires" type="Node3D" parent="EnvironmentMeshes/Room_4/Objects"]
 
@@ -1626,11 +1662,47 @@ path_u_distance = 1.0
 path_joined = false
 material = ExtResource("4_xetng")
 
+[node name="Wire8" type="Node3D" parent="EnvironmentMeshes/Room_4/Objects/Wires"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, 7)
+
+[node name="Path3D" type="Path3D" parent="EnvironmentMeshes/Room_4/Objects/Wires/Wire8"]
+curve = SubResource("Curve3D_cfrm3")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="EnvironmentMeshes/Room_4/Objects/Wires/Wire8"]
+polygon = PackedVector2Array(0, 0, 0, 0.1, 0.1, 0.1, 0.1, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("4_xetng")
+
 [node name="WireSpark" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("26_l5b4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 22, -29.0215)
 
 [node name="WireSpark2" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("26_l5b4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.2, 24.6, -14.0215)
+
+[node name="WireSpark3" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("26_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.6, 23.6, 1.1785)
+
+[node name="HangingLight" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("14_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9, 23.5, -25.2214)
+
+[node name="HangingLight2" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("14_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4273, 23.5, -25.2214)
+
+[node name="HangingLight3" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("14_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9, 23.5, -21.7701)
+
+[node name="HangingLight4" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("14_l5b4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4273, 23.5, -21.7701)
 
 [node name="EngineerHub" parent="EnvironmentMeshes" instance=ExtResource("19_vgehi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2, 14.5, 60.821)

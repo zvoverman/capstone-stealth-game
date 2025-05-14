@@ -443,6 +443,7 @@ material = ExtResource("2_kghnf")
 script = ExtResource("9_gpfwp")
 player = NodePath("..")
 camera = NodePath("../CameraRootNode/CamYaw/CamPitch/SpringArm3D/Camera3D")
+interact_distance = 5.0
 
 [node name="Raycasts" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.386918, 0)
