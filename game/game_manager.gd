@@ -59,8 +59,8 @@ func start_game():
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
-	spawn_node = level_root.get_node("Checkpoints/InitialSpawnPoint")
-	#spawn_node= level_root.get_node("Checkpoints/EngineerHub")
+	#spawn_node = level_root.get_node("Checkpoints/InitialSpawnPoint")
+	spawn_node= level_root.get_node("Checkpoints/EngineerHub")
 	if spawn_node == null:
 		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
 		return
@@ -68,9 +68,10 @@ func start_game():
 	# Initiate and spawn player
 	var player_resource = load(player_scene_path)
 	player = player_resource.instantiate()
+	
 	get_tree().current_scene.add_child(player)
 	player.update_abilities(ability_to_status)
-
+	
 	player.player_respawn_sequence(spawn_node)
 	
 	MusicManager.play_theme()

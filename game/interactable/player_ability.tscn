@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dd4xiuq23yfrx"]
+[gd_scene load_steps=12 format=3 uid="uid://dd4xiuq23yfrx"]
 
 [ext_resource type="Script" uid="uid://bjrpcitgfndl5" path="res://interactable/player_ability.gd" id="1_vo4ok"]
 [ext_resource type="Shader" uid="uid://cdxis033gwgla" path="res://materials/hazard/hazard_shader.gdshader" id="2_3wdm2"]
@@ -90,6 +90,9 @@ _data = {
 &"collectable_float_anim": SubResource("Animation_ory2k")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_pqprg"]
+radius = 1.0
+
 [node name="PlayerAbility" type="StaticBody3D"]
 collision_layer = 8
 collision_mask = 0
@@ -106,3 +109,11 @@ shape = SubResource("SphereShape3D_n84hw")
 libraries = {
 &"": SubResource("AnimationLibrary_pqprg")
 }
+
+[node name="CollectableArea3D" type="Area3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableArea3D"]
+shape = SubResource("SphereShape3D_pqprg")
+
+[connection signal="body_entered" from="CollectableArea3D" to="." method="_on_collectable_area_3d_body_entered"]

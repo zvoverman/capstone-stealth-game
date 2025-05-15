@@ -19,7 +19,9 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.name == "PlayerDrone":
+	if body.name == "PlayerDrone" && body.can_move:
+		print(body)
 		label.text = message
 		await get_tree().create_timer(1.0).timeout
 		label.visible_ratio = 0.0
+		label.text = ''

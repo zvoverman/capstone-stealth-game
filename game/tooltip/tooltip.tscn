@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bhwomklg4boii" path="res://ui/SFUIDisplay-Light.ttf" id="2_w1q1r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4baov"]
-size = Vector3(5, 10, 5)
+size = Vector3(5, 5, 5)
 
 [node name="Tooltip" type="Node3D"]
 script = ExtResource("1_15sfh")

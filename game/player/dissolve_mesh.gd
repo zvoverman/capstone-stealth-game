@@ -12,7 +12,7 @@ var tween: Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dissolve_material = get_surface_override_material(0) as ShaderMaterial
-	dissolve_material.set_shader_parameter("dissolve_amount", 0.0)
+	dissolve_material.set_shader_parameter("dissolve_amount", 1.0)
 
 func trigger_dissolve() -> void:
 	dissolve_material.set_shader_parameter("glow_color", dissolve_color)
