@@ -10,10 +10,11 @@ size = Vector3(5, 5, 5)
 script = ExtResource("1_15sfh")
 
 [node name="Label" type="Label" parent="."]
+offset_top = 535.0
 offset_right = 1924.0
 offset_bottom = 1079.0
 theme_override_fonts/font = ExtResource("2_w1q1r")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
 vertical_alignment = 1
 

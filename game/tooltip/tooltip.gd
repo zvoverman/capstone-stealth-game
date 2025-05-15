@@ -9,19 +9,24 @@ class_name Tooltip
 
 signal checkpoint_entered(node: Node3D)
 
+var should_display: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	label.visible_ratio = 0.0
+	label.text = message
 	collision_area.connect("body_entered", _on_body_entered)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if (should_display):
+		label.visible_ratio = lerpf(label.visible_ratio, 1.0, 0.1)
+	elif label.visible_ratio != 0.0:
+		label.visible_ratio = lerpf(label.visible_ratio, 0.0, 0.1)
 
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.name == "PlayerDrone" && body.can_move:
-		print(body)
-		label.text = message
-		await get_tree().create_timer(1.0).timeout
-		label.visible_ratio = 0.0
-		label.text = ''
+		should_display = true
+		await get_tree().create_timer(5.0).timeout
+		should_display = false
