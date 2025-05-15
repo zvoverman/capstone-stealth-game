@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=41 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_vgehi"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="18_6jjab"]
 [ext_resource type="PackedScene" uid="uid://scwwmvqtdlsh" path="res://scenes/levels/game_2.0/engineer_hub.tscn" id="19_vgehi"]
 [ext_resource type="PackedScene" uid="uid://cvn3xkrr25uro" path="res://scenes/objects/Debris.tscn" id="20_m8yc0"]
+[ext_resource type="PackedScene" uid="uid://bwflp1ourm320" path="res://tooltip/tooltip.tscn" id="23_5jnw2"]
 [ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/floor/floor_material.tres" id="26_337q8"]
 [ext_resource type="PackedScene" uid="uid://drw2vhcmq60ow" path="res://scenes/objects/lights/big_hanging_spotlight.tscn" id="26_hjfkx"]
 [ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark.tscn" id="26_l5b4i"]
@@ -1598,6 +1599,12 @@ shape = SubResource("SphereShape3D_iiyc2")
 
 [node name="BigHangingSpotlight" parent="." instance=ExtResource("26_hjfkx")]
 transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, -1.9, 6.8, -68.4)
+
+[node name="Tooltips" type="Node" parent="."]
+
+[node name="Tooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -3)
+message = "Press WASD to move"
 
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly"]
 [editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2"]

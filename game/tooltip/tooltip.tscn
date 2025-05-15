@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwflp1ourm320"]
+
+[ext_resource type="Script" uid="uid://b0pqevpjhchw1" path="res://tooltip/tooltip.gd" id="1_15sfh"]
+[ext_resource type="FontFile" uid="uid://bhwomklg4boii" path="res://ui/SFUIDisplay-Light.ttf" id="2_w1q1r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4baov"]
+size = Vector3(5, 10, 5)
+
+[node name="Tooltip" type="Node3D"]
+script = ExtResource("1_15sfh")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1924.0
+offset_bottom = 1079.0
+theme_override_fonts/font = ExtResource("2_w1q1r")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_4baov")
