@@ -28,7 +28,7 @@ func continue_dialogue() -> bool:
 	
 	if dialogue_index >= current_sequence.lines.size():
 		dialogue_box_ui.clear()
-		visible = false
+		dialogue_index = -1
 		return false
 		
 	dialogue_box_ui.display_text(current_sequence.lines[dialogue_index])

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b2d0muxjnmsby" path="res://ui/ui_container_drop_animation.gd" id="3_wkomq"]
 [ext_resource type="Texture2D" uid="uid://c6wdhsk3nx8ij" path="res://icon.svg" id="5_bfl7c"]
 
-[node name="MainMenuUI" type="Control" node_paths=PackedStringArray("main_menu", "settings_menu", "about_us_menu", "credits_menu", "company_name", "main_menu_options", "settings_menu_options", "about_us_menu_options", "credits_menu_options")]
+[node name="MainMenuUI" type="Control" node_paths=PackedStringArray("main_menu", "settings_menu", "about_us_menu", "credits_menu", "company_name", "main_menu_options", "about_us_menu_options", "credits_menu_options")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,6 @@ about_us_menu = NodePath("PanelContainer/MarginContainer/About Us Menu")
 credits_menu = NodePath("PanelContainer/MarginContainer/Credits Menu")
 company_name = NodePath("PanelContainer/MarginContainer/Company Name")
 main_menu_options = NodePath("PanelContainer/MarginContainer/MainMenu/Buttons")
-settings_menu_options = NodePath("PanelContainer/MarginContainer/SettingsMenu/PanelContainer/VBoxContainer")
 about_us_menu_options = NodePath("PanelContainer/MarginContainer/About Us Menu/Container")
 credits_menu_options = NodePath("PanelContainer/MarginContainer/Credits Menu/VBoxContainer")
 
@@ -308,9 +307,6 @@ text = "Quit"
 visible = false
 layout_mode = 2
 
-[node name="Back Button" parent="PanelContainer/MarginContainer/SettingsMenu/PanelContainer/VBoxContainer/Back Button Wrapper" index="0"]
-text = "Return to Homepage"
-
 [node name="About Us Menu" type="Control" parent="PanelContainer/MarginContainer"]
 visible = false
 layout_mode = 2
@@ -478,7 +474,6 @@ text = "Return to Homepage"
 [connection signal="pressed" from="PanelContainer/MarginContainer/MainMenu/Buttons/About Us Button Wrapper/About Us Button" to="." method="_on_about_us_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/MainMenu/Buttons/Credits Button Wrapper/Credits Button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/MainMenu/Buttons/Quit Button Wrapper/Quit Button" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/SettingsMenu/PanelContainer/VBoxContainer/Back Button Wrapper/Back Button" to="." method="_on_settings_back_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/About Us Menu/Container/Back Button Wrapper/Button" to="." method="_on_about_us_back_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Credits Menu/VBoxContainer/Back Button Wrapper/Button" to="." method="_on_credits_back_button_pressed"]
 

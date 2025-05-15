@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://scwwmvqtdlsh"]
+[gd_scene load_steps=41 format=3 uid="uid://scwwmvqtdlsh"]
 
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="1_g5hjb"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_7a5qc"]
@@ -12,11 +12,12 @@
 [ext_resource type="Material" uid="uid://cnw58pov846yl" path="res://materials/wavy_crete/wavy_concrete_mat.tres" id="7_p73pn"]
 [ext_resource type="Material" uid="uid://cegnehag0e106" path="res://materials/dull_metal/dull_metal_mat.tres" id="8_6fhae"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="9_6fhae"]
-[ext_resource type="PackedScene" uid="uid://oyephryxos40" path="res://models/big_tv_low_poly.glb" id="12_6fhae"]
 [ext_resource type="Script" uid="uid://dlvjd2lvw8qfb" path="res://scenes/objects/hazards/area_hazard.gd" id="12_i542m"]
 [ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://interactable/player_ability.tscn" id="13_nk20a"]
 [ext_resource type="PackedScene" uid="uid://cvn3xkrr25uro" path="res://scenes/objects/Debris.tscn" id="14_p73pn"]
+[ext_resource type="PackedScene" uid="uid://cmbpm3obdw76w" path="res://scenes/objects/tv/tv.tscn" id="15_61dp6"]
 [ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark.tscn" id="15_qo41q"]
+[ext_resource type="Script" uid="uid://cm8td2foi648f" path="res://dialogue/dialogue_sequence.gd" id="16_wgmab"]
 [ext_resource type="Texture2D" uid="uid://d3h1ok0voqpan" path="res://materials/floor/exquistite-polished-tile_ao.png" id="17_unsd2"]
 [ext_resource type="Texture2D" uid="uid://cgwtupiduwsd7" path="res://materials/floor/exquistite-polished-tile_height.png" id="18_1tb0p"]
 [ext_resource type="Texture2D" uid="uid://bjr06alhuqpqs" path="res://materials/floor/exquistite-polished-tile_metallic.png" id="19_61dp6"]
@@ -37,6 +38,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
+
+[sub_resource type="Resource" id="Resource_p1x0c"]
+script = ExtResource("16_wgmab")
+lines = Array[String](["Please return to spawn for incineration.", "You'll never make it with missing parts.", "Nerd."])
+metadata/_custom_type_script = "uid://cm8td2foi648f"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nk20a"]
 size = Vector3(150, 84, 150)
@@ -84,6 +90,16 @@ size = Vector2(0.1, 0.1)
 [sub_resource type="Gradient" id="Gradient_y0txf"]
 offsets = PackedFloat32Array(0, 0.246964, 0.497976, 0.748988, 1)
 colors = PackedColorArray(1, 0, 0, 1, 0.958818, 1, 0.246964, 1, 0.497976, 1, 0.529352, 1, 0.748988, 0.805858, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_61dp6"]
+script = ExtResource("16_wgmab")
+lines = Array[String](["Congradulations!", "I had no hope in you making it this far.", "I would have made more content.", "But I didn't think you deserved it.", ""])
+metadata/_custom_type_script = "uid://cm8td2foi648f"
+
+[sub_resource type="Resource" id="Resource_1tb0p"]
+script = ExtResource("16_wgmab")
+lines = Array[String](["Go play portal.", "...", "(maybe that's more your pace >:D)"])
+metadata/_custom_type_script = "uid://cm8td2foi648f"
 
 [node name="EngineerHub" type="Node3D"]
 
@@ -488,18 +504,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 24.
 [node name="Door2" parent="EnvironmentMeshes/MainHub/Objects" instance=ExtResource("9_6fhae")]
 transform = Transform3D(0.735, 0, 0, 0, 0.735, 0, 0, 0, 0.735, 0, 2.3, 51)
 
-[node name="big_tv_low_poly" parent="EnvironmentMeshes/MainHub/Objects" instance=ExtResource("12_6fhae")]
-transform = Transform3D(-0.660732, -0.177043, 1.87939, -0.517638, 1.93185, -1.94438e-08, -1.81535, -0.486421, -0.684041, 3.6, 6, 5)
-
-[node name="Cube" parent="EnvironmentMeshes/MainHub/Objects/big_tv_low_poly" index="0"]
-surface_material_override/0 = ExtResource("8_6fhae")
-
-[node name="Sphere" parent="EnvironmentMeshes/MainHub/Objects/big_tv_low_poly" index="1"]
-surface_material_override/0 = ExtResource("5_p1m0m")
-
-[node name="Sphere_001" parent="EnvironmentMeshes/MainHub/Objects/big_tv_low_poly" index="2"]
-surface_material_override/0 = ExtResource("6_hwk41")
-
 [node name="low_poly_terminal" parent="EnvironmentMeshes/MainHub/Objects" instance=ExtResource("4_8dg3n")]
 transform = Transform3D(-0.860365, 0, 1.22873, 0, 1.5, 0, -1.22873, 0, -0.860365, -6.9, 0.726094, 4.5)
 
@@ -570,6 +574,10 @@ material = ExtResource("8_6fhae")
 
 [node name="WireSpark4" parent="EnvironmentMeshes/MainHub/Objects/Wires" instance=ExtResource("15_qo41q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7.9, 0.400002)
+
+[node name="Tv" parent="EnvironmentMeshes/MainHub/Objects" instance=ExtResource("15_61dp6")]
+transform = Transform3D(-0.660731, -0.177043, 1.87939, -0.517637, 1.93185, 5.78952e-07, -1.81535, -0.48642, -0.684039, 3.6, 6, 5)
+dialogue = SubResource("Resource_p1x0c")
 
 [node name="Area3D" type="Area3D" parent="EnvironmentMeshes/MainHub" groups=["hazard"]]
 collision_layer = 3
@@ -656,34 +664,15 @@ color_ramp = SubResource("Gradient_y0txf")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[node name="big_tv_low_poly" parent="EnvironmentMeshes" instance=ExtResource("12_6fhae")]
-transform = Transform3D(-1.5, -2.98023e-08, -1.31134e-07, -2.98023e-08, 1.5, 4.44089e-16, 1.31134e-07, 1.36535e-15, -1.5, 5.4, 5, 55.2)
+[node name="Tv" parent="EnvironmentMeshes" instance=ExtResource("15_61dp6")]
+transform = Transform3D(-1.5, -2.98023e-08, -2.26494e-07, -2.98023e-08, 1.5, -1.24005e-15, 2.26494e-07, 3.25998e-15, -1.5, 5.4, 5, 55.2)
+dialogue = SubResource("Resource_61dp6")
 
-[node name="Cube" parent="EnvironmentMeshes/big_tv_low_poly" index="0"]
-surface_material_override/0 = ExtResource("8_6fhae")
-
-[node name="Sphere" parent="EnvironmentMeshes/big_tv_low_poly" index="1"]
-surface_material_override/0 = ExtResource("5_p1m0m")
-
-[node name="Sphere_001" parent="EnvironmentMeshes/big_tv_low_poly" index="2"]
-surface_material_override/0 = ExtResource("6_hwk41")
-
-[node name="big_tv_low_poly2" parent="EnvironmentMeshes" instance=ExtResource("12_6fhae")]
-transform = Transform3D(1.5, 2.98023e-08, 2.62268e-07, -2.98023e-08, 1.5, 4.44089e-16, -2.62268e-07, -3.97075e-15, 1.5, -5.4, 5, 55.2)
-
-[node name="Cube" parent="EnvironmentMeshes/big_tv_low_poly2" index="0"]
-surface_material_override/0 = ExtResource("8_6fhae")
-
-[node name="Sphere" parent="EnvironmentMeshes/big_tv_low_poly2" index="1"]
-surface_material_override/0 = ExtResource("5_p1m0m")
-
-[node name="Sphere_001" parent="EnvironmentMeshes/big_tv_low_poly2" index="2"]
-surface_material_override/0 = ExtResource("6_hwk41")
+[node name="Tv2" parent="EnvironmentMeshes" instance=ExtResource("15_61dp6")]
+transform = Transform3D(1.5, 2.98023e-08, 2.62268e-07, -2.98023e-08, 1.5, -1.24004e-15, -2.62268e-07, -3.97075e-15, 1.5, -5.4, 5, 55.2)
+dialogue = SubResource("Resource_1tb0p")
 
 [node name="PlayerAbility" parent="." instance=ExtResource("13_nk20a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 17, -15.6)
 
-[editable path="EnvironmentMeshes/MainHub/Objects/big_tv_low_poly"]
 [editable path="EnvironmentMeshes/MainHub/Objects/low_poly_terminal"]
-[editable path="EnvironmentMeshes/big_tv_low_poly"]
-[editable path="EnvironmentMeshes/big_tv_low_poly2"]
