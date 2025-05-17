@@ -12,6 +12,6 @@ func _ready() -> void:
 	dialogue_box.begin_dialogue(dialogue)
 	
 	while true:
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(2.0).timeout
 		if not dialogue_box.continue_dialogue():
 			dialogue_box.begin_dialogue(dialogue)

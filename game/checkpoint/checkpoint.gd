@@ -6,8 +6,6 @@ class_name Checkpoint
 
 @onready var collision_area : Area3D = $Area3D
 
-# TODO: FIX CHECKPOINTS!
-
 signal checkpoint_entered(node: Node3D)
 
 # Called when the node enters the scene tree for the first time.

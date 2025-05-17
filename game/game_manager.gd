@@ -68,9 +68,10 @@ func start_game():
 	# Initiate and spawn player
 	var player_resource = load(player_scene_path)
 	player = player_resource.instantiate()
+	
 	get_tree().current_scene.add_child(player)
 	player.update_abilities(ability_to_status)
-
+	
 	player.player_respawn_sequence(spawn_node)
 	
 	MusicManager.play_theme()
@@ -86,7 +87,7 @@ func quit_to_main_menu():
 
 func _ready() -> void:
 	ability_to_status = {
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED,
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED,
 		PlayerAbilityType.DASH: PlayerAbilityStatus.LOCKED
 	}
 
