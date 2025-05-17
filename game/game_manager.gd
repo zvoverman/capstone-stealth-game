@@ -87,7 +87,7 @@ func quit_to_main_menu():
 
 func _ready() -> void:
 	ability_to_status = {
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED,
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED,
 		PlayerAbilityType.DASH: PlayerAbilityStatus.LOCKED
 	}
 

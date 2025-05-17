@@ -1,23 +1,24 @@
-[gd_scene load_steps=41 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=43 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_vgehi"]
 [ext_resource type="Material" uid="uid://dtf6n2w1gt4xg" path="res://materials/square_concrete_wall/new_standard_material_3d.tres" id="3_iiyc2"]
 [ext_resource type="Material" uid="uid://blfq57q64or3b" path="res://materials/grey_object_mat.tres" id="3_jku2k"]
 [ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/shiny_metal/shiny_metal_mat.tres" id="4_xetng"]
+[ext_resource type="Script" uid="uid://d0kwlgrr0clgv" path="res://scenes/levels/game_2.0/death_tube_cap.gd" id="7_1h3np"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="9_hjfkx"]
 [ext_resource type="PackedScene" uid="uid://cjeocotxh35tl" path="res://scenes/objects/lights/tube_light.tscn" id="10_xetng"]
-[ext_resource type="PackedScene" uid="uid://oyephryxos40" path="res://models/big_tv_low_poly.glb" id="11_iiyc2"]
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard/hazard_mat.tres" id="12_00k5i"]
 [ext_resource type="Material" uid="uid://cegnehag0e106" path="res://materials/dull_metal/dull_metal_mat.tres" id="12_1h3np"]
-[ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="13_337q8"]
 [ext_resource type="PackedScene" uid="uid://c5853ewrhxus3" path="res://scenes/objects/lights/hanging_light.tscn" id="14_l5b4i"]
 [ext_resource type="PackedScene" uid="uid://bmpqckck3s04h" path="res://models/vent_cover.fbx" id="15_m6rai"]
 [ext_resource type="Material" uid="uid://cnw58pov846yl" path="res://materials/wavy_crete/wavy_concrete_mat.tres" id="16_iiyc2"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="18_6jjab"]
 [ext_resource type="PackedScene" uid="uid://scwwmvqtdlsh" path="res://scenes/levels/game_2.0/engineer_hub.tscn" id="19_vgehi"]
 [ext_resource type="PackedScene" uid="uid://cvn3xkrr25uro" path="res://scenes/objects/Debris.tscn" id="20_m8yc0"]
+[ext_resource type="PackedScene" uid="uid://cmbpm3obdw76w" path="res://scenes/objects/tv/tv.tscn" id="22_337q8"]
 [ext_resource type="PackedScene" uid="uid://bwflp1ourm320" path="res://tooltip/tooltip.tscn" id="23_5jnw2"]
+[ext_resource type="Script" uid="uid://cm8td2foi648f" path="res://dialogue/dialogue_sequence.gd" id="26_00k5i"]
 [ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/floor/floor_material.tres" id="26_337q8"]
 [ext_resource type="PackedScene" uid="uid://drw2vhcmq60ow" path="res://scenes/objects/lights/big_hanging_spotlight.tscn" id="26_hjfkx"]
 [ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark.tscn" id="26_l5b4i"]
@@ -134,6 +135,11 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Resource" id="Resource_337q8"]
+script = ExtResource("26_00k5i")
+lines = Array[String](["You are entering a restricted area.", "Please return to spawn for incineration."])
+metadata/_custom_type_script = "uid://cm8td2foi648f"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_iiyc2"]
 radius = 50.0
 
@@ -219,12 +225,7 @@ radius = 2.0
 height = 0.3
 sides = 16
 material = ExtResource("12_1h3np")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/CanCollide"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 3)
-radius = 2.0
-height = 5.0
-sides = 16
+script = ExtResource("7_1h3np")
 
 [node name="NoClimb" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1" groups=["no_climb"]]
 use_collision = true
@@ -236,6 +237,12 @@ height = 6.75
 sides = 16
 material = ExtResource("12_1h3np")
 
+[node name="DeathTube" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 3)
+radius = 3.0
+height = 5.0
+sides = 16
+
 [node name="Holes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1/NoClimb"]
 operation = 2
 
@@ -245,6 +252,13 @@ radius = 2.0
 height = 6.5
 sides = 16
 material = ExtResource("12_1h3np")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/NoClimb/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)
+radius = 2.0
+height = 6.0
+sides = 16
+material = ExtResource("3_iiyc2")
 
 [node name="Pipes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1/NoClimb"]
 
@@ -281,6 +295,14 @@ material = ExtResource("12_1h3np")
 
 [node name="Hazards" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1" groups=["hazard"]]
 use_collision = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1/Hazards"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.75, 3)
+material_override = ExtResource("12_00k5i")
+radius = 2.0
+height = 0.5
+sides = 16
+material = ExtResource("12_00k5i")
 
 [node name="Objects" type="Node3D" parent="EnvironmentMeshes/Room_1"]
 
@@ -322,43 +344,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6, 5, -2.75496)
 
 [node name="TubeLight5" parent="EnvironmentMeshes/Room_1/Objects/Lights" instance=ExtResource("10_xetng")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.35941, 2, -10)
-
-[node name="big_tv_low_poly" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("11_iiyc2")]
-transform = Transform3D(-8.08186e-08, -6.9004e-10, -1.79, -0.612216, 1.68205, 2.69932e-08, 1.68205, 0.612216, -7.61807e-08, 0, 5.5, -3)
-
-[node name="Cube" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly" index="0"]
-surface_material_override/0 = ExtResource("12_1h3np")
-
-[node name="Sphere" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly" index="1"]
-surface_material_override/0 = ExtResource("12_00k5i")
-
-[node name="Sphere_001" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly" index="2"]
-surface_material_override/0 = ExtResource("13_337q8")
-
-[node name="big_tv_low_poly2" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("11_iiyc2")]
-transform = Transform3D(0.408218, 0.109382, -0.906308, -0.258819, 0.965926, 9.7219e-09, 0.875426, 0.23457, 0.422618, -2.5, 3, -2.6)
-
-[node name="Cube" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2" index="0"]
-surface_material_override/0 = ExtResource("12_1h3np")
-
-[node name="Sphere" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2" index="1"]
-surface_material_override/0 = ExtResource("12_00k5i")
-
-[node name="Sphere_001" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2" index="2"]
-surface_material_override/0 = ExtResource("13_337q8")
-
-[node name="big_tv_low_poly3" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("11_iiyc2")]
-transform = Transform3D(-0.411502, -0.21107, -0.998056, -0.548954, 0.952908, 0.0248133, 0.859835, 0.507361, -0.46181, 2.2, 7, -0.6)
-
-[node name="Cube" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly3" index="0"]
-transform = Transform3D(0.0716525, 0, 0, -3.72529e-09, 0.75429, 1.49012e-08, 0, 0, 1, 0, 0, 0)
-surface_material_override/0 = ExtResource("12_1h3np")
-
-[node name="Sphere" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly3" index="1"]
-surface_material_override/0 = ExtResource("12_00k5i")
-
-[node name="Sphere_001" parent="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly3" index="2"]
-surface_material_override/0 = ExtResource("13_337q8")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.35, 2.25, -7)
@@ -535,6 +520,17 @@ transform = Transform3D(1.28558, 0, 1.53209, 0, 2, 0, -1.53209, 0, 1.28558, 4.3,
 
 [node name="Debris4" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
 transform = Transform3D(1.5909, 0, 1.89596, 0, 2.475, 0, -1.89596, 0, 1.5909, 6, 0.2, -5.3)
+
+[node name="Tv" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("22_337q8")]
+transform = Transform3D(-7.39355e-08, -2.69103e-08, -1.8, -0.615636, 1.69145, -4.00615e-15, 1.69145, 0.615636, -7.86805e-08, 0, 5.55976, -2.98336)
+
+[node name="Tv2" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("22_337q8")]
+transform = Transform3D(0.476557, 0.173453, -1.08757, -0.410424, 1.12763, 3.76357e-08, 1.02198, 0.371971, 0.507142, -2.46964, 3.07633, -2.69378)
+dialogue = null
+
+[node name="Tv3" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("22_337q8")]
+transform = Transform3D(-0.476558, -0.173453, -1.08757, -0.410424, 1.12763, 0, 1.02198, 0.371971, -0.507142, 2.17172, 7.09625, -0.548029)
+dialogue = null
 
 [node name="Room_2" type="Node3D" parent="EnvironmentMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -5.5, -15.7786)
@@ -1394,18 +1390,6 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 30.582
 [node name="TubeLight4" parent="EnvironmentMeshes/Room_4/Objects/Lights" instance=ExtResource("10_xetng")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 25.7824, 21.4, -11.0215)
 
-[node name="big_tv_low_poly" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("11_iiyc2")]
-transform = Transform3D(-5.86951e-08, -5.01148e-10, 1.3, -0.336465, 1.2557, -1.47073e-08, -1.2557, -0.336465, -5.68248e-08, 28.2, 22.8, -14.8)
-
-[node name="Cube" parent="EnvironmentMeshes/Room_4/Objects/big_tv_low_poly" index="0"]
-surface_material_override/0 = ExtResource("12_1h3np")
-
-[node name="Sphere" parent="EnvironmentMeshes/Room_4/Objects/big_tv_low_poly" index="1"]
-surface_material_override/0 = ExtResource("12_00k5i")
-
-[node name="Sphere_001" parent="EnvironmentMeshes/Room_4/Objects/big_tv_low_poly" index="2"]
-surface_material_override/0 = ExtResource("13_337q8")
-
 [node name="Debris" type="Node3D" parent="EnvironmentMeshes/Room_4/Objects"]
 
 [node name="Debris2" parent="EnvironmentMeshes/Room_4/Objects/Debris" instance=ExtResource("20_m8yc0")]
@@ -1572,6 +1556,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9, 23.5, -21.7701)
 [node name="HangingLight4" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("14_l5b4i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4273, 23.5, -21.7701)
 
+[node name="Tv" parent="EnvironmentMeshes/Room_4/Objects" instance=ExtResource("22_337q8")]
+transform = Transform3D(-5.86951e-08, -5.01109e-10, 1.3, -0.336466, 1.2557, -1.47074e-08, -1.2557, -0.336466, -5.68248e-08, 28.2, 22.8, -14.8)
+dialogue = SubResource("Resource_337q8")
+
 [node name="EngineerHub" parent="EnvironmentMeshes" instance=ExtResource("19_vgehi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2, 14.5, 60.821)
 
@@ -1603,23 +1591,19 @@ transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0,
 [node name="Tooltips" type="Node" parent="."]
 
 [node name="WASDTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 3)
-message = "Press WASD to move."
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)
+message = "Press WASD to move.."
 
 [node name="HintTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 7.2, -51)
-message = "Press H to scan climbable surroundings."
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 9, -51)
+message = "Press H to scan climbable surfaces."
 
 [node name="JumpTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 29.2, 44)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 30, 43)
 message = "Press SPACE to jump."
 
-[editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly"]
-[editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly2"]
-[editable path="EnvironmentMeshes/Room_1/Objects/big_tv_low_poly3"]
 [editable path="EnvironmentMeshes/Room_1/Objects/vent_cover2"]
 [editable path="EnvironmentMeshes/Room_2/Objects/vent_cover"]
 [editable path="EnvironmentMeshes/Room_3/Objects/vent_cover"]
 [editable path="EnvironmentMeshes/Room_3/Objects/vent_cover2"]
 [editable path="EnvironmentMeshes/Room_3/Objects/vent_cover3"]
-[editable path="EnvironmentMeshes/Room_4/Objects/big_tv_low_poly"]

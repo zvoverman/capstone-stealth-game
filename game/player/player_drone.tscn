@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://byyvj11ogufcy" path="res://audio/footstep_concrete_001.ogg" id="15_uaky4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bumat"]
-radius = 0.6
+radius = 0.4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gvphy"]
 resource_name = "drone_v1_Icosphere_001"
@@ -137,6 +137,7 @@ shape = SubResource("SphereShape3D_bumat")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -296,7 +297,7 @@ target_node = NodePath("../../FrontRightIKTarget")
 script = ExtResource("2_dfnor")
 
 [node name="FrontLeftIKTarget" type="Marker3D" parent="Armature" node_paths=PackedStringArray("step_target", "adjacent_target", "opposite_target")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.75, -1, -0.75)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.55, -1, -0.55)
 top_level = true
 script = ExtResource("3_wgdm4")
 step_target = NodePath("../StepTargetContainer/FrontLeftRay/FrontLeftStepTarget")
@@ -305,7 +306,7 @@ adjacent_target = NodePath("../FrontRightIKTarget")
 opposite_target = NodePath("../BackRightIKTarget")
 
 [node name="BackLeftIKTarget" type="Marker3D" parent="Armature" node_paths=PackedStringArray("step_target", "adjacent_target", "opposite_target")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.75, -1, 0.75)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.55, -1, 0.55)
 top_level = true
 script = ExtResource("3_wgdm4")
 step_target = NodePath("../StepTargetContainer/BackLeftRay/BackLeftStepTarget")
@@ -314,7 +315,7 @@ adjacent_target = NodePath("../BackRightIKTarget")
 opposite_target = NodePath("../FrontRightIKTarget")
 
 [node name="BackRightIKTarget" type="Marker3D" parent="Armature" node_paths=PackedStringArray("step_target", "adjacent_target", "opposite_target")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.75, -1, 0.75)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.55, -1, 0.55)
 top_level = true
 script = ExtResource("3_wgdm4")
 step_target = NodePath("../StepTargetContainer/BackRightRay/BackRightStepTarget")
@@ -323,7 +324,7 @@ adjacent_target = NodePath("../BackLeftIKTarget")
 opposite_target = NodePath("../FrontLeftIKTarget")
 
 [node name="FrontRightIKTarget" type="Marker3D" parent="Armature" node_paths=PackedStringArray("step_target", "adjacent_target", "opposite_target")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.75, -1, -0.75)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.55, -1, -0.55)
 top_level = true
 script = ExtResource("3_wgdm4")
 step_target = NodePath("../StepTargetContainer/FrontRightRay/FrontRightStepTarget")
@@ -335,7 +336,7 @@ opposite_target = NodePath("../BackLeftIKTarget")
 script = ExtResource("4_ijx8o")
 
 [node name="FrontLeftRay" type="RayCast3D" parent="Armature/StepTargetContainer" node_paths=PackedStringArray("step_target")]
-transform = Transform3D(0.984808, -0.173648, 0, 0.17101, 0.969846, 0.173648, -0.0301537, -0.17101, 0.984808, -2.5, 2, -2.5)
+transform = Transform3D(0.984808, -0.173648, 0, 0.17101, 0.969846, 0.173648, -0.0301537, -0.17101, 0.984808, -1.9, 2, -1.9)
 target_position = Vector3(0, -10, 0)
 script = ExtResource("5_0wsnl")
 step_target = NodePath("FrontLeftStepTarget")
@@ -344,7 +345,7 @@ step_target = NodePath("FrontLeftStepTarget")
 transform = Transform3D(1, 6.49015e-09, 4.65661e-10, -7.85803e-10, 1, 0, 4.65661e-10, 0, 1, -1.19209e-07, -4, 0)
 
 [node name="BackLeftRay" type="RayCast3D" parent="Armature/StepTargetContainer" node_paths=PackedStringArray("step_target")]
-transform = Transform3D(0.984808, -0.173648, 0, 0.17101, 0.969846, -0.173648, 0.0301537, 0.17101, 0.984808, -2.5, 2, 2.5)
+transform = Transform3D(0.984808, -0.173648, 0, 0.17101, 0.969846, -0.173648, 0.0301537, 0.17101, 0.984808, -1.9, 2, 1.9)
 target_position = Vector3(0, -10, 0)
 script = ExtResource("5_0wsnl")
 step_target = NodePath("BackLeftStepTarget")
@@ -353,7 +354,7 @@ step_target = NodePath("BackLeftStepTarget")
 transform = Transform3D(1, 6.49015e-09, -4.65661e-10, -7.85803e-10, 1, 0, -4.65661e-10, 0, 1, -1.19209e-07, -4, 0)
 
 [node name="BackRightRay" type="RayCast3D" parent="Armature/StepTargetContainer" node_paths=PackedStringArray("step_target")]
-transform = Transform3D(0.984808, 0.173648, 0, -0.17101, 0.969846, -0.173648, -0.0301537, 0.17101, 0.984808, 2.5, 2, 2.5)
+transform = Transform3D(0.984808, 0.173648, 0, -0.17101, 0.969846, -0.173648, -0.0301537, 0.17101, 0.984808, 1.9, 2, 1.9)
 target_position = Vector3(0, -10, 0)
 script = ExtResource("5_0wsnl")
 step_target = NodePath("BackRightStepTarget")
@@ -362,7 +363,7 @@ step_target = NodePath("BackRightStepTarget")
 transform = Transform3D(1, -6.49015e-09, 4.65661e-10, 7.85803e-10, 1, 0, 4.65661e-10, 0, 1, 1.19209e-07, -4, 0)
 
 [node name="FrontRightRay" type="RayCast3D" parent="Armature/StepTargetContainer" node_paths=PackedStringArray("step_target")]
-transform = Transform3D(0.984808, 0.173648, 0, -0.17101, 0.969846, 0.173648, 0.0301537, -0.17101, 0.984808, 2.5, 2, -2.5)
+transform = Transform3D(0.984808, 0.173648, 0, -0.17101, 0.969846, 0.173648, 0.0301537, -0.17101, 0.984808, 1.9, 2, -1.9)
 target_position = Vector3(0, -10, 0)
 script = ExtResource("5_0wsnl")
 step_target = NodePath("FrontRightStepTarget")

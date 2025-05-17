@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.name == "PlayerDrone" && body.can_move:
+		await get_tree().create_timer(3.0).timeout
 		should_display = true
 		await get_tree().create_timer(5.0).timeout
 		should_display = false
