@@ -437,6 +437,12 @@ radius = 11.0
 sides = 24
 material = ExtResource("8_6fhae")
 
+[node name="Topblocker2" type="CSGCylinder3D" parent="EnvironmentMeshes/MainHub/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 58.1445, 0)
+radius = 11.0
+sides = 24
+material = ExtResource("8_6fhae")
+
 [node name="CSGBox3D5" type="CSGBox3D" parent="EnvironmentMeshes/MainHub/NoClimb"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 24.6407, -21.1)
 size = Vector3(4, 0.5, 35)
@@ -455,6 +461,34 @@ material = ExtResource("8_6fhae")
 [node name="Bridge9" type="CSGBox3D" parent="EnvironmentMeshes/MainHub/NoClimb"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -6.5, 3.25, 37)
 size = Vector3(6, 0.5, 8)
+material = ExtResource("8_6fhae")
+
+[node name="SidePillar5" type="CSGCylinder3D" parent="EnvironmentMeshes/MainHub/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 58.6248, -21)
+radius = 6.5
+height = 1.0
+sides = 24
+material = ExtResource("8_6fhae")
+
+[node name="SidePillar6" type="CSGCylinder3D" parent="EnvironmentMeshes/MainHub/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 58.6406, 22)
+radius = 6.5
+height = 1.0
+sides = 24
+material = ExtResource("8_6fhae")
+
+[node name="SidePillar7" type="CSGCylinder3D" parent="EnvironmentMeshes/MainHub/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 58.6406, -21)
+radius = 6.5
+height = 1.0
+sides = 24
+material = ExtResource("8_6fhae")
+
+[node name="SidePillar8" type="CSGCylinder3D" parent="EnvironmentMeshes/MainHub/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 58.6719, 22)
+radius = 6.5
+height = 1.0
+sides = 24
 material = ExtResource("8_6fhae")
 
 [node name="Objects" type="Node3D" parent="EnvironmentMeshes/MainHub"]
