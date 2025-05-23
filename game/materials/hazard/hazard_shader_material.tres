@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://df7t2lcwt53jm"]
+
+[ext_resource type="Shader" uid="uid://cdxis033gwgla" path="res://materials/hazard/hazard_shader.gdshader" id="1_uocv4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uocv4")
+shader_parameter/baseColor = Color(1, 0, 0, 1)
+shader_parameter/moltenColor = Color(1, 0.3, 0, 1)
+shader_parameter/dissolveSlider = 0.5
+shader_parameter/dissolveNoiseScale = 2.0
+shader_parameter/edgeNoiseScale = -3.0
+shader_parameter/edgesThickness = 0.037
+shader_parameter/edgeColor = Color(1, 0.750122, 0.640625, 1)
+shader_parameter/edgeEmissionSlider = 1.0
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 2.0
+shader_parameter/animation_intensity = 0.2
+shader_parameter/vertexDisplacementStrength = 0.485
+shader_parameter/vertexDisplacementSpeed = 0.3
