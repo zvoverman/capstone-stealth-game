@@ -4,6 +4,7 @@ extends Collectable
 class_name PlayerAbility
 
 enum PlayerAbilityType {
+	CLIMB,
 	JUMP,
 	DASH,
 	BALL,
@@ -33,6 +34,8 @@ func collect() -> void:
 	super()
 	match ability_type:
 		PlayerAbilityType.JUMP:
+			pickup_ability()
+		PlayerAbilityType.CLIMB:
 			pickup_ability()
 		_:
 			print("No ability type given.")

@@ -96,7 +96,9 @@ var is_dashing: bool = false
 func _physics_process(delta: float) -> void:
 	
 	# Calculate player orientation based on average normal of rays
-	var normal = average_rays()
+	var normal = Vector3.UP
+	if (ability_to_status[PlayerAbilityType.CLIMB] == PlayerAbilityStatus.UNLOCKED):
+		normal = average_rays()
 	if normal != Vector3.ZERO:
 		current_normal = normal
 	else:
@@ -148,12 +150,6 @@ func _physics_process(delta: float) -> void:
 	# Toggle jump
 	if Input.is_action_just_pressed("jump") and not is_jumping and jump_timer <= 0 and ability_to_status[PlayerAbilityType.JUMP] == PlayerAbilityStatus.UNLOCKED:
 		is_jumping = true
-		#var forwardDir : Vector3 = ( forward_direction.global_transform.origin - global_transform.origin ).normalized()
-		#jump_direction = (current_normal + (forwardDir)).normalized()
-		#if current_normal != Vector3.UP and current_normal != Vector3.DOWN:
-			#jump_direction = (2 * current_normal).normalized()
-		#else:
-			#jump_direction = current_normal
 		jump_direction = current_normal
 			
 		velocity += jump_direction * MAX_VERTICAL_JUMP_VELOCITY
