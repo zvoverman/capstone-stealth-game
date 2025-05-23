@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=44 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_vgehi"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bmpqckck3s04h" path="res://models/vent_cover.fbx" id="15_m6rai"]
 [ext_resource type="Material" uid="uid://cnw58pov846yl" path="res://materials/wavy_crete/wavy_concrete_mat.tres" id="16_iiyc2"]
 [ext_resource type="PackedScene" uid="uid://cqrmjewqwwbyg" path="res://scenes/objects/door/door.tscn" id="18_6jjab"]
+[ext_resource type="PackedScene" uid="uid://dd4xiuq23yfrx" path="res://interactable/player_ability.tscn" id="18_m8yc0"]
 [ext_resource type="PackedScene" uid="uid://scwwmvqtdlsh" path="res://scenes/levels/game_2.0/engineer_hub.tscn" id="19_vgehi"]
 [ext_resource type="PackedScene" uid="uid://cvn3xkrr25uro" path="res://scenes/objects/Debris.tscn" id="20_m8yc0"]
 [ext_resource type="PackedScene" uid="uid://cmbpm3obdw76w" path="res://scenes/objects/tv/tv.tscn" id="22_337q8"]
@@ -157,6 +158,7 @@ environment = ExtResource("1_vgehi")
 [node name="EnvironmentMeshes" type="Node3D" parent="."]
 
 [node name="Room_1" type="Node3D" parent="EnvironmentMeshes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -23.4, -8.5, 0)
 
 [node name="CanCollide" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1"]
 use_collision = true
@@ -531,6 +533,65 @@ dialogue = null
 [node name="Tv3" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("22_337q8")]
 transform = Transform3D(-0.476558, -0.173453, -1.08757, -0.410424, 1.12763, 0, 1.02198, 0.371971, -0.507142, 2.17172, 7.09625, -0.548029)
 dialogue = null
+
+[node name="Room_1_1" type="Node3D" parent="EnvironmentMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.5, 0)
+
+[node name="Climbable" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1_1"]
+use_collision = true
+
+[node name="Container" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200001, 6.75, -0.0200001)
+size = Vector3(15, 13, 15)
+material = ExtResource("2_vgehi")
+
+[node name="Holes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+operation = 2
+
+[node name="Container" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable/Holes"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200001, 6.25, -0.0200001)
+size = Vector3(14, 12, 14)
+material = ExtResource("3_iiyc2")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable/Holes"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.9875, 1.25, 0.0125002)
+size = Vector3(2, 2.5, 3.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.85, -7.7)
+size = Vector3(3.5, 2.5, 3)
+material = ExtResource("2_vgehi")
+
+[node name="Floor" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200001, 0, -0.0200001)
+size = Vector3(15, 0.5, 15)
+material = ExtResource("26_337q8")
+
+[node name="Vent" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0124996, 9.85, -11.7375)
+size = Vector3(9.3, 3, 4)
+material = ExtResource("4_xetng")
+
+[node name="Holes2" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable/Holes2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.60049, 0.25, 0.1625)
+size = Vector3(0.974023, 2, 3.3)
+material = ExtResource("4_xetng")
+
+[node name="Vent2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable/Holes2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0124996, 9.85, -11.7375)
+size = Vector3(9.3, 2, 3)
+material = ExtResource("4_xetng")
+
+[node name="Objects" type="Node3D" parent="EnvironmentMeshes/Room_1_1"]
+
+[node name="BigHangingLight" parent="EnvironmentMeshes/Room_1_1/Objects" instance=ExtResource("9_hjfkx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.239165, 12.102, -0.359779)
+
+[node name="PlayerAbility" parent="EnvironmentMeshes/Room_1_1/Objects" instance=ExtResource("18_m8yc0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
 
 [node name="Room_2" type="Node3D" parent="EnvironmentMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -5.5, -15.7786)
@@ -1566,7 +1627,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2, 14.5, 60.821)
 [node name="Checkpoints" type="Node" parent="."]
 
 [node name="InitialSpawnPoint" type="Marker3D" parent="Checkpoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 3)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -26.5, 8, 0)
 
 [node name="EngineerHub" type="Marker3D" parent="Checkpoints"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14, 22, 60.8)
@@ -1581,17 +1642,10 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 17, 61)
 shape = SubResource("SphereShape3D_iiyc2")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Game Overlay Ui" parent="CanvasLayer" instance=ExtResource("29_00k5i")]
-
-[node name="BigHangingSpotlight" parent="." instance=ExtResource("26_hjfkx")]
-transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, -1.9, 6.8, -68.4)
-
 [node name="Tooltips" type="Node" parent="."]
 
 [node name="WASDTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -2, 0)
 message = "Press WASD to move.."
 
 [node name="HintTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
@@ -1601,6 +1655,13 @@ message = "Press H to scan climbable surfaces."
 [node name="JumpTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 30, 43)
 message = "Press SPACE to jump."
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Game Overlay Ui" parent="CanvasLayer" instance=ExtResource("29_00k5i")]
+
+[node name="BigHangingSpotlight" parent="." instance=ExtResource("26_hjfkx")]
+transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, -1.9, 6.8, -68.4)
 
 [editable path="EnvironmentMeshes/Room_1/Objects/vent_cover2"]
 [editable path="EnvironmentMeshes/Room_2/Objects/vent_cover"]

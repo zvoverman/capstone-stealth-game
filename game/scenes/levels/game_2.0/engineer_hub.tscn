@@ -674,5 +674,6 @@ dialogue = SubResource("Resource_1tb0p")
 
 [node name="PlayerAbility" parent="." instance=ExtResource("13_nk20a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 17, -15.6)
+ability_type = 1
 
 [editable path="EnvironmentMeshes/MainHub/Objects/low_poly_terminal"]
