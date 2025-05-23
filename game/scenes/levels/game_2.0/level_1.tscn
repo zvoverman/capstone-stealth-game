@@ -572,6 +572,26 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.012
 size = Vector3(9.3, 3, 4)
 material = ExtResource("4_xetng")
 
+[node name="CSGBox3D8" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45, 7.25, -4.5)
+size = Vector3(2, 15, 2)
+material = ExtResource("16_iiyc2")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.55, 7.25, -4.5)
+size = Vector3(2, 15, 2)
+material = ExtResource("16_iiyc2")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45, 7.25, 4.5)
+size = Vector3(2, 15, 2)
+material = ExtResource("16_iiyc2")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.55, 7.25, 4.5)
+size = Vector3(2, 15, 2)
+material = ExtResource("16_iiyc2")
+
 [node name="Holes2" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
 operation = 2
 
@@ -585,13 +605,74 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.012
 size = Vector3(9.3, 2, 3)
 material = ExtResource("4_xetng")
 
+[node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.7, 1.4)
+size = Vector3(1, 3, 1)
+material = ExtResource("2_vgehi")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/Climbable"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5.5, 0.7, 0.4)
+material = ExtResource("2_vgehi")
+
+[node name="NoClimb" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1_1" groups=["no_climb"]]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, 2.8)
+size = Vector3(15, 0.5, 1)
+material = ExtResource("12_1h3np")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1_1/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.25, -2.7)
+size = Vector3(15, 0.5, 1)
+material = ExtResource("12_1h3np")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_1_1/NoClimb"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 11.2, -1.1)
+radius = 1.0
+height = 15.0
+
 [node name="Objects" type="Node3D" parent="EnvironmentMeshes/Room_1_1"]
 
-[node name="BigHangingLight" parent="EnvironmentMeshes/Room_1_1/Objects" instance=ExtResource("9_hjfkx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.239165, 12.102, -0.359779)
-
 [node name="PlayerAbility" parent="EnvironmentMeshes/Room_1_1/Objects" instance=ExtResource("18_m8yc0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+
+[node name="Lights" type="Node3D" parent="EnvironmentMeshes/Room_1_1/Objects"]
+
+[node name="BigHangingLight" parent="EnvironmentMeshes/Room_1_1/Objects/Lights" instance=ExtResource("9_hjfkx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.060835, 12.202, -5.35978)
+
+[node name="BigHangingLight2" parent="EnvironmentMeshes/Room_1_1/Objects/Lights" instance=ExtResource("9_hjfkx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.060835, 12.202, 5.34022)
+
+[node name="TubeLight" parent="EnvironmentMeshes/Room_1_1/Objects/Lights" instance=ExtResource("10_xetng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 10.9, -2.7)
+
+[node name="TubeLight2" parent="EnvironmentMeshes/Room_1_1/Objects/Lights" instance=ExtResource("10_xetng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 10.9, 2.8)
+
+[node name="TubeLight3" parent="EnvironmentMeshes/Room_1_1/Objects/Lights" instance=ExtResource("10_xetng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 10.9, -2.7)
+
+[node name="TubeLight4" parent="EnvironmentMeshes/Room_1_1/Objects/Lights" instance=ExtResource("10_xetng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 10.9, 2.8)
+
+[node name="DebrisCotnainer" type="Node3D" parent="EnvironmentMeshes/Room_1_1/Objects"]
+
+[node name="Debris" parent="EnvironmentMeshes/Room_1_1/Objects/DebrisCotnainer" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6, 0.3, -6)
+
+[node name="Debris2" parent="EnvironmentMeshes/Room_1_1/Objects/DebrisCotnainer" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1.29904, 0, 0.75, 0, 1.5, 0, -0.75, 0, 1.29904, 4.2, 0.3, -6.1)
+
+[node name="Debris3" parent="EnvironmentMeshes/Room_1_1/Objects/DebrisCotnainer" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(-2, 0, -1.19209e-07, 0, 2, 0, 1.19209e-07, 0, -2, 3.5, 0.3, 6.1)
+
+[node name="Debris4" parent="EnvironmentMeshes/Room_1_1/Objects/DebrisCotnainer" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(-1.29904, 0, -0.75, 0, 1.5, 0, 0.75, 0, -1.29904, 5.3, 0.3, 6.2)
+
+[node name="Debris5" parent="EnvironmentMeshes/Room_1_1/Objects/DebrisCotnainer" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(0.388229, 0, -1.44889, 0, 1.5, 0, 1.44889, 0, 0.388229, 6.3, 0.3, 2.6)
 
 [node name="Room_2" type="Node3D" parent="EnvironmentMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -5.5, -15.7786)
@@ -1647,6 +1728,10 @@ shape = SubResource("SphereShape3D_iiyc2")
 [node name="WASDTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -2, 0)
 message = "Press WASD to move.."
+
+[node name="ClimbTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 5)
+message = "Walk towards a surface to climb it.."
 
 [node name="HintTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 9, -51)
