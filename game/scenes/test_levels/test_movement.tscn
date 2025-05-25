@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d14a776fjfhuu"]
 
-[ext_resource type="PackedScene" uid="uid://1ho3oqfnll2i" path="res://player/player_drone.tscn" id="1_jx83q"]
 [ext_resource type="Material" uid="uid://dkomwvb61ee5w" path="res://materials/no_climb_mat.tres" id="2_15kgy"]
+[ext_resource type="PackedScene" uid="uid://c3it8imntusbc" path="res://player/player_drone.tscn" id="2_vfrwb"]
 
 [sub_resource type="Environment" id="Environment_nug7p"]
 ambient_light_source = 2
@@ -27,9 +27,6 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nug7p")
 
-[node name="PlayerDrone" parent="." instance=ExtResource("1_jx83q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.97805, 0)
-
 [node name="CSGCombiner3D2" type="CSGCombiner3D" parent="." groups=["no_climb"]]
 use_collision = true
 
@@ -44,3 +41,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 3)
 material_override = ExtResource("2_15kgy")
 size = Vector3(5, 1, 5)
 material = ExtResource("2_15kgy")
+
+[node name="PlayerDroneV2" parent="." instance=ExtResource("2_vfrwb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)

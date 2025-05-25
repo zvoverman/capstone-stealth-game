@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dy0o8k2pn1dan" path="res://interactable/npc.gd" id="1_2xp5l"]
 [ext_resource type="Script" uid="uid://cm8td2foi648f" path="res://dialogue/dialogue_sequence.gd" id="2_3i1kj"]
-[ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player_material.tres" id="2_nhy3c"]
+[ext_resource type="Material" uid="uid://dnvhnska4f5f8" path="res://materials/player/player_eye_material.tres" id="2_nhy3c"]
 [ext_resource type="PackedScene" uid="uid://b884wt6p73sc4" path="res://dialogue/dialogue_box.tscn" id="4_o6cys"]
 
 [sub_resource type="Resource" id="Resource_o6cys"]

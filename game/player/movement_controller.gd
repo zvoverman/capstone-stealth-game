@@ -74,6 +74,11 @@ func _ready() -> void:
 		
 	if jump_timer_ui:
 		jump_timer_ui.max_value = JUMP_COOLDOWN
+		
+	ability_to_status = {
+		PlayerAbilityType.CLIMB: PlayerAbilityStatus.UNLOCKED,
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED
+	}
 
 func _process(delta: float) -> void:
 	# Update the jump timer

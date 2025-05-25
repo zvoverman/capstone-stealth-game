@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dnvhnska4f5f8"]
+
+[ext_resource type="Material" uid="uid://dh0fgvlphe0dj" path="res://materials/player/dark_grey_dissolve_shader_mat.tres" id="1_4patc"]
+
+[resource]
+resource_local_to_scene = true
+next_pass = ExtResource("1_4patc")
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+metallic = 0.3
+metallic_specular = 1.0
+roughness = 0.0
+emission = Color(0.123738, 0.303326, 0.225723, 1)

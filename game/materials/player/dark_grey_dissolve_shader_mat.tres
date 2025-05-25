@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dh0fgvlphe0dj"]
+
+[ext_resource type="Shader" uid="uid://cas1md1kis31a" path="res://materials/player/dissolve_shader.gdshader" id="1_uqv42"]
+[ext_resource type="Texture2D" uid="uid://4585ao6w8rsj" path="res://materials/player/dissolve_texture.tres" id="2_w4q6u"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uqv42")
+shader_parameter/base_color = Color(0.415686, 0.415686, 0.415686, 1)
+shader_parameter/inside_color = Color(0, 0, 0, 1)
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/glow_color = Color(0.290196, 0.823529, 1, 1)
+shader_parameter/glow_intensity = 5.0
+shader_parameter/glow_border_width = 0.05
+shader_parameter/glow_border_smoothness = 0.04
+shader_parameter/noise_texture = ExtResource("2_w4q6u")
