@@ -6,7 +6,7 @@ extends Marker3D
 @export var adjacent_target: Node3D
 @export var opposite_target: Node3D
 
-var is_stepping := false
+var is_stepping : bool = false
 
 func _process(_delta):
 	if !is_stepping && !adjacent_target.is_stepping && abs(global_position.distance_to(step_target.global_position)) > step_distance:

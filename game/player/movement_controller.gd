@@ -74,6 +74,11 @@ func _ready() -> void:
 		
 	if jump_timer_ui:
 		jump_timer_ui.max_value = JUMP_COOLDOWN
+		
+	ability_to_status = {
+		PlayerAbilityType.CLIMB: PlayerAbilityStatus.UNLOCKED,
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED
+	}
 
 func _process(delta: float) -> void:
 	# Update the jump timer
@@ -202,7 +207,7 @@ func get_average_leg_position(targets: Array) -> Vector3:
 
 # Movement direction calculation based on forward direction,
 # player "forward" will always be "away" from camera
-var can_move: bool = false
+var can_move: bool = true
 func get_dir() -> Vector3:
 	if not can_move: return Vector3.ZERO
 	

@@ -56,6 +56,7 @@ func start_game():
 	const scene_path = "res://scenes/levels/game_2.0/level_1.tscn"
 	#const scene_path = "res://scenes/levels/game/game.tscn" # old game scene
 	#const scene_path = "res://scenes/levels/game_2.0/abstract_world.tscn"
+	#const player_scene_path = "res://player/player_drone_old.tscn"
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
