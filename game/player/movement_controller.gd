@@ -207,7 +207,7 @@ func get_average_leg_position(targets: Array) -> Vector3:
 
 # Movement direction calculation based on forward direction,
 # player "forward" will always be "away" from camera
-var can_move: bool = true
+var can_move: bool = false
 func get_dir() -> Vector3:
 	if not can_move: return Vector3.ZERO
 	
