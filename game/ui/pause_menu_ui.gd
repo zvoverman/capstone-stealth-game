@@ -6,6 +6,10 @@ extends Control
 func _ready() -> void:
 	GameManager.game_paused.connect(_on_game_paused)
 	GameManager.game_unpaused.connect(_on_game_unpaused)
+	
+	pause_menu.visible = false
+	settings_menu.visible = false
+	self.visible = false
 
 func _on_game_paused() -> void:
 	pause_menu.visible = true
