@@ -3,13 +3,15 @@ extends Node3D
 class_name Tooltip
 
 @export var message : String
+@export var delay: float = 3.0
 
 @onready var collision_area : Area3D = $Area3D
-@onready var label: Label = $Label
+@onready var label: Label = $Control/Control/VBoxContainer/HBoxContainer/Label
 
 signal checkpoint_entered(node: Node3D)
 
 var should_display: bool = false
+var disabled: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,8 +28,9 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.name == "PlayerDrone" && body.can_move:
-		await get_tree().create_timer(3.0).timeout
+	if body.name == "PlayerDrone" && not disabled:
+		await get_tree().create_timer(delay).timeout
 		should_display = true
 		await get_tree().create_timer(5.0).timeout
 		should_display = false
+		disabled = true

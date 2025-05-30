@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://biraruxitdbgq"]
+[gd_scene load_steps=52 format=3 uid="uid://biraruxitdbgq"]
 
 [ext_resource type="Environment" uid="uid://ctlwbxm0fkea8" path="res://post_processing/spooky_environment.tres" id="1_vgehi"]
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="2_vgehi"]
@@ -7,6 +7,8 @@
 [ext_resource type="Material" uid="uid://shy58b8bdqmo" path="res://materials/shiny_metal/shiny_metal_mat.tres" id="4_xetng"]
 [ext_resource type="Script" uid="uid://d0kwlgrr0clgv" path="res://scenes/levels/game_2.0/death_tube_cap.gd" id="7_1h3np"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="9_hjfkx"]
+[ext_resource type="Shader" uid="uid://cas1md1kis31a" path="res://materials/player/dissolve_shader.gdshader" id="9_m6rai"]
+[ext_resource type="Texture2D" uid="uid://4585ao6w8rsj" path="res://materials/player/dissolve_texture.tres" id="10_m6rai"]
 [ext_resource type="PackedScene" uid="uid://cjeocotxh35tl" path="res://scenes/objects/lights/tube_light.tscn" id="10_xetng"]
 [ext_resource type="Material" uid="uid://dlhxxyl2js7cu" path="res://materials/hazard/hazard_mat.tres" id="12_00k5i"]
 [ext_resource type="Material" uid="uid://cegnehag0e106" path="res://materials/dull_metal/dull_metal_mat.tres" id="12_1h3np"]
@@ -22,9 +24,23 @@
 [ext_resource type="Script" uid="uid://cm8td2foi648f" path="res://dialogue/dialogue_sequence.gd" id="26_00k5i"]
 [ext_resource type="Material" uid="uid://duuakn6swi76k" path="res://materials/floor/floor_material.tres" id="26_337q8"]
 [ext_resource type="PackedScene" uid="uid://drw2vhcmq60ow" path="res://scenes/objects/lights/big_hanging_spotlight.tscn" id="26_hjfkx"]
+[ext_resource type="Script" uid="uid://be70dla7b00g5" path="res://post_processing/screen_transition.gd" id="26_iiyc2"]
 [ext_resource type="PackedScene" uid="uid://1obbyik0t4lv" path="res://scenes/particles/wire_spark.tscn" id="26_l5b4i"]
+[ext_resource type="Material" uid="uid://cerykpp4534kr" path="res://post_processing/screen_transition_shader_mat.tres" id="27_xetng"]
 [ext_resource type="Script" uid="uid://ijlh15eihdxu" path="res://checkpoint/checkpoint.gd" id="28_00k5i"]
 [ext_resource type="PackedScene" uid="uid://d0qaje2x0crow" path="res://ui/game_overlay_ui.tscn" id="29_00k5i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00k5i"]
+render_priority = 0
+shader = ExtResource("9_m6rai")
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/inside_color = Color(0, 0, 0, 1)
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/glow_color = Color(1, 1, 1, 1)
+shader_parameter/glow_intensity = 5.0
+shader_parameter/glow_border_width = 0.05
+shader_parameter/glow_border_smoothness = 0.04
+shader_parameter/noise_texture = ExtResource("10_m6rai")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7djw3"]
 size = Vector3(0.6, 2, 2)
@@ -48,7 +64,7 @@ point_count = 4
 [sub_resource type="Curve3D" id="Curve3D_hjfkx"]
 bake_interval = 1.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1, 6.1, -1.7, 0, 0, 0, 0, 0, 0, -1.2, 5.56, -2.245, 0, 0, 0, 0, 0, 0, -3.2, 6.685, -1.745, 0, 0, 0, 0, 0, 0, -4.62, 8.355, -1.68),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.5, 8.1, -0.9, 0, 0, 0, 0, 0, 0, -1.2, 6.96, -1.545, 0, 0, 0, 0, 0, 0, -3.2, 7.085, -1.745, 0, 0, 0, 0, 0, 0, -4.62, 8.355, -1.68),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -60,6 +76,21 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="Resource" id="Resource_m8yc0"]
+script = ExtResource("26_00k5i")
+lines = Array[String](["DO NOT MOVE", "Malformed order recieved", "Processing termination..."])
+metadata/_custom_type_script = "uid://cm8td2foi648f"
+
+[sub_resource type="Resource" id="Resource_hjfkx"]
+script = ExtResource("26_00k5i")
+lines = Array[String](["< ! >"])
+metadata/_custom_type_script = "uid://cm8td2foi648f"
+
+[sub_resource type="Resource" id="Resource_xetng"]
+script = ExtResource("26_00k5i")
+lines = Array[String](["< ! >"])
+metadata/_custom_type_script = "uid://cm8td2foi648f"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ndar"]
 size = Vector3(0.595459, 1.93933, 1.96765)
@@ -146,6 +177,19 @@ radius = 50.0
 
 [node name="Level_1" type="Node3D"]
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.33742e-08, -0.307008, -0.951707, 5.41869e-09, 0.951707, -0.307008, 1, -1.84732e-08, -3.9616e-08, -28.5928, -8.14891, 0)
+current = true
+fov = 100.0
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D"]
+material = ExtResource("27_xetng")
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("26_iiyc2")
+fade_duration = 5.0
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0348995, 0.999391, 0, -0.999391, 0.0348995, 0, 19, 0)
 shadow_enabled = true
@@ -226,8 +270,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 radius = 2.0
 height = 0.3
 sides = 16
-material = ExtResource("12_1h3np")
+material = SubResource("ShaderMaterial_00k5i")
 script = ExtResource("7_1h3np")
+dissolve_color = Color(1, 1, 1, 1)
 
 [node name="NoClimb" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1" groups=["no_climb"]]
 use_collision = true
@@ -523,16 +568,26 @@ transform = Transform3D(1.28558, 0, 1.53209, 0, 2, 0, -1.53209, 0, 1.28558, 4.3,
 [node name="Debris4" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
 transform = Transform3D(1.5909, 0, 1.89596, 0, 2.475, 0, -1.89596, 0, 1.5909, 6, 0.2, -5.3)
 
+[node name="Debris5" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(-1.52416e-07, -2.475, -1.33346e-08, 1.5909, -1.08186e-07, 1.89596, -1.89596, 1.08186e-07, 1.5909, 1.80592, -1.8, 3.24505)
+
+[node name="Debris6" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(-1.64195, 1.2375, 1.37776, 1.5909, -1.08186e-07, 1.89596, 0.94798, 2.14341, -0.79545, -0.994083, -3.6, 1.24505)
+
+[node name="Debris7" parent="EnvironmentMeshes/Room_1/Objects/Debris" instance=ExtResource("20_m8yc0")]
+transform = Transform3D(1.55308, 1.4196, -1.30319, 1.5909, -1.4888e-07, 1.89596, 1.08748, -2.0274, -0.912503, -1.69408, -2.6, 4.44505)
+
 [node name="Tv" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("22_337q8")]
 transform = Transform3D(-7.39355e-08, -2.69103e-08, -1.8, -0.615636, 1.69145, -4.00615e-15, 1.69145, 0.615636, -7.86805e-08, 0, 5.55976, -2.98336)
+dialogue = SubResource("Resource_m8yc0")
 
 [node name="Tv2" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("22_337q8")]
 transform = Transform3D(0.476557, 0.173453, -1.08757, -0.410424, 1.12763, 3.76357e-08, 1.02198, 0.371971, 0.507142, -2.46964, 3.07633, -2.69378)
-dialogue = null
+dialogue = SubResource("Resource_hjfkx")
 
 [node name="Tv3" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("22_337q8")]
 transform = Transform3D(-0.476558, -0.173453, -1.08757, -0.410424, 1.12763, 0, 1.02198, 0.371971, -0.507142, 2.17172, 7.09625, -0.548029)
-dialogue = null
+dialogue = SubResource("Resource_xetng")
 
 [node name="Room_1_1" type="Node3D" parent="EnvironmentMeshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.5, 0)
@@ -1727,25 +1782,30 @@ shape = SubResource("SphereShape3D_iiyc2")
 
 [node name="WASDTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -2, 0)
-message = "Press WASD to move.."
+message = "< SYSTEMS ONLINE - Press WASD to move >."
+delay = 8.0
 
 [node name="ClimbTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 5)
-message = "Walk towards a surface to climb it.."
+message = "< Walk towards a surface to climb it >."
 
 [node name="HintTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 9, -51)
-message = "Press H to scan climbable surfaces."
+message = "< Press H to scan climbable surfaces >."
 
 [node name="JumpTooltip" parent="Tooltips" instance=ExtResource("23_5jnw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 30, 43)
-message = "Press SPACE to jump."
+message = "< Press SPACE to jump >"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Game Overlay Ui" parent="CanvasLayer" instance=ExtResource("29_00k5i")]
 
 [node name="BigHangingSpotlight" parent="." instance=ExtResource("26_hjfkx")]
+transform = Transform3D(0.612373, 0.353553, 0.707107, -0.5, 0.866025, 0, -0.612373, -0.353553, 0.707107, -23, -0.2, -4)
+isOn = false
+
+[node name="BigHangingSpotlight2" parent="." instance=ExtResource("26_hjfkx")]
 transform = Transform3D(-0.408218, -0.875426, -0.258819, 0.906308, -0.422618, 0, -0.109382, -0.23457, 0.965926, -1.9, 6.8, -68.4)
 
 [editable path="EnvironmentMeshes/Room_1/Objects/vent_cover2"]
