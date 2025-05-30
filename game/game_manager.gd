@@ -63,12 +63,8 @@ func start_game():
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
-	# Get sequence camera
-	var camera_cutscene_node = level_root.get_node("Camera3D")
-	camera_cutscene_node.make_current()
-	
-	spawn_node = level_root.get_node("Checkpoints/InitialSpawnPoint")
-	#spawn_node= level_root.get_node("Checkpoints/EngineerHub")
+	#spawn_node = level_root.get_node("Checkpoints/InitialSpawnPoint")
+	spawn_node= level_root.get_node("Checkpoints/EngineerHub")
 	if spawn_node == null:
 		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
 		return
@@ -86,14 +82,15 @@ func start_game():
 	get_tree().current_scene.add_child(player)
 	player.update_abilities(ability_to_status)
 	
-	#player.player_respawn_sequence(spawn_node)
-	player.respawn(spawn_node) # Only respawn to skip built in animation and can_move time
+	# Get sequence camera
+	var camera_cutscene_node = level_root.get_node("Camera3D")
 	
-	start_intro_sequence(level_root, camera_cutscene_node)
+	testing_spawn()
+	#player.respawn(spawn_node) # Only respawn to skip built in animation and can_move time
+	#start_intro_sequence(level_root, camera_cutscene_node)
 
 func start_intro_sequence(level_root, camera_cutscene_node):
-	
-	#camera_cutscene_node.get_node("ColorRect").start_fade()
+	camera_cutscene_node.make_current()
 	
 	var spotlight = level_root.get_node("BigHangingSpotlight")
 	
@@ -103,6 +100,16 @@ func start_intro_sequence(level_root, camera_cutscene_node):
 	await get_tree().create_timer(7.0).timeout
 	player.camera.make_current()
 	player.can_move = true
+	
+func testing_spawn():
+	player.ability_to_status = {
+		PlayerAbilityType.CLIMB: PlayerAbilityStatus.UNLOCKED,
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED,
+		PlayerAbilityType.DASH: PlayerAbilityStatus.LOCKED
+	}
+	player.camera.make_current()
+	player.can_move
+	player.player_respawn_sequence(spawn_node)
 
 func quit_to_main_menu():
 	const scene_path = "res://scenes/levels/menu_level.tscn"
@@ -112,7 +119,7 @@ func quit_to_main_menu():
 func _ready() -> void:
 	ability_to_status = {
 		PlayerAbilityType.CLIMB: PlayerAbilityStatus.LOCKED,
-		PlayerAbilityType.JUMP: PlayerAbilityStatus.UNLOCKED,
+		PlayerAbilityType.JUMP: PlayerAbilityStatus.LOCKED,
 		PlayerAbilityType.DASH: PlayerAbilityStatus.LOCKED
 	}
 

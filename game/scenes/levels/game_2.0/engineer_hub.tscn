@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://scwwmvqtdlsh"]
+[gd_scene load_steps=42 format=3 uid="uid://scwwmvqtdlsh"]
 
 [ext_resource type="Material" uid="uid://3cfv5uebwh04" path="res://materials/light_grey_material.tres" id="1_g5hjb"]
 [ext_resource type="PackedScene" uid="uid://bxy2sxej2smge" path="res://scenes/objects/lights/big_hanging_light.tscn" id="3_7a5qc"]
@@ -24,6 +24,7 @@
 [ext_resource type="Material" uid="uid://cyi55g0trnr64" path="res://materials/climbable_highlight_np.tres" id="20_wgmab"]
 [ext_resource type="Texture2D" uid="uid://c4ij1mlrfy81u" path="res://materials/floor/exquistite-polished-tile_normal-ogl.png" id="21_p1x0c"]
 [ext_resource type="Texture2D" uid="uid://cw7pefnxphmxu" path="res://materials/floor/exquistite-polished-tile_roughness.png" id="22_ewom2"]
+[ext_resource type="Material" uid="uid://cvni1nuepkwrj" path="res://materials/hazard/lazer_mat.tres" id="24_61dp6"]
 
 [sub_resource type="Curve3D" id="Curve3D_p73pn"]
 _data = {
@@ -589,6 +590,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -76, 0)
 shape = SubResource("BoxShape3D_nk20a")
 
 [node name="EndRoom" type="Node3D" parent="EnvironmentMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 66)
 
 [node name="CanCollide" type="CSGCombiner3D" parent="EnvironmentMeshes/EndRoom"]
 use_collision = true
@@ -664,13 +666,215 @@ color_ramp = SubResource("Gradient_y0txf")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[node name="Tv" parent="EnvironmentMeshes" instance=ExtResource("15_61dp6")]
+[node name="Tv" parent="EnvironmentMeshes/EndRoom" instance=ExtResource("15_61dp6")]
 transform = Transform3D(-1.5, -2.98023e-08, -2.26494e-07, -2.98023e-08, 1.5, -1.24005e-15, 2.26494e-07, 3.25998e-15, -1.5, 5.4, 5, 55.2)
 dialogue = SubResource("Resource_61dp6")
 
-[node name="Tv2" parent="EnvironmentMeshes" instance=ExtResource("15_61dp6")]
+[node name="Tv2" parent="EnvironmentMeshes/EndRoom" instance=ExtResource("15_61dp6")]
 transform = Transform3D(1.5, 2.98023e-08, 2.62268e-07, -2.98023e-08, 1.5, -1.24004e-15, -2.62268e-07, -3.97075e-15, 1.5, -5.4, 5, 55.2)
 dialogue = SubResource("Resource_1tb0p")
+
+[node name="Room_1" type="Node3D" parent="EnvironmentMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61)
+
+[node name="Meshes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1"]
+use_collision = true
+
+[node name="Container" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+size = Vector3(8, 8, 20)
+
+[node name="Container2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 3.5, 0)
+size = Vector3(9, 8, 8)
+
+[node name="Holes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_1/Meshes"]
+operation = 2
+
+[node name="Container2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+size = Vector3(6, 6, 18)
+
+[node name="Container3" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 3.5, 0)
+size = Vector3(10, 6, 6)
+
+[node name="DoorHoles" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -9.9)
+size = Vector3(5, 4, 2)
+
+[node name="DoorHoles2" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 9.1)
+size = Vector3(5, 4, 2)
+
+[node name="DoorHoles3" type="CSGBox3D" parent="EnvironmentMeshes/Room_1/Meshes/Holes"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 13, 2.5, 0)
+size = Vector3(5, 4, 2)
+
+[node name="Objects" type="Node3D" parent="EnvironmentMeshes/Room_1"]
+
+[node name="Lights" type="Node3D" parent="EnvironmentMeshes/Room_1/Objects"]
+
+[node name="BigHangingLight" parent="EnvironmentMeshes/Room_1/Objects" instance=ExtResource("3_7a5qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4, 0)
+
+[node name="Room_2" type="Node3D" parent="EnvironmentMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 78)
+
+[node name="Meshes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_2"]
+use_collision = true
+
+[node name="Container" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 7, -3)
+size = Vector3(23, 15, 8)
+
+[node name="Container2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, 5)
+size = Vector3(40, 15, 8)
+
+[node name="Container3" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 7, 1)
+size = Vector3(8, 15, 16)
+
+[node name="Holes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+operation = 2
+
+[node name="Container2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 7, -3)
+size = Vector3(23, 13, 6)
+
+[node name="Container3" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 5)
+size = Vector3(40, 13, 6)
+
+[node name="Container5" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7, 3.5)
+size = Vector3(6, 13, 9)
+
+[node name="Container4" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 7, 1)
+size = Vector3(6, 13, 14)
+
+[node name="DoorHoles2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -6.9)
+size = Vector3(5, 4, 2)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -10.65, 6, -5.6)
+height = 9.3
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Meshes"]
+transform = Transform3D(1.91069e-15, 7.30144e-30, 1, -4.37114e-08, 1, 1.59578e-37, -1, -4.37114e-08, 1.91069e-15, -15.3, 3.75, -5.6)
+height = 6.5
+
+[node name="NoClimb" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_2" groups=["no_climb"]]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3, 7, -0.75)
+size = Vector3(1, 13, 1.5)
+material = ExtResource("8_6fhae")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3, 13, -3)
+size = Vector3(1, 1, 3)
+material = ExtResource("8_6fhae")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3, 7, -5.25)
+size = Vector3(1, 13, 1.5)
+material = ExtResource("8_6fhae")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="EnvironmentMeshes/Room_2/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1, 3.1, -5.85)
+size = Vector3(8.6, 5.2, 0.3)
+material = ExtResource("8_6fhae")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/NoClimb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 7, -0.5)
+height = 14.0
+material = ExtResource("8_6fhae")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/NoClimb"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -9.5, 12, -0.5)
+height = 7.0
+material = ExtResource("8_6fhae")
+
+[node name="Objects" type="Node3D" parent="EnvironmentMeshes/Room_2"]
+
+[node name="Lights" type="Node3D" parent="EnvironmentMeshes/Room_2/Objects"]
+
+[node name="BigHangingLight" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("3_7a5qc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 13.4, -3)
+
+[node name="BigHangingLight2" parent="EnvironmentMeshes/Room_2/Objects/Lights" instance=ExtResource("3_7a5qc")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 13.4, 5)
+
+[node name="Hazard" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_2" groups=["hazard"]]
+use_collision = true
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Hazard" groups=["hazard"]]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -6.33333, 1.3, -3)
+use_collision = true
+radius = 0.05
+height = 6.0
+material = ExtResource("24_61dp6")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Hazard" groups=["hazard"]]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -14.3333, 1.3, -3)
+use_collision = true
+radius = 0.05
+height = 6.0
+material = ExtResource("24_61dp6")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Hazard" groups=["hazard"]]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -14.3333, 2.3, -3)
+use_collision = true
+radius = 0.05
+height = 6.0
+material = ExtResource("24_61dp6")
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Hazard" groups=["hazard"]]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -14.3333, 3.3, -3)
+use_collision = true
+radius = 0.05
+height = 6.0
+material = ExtResource("24_61dp6")
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Hazard" groups=["hazard"]]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -14.3333, 4.3, -3)
+use_collision = true
+radius = 0.05
+height = 6.0
+material = ExtResource("24_61dp6")
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="EnvironmentMeshes/Room_2/Hazard" groups=["hazard"]]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -14.3333, 5.3, -3)
+use_collision = true
+radius = 0.05
+height = 6.0
+material = ExtResource("24_61dp6")
+
+[node name="Room_3" type="Node3D" parent="EnvironmentMeshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 66)
+
+[node name="Meshes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_3"]
+use_collision = true
+
+[node name="Container2" type="CSGBox3D" parent="EnvironmentMeshes/Room_3/Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+size = Vector3(8, 15, 26)
+
+[node name="Holes" type="CSGCombiner3D" parent="EnvironmentMeshes/Room_3/Meshes"]
+operation = 2
+
+[node name="Container2" type="CSGBox3D" parent="EnvironmentMeshes/Room_3/Meshes/Holes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0.5)
+size = Vector3(6, 13, 25)
+
+[node name="DoorHoles3" type="CSGBox3D" parent="EnvironmentMeshes/Room_3/Meshes/Holes"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -3, 2.5, -5)
+size = Vector3(5, 4, 2)
 
 [node name="PlayerAbility" parent="." instance=ExtResource("13_nk20a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 17, -15.6)
