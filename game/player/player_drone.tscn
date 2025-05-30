@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://c3it8imntusbc"]
+[gd_scene load_steps=64 format=4 uid="uid://c3it8imntusbc"]
 
 [ext_resource type="Script" uid="uid://fveqasmpx35u" path="res://player/IK/start_ik.gd" id="1_hedis"]
 [ext_resource type="Script" uid="uid://c2xjsks07hwc7" path="res://player/movement_controller.gd" id="1_ro2tw"]
@@ -566,8 +566,6 @@ blend_shape_mode = 0
 [sub_resource type="SphereShape3D" id="SphereShape3D_ro2tw"]
 radius = 0.4
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_tmgym"]
-
 [node name="PlayerDrone" type="CharacterBody3D" node_paths=PackedStringArray("forward_direction_node", "player_audio")]
 script = ExtResource("1_ro2tw")
 forward_direction_node = NodePath("CameraRootNode/CamYaw/CamPitch/ForwardMarker")
@@ -944,13 +942,11 @@ node_to_follow = NodePath("..")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraRootNode/CamYaw/CamPitch"]
 transform = Transform3D(1, 0, 0, 0, 0.888225, 0.459409, 0, -0.459409, 0.888225, 0, 0, 0)
-shape = SubResource("SphereShape3D_tmgym")
 spring_length = 3.5
 margin = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="CameraRootNode/CamYaw/CamPitch/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.995692, -0.0927175, 0, 0.0927175, 0.995692, 0, 0.00175154, 3.32294)
-current = true
 fov = 100.0
 script = ExtResource("6_ro2tw")
 
@@ -962,7 +958,7 @@ offset_bottom = 40.0
 texture = ExtResource("7_tmgym")
 
 [node name="ForwardMarker" type="Marker3D" parent="CameraRootNode/CamYaw/CamPitch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -3)
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraRootNode/CamYaw/CamPitch/ForwardMarker"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.189183, 3)

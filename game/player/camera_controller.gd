@@ -22,7 +22,7 @@ var pitch_sensitivity : float = 0.07
 @export var snap_speed : float = 3
 
 var yaw : float = 0
-var pitch : float = 0
+var pitch : float = 40
 
 const STICK_DEADZONE := 0.5
 const YAW_STICK_LOOK_SPEED := 80
@@ -46,7 +46,7 @@ func _ready():
 	SettingsManager.sensitivity_changed.connect(_on_sensitivity_changed)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and not GameManager.is_paused:
+	if event is InputEventMouseMotion and not GameManager.is_paused and node_to_follow.can_move:
 		yaw += -event.relative.x * yaw_sensitivity
 		pitch += -event.relative.y * pitch_sensitivity
 		

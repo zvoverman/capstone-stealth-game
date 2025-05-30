@@ -38,7 +38,7 @@ func _ready():
 	_main_menu_in()
 
 func _on_start_button_pressed() -> void:
-	await _main_menu_out()
+	_main_menu_out()
 	GameManager.start_game()
 
 func _on_about_us_button_pressed() -> void:

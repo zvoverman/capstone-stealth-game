@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://drw2vhcmq60ow"]
+[gd_scene load_steps=13 format=4 uid="uid://drw2vhcmq60ow"]
 
 [ext_resource type="Material" uid="uid://dhpbuuwgu0t6y" path="res://materials/light_material.tres" id="1_771of"]
 [ext_resource type="Texture2D" uid="uid://bfl7fvi4ormup" path="res://materials/shiny_metal/Metal051B_1K-JPG_Metalness.jpg" id="1_k05eu"]
+[ext_resource type="Script" uid="uid://bd3r4r6k2m6fx" path="res://scenes/objects/lights/light_control.gd" id="1_q8lhp"]
 [ext_resource type="Texture2D" uid="uid://bqawwt6pf8rke" path="res://materials/shiny_metal/Metal051B_1K-JPG_NormalGL.jpg" id="2_q8lhp"]
 [ext_resource type="Texture2D" uid="uid://0rb74ifpogh5" path="res://materials/shiny_metal/Metal051B_1K-JPG_Roughness.jpg" id="3_ol1og"]
 
@@ -83,10 +84,11 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_01vxb")
 
 [node name="BigHangingSpotlight" type="Node3D"]
+script = ExtResource("1_q8lhp")
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.057521, 0)
-light_energy = 3.0
+light_energy = 2.0
 light_bake_mode = 1
 shadow_enabled = true
 shadow_blur = 3.0

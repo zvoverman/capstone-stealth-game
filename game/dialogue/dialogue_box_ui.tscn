@@ -35,4 +35,6 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 200
 text = "This is some sample text!"
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2

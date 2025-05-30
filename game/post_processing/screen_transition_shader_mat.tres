@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cerykpp4534kr"]
+
+[ext_resource type="Shader" uid="uid://dr820jb68eq0u" path="res://post_processing/screen_transition.gdshader" id="1_isvxq"]
+
+[resource]
+shader = ExtResource("1_isvxq")
+shader_parameter/fade_progress = 0.5
+shader_parameter/fade_softness = 0.0

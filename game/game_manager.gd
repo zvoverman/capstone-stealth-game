@@ -53,6 +53,9 @@ func load_level(scene_path: String) -> Node:
 
 # Loads a specified scene path, finds InitialSpawnPoint, and spawns the player there
 func start_game():
+	get_tree().current_scene.get_child(4).fade_to_black()
+	await get_tree().create_timer(1.0).timeout
+	
 	const scene_path = "res://scenes/levels/game_2.0/level_1.tscn"
 	#const scene_path = "res://scenes/levels/game/game.tscn" # old game scene
 	#const scene_path = "res://scenes/levels/game_2.0/abstract_world.tscn"
@@ -60,26 +63,46 @@ func start_game():
 	const player_scene_path = "res://player/player_drone.tscn"
 	var level_root = await load_level(scene_path)
 	
+	# Get sequence camera
+	var camera_cutscene_node = level_root.get_node("Camera3D")
+	camera_cutscene_node.make_current()
+	
 	spawn_node = level_root.get_node("Checkpoints/InitialSpawnPoint")
 	#spawn_node= level_root.get_node("Checkpoints/EngineerHub")
 	if spawn_node == null:
 		push_warning("No spawn point named 'InitialSpawnPoint' found in scene.")
 		return
-		
+	
 	# Initiate and spawn player
 	var player_resource = load(player_scene_path)
 	player = player_resource.instantiate()
-	
-	get_tree().current_scene.add_child(player)
-	player.update_abilities(ability_to_status)
-	
-	player.player_respawn_sequence(spawn_node)
 	
 	MusicManager.play_theme()
 	
 	# TEMP??
 	unpause_game()
 	
+	# Player initiation
+	get_tree().current_scene.add_child(player)
+	player.update_abilities(ability_to_status)
+	
+	#player.player_respawn_sequence(spawn_node)
+	player.respawn(spawn_node) # Only respawn to skip built in animation and can_move time
+	
+	start_intro_sequence(level_root, camera_cutscene_node)
+
+func start_intro_sequence(level_root, camera_cutscene_node):
+	
+	#camera_cutscene_node.get_node("ColorRect").start_fade()
+	
+	var spotlight = level_root.get_node("BigHangingSpotlight")
+	
+	await get_tree().create_timer(3.0).timeout
+	spotlight.enable_light()
+	
+	await get_tree().create_timer(7.0).timeout
+	player.camera.make_current()
+	player.can_move = true
 
 func quit_to_main_menu():
 	const scene_path = "res://scenes/levels/menu_level.tscn"
