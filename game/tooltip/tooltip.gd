@@ -6,7 +6,7 @@ class_name Tooltip
 @export var delay: float = 3.0
 
 @onready var collision_area : Area3D = $Area3D
-@onready var label: Label = $Label
+@onready var label: Label = $Control/Control/VBoxContainer/HBoxContainer/Label
 
 signal checkpoint_entered(node: Node3D)
 
